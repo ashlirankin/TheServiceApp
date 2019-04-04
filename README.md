@@ -16,10 +16,10 @@ https://stripe.com/
 
 # Built With
 
-Firebase 
-FirebaseFirestore
-Firebase Auth
-Firebase Storage 
-Toucan
-KingFisher
-MessageKit
+* Firebase 
+* FirebaseFirestore
+* Firebase Auth
+* Firebase Storage 
+* Toucan
+* KingFisher
+* MessageKit
