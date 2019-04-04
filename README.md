@@ -6,3 +6,7 @@
 
 
 styleList is a iOS mobile app that connects you directly to hair-stylists and barbers to scehdule in home service. 
+
+
+# Project Management (Trello)
+Team Progress "https://trello.com/b/h7dsZD4L/53-capstone-group-7"
