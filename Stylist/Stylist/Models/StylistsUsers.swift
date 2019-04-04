@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+struct StylistsUser{
+  let userId:String
+  let firstName: String
+  let lastName:String
+  let email:String
+  let gender:String
+  let address:String
+  let imageURL:String
+  
+}

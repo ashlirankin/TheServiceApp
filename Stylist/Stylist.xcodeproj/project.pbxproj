@@ -18,6 +18,7 @@
 		2EF103CD2255A4D20030FBFF /* Ratings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF103CC2255A4D20030FBFF /* Ratings.swift */; };
 		2EF103CF2255A4DB0030FBFF /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF103CE2255A4DB0030FBFF /* Reviews.swift */; };
 		2EF103D12255A4E90030FBFF /* StylistCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF103D02255A4E90030FBFF /* StylistCollectionKeys.swift */; };
+		2EF103D32255ABA10030FBFF /* Avalibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF103D22255ABA10030FBFF /* Avalibility.swift */; };
 		8F8138881EF44484D5275681 /* Pods_Stylist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D89AABB01908945DBC5625A6 /* Pods_Stylist.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		2EF103CC2255A4D20030FBFF /* Ratings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ratings.swift; sourceTree = "<group>"; };
 		2EF103CE2255A4DB0030FBFF /* Reviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews.swift; sourceTree = "<group>"; };
 		2EF103D02255A4E90030FBFF /* StylistCollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StylistCollectionKeys.swift; sourceTree = "<group>"; };
+		2EF103D22255ABA10030FBFF /* Avalibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avalibility.swift; sourceTree = "<group>"; };
 		A57421994C7FAE45048DF33C /* Pods-Stylist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stylist.release.xcconfig"; path = "Target Support Files/Pods-Stylist/Pods-Stylist.release.xcconfig"; sourceTree = "<group>"; };
 		B418A06F2B04F61BDB9BDED7 /* Pods-Stylist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stylist.debug.xcconfig"; path = "Target Support Files/Pods-Stylist/Pods-Stylist.debug.xcconfig"; sourceTree = "<group>"; };
 		D89AABB01908945DBC5625A6 /* Pods_Stylist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stylist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +127,7 @@
 				2EF103CC2255A4D20030FBFF /* Ratings.swift */,
 				2EF103CE2255A4DB0030FBFF /* Reviews.swift */,
 				2EF103D02255A4E90030FBFF /* StylistCollectionKeys.swift */,
+				2EF103D22255ABA10030FBFF /* Avalibility.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				2EF103CF2255A4DB0030FBFF /* Reviews.swift in Sources */,
 				2EF103CD2255A4D20030FBFF /* Ratings.swift in Sources */,
 				2EF103D12255A4E90030FBFF /* StylistCollectionKeys.swift in Sources */,
+				2EF103D32255ABA10030FBFF /* Avalibility.swift in Sources */,
 				2EF103CB2255A4C00030FBFF /* StylistsUsers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

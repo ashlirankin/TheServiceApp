@@ -7,3 +7,10 @@
 //
 
 import Foundation
+struct Reviews {
+  let reviewerId:String
+  let rating:Ratings
+  let description:String
+  let createdDate:String
+  
+}

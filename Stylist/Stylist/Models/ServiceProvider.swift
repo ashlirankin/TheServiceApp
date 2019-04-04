@@ -7,3 +7,16 @@
 //
 
 import Foundation
+struct ServiceSideUser{
+  let userId:String
+  let firstName:String
+  let lastName:String
+  let email:String
+  let joinedDate:String
+  let gender:String
+  let isCertified:String
+  let imageURL:String
+  let bio:String
+  let licenseNumber:String
+  let licenseExpiryDate:String
+}
