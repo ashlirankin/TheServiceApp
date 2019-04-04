@@ -60,3 +60,10 @@ struct AvalibilityCollectionKeys{
   static let createdDate = "createdDate"
   static let days = "days"
 }
+
+struct DaysCollectionKeys{
+  static let days = "days"
+  static let userId = "userId"
+  static let avalibliehours = "avalibleHours"
+  static let daysId = "daysId"
+}

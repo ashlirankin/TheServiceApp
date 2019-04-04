@@ -13,4 +13,14 @@ struct Days{
   let userId:String
   let avalibleHours:[String]
   
+  init(dayId:String,userId:String,avalibleHours:[String]){
+    self.avalibleHours = avalibleHours
+    self.dayId = dayId
+    self.userId = userId
+  }
+  init(dict:[String:Any]){
+    self.avalibleHours = dict[DaysCollectionKeys.avalibliehours] as? [String] ?? [String]()
+    self.dayId = dict[DaysCollectionKeys.daysId] as? String ?? "dayId not found"
+    self.userId = dict[DaysCollectionKeys.userId] as? String ?? "no user id found"
+  }
 }
