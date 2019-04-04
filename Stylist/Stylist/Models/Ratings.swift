@@ -7,3 +7,8 @@
 //
 
 import Foundation
+struct Ratings{
+  let ratingId:String
+  let value:Int
+  let userId:String
+}
