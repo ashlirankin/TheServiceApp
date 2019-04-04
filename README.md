@@ -9,4 +9,8 @@ styleList is a iOS mobile app that connects you directly to hair-stylists and ba
 
 
 # Project Management (Trello)
-Team Progress "https://trello.com/b/h7dsZD4L/53-capstone-group-7"
+Team Progress https://trello.com/b/h7dsZD4L/53-capstone-group-7
+
+# APIs + Resources 
+https://data.ny.gov/resource/7ahw-5emx.json
+https://stripe.com/
