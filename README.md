@@ -10,9 +10,9 @@ styleList is a iOS mobile app that connects you directly to hair-stylists and ba
 
 ## APIs + Resources 
 
-https://cocoapods.org/pods/Cosmos
-https://github.com/patchthecode/JTAppleCalendar
-https://stripe.com/
+* https://cocoapods.org/pods/Cosmos
+* https://github.com/patchthecode/JTAppleCalendar
+* https://stripe.com/
 
 ## Built With
 
