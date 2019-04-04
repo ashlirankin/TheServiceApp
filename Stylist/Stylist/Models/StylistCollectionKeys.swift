@@ -9,45 +9,54 @@
 import Foundation
 
 struct ServiceSideUserCollectionKeys{
-  let serviceProvider = "serviceProvider"
-  let userId = "userId"
-  let firstName = "firstName"
-  let lastName = "lastName"
-  let email = "email"
-  let joinedDate = "joinedDate"
-  let gender = "gender"
-  let isCertified = "isCertified"
-  let imageURL = "imageURL"
-  let bio = "bio"
-  let licenseNumber = "licenseNumber"
-  let licenseExpiryDate = "licenseExpiryDate"
+  static let serviceProvider = "serviceProvider"
+  static let userId = "userId"
+  static let firstName = "firstName"
+  static let lastName = "lastName"
+  static let email = "email"
+  static let joinedDate = "joinedDate"
+  static let gender = "gender"
+  static let isCertified = "isCertified"
+  static let imageURL = "imageURL"
+  static let bio = "bio"
+  static let licenseNumber = "licenseNumber"
+  static let licenseExpiryDate = "licenseExpiryDate"
 }
 
 struct StylistsUserCollectionKeys{
-  let stylistUser = "stylistUser"
-  let userId = "userId"
-  let firstName = "firstName"
-  let lastName = "lastName"
-  let email = "email"
-  let gender = "gender"
-  let address = "address"
-  let imageURL = "imageURL"
+  static let stylistUser = "stylistUser"
+  static let userId = "userId"
+  static let firstName = "firstName"
+  static let lastName = "lastName"
+  static let email = "email"
+  static let gender = "gender"
+  static let address = "address"
+ static let imageURL = "imageURL"
   
 }
 
 struct RatingsCollectionKeys {
-    let ratings = "ratings"
-    let ratingId = "ratingId"
-    let value = "value"
-    let userId = "userId"
+    static let ratings = "ratings"
+    static  let ratingId = "ratingId"
+    static let value = "value"
+    static let userId = "userId"
   
 }
 
 struct ReviewsCollectionKeys{
-  let reviews = "reviews"
+ static let reviews = "reviews"
+  static let reviewerId = "reviewrId"
+  static let ratings = "ratings"
+  static let description = "description"
+  static let createdDate = "createdDate"
   
 }
 
 struct AvalibilityCollectionKeys{
-  
+  static let avalibility = "avalibility"
+  static let userId = "userId"
+  static let avalibilityId = "avalibility"
+  static let dayName = "dayName"
+  static let createdDate = "createdDate"
+  static let days = "days"
 }

@@ -1,5 +1,5 @@
 //
-//  Avalibility.swift
+//  Days.swift
 //  Stylist
 //
 //  Created by Ashli Rankin on 4/3/19.
@@ -8,10 +8,9 @@
 
 import Foundation
 
-struct Avalibility {
+struct Days{
+  let dayId:String
   let userId:String
-  let avalibilityId:String
-  let dayName:String
-  let day:Days
-  let createdDate:String
+  let avalibleHours:[String]
+  
 }
