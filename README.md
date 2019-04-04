@@ -8,13 +8,13 @@
 styleList is a iOS mobile app that connects you directly to hair-stylists and barbers to scehdule in home service. 
 
 
-# APIs + Resources 
+## APIs + Resources 
 
 https://cocoapods.org/pods/Cosmos
 https://github.com/patchthecode/JTAppleCalendar
 https://stripe.com/
 
-# Built With
+## Built With
 
 * Firebase 
 * FirebaseFirestore
