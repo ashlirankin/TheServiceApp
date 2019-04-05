@@ -1,18 +1,24 @@
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '12.0'
+
+use_frameworks!
+
+def stylist_pods
+  pod 'FirebaseAuth'
+  pod 'Firebase'
+  pod 'FirebaseStorage'
+  pod 'FirebaseFirestore'
+  pod 'FirebaseCore'
+  pod 'Toucan'
+  pod 'Kingfisher'
+  pod 'Cosmos'
+  pod 'Stripe'
+  pod 'Charts'
+end
 
 target 'Stylist' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
+  stylist_pods
+end
 
-  # Pods for Stylist
-pod 'FirebaseAuth'
-pod 'FirebaseStorage'
-pod 'FirebaseFirestore'
-pod 'FirebaseCore'
-pod 'Toucan'
-pod 'Kingfisher'
-pod 'Cosmos'
-pod 'Stripe'
-pod 'Charts'
+target 'FirebaseTests' do
+  stylist_pods
 end
