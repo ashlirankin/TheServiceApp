@@ -23,3 +23,5 @@ styleList is a iOS mobile app that connects you directly to hair-stylists and ba
 * Toucan
 * KingFisher
 * MessageKit
+* Cosmos
+* Charts
