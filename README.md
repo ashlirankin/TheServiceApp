@@ -39,3 +39,10 @@ StyleList is a iOS mobile app that connects you directly to hair-stylists and ba
 * Xcode - 9.0+, set up on Swift Language
 * iOS 8.0+ / Mac OS X 10.11+ / tvOS 9.0+
 * Swift 4.0+
+
+## Developers
+
+* Ashli Rankin 
+* Oneil Rosario
+* Jabeen Cheema
+* Jian Ting Li
