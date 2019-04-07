@@ -1,4 +1,4 @@
-# StyleList
+# StyleLists
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/43770152/55572518-bf5bd480-56d5-11e9-8d84-ac654ef9d95b.png" />
@@ -33,3 +33,9 @@ StyleList is a iOS mobile app that connects you directly to hair-stylists and ba
 * Cosmos - This dependency provides us with the stars that we require for the rating, review systems.
 
 * Charts - This provides a awesome UI experience for the service provider. It allows them to view the earnings and other statistical data in app
+
+## Prerequisites
+
+* Xcode - 9.0+, set up on Swift Language
+* iOS 8.0+ / Mac OS X 10.11+ / tvOS 9.0+
+* Swift 4.0+
