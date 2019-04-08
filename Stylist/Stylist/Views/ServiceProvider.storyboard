@@ -304,18 +304,27 @@
         <!--Profile-->
         <scene sceneID="HRE-cd-cLM">
             <objects>
-                <viewController storyboardIdentifier="ServiceProfile" id="mt6-2i-1MJ" customClass="ServiceProfileViewController" customModule="Stylist" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kvr-LX-ZN2" customClass="Pro">
+                <viewController storyboardIdentifier="ServiceProfileVC" id="mt6-2i-1MJ" customClass="ServiceProfileViewController" customModule="Stylist" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kvr-LX-ZN2" customClass="Prof">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4RQ-8t-HzQ">
+                                <rect key="frame" x="0.0" y="463" width="414" height="350"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" red="0.33403472829999997" green="0.44645626760000001" blue="0.89813512559999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="l0n-rs-UQf"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" id="Y1c-xl-SOo"/>
+                    <connections>
+                        <outlet property="profileScrollView" destination="4RQ-8t-HzQ" id="7P1-bJ-lsq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3gU-jR-H7C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="125" y="308"/>
+            <point key="canvasLocation" x="124.6376811594203" y="306.69642857142856"/>
         </scene>
         <!--Person-->
         <scene sceneID="UcA-Al-DLg">
