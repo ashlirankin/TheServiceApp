@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ServiceProfileViewController: UIViewController {
+class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
