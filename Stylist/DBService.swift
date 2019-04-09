@@ -32,16 +32,19 @@ firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(consumer
       
     }
   }
-  static func getDatabaseUser(collectionName:String,user:User, completionHandler: @escaping (Error?,DocumentSnapshot?)-> Void){
     
-    firestoreDB.collection(collectionName).document(user.uid).getDocument { (snapshot, error) in
-      if let error = error{
-        completionHandler(error,nil)
-      }
-      if let snapshot = snapshot {
-        completionHandler(nil,snapshot)
-      }
-    }
+
+  static func getDatabaseUser(user:StylistsUser, completionHandler: @escaping (Error?,StylistsUser?)-> Void){
+    firestoreDB.collection(StylistsUserCollectionKeys.stylistUser)
+        .whereField(StylistsUserCollectionKeys.userId, isEqualTo: user.userId)
+        .getDocuments(completion: { (snapshot, error) in
+            if let error = error {
+                completionHandler(error, nil)
+            } else if let snapshot = snapshot?.documents.first {
+                let stylistUser = StylistsUser(dict: snapshot.data())
+                completionHandler(nil, stylistUser)
+            }
+        })
   }
 }
 
