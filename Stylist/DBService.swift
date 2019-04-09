@@ -22,7 +22,6 @@ final class DBService {
   }()
   
   static func CreateServiceProvider(serviceProvider:ServiceSideUser,completionHandler: @escaping (Error?) -> Void){
-    
     firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).document(serviceProvider.userId).setData([ServiceSideUserCollectionKeys.firstName: serviceProvider.firstName
       ?? "" ,
                                                                                                                     ServiceSideUserCollectionKeys.lastName:serviceProvider.lastName ?? "" ,
@@ -41,7 +40,6 @@ firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(consumer
       if let error = error {
         print(" there was an error: \(error.localizedDescription)")
       }
-      
     }
   }
   static func getDatabaseUser(collectionName:String,user:User, completionHandler: @escaping (Error?,DocumentSnapshot?)-> Void){

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		094DF889225D2809001EA2FE /* UserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094DF888225D2809001EA2FE /* UserDetailController.swift */; };
+		094DF88B225D2835001EA2FE /* UserDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 094DF88A225D2835001EA2FE /* UserDetailHeader.xib */; };
+		094DF88D225D2E69001EA2FE /* IBDesignableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094DF88C225D2E69001EA2FE /* IBDesignableViews.swift */; };
 		09A9D541225BA90D00DFB5E2 /* ProfileHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09A9D540225BA90D00DFB5E2 /* ProfileHeader.xib */; };
 		09A9D543225BCFB200DFB5E2 /* ServiceProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */; };
 		09A9D545225BDAF200DFB5E2 /* ServiceBioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A9D544225BDAF200DFB5E2 /* ServiceBioView.swift */; };
@@ -58,6 +61,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		094DF888225D2809001EA2FE /* UserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailController.swift; sourceTree = "<group>"; };
+		094DF88A225D2835001EA2FE /* UserDetailHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailHeader.xib; sourceTree = "<group>"; };
+		094DF88C225D2E69001EA2FE /* IBDesignableViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBDesignableViews.swift; sourceTree = "<group>"; };
 		09A9D540225BA90D00DFB5E2 /* ProfileHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeader.xib; sourceTree = "<group>"; };
 		09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProfileViewController.swift; sourceTree = "<group>"; };
 		09A9D544225BDAF200DFB5E2 /* ServiceBioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceBioView.swift; sourceTree = "<group>"; };
@@ -135,6 +141,7 @@
 				09A9D540225BA90D00DFB5E2 /* ProfileHeader.xib */,
 				09A9D544225BDAF200DFB5E2 /* ServiceBioView.swift */,
 				09A9D546225BE7A200DFB5E2 /* PortfolioView.swift */,
+				094DF88A225D2835001EA2FE /* UserDetailHeader.xib */,
 			);
 			path = nibs;
 			sourceTree = "<group>";
@@ -194,6 +201,7 @@
 		2EF103C02255A4030030FBFF /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				094DF88C225D2E69001EA2FE /* IBDesignableViews.swift */,
 				2E9DD7CF2257C93E00D74DD1 /* DBService.swift */,
 				2EBDDBCD225B91AD00583BC0 /* StorageService.swift */,
 				2EBDDBCF225B91D600583BC0 /* AuthService.swift */,
@@ -233,6 +241,7 @@
 				2E9DD7E92257FC0C00D74DD1 /* ClientBookingsController.swift */,
 				2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */,
 				09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */,
+				094DF888225D2809001EA2FE /* UserDetailController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -356,6 +365,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				094DF88B225D2835001EA2FE /* UserDetailHeader.xib in Resources */,
 				2E9DD7D22257E7E100D74DD1 /* Entrance.storyboard in Resources */,
 				2EF103A62255314C0030FBFF /* LaunchScreen.storyboard in Resources */,
 				2EF103AE22553D5E0030FBFF /* GoogleService-Info.plist in Resources */,
@@ -523,6 +533,7 @@
 				2EBDDBD8225B99B000583BC0 /* Date+Extension.swift in Sources */,
 				2EBDDBD4225B997B00583BC0 /* Alert+Extensions.swift in Sources */,
 				2E9DD7DA2257F6A800D74DD1 /* LoginViewController.swift in Sources */,
+				094DF88D225D2E69001EA2FE /* IBDesignableViews.swift in Sources */,
 				2EBDDBD2225B924F00583BC0 /* StatesFile.swift in Sources */,
 				2E9DD7D82257F69B00D74DD1 /* CreateViewController.swift in Sources */,
 				2EBDDBD6225B999400583BC0 /* String+Date.swift in Sources */,
@@ -547,6 +558,7 @@
 				2E9DD7EA2257FC0C00D74DD1 /* ClientBookingsController.swift in Sources */,
 				09A9D547225BE7A200DFB5E2 /* PortfolioView.swift in Sources */,
 				09A9D543225BCFB200DFB5E2 /* ServiceProfileViewController.swift in Sources */,
+				094DF889225D2809001EA2FE /* UserDetailController.swift in Sources */,
 				2E9DD7DE2257F83900D74DD1 /* ServiceDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
