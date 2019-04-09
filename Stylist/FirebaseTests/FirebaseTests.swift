@@ -24,7 +24,7 @@ class FirebaseTests: XCTestCase {
   }
   
   func testcreateAuthUser(){
-    let email = "ashli1@ashli1.com"
+    let email = "allooo@gmail.com"
     let password = "123456"
     let exp = expectation(description: "create user account")
     
@@ -62,9 +62,50 @@ class FirebaseTests: XCTestCase {
     wait(for: [exp], timeout: 3.0)
   }
   
-  func testToRetrieveUserFromDatabase(){
+  func testToCreateCollection(){
+   
+    enum AccountType {
+      case serviceProvider
+      case consumer
+    }
+  
+  
+  guard let currentUser =  Auth.auth().currentUser else {
+      XCTFail("no current user found")
+      return
+    }
+    let accountState:AccountType = .serviceProvider
+  let exp = expectation(description: "create a user collection")
     
-    
+    if accountState == .consumer {
+      DBService.firestoreDB.collection("consumer").document(currentUser.uid)
+        .setData(["firstName": "Matty",
+                  "lastName":"Rankin",
+                  "accountType":"consumer",
+          "userId":currentUser.uid]) { (error) in
+                    if let error = error {
+                      XCTFail("there was an error updating user: \(error.localizedDescription)")
+                    }
+                    
+      }
+      exp.fulfill()
+      wait(for: [exp], timeout: 3.0)
+    }
+    if accountState == .serviceProvider{
+      
+      DBService.firestoreDB.collection("serviceProvider").document(currentUser.uid)
+        .setData(["firstName": "Ashli",
+                  "lastName":"Rankin",
+                  "accountType":"serviceProvider",
+                  "provider":currentUser.uid]) { (error) in
+                    
+                    if let error = error {
+                      XCTFail("there was an error updating user: \(error.localizedDescription)")
+                    }
+      }
+      exp.fulfill()
+      wait(for: [exp], timeout: 3.0)
+    }
   }
 }
   

@@ -7,24 +7,69 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController {
 
-    override func viewDidLoad() {
+  @IBOutlet weak var emailTextField: UITextField!
+  @IBOutlet weak var passwordTextfield: UITextField!
+  
+  
+  let authService = AuthService()
+  var accountState:AccountState = .serviceProvider
+  override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+      authService.authserviceExistingAccountDelegate = self
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+  @IBAction func loginButtonPressed(_ sender: UIButton) {
+    guard let email = emailTextField.text,
+      let password = passwordTextfield.text else {
+        showAlert(title: "All fields required", message: "you must enter your username and password", actionTitle: "OK")
+        return}
+    
+    authService.signInExistingAccount(email: email, password: password)
+  
+    presentTabbarController()
+  }
+  
+  @IBAction func segmentedControlPressed(_ sender: UISegmentedControl) {
+    switch sender.selectedSegmentIndex {
+     
+    case 0:
+      accountState = .serviceProvider
+    case 1:
+      accountState = .consumer
+    default:
+      print("c")
     }
-    */
+  }
+  
+  func presentTabbarController(){
+    if accountState == .consumer {
+      guard let userTabbarController = UIStoryboard.init(name: "User", bundle: nil).instantiateViewController(withIdentifier: "UserTabBarController") as? UITabBarController else {return}
+      self.present(userTabbarController, animated: true, completion: nil)
+      
+    }else if accountState == .serviceProvider{
+      
+      guard let serviceTabbarController = UIStoryboard.init(name: "ServiceProvider", bundle: nil).instantiateViewController(withIdentifier: "ServiceTabBar") as? UITabBarController else {return}
+      present(serviceTabbarController, animated: true, completion: nil)
+      
+    }
+  }
+  
+ 
+}
+extension LoginViewController:AuthServiceExistingAccountDelegate {
+  func didRecieveErrorSigningToExistingAccount(_ authservice: AuthService, error: Error) {
+    showAlert(title: "Sign-In Error", message: "There was an error signing into you account", actionTitle: "TryAgain")
+  }
+  
+  func didSignInToExistingAccount(_ authservice: AuthService, user: User) {
 
+   
+  }
+  
+  
 }
