@@ -10,7 +10,15 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserDetailView" customModule="Stylist" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="pig-I6-rW1" id="JUc-oM-csy"/>
+                <outlet property="providerFullname" destination="XW9-op-eff" id="6f0-0R-WVf"/>
+                <outlet property="providerPhoto" destination="dIV-TA-OjV" id="Wmo-oJ-V9H"/>
+                <outlet property="ratingsValue" destination="sCZ-NS-lZ5" id="fbm-6C-UXR"/>
+                <outlet property="ratingsstars" destination="e7A-ql-6Y7" id="Tp2-Bi-i9N"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="pig-I6-rW1">
             <rect key="frame" x="0.0" y="0.0" width="528" height="289"/>
@@ -29,7 +37,7 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e7A-ql-6Y7" customClass="CosmosView" customModule="Cosmos">
+                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e7A-ql-6Y7" customClass="CosmosView" customModule="Cosmos">
                     <rect key="frame" x="139" y="211" width="250" height="30"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -52,13 +60,24 @@
                         <userDefinedRuntimeAttribute type="number" keyPath="starMargin">
                             <real key="value" value="25"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fillMode">
+                            <integer key="value" value="0"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCZ-NS-lZ5">
+                    <rect key="frame" x="216.5" y="251" width="95.5" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.174853128" green="0.2225734221" blue="0.3657343045" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
+                <constraint firstItem="sCZ-NS-lZ5" firstAttribute="top" secondItem="e7A-ql-6Y7" secondAttribute="bottom" constant="10" id="1kU-G1-ryl"/>
                 <constraint firstItem="XW9-op-eff" firstAttribute="centerX" secondItem="dIV-TA-OjV" secondAttribute="centerX" id="2GE-L5-pF5"/>
                 <constraint firstItem="e7A-ql-6Y7" firstAttribute="centerX" secondItem="XW9-op-eff" secondAttribute="centerX" id="5yn-FA-HB2"/>
+                <constraint firstItem="sCZ-NS-lZ5" firstAttribute="centerX" secondItem="e7A-ql-6Y7" secondAttribute="centerX" id="6Uy-3Y-LlD"/>
                 <constraint firstItem="XW9-op-eff" firstAttribute="top" secondItem="dIV-TA-OjV" secondAttribute="bottom" constant="10" id="HD5-Fo-1me"/>
                 <constraint firstItem="e7A-ql-6Y7" firstAttribute="top" secondItem="XW9-op-eff" secondAttribute="bottom" constant="10" id="MGZ-Gr-xpW"/>
                 <constraint firstItem="dIV-TA-OjV" firstAttribute="top" secondItem="pig-I6-rW1" secondAttribute="top" constant="20" id="PAm-m7-mt8"/>
