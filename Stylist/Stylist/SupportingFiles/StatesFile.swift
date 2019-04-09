@@ -7,3 +7,7 @@
 //
 
 import Foundation
+enum AccountState{
+  case serviceProvider
+  case consumer
+}

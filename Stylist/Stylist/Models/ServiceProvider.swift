@@ -9,18 +9,18 @@
 import Foundation
 struct ServiceSideUser{
   let userId:String
-  let firstName:String
-  let lastName:String
+  let firstName:String?
+  let lastName:String?
   let email:String
   let joinedDate:String
-  let gender:String
-  let isCertified:String
-  let imageURL:String
-  let bio:String
-  let licenseNumber:String
-  let licenseExpiryDate:String
-  
-  init(userId:String,firstName:String,lastName:String,email:String,joinedDate:String,gender:String,isCertified:String,imageURL:String,bio:String,licenseNumber:String,licenseExpiryDate:String){
+  let gender:String?
+  let isCertified:Bool
+  let imageURL:String?
+  let bio:String?
+  let licenseNumber:String?
+  let licenseExpiryDate:String?
+  let type:String
+  init(userId:String,firstName:String?,lastName:String?,email:String,joinedDate:String,gender:String?,isCertified:Bool,imageURL:String?,bio:String?,licenseNumber:String?,licenseExpiryDate:String?,type:String){
     
     self.userId = userId
     self.firstName = firstName
@@ -33,6 +33,7 @@ struct ServiceSideUser{
     self.bio = bio
     self.licenseNumber = licenseNumber
     self.licenseExpiryDate = licenseExpiryDate
+    self.type = type
   }
   init(dict:[String:Any]){
     self.userId = dict[ServiceSideUserCollectionKeys.userId] as? String ?? "no user id found"
@@ -41,10 +42,11 @@ struct ServiceSideUser{
     self.email = dict[ServiceSideUserCollectionKeys.email] as? String ?? "no email found"
     self.joinedDate = dict[ServiceSideUserCollectionKeys.joinedDate] as? String ?? "no joined date found"
     self.gender = dict[ServiceSideUserCollectionKeys.gender] as? String ?? "no gender found"
-   self.isCertified =  dict[ServiceSideUserCollectionKeys.isCertified] as? String ?? "no certified data found"
+   self.isCertified =  dict[ServiceSideUserCollectionKeys.isCertified] as? Bool ?? false
     self.imageURL = dict[ServiceSideUserCollectionKeys.imageURL] as? String ?? "no imageURL found"
     self.bio = dict[ServiceSideUserCollectionKeys.bio] as? String ?? "no bio found"
     self.licenseNumber = dict[ServiceSideUserCollectionKeys.licenseNumber] as? String ?? "no license number found"
     self.licenseExpiryDate = dict[ServiceSideUserCollectionKeys.licenseExpiryDate] as? String ?? "no expiry date found"
+    self.type = dict[ServiceSideUserCollectionKeys.type] as? String ?? "no type"
   }
 }

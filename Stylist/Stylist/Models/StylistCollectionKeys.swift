@@ -21,6 +21,7 @@ struct ServiceSideUserCollectionKeys{
   static let bio = "bio"
   static let licenseNumber = "licenseNumber"
   static let licenseExpiryDate = "licenseExpiryDate"
+  static let type = "type"
 }
 
 struct StylistsUserCollectionKeys{
@@ -32,7 +33,8 @@ struct StylistsUserCollectionKeys{
   static let gender = "gender"
   static let address = "address"
  static let imageURL = "imageURL"
-  
+  static let joinedDate = "joinedDate"
+   static let type = "type"
 }
 
 struct RatingsCollectionKeys {
