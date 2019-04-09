@@ -44,6 +44,8 @@
 		2EF103D12255A4E90030FBFF /* StylistCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF103D02255A4E90030FBFF /* StylistCollectionKeys.swift */; };
 		2EF103D32255ABA10030FBFF /* Avalibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF103D22255ABA10030FBFF /* Avalibility.swift */; };
 		2EF103D52255AE060030FBFF /* Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF103D42255AE060030FBFF /* Days.swift */; };
+		45864F51225D0449005FDBD5 /* ReviewAndRatings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45864F50225D0449005FDBD5 /* ReviewAndRatings.storyboard */; };
+		45864F53225D124A005FDBD5 /* RatingsAndReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45864F52225D124A005FDBD5 /* RatingsAndReviewViewController.swift */; };
 		8F8138881EF44484D5275681 /* Pods_Stylist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D89AABB01908945DBC5625A6 /* Pods_Stylist.framework */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +101,8 @@
 		2EF103D02255A4E90030FBFF /* StylistCollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StylistCollectionKeys.swift; sourceTree = "<group>"; };
 		2EF103D22255ABA10030FBFF /* Avalibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avalibility.swift; sourceTree = "<group>"; };
 		2EF103D42255AE060030FBFF /* Days.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Days.swift; sourceTree = "<group>"; };
+		45864F50225D0449005FDBD5 /* ReviewAndRatings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReviewAndRatings.storyboard; sourceTree = "<group>"; };
+		45864F52225D124A005FDBD5 /* RatingsAndReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingsAndReviewViewController.swift; sourceTree = "<group>"; };
 		63E768A8D86006AD0C630A3F /* Pods-StylistTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylistTests.debug.xcconfig"; path = "Target Support Files/Pods-StylistTests/Pods-StylistTests.debug.xcconfig"; sourceTree = "<group>"; };
 		929C1E92E4811B03B80F4987 /* Pods-FirebaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseTests.release.xcconfig"; path = "Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests.release.xcconfig"; sourceTree = "<group>"; };
 		A57421994C7FAE45048DF33C /* Pods-Stylist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stylist.release.xcconfig"; path = "Target Support Files/Pods-Stylist/Pods-Stylist.release.xcconfig"; sourceTree = "<group>"; };
@@ -214,6 +218,7 @@
 				09A9D53F225BA8BB00DFB5E2 /* nibs */,
 				2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */,
 				2E9DD7D52257E80900D74DD1 /* User.storyboard */,
+				45864F50225D0449005FDBD5 /* ReviewAndRatings.storyboard */,
 				2E9DD7D12257E7E100D74DD1 /* Entrance.storyboard */,
 			);
 			path = Views;
@@ -233,6 +238,7 @@
 				2E9DD7E92257FC0C00D74DD1 /* ClientBookingsController.swift */,
 				2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */,
 				09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */,
+				45864F52225D124A005FDBD5 /* RatingsAndReviewViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -363,6 +369,7 @@
 				2EF103A32255314C0030FBFF /* Assets.xcassets in Resources */,
 				2E9DD7D62257E80900D74DD1 /* User.storyboard in Resources */,
 				2E9DD7D42257E7FD00D74DD1 /* ServiceProvider.storyboard in Resources */,
+				45864F51225D0449005FDBD5 /* ReviewAndRatings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,6 +532,7 @@
 				2E9DD7DA2257F6A800D74DD1 /* LoginViewController.swift in Sources */,
 				2EBDDBD2225B924F00583BC0 /* StatesFile.swift in Sources */,
 				2E9DD7D82257F69B00D74DD1 /* CreateViewController.swift in Sources */,
+				45864F53225D124A005FDBD5 /* RatingsAndReviewViewController.swift in Sources */,
 				2EBDDBD6225B999400583BC0 /* String+Date.swift in Sources */,
 				2EF103C82255A4A30030FBFF /* ServiceProvider.swift in Sources */,
 				2E9DD7D02257C93E00D74DD1 /* DBService.swift in Sources */,
