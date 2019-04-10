@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window = UIWindow(frame: UIScreen.main.bounds)
     let storyboard = UIStoryboard(name: "User", bundle: nil)
     let servicetab = storyboard.instantiateViewController(withIdentifier: "UserTabBarController")
-
     window?.rootViewController = servicetab
     window?.makeKeyAndVisible()
     return true

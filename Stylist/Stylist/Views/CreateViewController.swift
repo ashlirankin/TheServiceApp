@@ -29,7 +29,7 @@ class CreateViewController: BaseViewController {
       showAlert(title: "Field Required", message: "you must enter your email and password", actionTitle: "Ok")
       return
     }
-  // authService.createNewAccount(email: email, password: password)
+   authService.createNewAccount(email: email, password: password)
   
     presentOnboardingScreen()
   
@@ -42,7 +42,11 @@ class CreateViewController: BaseViewController {
   private func presentOnboardingScreen(){
      let onbordingScreen = UIStoryboard(name: "Entrance", bundle: nil).instantiateViewController(withIdentifier: "OnboardingTableViewController")
     let navigationController = UINavigationController(rootViewController: onbordingScreen)
-  
+    
+    navigationController.navigationBar.barTintColor = .clear
+    navigationController.navigationBar.setBackgroundImage(UIImage(), for:UIBarMetrics.default)
+    navigationController.navigationBar.isTranslucent = true
+    navigationController.navigationBar.shadowImage = UIImage()
     self.present(navigationController, animated: true, completion: nil)
   }
 }
