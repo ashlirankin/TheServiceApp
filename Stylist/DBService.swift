@@ -20,7 +20,6 @@ final class DBService {
     db.settings = settings
     return db
   }()
-  
   static func CreateServiceProvider(serviceProvider:ServiceSideUser,completionHandler: @escaping (Error?) -> Void){
     firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).document(serviceProvider.userId).setData([ServiceSideUserCollectionKeys.firstName: serviceProvider.firstName
       ?? "" ,
@@ -32,7 +31,6 @@ final class DBService {
       print("database user sucessfully created")
     }
   }
-  
   static func createConsumerDatabaseAccount(consumer:StylistsUser,completionHandle: @escaping (Error?) -> Void ){
     
 firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(consumer.userId).setData([StylistsUserCollectionKeys.userId : consumer.userId, StylistsUserCollectionKeys.firstName: consumer.firstName ?? ""
@@ -42,16 +40,19 @@ firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(consumer
       }
     }
   }
-  static func getDatabaseUser(collectionName:String,user:User, completionHandler: @escaping (Error?,DocumentSnapshot?)-> Void){
     
-    firestoreDB.collection(collectionName).document(user.uid).getDocument { (snapshot, error) in
-      if let error = error{
-        completionHandler(error,nil)
-      }
-      if let snapshot = snapshot {
-        completionHandler(nil,snapshot)
-      }
-    }
+
+  static func getDatabaseUser(userID: String, completionHandler: @escaping (Error?,StylistsUser?)-> Void){
+    firestoreDB.collection(StylistsUserCollectionKeys.stylistUser)
+        .whereField(StylistsUserCollectionKeys.userId, isEqualTo: userID)
+        .getDocuments(completion: { (snapshot, error) in
+            if let error = error {
+                completionHandler(error, nil)
+            } else if let snapshot = snapshot?.documents.first {
+                let stylistUser = StylistsUser(dict: snapshot.data())
+                completionHandler(nil, stylistUser)
+            }
+        })
   }
 }
 

@@ -8,20 +8,19 @@
 
 import UIKit
 
-class CreateViewController: UIViewController {
+class CreateViewController: BaseViewController {
 
   @IBOutlet weak var emailTextfield: UITextField!
   @IBOutlet weak var passwordTextfield: UITextField!
   @IBOutlet weak var accountTypeControl: UISegmentedControl!
   
-  
+ 
   let authService = AuthService()
-  var accountState:AccountState = .serviceProvider
   
   override func viewDidLoad() {
         super.viewDidLoad()
     authService.authserviceCreateNewAccountDelegate = self
-  
+
     }
     
   @IBAction func createProfilePressed(_ sender: UIButton) {
@@ -30,26 +29,21 @@ class CreateViewController: UIViewController {
       showAlert(title: "Field Required", message: "you must enter your email and password", actionTitle: "Ok")
       return
     }
-   authService.createNewAccount(email: email, password: password, accountState: accountState)
+  // authService.createNewAccount(email: email, password: password)
   
-    if accountState == . consumer {
-      guard let consumerInterface = UIStoryboard.init(name: "User", bundle: nil).instantiateViewController(withIdentifier: "UserTabBarController") as? UITabBarController else {fatalError()}
-      self.present(consumerInterface, animated: true, completion: nil)
-    }else if accountState == .serviceProvider {
-      guard let serviceProviderInterface = UIStoryboard.init(name: "ServiceProvider", bundle: nil).instantiateViewController(withIdentifier: "ServiceTabBar") as? UITabBarController else {fatalError()}
-      self.present(serviceProviderInterface, animated: true, completion: nil)
-    }
+    presentOnboardingScreen()
+  
   }
   
   @IBAction func segmentedControlPressed(_ sender: UISegmentedControl) {
-    switch sender.selectedSegmentIndex{
-    case 0:
-     self.accountState = .serviceProvider
-    case 1:
-      self.accountState = .consumer
-    default:
-      print("c")
-    }
+    
+  }
+  
+  private func presentOnboardingScreen(){
+     let onbordingScreen = UIStoryboard(name: "Entrance", bundle: nil).instantiateViewController(withIdentifier: "OnboardingTableViewController")
+    let navigationController = UINavigationController(rootViewController: onbordingScreen)
+  
+    self.present(navigationController, animated: true, completion: nil)
   }
 }
 extension CreateViewController:UITextFieldDelegate{
@@ -58,17 +52,15 @@ extension CreateViewController:UITextFieldDelegate{
     
   }
   
+  
 }
 extension CreateViewController:AuthServiceCreateNewAccountDelegate{
   func didRecieveErrorCreatingAccount(_ authservice: AuthService, error: Error) {
     showAlert(title: "Error", message: "There was an error creating your account", actionTitle: "Ok")
   }
   
-  func didCreateServiceProviderNewAccount(_ authservice: AuthService, accountState: AccountState, serviceProvider: ServiceSideUser) {
-   showAlert(title: "Account Sucessfully  Created", message: "you sucessfully created you service provider account", actionTitle: "Ok")
-  }
   
-  func didCreateConsumerAcoount(_ authService: AuthService, accountState: AccountState, consumer: StylistsUser) {
+  func didCreateConsumerAcoount(_ authService: AuthService, consumer: StylistsUser) {
   showAlert(title: "Account Sucessfully  Created", message: "you sucessfully created your account", actionTitle: "Ok")
   }
   
