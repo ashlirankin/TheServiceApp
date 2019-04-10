@@ -153,8 +153,9 @@
                                                         <constraint firstAttribute="height" constant="168" id="qoj-wg-X2j"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DVO-XM-JwR">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DVO-XM-JwR">
                                                     <rect key="frame" x="112.5" y="11" width="189.5" height="168"/>
+                                                    <state key="normal" image="icons8-camera"/>
                                                     <connections>
                                                         <action selector="changeProfilePicButtonPressed:" destination="SEv-r5-cNM" eventType="touchUpInside" id="Bn5-c3-PNv"/>
                                                     </connections>
@@ -285,6 +286,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icons8-camera" width="50" height="50"/>
         <image name="icons8-more" width="50" height="50"/>
         <image name="placeholder" width="512" height="512"/>
     </resources>
