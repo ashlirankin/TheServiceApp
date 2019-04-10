@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     FirebaseApp.configure()
     window = UIWindow(frame: UIScreen.main.bounds)
     let storyboard = UIStoryboard(name: "User", bundle: nil)
-    let servicetab = storyboard.instantiateViewController(withIdentifier: "ProviderDetailVC")
+    let servicetab = storyboard.instantiateViewController(withIdentifier: "UserTabBarController")
 
     window?.rootViewController = servicetab
     window?.makeKeyAndVisible()

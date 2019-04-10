@@ -29,6 +29,7 @@ class ProviderDetailController: UITableViewController {
         setupCollectionView()
      setupScrollviewController(scrollView: scrollView, views: featureViews)
     loadSVFeatures()
+        
     }
     
 
