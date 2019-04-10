@@ -17,8 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     FirebaseApp.configure()
     window = UIWindow(frame: UIScreen.main.bounds)
+<<<<<<< HEAD
     let storyboard = UIStoryboard(name: "User", bundle: nil)
     let servicetab = storyboard.instantiateViewController(withIdentifier: "UserTabBarController")
+=======
+//    let storyboard = UIStoryboard(name: "Entrance", bundle: nil)
+//    guard let servicetab = storyboard.instantiateViewController(withIdentifier: "CreateAccountVC") as? CreateViewController else {return false}
+    
+    let storyboard = UIStoryboard(name: "User", bundle: nil)
+    guard let servicetab = storyboard.instantiateViewController(withIdentifier: "ClientProfileVC") as? ClientProfileController else {return false}
+>>>>>>> 3bbf71fc1d8d33af4149f0dde22d2c8b65ba6aa7
 
     window?.rootViewController = servicetab
     window?.makeKeyAndVisible()

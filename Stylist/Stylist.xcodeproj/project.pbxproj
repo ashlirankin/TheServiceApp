@@ -277,11 +277,15 @@
 				2E9DD7DD2257F83900D74DD1 /* ServiceDetailViewController.swift */,
 				2E9DD7E12257F95800D74DD1 /* ServiceConfirmedController.swift */,
 				2E9DD7E32257F9C000D74DD1 /* ServiceMessageViewController.swift */,
-				2E9DD7E72257FB2200D74DD1 /* ClientProfileController.swift */,
+				09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */,
 				2E9DD7E92257FC0C00D74DD1 /* ClientBookingsController.swift */,
 				2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */,
+<<<<<<< HEAD
 				09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */,
 				094DF888225D2809001EA2FE /* ProviderDetailController.swift */,
+=======
+				2E9DD7E72257FB2200D74DD1 /* ClientProfileController.swift */,
+>>>>>>> 3bbf71fc1d8d33af4149f0dde22d2c8b65ba6aa7
 				D6B4BF6A225DE1DD00F1E48C /* ClientEditProfileController.swift */,
 			);
 			path = Controllers;
