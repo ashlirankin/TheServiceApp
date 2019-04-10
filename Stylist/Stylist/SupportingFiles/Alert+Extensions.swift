@@ -38,4 +38,15 @@ extension UIViewController {
     alertController.addAction(customAction)
     present(alertController, animated: true)
   }
+    
+    public func showActionSheet(title: String?, message: String?, actionTitles: [String], handlers: [((UIAlertAction) -> Void)]) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        for (index, actionTitle) in actionTitles.enumerated() {
+            let action = UIAlertAction(title: actionTitle, style: .default, handler: handlers[index])
+            alertController.addAction(action)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
+    }
 }
