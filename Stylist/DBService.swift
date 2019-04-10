@@ -46,9 +46,9 @@ firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(consumer
   }
     
 
-  static func getDatabaseUser(user:StylistsUser, completionHandler: @escaping (Error?,StylistsUser?)-> Void){
+  static func getDatabaseUser(userID: String, completionHandler: @escaping (Error?,StylistsUser?)-> Void){
     firestoreDB.collection(StylistsUserCollectionKeys.stylistUser)
-        .whereField(StylistsUserCollectionKeys.userId, isEqualTo: user.userId)
+        .whereField(StylistsUserCollectionKeys.userId, isEqualTo: userID)
         .getDocuments(completion: { (snapshot, error) in
             if let error = error {
                 completionHandler(error, nil)

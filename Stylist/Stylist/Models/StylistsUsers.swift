@@ -18,6 +18,10 @@ struct StylistsUser {
   let imageURL:String?
   let joinedDate:String
   let type:String
+    
+    public var fullName: String {
+        return ((firstName ?? "") + " " + (lastName ?? "")).trimmingCharacters(in: .whitespacesAndNewlines)
+    }
 }
 
 extension StylistsUser {
