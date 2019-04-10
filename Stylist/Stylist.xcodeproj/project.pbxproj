@@ -29,10 +29,12 @@
 		2E9DD7EC2257FC4100D74DD1 /* ClientSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */; };
 		2EBDDBCE225B91AD00583BC0 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBDDBCD225B91AD00583BC0 /* StorageService.swift */; };
 		2EBDDBD0225B91D600583BC0 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBDDBCF225B91D600583BC0 /* AuthService.swift */; };
-		2EBDDBD2225B924F00583BC0 /* StatesFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBDDBD1225B924F00583BC0 /* StatesFile.swift */; };
 		2EBDDBD4225B997B00583BC0 /* Alert+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBDDBD3225B997B00583BC0 /* Alert+Extensions.swift */; };
 		2EBDDBD6225B999400583BC0 /* String+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBDDBD5225B999400583BC0 /* String+Date.swift */; };
 		2EBDDBD8225B99B000583BC0 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBDDBD7225B99B000583BC0 /* Date+Extension.swift */; };
+		2EBDDC1C225D0A7800583BC0 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBDDC1B225D0A7800583BC0 /* BaseViewController.swift */; };
+		2EBDDC1E225D177E00583BC0 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBDDC1D225D177E00583BC0 /* TableViewCell.swift */; };
+		2EBDDC20225D2E9400583BC0 /* OnboardingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBDDC1F225D2E9400583BC0 /* OnboardingTableViewController.swift */; };
 		2EF1039C2255314A0030FBFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF1039B2255314A0030FBFF /* AppDelegate.swift */; };
 		2EF103A32255314C0030FBFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF103A22255314C0030FBFF /* Assets.xcassets */; };
 		2EF103A62255314C0030FBFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EF103A42255314C0030FBFF /* LaunchScreen.storyboard */; };
@@ -84,10 +86,12 @@
 		2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSearchController.swift; sourceTree = "<group>"; };
 		2EBDDBCD225B91AD00583BC0 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		2EBDDBCF225B91D600583BC0 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		2EBDDBD1225B924F00583BC0 /* StatesFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatesFile.swift; sourceTree = "<group>"; };
 		2EBDDBD3225B997B00583BC0 /* Alert+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+Extensions.swift"; sourceTree = "<group>"; };
 		2EBDDBD5225B999400583BC0 /* String+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Date.swift"; sourceTree = "<group>"; };
 		2EBDDBD7225B99B000583BC0 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		2EBDDC1B225D0A7800583BC0 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		2EBDDC1D225D177E00583BC0 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		2EBDDC1F225D2E9400583BC0 /* OnboardingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTableViewController.swift; sourceTree = "<group>"; };
 		2EF103982255314A0030FBFF /* Stylist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stylist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EF1039B2255314A0030FBFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EF103A22255314C0030FBFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -204,7 +208,6 @@
 				2EBDDBD3225B997B00583BC0 /* Alert+Extensions.swift */,
 				2EBDDBD5225B999400583BC0 /* String+Date.swift */,
 				2EBDDBD7225B99B000583BC0 /* Date+Extension.swift */,
-				2EBDDBD1225B924F00583BC0 /* StatesFile.swift */,
 				2EF1039B2255314A0030FBFF /* AppDelegate.swift */,
 				2EF103A22255314C0030FBFF /* Assets.xcassets */,
 				2EF103A42255314C0030FBFF /* LaunchScreen.storyboard */,
@@ -220,6 +223,7 @@
 				2E9DD7D52257E80900D74DD1 /* User.storyboard */,
 				45864F50225D0449005FDBD5 /* ReviewAndRatings.storyboard */,
 				2E9DD7D12257E7E100D74DD1 /* Entrance.storyboard */,
+				2EBDDC1D225D177E00583BC0 /* TableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -227,6 +231,8 @@
 		2EF103C62255A48C0030FBFF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2EBDDC1F225D2E9400583BC0 /* OnboardingTableViewController.swift */,
+				2EBDDC1B225D0A7800583BC0 /* BaseViewController.swift */,
 				2E9DD7D72257F69B00D74DD1 /* CreateViewController.swift */,
 				2E9DD7D92257F6A800D74DD1 /* LoginViewController.swift */,
 				2E9DD7DB2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift */,
@@ -530,9 +536,9 @@
 				2EBDDBD8225B99B000583BC0 /* Date+Extension.swift in Sources */,
 				2EBDDBD4225B997B00583BC0 /* Alert+Extensions.swift in Sources */,
 				2E9DD7DA2257F6A800D74DD1 /* LoginViewController.swift in Sources */,
-				2EBDDBD2225B924F00583BC0 /* StatesFile.swift in Sources */,
 				2E9DD7D82257F69B00D74DD1 /* CreateViewController.swift in Sources */,
 				45864F53225D124A005FDBD5 /* RatingsAndReviewViewController.swift in Sources */,
+				2EBDDC20225D2E9400583BC0 /* OnboardingTableViewController.swift in Sources */,
 				2EBDDBD6225B999400583BC0 /* String+Date.swift in Sources */,
 				2EF103C82255A4A30030FBFF /* ServiceProvider.swift in Sources */,
 				2E9DD7D02257C93E00D74DD1 /* DBService.swift in Sources */,
@@ -543,6 +549,7 @@
 				2E9DD7E22257F95800D74DD1 /* ServiceConfirmedController.swift in Sources */,
 				2E9DD7E62257FA9F00D74DD1 /* ProfileViewController.swift in Sources */,
 				2EF103CF2255A4DB0030FBFF /* Reviews.swift in Sources */,
+				2EBDDC1E225D177E00583BC0 /* TableViewCell.swift in Sources */,
 				2EF103CD2255A4D20030FBFF /* Ratings.swift in Sources */,
 				2E9DD7DC2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift in Sources */,
 				09A9D545225BDAF200DFB5E2 /* ServiceBioView.swift in Sources */,
@@ -556,6 +563,7 @@
 				09A9D547225BE7A200DFB5E2 /* PortfolioView.swift in Sources */,
 				09A9D543225BCFB200DFB5E2 /* ServiceProfileViewController.swift in Sources */,
 				2E9DD7DE2257F83900D74DD1 /* ServiceDetailViewController.swift in Sources */,
+				2EBDDC1C225D0A7800583BC0 /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

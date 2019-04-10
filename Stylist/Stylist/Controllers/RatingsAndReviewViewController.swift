@@ -14,6 +14,8 @@ class RatingsAndReviewViewController: UIViewController {
     @IBOutlet weak var cosmosView: CosmosView!
     @IBOutlet weak var reviewTextView: UITextView!
     
+    var reviews: Reviews!
+    
     var userRating = 4.5
     override func viewDidLoad() {
         super.viewDidLoad()

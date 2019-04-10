@@ -11,8 +11,7 @@ import FirebaseAuth
 
 protocol AuthServiceCreateNewAccountDelegate: AnyObject {
   func didRecieveErrorCreatingAccount(_ authservice: AuthService, error: Error)
-  func didCreateServiceProviderNewAccount(_ authservice: AuthService,accountState:AccountState,serviceProvider:ServiceSideUser)
-  func didCreateConsumerAcoount(_ authService: AuthService, accountState:AccountState,consumer:StylistsUser)
+  func didCreateConsumerAcoount(_ authService: AuthService,consumer:StylistsUser)
   
 }
 
@@ -30,7 +29,7 @@ final class AuthService {
   weak var authserviceExistingAccountDelegate: AuthServiceExistingAccountDelegate?
   weak var authserviceSignOutDelegate: AuthServiceSignOutDelegate?
   
-  public func createNewAccount(email: String, password: String,accountState:AccountState) {
+  public func createNewAccount(email: String, password: String) {
     Auth.auth().createUser(withEmail: email, password: password) { (authDataResult, error) in
       if let error = error {
         self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
@@ -51,31 +50,16 @@ final class AuthService {
           print("no email found")
           return
         }
-        if accountState == .consumer {
           let consumer = StylistsUser(userId: authUser.uid, firstName: nil, lastName: nil, email: email, gender: nil, address: nil, imageURL: nil, joinedDate: Date.getISOTimestamp(),type: "consumer")
           DBService.createConsumerDatabaseAccount(consumer: consumer, completionHandle: { (error) in
             if let error = error {
               self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
             }
-            self.authserviceCreateNewAccountDelegate?.didCreateConsumerAcoount(self, accountState: .consumer, consumer: consumer)
+            self.authserviceCreateNewAccountDelegate?.didCreateConsumerAcoount(self, consumer: consumer)
           })
         }
-        else if accountState == .serviceProvider {
-          let serviceProvider = ServiceSideUser(userId: authUser.uid, firstName: nil, lastName: nil, email: email, joinedDate: Date.getISOTimestamp(), gender: nil, isCertified: false, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil,type: "serviceProvider")
-          
-          DBService.CreateServiceProvider(serviceProvider: serviceProvider, completionHandler: { (error) in
-            if let error = error {
-              print("there was an error: \(error.localizedDescription)")
-              self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
-            }else {
-              self.authserviceCreateNewAccountDelegate?.didCreateServiceProviderNewAccount(self, accountState: .serviceProvider, serviceProvider: serviceProvider)
-            }
-          })
-
         }
       }
-    }
-  }
   
   public func signInExistingAccount(email: String, password: String) {
     Auth.auth().signIn(withEmail: email, password: password) { (authDataResult, error) in
@@ -90,6 +74,7 @@ final class AuthService {
   public func getCurrentUser() -> User? {
     return Auth.auth().currentUser
   }
+
   public func signOut(){
     do {
       try Auth.auth().signOut()
