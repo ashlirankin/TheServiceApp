@@ -24,7 +24,7 @@ class FirebaseTests: XCTestCase {
   }
   
   func testcreateAuthUser(){
-    let email = "allooo@gmail.com"
+    let email = "jianting@gmail.com"
     let password = "123456"
     let exp = expectation(description: "create user account")
     
@@ -106,6 +106,42 @@ class FirebaseTests: XCTestCase {
       exp.fulfill()
       wait(for: [exp], timeout: 3.0)
     }
+  }
+  
+  func testCreateCurrentDateCollection(){
+    let currentDay = "Monday"
+    let serviceProviderId = "2WJwGOzfxDgBiBMbdj95fIelmFV2"
+    let exp = expectation(description: "create date avalibility")
+    DBService.firestoreDB.collection("serviceProvider").document(serviceProviderId).collection("avalibility").addDocument(data: ["date" : currentDay]) { (error) in
+      if let error = error {
+        XCTFail("could not create avalibility:\(error.localizedDescription)")
+      }
+      exp.fulfill()
+      
+    }
+    wait(for: [exp], timeout: 3.0)
+  }
+  
+  func testCreateAnAvalibility(){
+    let dayId = "OKoIGq56GMdVLgAAW4oR"
+    let serviceProviderId = "2WJwGOzfxDgBiBMbdj95fIelmFV2"
+    let avalibleHours = ["1:00","3:00","5:00","8:00"]
+    let exp = expectation(description: "creating the hours that provider is avalible")
+    DBService.firestoreDB.collection("serviceProvider")
+      .document(serviceProviderId)
+      .collection("avalibility")
+      .document(dayId)
+      .collection("avalibleTime")
+      .addDocument(data: ["times":avalibleHours]) { (error) in
+      if let error = error {
+       
+        XCTFail("could not set your avalible hours:\(error.localizedDescription)")
+        
+      }
+        exp.fulfill()
+    }
+    wait(for: [exp], timeout: 3.0)
+    
   }
 }
   
