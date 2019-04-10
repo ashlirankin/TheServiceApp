@@ -28,15 +28,20 @@ class ClientProfileController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         fetchCurrentUser()
     }
     
     private func fetchCurrentUser() {
         guard let currentUser = AuthService().getCurrentUser() else {
-            print("No logged user")
+            showAlert(title: "No User Login", message: nil, actionTitle: "Ok")
             return
         }
         DBService.getDatabaseUser(userID: currentUser.uid) { (error, stylistUser) in
+            dump(currentUser)
             if let error = error {
                 self.showAlert(title: "Error fetching account info", message: error.localizedDescription, actionTitle: "OK")
             } else if let stylistUser = stylistUser {
@@ -64,9 +69,15 @@ class ClientProfileController: UIViewController {
     }
 
     @IBAction func moreOptionsButtonPressed(_ sender: UIButton) {
-        // show action sheet
-            // support
-            // edit profile
-            // sign out
+        let actionTitles = ["Edit Profile", "Support", "Sign Out"]
+        
+        showActionSheet(title: "Menu", message: nil, actionTitles: actionTitles, handlers: [ { [unowned self] editProfileAction in
+            
+            }, { [unowned self] supportAction in
+                
+            }, { [unowned self] signOutAction in
+                
+            }
+            ])
     }
 }

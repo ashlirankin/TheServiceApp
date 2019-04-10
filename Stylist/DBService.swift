@@ -20,8 +20,17 @@ final class DBService {
     db.settings = settings
     return db
   }()
-  
-  
+  static func CreateServiceProvider(serviceProvider:ServiceSideUser,completionHandler: @escaping (Error?) -> Void){
+    firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).document(serviceProvider.userId).setData([ServiceSideUserCollectionKeys.firstName: serviceProvider.firstName
+      ?? "" ,
+                                                                                                                    ServiceSideUserCollectionKeys.lastName:serviceProvider.lastName ?? "" ,
+                                                                                                                    ServiceSideUserCollectionKeys.bio: serviceProvider.bio ?? "" , ServiceSideUserCollectionKeys.email:serviceProvider.email, ServiceSideUserCollectionKeys.gender: serviceProvider.gender ?? "" ,ServiceSideUserCollectionKeys.imageURL:serviceProvider.imageURL ?? "" , ServiceSideUserCollectionKeys.joinedDate:serviceProvider.joinedDate, ServiceSideUserCollectionKeys.licenseExpiryDate:serviceProvider.licenseExpiryDate ?? "" , ServiceSideUserCollectionKeys.licenseNumber:serviceProvider.licenseNumber ?? "" , ServiceSideUserCollectionKeys.isCertified : serviceProvider.isCertified, ServiceSideUserCollectionKeys.userId: serviceProvider.userId ]) { (error) in
+      if let error = error {
+        print("there was an error:\(error.localizedDescription)")
+      }
+      print("database user sucessfully created")
+    }
+  }
   static func createConsumerDatabaseAccount(consumer:StylistsUser,completionHandle: @escaping (Error?) -> Void ){
     
 firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(consumer.userId).setData([StylistsUserCollectionKeys.userId : consumer.userId, StylistsUserCollectionKeys.firstName: consumer.firstName ?? ""
@@ -29,7 +38,6 @@ firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(consumer
       if let error = error {
         print(" there was an error: \(error.localizedDescription)")
       }
-      
     }
   }
     
@@ -52,7 +60,7 @@ firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(consumer
     
     let id = firestoreDB.collection(collectionName).document().documentID
     DBService.firestoreDB.collection(collectionName).document(userId).collection(RatingsCollectionKeys.ratings).addDocument(data: [RatingsCollectionKeys.ratingId:id,
-                                                                                                                                   RatingsCollectionKeys.value:rating.value,RatingsCollectionKeys.userId:rating.userId,RatingsCollectionKeys.raterId:userId]) { (error) in
+                                                                                                                                   RatingsCollectionKeys.value:rating.value,RatingsCollectionKeys.userId:rating.userId,RatingsCollectionKeys.ratingId:userId]) { (error) in
       if let error = error {
         print("there was an error: uploading your rating:\(error.localizedDescription)")
       }

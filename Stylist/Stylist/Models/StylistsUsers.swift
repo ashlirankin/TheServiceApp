@@ -20,7 +20,6 @@ struct StylistsUser {
   let city:String?
   let state:String?
   let zip:String?
-
     
     public var fullName: String {
         return ((firstName ?? "") + " " + (lastName ?? "")).trimmingCharacters(in: .whitespacesAndNewlines)
