@@ -17,13 +17,7 @@ class ServiceProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     setupScrollView()
-    }
-    
-    private func setupScrollView() {
-        profileScrollView.isPagingEnabled = true
-        profileScrollView.contentSize = CGSize(width: self.view.bounds.width * CGFloat(featureViews.count), height: 300)
-        profileScrollView.showsHorizontalScrollIndicator = false
+    setupScrollviewController(scrollView: profileScrollView, views: featureViews)
         loadSVFeatures()
     }
     
