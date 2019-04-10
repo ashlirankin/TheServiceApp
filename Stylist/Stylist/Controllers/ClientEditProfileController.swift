@@ -12,7 +12,8 @@ import Toucan
 class ClientEditProfileController: UITableViewController {
     
     @IBOutlet weak var profileImageView: CircularImageView!
-    @IBOutlet weak var nameTextFields: UITextField!
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
     
     public var stylistUser: StylistsUser!
     
@@ -26,6 +27,7 @@ class ClientEditProfileController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        firstNameTextField.delegate = self
         setupUI()
     }
     
@@ -34,7 +36,7 @@ class ClientEditProfileController: UITableViewController {
             profileImageView.kf.indicatorType = .activity
             profileImageView.kf.setImage(with: URL(string: imageURL), placeholder: #imageLiteral(resourceName: "placeholder.png"))
         }
-        nameTextFields.text = stylistUser.fullName
+        firstNameTextField.text = stylistUser.fullName
     }
     
     @IBAction func changeProfilePicButtonPressed(_ sender: UIButton) {
@@ -51,9 +53,45 @@ class ClientEditProfileController: UITableViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
-        // Lots of Code HERE!!!
-        // Update firebase
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        
+        guard let imageData = selectedImage?.jpegData(compressionQuality: 1.0),
+            let firstName = firstNameTextField.text, !firstName.isEmpty,
+            let lastName = lastNameTextField.text, !lastName.isEmpty,
+            let currentUser = AuthService().getCurrentUser() else {
+                showAlert(title: "Missing Fields", message: "A photo and full name is required", actionTitle: "ok")
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                return
+        }
+        
+        StorageService.postImage(imageData: imageData, imageName: "“profileImages/\(currentUser.uid)”") { [weak self] (error, imageURL) in
+            if let error = error {
+                self?.showAlert(title: "Error Saving Photo", message: error.localizedDescription, actionTitle: "Ok")
+                self?.navigationItem.rightBarButtonItem?.isEnabled = true
+                
+            } else if let imageURL = imageURL {
+                let request = currentUser.createProfileChangeRequest()
+                request.photoURL = imageURL
+                request.commitChanges(completion: { [weak self] (error) in
+                    if let error = error {
+                        self?.showAlert(title: "Error Saving Account Info", message: error.localizedDescription, actionTitle: "Ok")
+                    }
+                })
+                DBService.firestoreDB
+                    .collection(StylistsUserCollectionKeys.stylistUser)
+                    .document(currentUser.uid)
+                    .updateData([StylistsUserCollectionKeys.firstName : firstName,
+                                 StylistsUserCollectionKeys.lastName : lastName,
+                                 StylistsUserCollectionKeys.imageURL : imageURL
+                        ], completion: { [weak self] (error) in
+                            if let error = error {
+                                self?.showAlert(title: "Error Saving Account Info", message: error.localizedDescription, actionTitle: "Ok")
+                            }
+                    })
+                self?.dismiss(animated: true)
+                self?.navigationItem.rightBarButtonItem?.isEnabled = true
+            }
+        }
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
@@ -76,5 +114,12 @@ extension ClientEditProfileController: UIImagePickerControllerDelegate, UINaviga
         let resizedImage = Toucan.Resize.resizeImage(originalImage, size: size)
         selectedImage = resizedImage
         dismiss(animated: true)
+    }
+}
+
+extension ClientEditProfileController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

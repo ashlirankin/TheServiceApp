@@ -42,7 +42,6 @@ struct RatingsCollectionKeys {
     static  let ratingId = "ratingId"
     static let value = "value"
     static let userId = "userId"
-  
 }
 
 struct ReviewsCollectionKeys{
