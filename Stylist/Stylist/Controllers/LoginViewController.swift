@@ -30,8 +30,9 @@ class LoginViewController: BaseViewController {
         return}
     
     authService.signInExistingAccount(email: email, password: password)
-  
-    presentTabbarController()
+    
+    presentSetUpView()
+    
   }
   
   @IBAction func segmentedControlPressed(_ sender: UISegmentedControl) {
@@ -42,6 +43,17 @@ class LoginViewController: BaseViewController {
    
       guard let userTabbarController = UIStoryboard.init(name: "User", bundle: nil).instantiateViewController(withIdentifier: "UserTabBarController") as? UITabBarController else {return}
       self.present(userTabbarController, animated: true, completion: nil)
+    
+  }
+  func presentSetUpView(){
+    let onbordingScreen = UIStoryboard(name: "Entrance", bundle: nil).instantiateViewController(withIdentifier: "OnboardingTableViewController")
+    let navigationController = UINavigationController(rootViewController: onbordingScreen)
+    
+    navigationController.navigationBar.barTintColor = .clear
+    navigationController.navigationBar.setBackgroundImage(UIImage(), for:UIBarMetrics.default)
+    navigationController.navigationBar.isTranslucent = true
+    navigationController.navigationBar.shadowImage = UIImage()
+    self.present(navigationController, animated: true, completion: nil)
     
   }
   
