@@ -56,10 +56,12 @@
 		2EF103D32255ABA10030FBFF /* Avalibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF103D22255ABA10030FBFF /* Avalibility.swift */; };
 		2EF103D52255AE060030FBFF /* Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF103D42255AE060030FBFF /* Days.swift */; };
 		8F8138881EF44484D5275681 /* Pods_Stylist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D89AABB01908945DBC5625A6 /* Pods_Stylist.framework */; };
-		D6B4BF6B225DE1DD00F1E48C /* ClientEditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4BF6A225DE1DD00F1E48C /* ClientEditProfileController.swift */; };
-		D6B4BF6D225E384300F1E48C /* IBDesignableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4BF6C225E384300F1E48C /* IBDesignableViews.swift */; };
 		D6B4BF6F225E993200F1E48C /* UIViewController+Navigations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4BF6E225E993200F1E48C /* UIViewController+Navigations.swift */; };
 		D6B4BF71225E9A2800F1E48C /* UserTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4BF70225E9A2800F1E48C /* UserTabBarController.swift */; };
+		D6B4BF77225EA80C00F1E48C /* ClientProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4BF76225EA80C00F1E48C /* ClientProfileController.swift */; };
+		D6B4BF78225EA88F00F1E48C /* ClientEditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4BF6A225DE1DD00F1E48C /* ClientEditProfileController.swift */; };
+		D6B4BF7A225EA92100F1E48C /* IBDesignableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4BF79225EA92100F1E48C /* IBDesignableViews.swift */; };
+		D6B4BF7B225EA92100F1E48C /* IBDesignableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4BF79225EA92100F1E48C /* IBDesignableViews.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +137,8 @@
 		D6B4BF6C225E384300F1E48C /* IBDesignableViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignableViews.swift; sourceTree = "<group>"; };
 		D6B4BF6E225E993200F1E48C /* UIViewController+Navigations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Navigations.swift"; sourceTree = "<group>"; };
 		D6B4BF70225E9A2800F1E48C /* UserTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTabBarController.swift; sourceTree = "<group>"; };
+		D6B4BF76225EA80C00F1E48C /* ClientProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProfileController.swift; sourceTree = "<group>"; };
+		D6B4BF79225EA92100F1E48C /* IBDesignableViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBDesignableViews.swift; sourceTree = "<group>"; };
 		D89AABB01908945DBC5625A6 /* Pods_Stylist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stylist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD7F5DBCC2AE867436738D1 /* Pods_StylistTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StylistTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -212,6 +216,7 @@
 				2EF103992255314A0030FBFF /* Products */,
 				B5510D80F4AFE1DB6B98444D /* Pods */,
 				22221D3EC18620EA7B2A0CEF /* Frameworks */,
+				D6B4BF73225EA3DA00F1E48C /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -259,6 +264,7 @@
 		2EF103C32255A4540030FBFF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D6B4BF79225EA92100F1E48C /* IBDesignableViews.swift */,
 				09A9D53F225BA8BB00DFB5E2 /* nibs */,
 				2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */,
 				2E9DD7D52257E80900D74DD1 /* User.storyboard */,
@@ -271,6 +277,7 @@
 		2EF103C62255A48C0030FBFF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D6B4BF76225EA80C00F1E48C /* ClientProfileController.swift */,
 				2EBDDC1F225D2E9400583BC0 /* OnboardingTableViewController.swift */,
 				2EBDDC1B225D0A7800583BC0 /* BaseViewController.swift */,
 				2E9DD7D72257F69B00D74DD1 /* CreateViewController.swift */,
@@ -283,7 +290,6 @@
 				2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */,
 				09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */,
 				094DF888225D2809001EA2FE /* ProviderDetailController.swift */,
-				2E9DD7E72257FB2200D74DD1 /* ClientProfileController.swift */,
 				D6B4BF6A225DE1DD00F1E48C /* ClientEditProfileController.swift */,
 				D6B4BF70225E9A2800F1E48C /* UserTabBarController.swift */,
 			);
@@ -315,6 +321,14 @@
 				929C1E92E4811B03B80F4987 /* Pods-FirebaseTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D6B4BF73225EA3DA00F1E48C /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				D6B4BF6C225E384300F1E48C /* IBDesignableViews.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -570,6 +584,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E9DD7C82257A8A300D74DD1 /* FirebaseTests.swift in Sources */,
+				D6B4BF7B225EA92100F1E48C /* IBDesignableViews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,6 +592,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6B4BF78225EA88F00F1E48C /* ClientEditProfileController.swift in Sources */,
+				D6B4BF77225EA80C00F1E48C /* ClientProfileController.swift in Sources */,
 				2EBDDBD8225B99B000583BC0 /* Date+Extension.swift in Sources */,
 				2EBDDBD4225B997B00583BC0 /* Alert+Extensions.swift in Sources */,
 				2E9DD7DA2257F6A800D74DD1 /* LoginViewController.swift in Sources */,
@@ -598,10 +615,7 @@
 				D6B4BF71225E9A2800F1E48C /* UserTabBarController.swift in Sources */,
 				2EF103CD2255A4D20030FBFF /* Ratings.swift in Sources */,
 				2E9DD7DC2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift in Sources */,
-
 				094DF892225D492D001EA2FE /* ProviderDetailCustomCell.swift in Sources */,
-				D6B4BF6D225E384300F1E48C /* IBDesignableViews.swift in Sources */,
-
 				09A9D545225BDAF200DFB5E2 /* ServiceBioView.swift in Sources */,
 				094DF88F225D2EB8001EA2FE /* UserDetailView.swift in Sources */,
 				2E9DD7EC2257FC4100D74DD1 /* ClientSearchController.swift in Sources */,
@@ -611,6 +625,7 @@
 				2EF103D52255AE060030FBFF /* Days.swift in Sources */,
 				2EF103CB2255A4C00030FBFF /* StylistsUsers.swift in Sources */,
 				2E9DD7EA2257FC0C00D74DD1 /* ClientBookingsController.swift in Sources */,
+				D6B4BF7A225EA92100F1E48C /* IBDesignableViews.swift in Sources */,
 				09A9D547225BE7A200DFB5E2 /* PortfolioView.swift in Sources */,
 				09A9D543225BCFB200DFB5E2 /* ServiceProfileViewController.swift in Sources */,
 				094DF889225D2809001EA2FE /* ProviderDetailController.swift in Sources */,
