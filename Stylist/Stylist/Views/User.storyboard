@@ -32,7 +32,7 @@
         <!--Discover-->
         <scene sceneID="hsE-a4-Ce4">
             <objects>
-                <viewController storyboardIdentifier="UserDiscoveryVC" id="hfJ-oO-2LH" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserDiscoveryVC" id="hfJ-oO-2LH" customClass="DiscoverViewController" customModule="Stylist" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vec-u7-txo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -46,7 +46,7 @@
                                 <rect key="frame" x="0.0" y="187" width="414" height="626"/>
                                 <color key="backgroundColor" red="0.174853128" green="0.2225734221" blue="0.3657343045" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="149" id="NpT-9g-Pbb">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DiscoveryCell" rowHeight="149" id="NpT-9g-Pbb" customClass="DiscoverTableViewCell" customModule="Stylist" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="149"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NpT-9g-Pbb" id="9Zk-m5-YKR">
@@ -101,6 +101,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="ProviderCategory" destination="fwf-B5-Abb" id="il3-Nl-QFL"/>
+                                            <outlet property="ProviderPic" destination="S9Z-jr-VoH" id="R5X-B6-R9F"/>
+                                            <outlet property="providerDistance" destination="R0h-11-az8" id="cJe-nZ-0Bz"/>
+                                            <outlet property="providerName" destination="IaT-0A-AzC" id="qPS-vD-ybn"/>
+                                            <outlet property="providerRating" destination="By3-fs-rUL" id="0A0-55-htX"/>
                                             <segue destination="JyM-sN-TXm" kind="show" id="kC9-9U-Hdd"/>
                                         </connections>
                                     </tableViewCell>
@@ -117,23 +122,38 @@
                                     <size key="itemSize" width="127" height="34"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="8AP-r3-XZb">
-                                        <rect key="frame" x="0.0" y="4.5" width="127" height="34"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DiscoveryCollectionCell" id="8AP-r3-XZb" customClass="DiscoveryCollectionViewCell" customModule="Stylist" customModuleProvider="target">
+                                        <rect key="frame" x="5" y="4.5" width="127" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="127" height="34"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCg-TZ-ZKZ">
+                                                    <rect key="frame" x="42.5" y="6.5" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </view>
                                         <color key="backgroundColor" red="0.174853128" green="0.2225734221" blue="0.3657343045" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstItem="dCg-TZ-ZKZ" firstAttribute="centerY" secondItem="8AP-r3-XZb" secondAttribute="centerY" id="5e1-43-LEk"/>
+                                            <constraint firstItem="dCg-TZ-ZKZ" firstAttribute="centerX" secondItem="8AP-r3-XZb" secondAttribute="centerX" id="uxd-xJ-FWe"/>
+                                        </constraints>
                                         <size key="customSize" width="127" height="34"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="label" destination="dCg-TZ-ZKZ" id="g86-Xy-Qav"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -155,7 +175,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Discover" id="SUe-Ce-fNR"/>
                     <connections>
+                        <outlet property="collectionView" destination="QqP-vV-ZOD" id="ufk-SM-Uqh"/>
+                        <outlet property="searchBar" destination="qTg-Ur-oPJ" id="0xm-7t-nbH"/>
                         <outlet property="searchDisplayController" destination="ZaU-56-Mnh" id="lRd-58-evd"/>
+                        <outlet property="tableView" destination="f91-iY-T12" id="Kn2-cu-5UI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qUt-8M-sif" userLabel="First Responder" sceneMemberID="firstResponder"/>
