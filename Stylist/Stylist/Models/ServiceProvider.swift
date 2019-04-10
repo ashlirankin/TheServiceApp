@@ -19,8 +19,14 @@ struct ServiceSideUser{
   let bio:String?
   let licenseNumber:String?
   let licenseExpiryDate:String?
-  let type:String
-  init(userId:String,firstName:String?,lastName:String?,email:String,joinedDate:String,gender:String?,isCertified:Bool,imageURL:String?,bio:String?,licenseNumber:String?,licenseExpiryDate:String?,type:String){
+  let jobTitle:String
+  let address:String?
+  let city:String?
+  let state:String?
+  let lat:String?
+  let long:String?
+  let zip:String?
+  init(userId:String,firstName:String?,lastName:String?,email:String,joinedDate:String,gender:String?,isCertified:Bool,imageURL:String?,bio:String?,licenseNumber:String?,licenseExpiryDate:String?,type:String,address:String?,city:String,state:String,lat:String,long:String,zip:String){
     
     self.userId = userId
     self.firstName = firstName
@@ -33,7 +39,13 @@ struct ServiceSideUser{
     self.bio = bio
     self.licenseNumber = licenseNumber
     self.licenseExpiryDate = licenseExpiryDate
-    self.type = type
+    self.jobTitle = type
+    self.address = address
+    self.city = city
+    self.state = state
+    self.lat = lat
+    self.long = long
+    self.zip = zip
   }
   init(dict:[String:Any]){
     self.userId = dict[ServiceSideUserCollectionKeys.userId] as? String ?? "no user id found"
@@ -47,6 +59,13 @@ struct ServiceSideUser{
     self.bio = dict[ServiceSideUserCollectionKeys.bio] as? String ?? "no bio found"
     self.licenseNumber = dict[ServiceSideUserCollectionKeys.licenseNumber] as? String ?? "no license number found"
     self.licenseExpiryDate = dict[ServiceSideUserCollectionKeys.licenseExpiryDate] as? String ?? "no expiry date found"
-    self.type = dict[ServiceSideUserCollectionKeys.type] as? String ?? "no type"
+    self.jobTitle = dict[ServiceSideUserCollectionKeys.jobTitle] as? String ?? "no type"
+    self.address = dict[ServiceSideUserCollectionKeys.address] as? String ?? "no address found"
+    self.city = dict[ServiceSideUserCollectionKeys.city] as? String ?? "no city found"
+    self.lat = dict[ServiceSideUserCollectionKeys.lat] as? String ?? "no lat found"
+    self.long = dict[ServiceSideUserCollectionKeys.long] as? String ?? "no long found"
+    self.zip = dict[ServiceSideUserCollectionKeys.zip] as?  String ?? "no zip found"
+    self.state = dict[ServiceSideUserCollectionKeys.state] as? String ?? "no state found"
+    
   }
 }
