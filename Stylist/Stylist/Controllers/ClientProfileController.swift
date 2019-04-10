@@ -40,6 +40,7 @@ class ClientProfileController: UIViewController {
             showAlert(title: "No User Login", message: nil, actionTitle: "Ok")
             return
         }
+        
         DBService.getDatabaseUser(userID: currentUser.uid) { (error, stylistUser) in
             dump(currentUser)
             if let error = error {
@@ -58,6 +59,7 @@ class ClientProfileController: UIViewController {
         }
         clientFullNameLabel.text = user.fullName
         clientEmail.text = user.email
+        
         // TODO: Set rating here also (Incomplete)
         setStylistUserRating()
     }
@@ -72,11 +74,23 @@ class ClientProfileController: UIViewController {
         let actionTitles = ["Edit Profile", "Support", "Sign Out"]
         
         showActionSheet(title: "Menu", message: nil, actionTitles: actionTitles, handlers: [ { [unowned self] editProfileAction in
+            let storyBoard = UIStoryboard(name: "User", bundle: nil)
+            guard let destinationVC = storyBoard.instantiateViewController(withIdentifier: "EditProfileVC") as? ClientEditProfileController else {
+                fatalError("EditProfileVC is nil")
+            }
+            destinationVC.modalPresentationStyle = .currentContext
+            if let currentUser = self.user {
+                destinationVC.stylistUser = currentUser
+            } else {
+                return
+            }
+            self.present(destinationVC, animated: true)
             
             }, { [unowned self] supportAction in
                 
             }, { [unowned self] signOutAction in
-                
+                AuthService().signOut()
+                self.showLoginView()
             }
             ])
     }

@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--User Tab Bar Controller-->
         <scene sceneID="Tay-gR-mJj">
             <objects>
-                <tabBarController storyboardIdentifier="UserTabBarController" id="wIc-MT-mpx" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="UserTabBarController" id="wIc-MT-mpx" customClass="UserTabBarController" customModule="Stylist" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gCk-DK-oFw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -459,7 +459,7 @@
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ButtonCell" id="gbn-g0-CrF" customClass="ProviderDetailCustomCell" customModule="Stylist" customModuleProvider="target">
-                                                            <rect key="frame" x="15" y="6.5" width="98" height="50"/>
+                                                            <rect key="frame" x="15" y="6" width="98" height="50"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                                 <rect key="frame" x="0.0" y="0.0" width="98" height="50"/>
