@@ -280,12 +280,9 @@
 				09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */,
 				2E9DD7E92257FC0C00D74DD1 /* ClientBookingsController.swift */,
 				2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */,
-<<<<<<< HEAD
 				09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */,
 				094DF888225D2809001EA2FE /* ProviderDetailController.swift */,
-=======
 				2E9DD7E72257FB2200D74DD1 /* ClientProfileController.swift */,
->>>>>>> 3bbf71fc1d8d33af4149f0dde22d2c8b65ba6aa7
 				D6B4BF6A225DE1DD00F1E48C /* ClientEditProfileController.swift */,
 			);
 			path = Controllers;
