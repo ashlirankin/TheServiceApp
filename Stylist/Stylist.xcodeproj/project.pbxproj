@@ -34,7 +34,6 @@
 		2E9DD7DE2257F83900D74DD1 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7DD2257F83900D74DD1 /* ServiceDetailViewController.swift */; };
 		2E9DD7E22257F95800D74DD1 /* ServiceConfirmedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7E12257F95800D74DD1 /* ServiceConfirmedController.swift */; };
 		2E9DD7E42257F9C000D74DD1 /* ServiceMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7E32257F9C000D74DD1 /* ServiceMessageViewController.swift */; };
-		2E9DD7E82257FB2200D74DD1 /* ClientProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7E72257FB2200D74DD1 /* ClientProfileController.swift */; };
 		2E9DD7EA2257FC0C00D74DD1 /* ClientBookingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7E92257FC0C00D74DD1 /* ClientBookingsController.swift */; };
 		2E9DD7EC2257FC4100D74DD1 /* ClientSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */; };
 		2EBDDBCE225B91AD00583BC0 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBDDBCD225B91AD00583BC0 /* StorageService.swift */; };
@@ -103,7 +102,6 @@
 		2E9DD7DD2257F83900D74DD1 /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
 		2E9DD7E12257F95800D74DD1 /* ServiceConfirmedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceConfirmedController.swift; sourceTree = "<group>"; };
 		2E9DD7E32257F9C000D74DD1 /* ServiceMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMessageViewController.swift; sourceTree = "<group>"; };
-		2E9DD7E72257FB2200D74DD1 /* ClientProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProfileController.swift; sourceTree = "<group>"; };
 		2E9DD7E92257FC0C00D74DD1 /* ClientBookingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientBookingsController.swift; sourceTree = "<group>"; };
 		2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSearchController.swift; sourceTree = "<group>"; };
 		2EBDDBCD225B91AD00583BC0 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
@@ -261,7 +259,6 @@
 		2EF103C32255A4540030FBFF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D6B4BF6C225E384300F1E48C /* IBDesignableViews.swift */,
 				09A9D53F225BA8BB00DFB5E2 /* nibs */,
 				2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */,
 				2E9DD7D52257E80900D74DD1 /* User.storyboard */,
@@ -590,8 +587,6 @@
 				2EF103C82255A4A30030FBFF /* ServiceProvider.swift in Sources */,
 				09DCD303225E4AB90090EE1F /* UIViewController+Extensions.swift in Sources */,
 				2E9DD7D02257C93E00D74DD1 /* DBService.swift in Sources */,
-				D6B4BF6B225DE1DD00F1E48C /* ClientEditProfileController.swift in Sources */,
-				2E9DD7E82257FB2200D74DD1 /* ClientProfileController.swift in Sources */,
 				2EBDDBCE225B91AD00583BC0 /* StorageService.swift in Sources */,
 				2EBDDBD0225B91D600583BC0 /* AuthService.swift in Sources */,
 				09DCD307225E50EA0090EE1F /* ProviderBio.swift in Sources */,
@@ -603,8 +598,10 @@
 				D6B4BF71225E9A2800F1E48C /* UserTabBarController.swift in Sources */,
 				2EF103CD2255A4D20030FBFF /* Ratings.swift in Sources */,
 				2E9DD7DC2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift in Sources */,
+
 				094DF892225D492D001EA2FE /* ProviderDetailCustomCell.swift in Sources */,
 				D6B4BF6D225E384300F1E48C /* IBDesignableViews.swift in Sources */,
+
 				09A9D545225BDAF200DFB5E2 /* ServiceBioView.swift in Sources */,
 				094DF88F225D2EB8001EA2FE /* UserDetailView.swift in Sources */,
 				2E9DD7EC2257FC4100D74DD1 /* ClientSearchController.swift in Sources */,
