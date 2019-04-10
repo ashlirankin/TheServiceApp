@@ -52,10 +52,7 @@ struct RatingsCollectionKeys {
     static  let ratingId = "ratingId"
     static let value = "value"
     static let userId = "userId"
-<<<<<<< HEAD
-=======
     static let raterId = "raterId"
->>>>>>> 2925b15b5638648e65ae1af4ffbe5e416a5e90aa
 }
 
 struct ReviewsCollectionKeys{

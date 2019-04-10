@@ -71,14 +71,13 @@ class ClientProfileController: UIViewController {
     @IBAction func moreOptionsButtonPressed(_ sender: UIButton) {
         let actionTitles = ["Edit Profile", "Support", "Sign Out"]
         
-        showActionSheet(title: "Menu", message: nil, actionTitles: <#T##[String]#>, handlers: <#T##[((UIAlertAction) -> Void)]#>)
-//        showActionSheet(title: nil, message: nil, actionTitles: actionTitles, handlers: [{ [unowned self] photoLibraryAction in
-//            self.imagePickerController.sourceType = .photoLibrary
-//            self.present(self.imagePickerController, animated: true)
-//            }, { cameraAction  in
-//                self.imagePickerController.sourceType = .camera
-//                self.present(self.imagePickerController, animated: true)
-//            }
-//            ])
+        showActionSheet(title: "Menu", message: nil, actionTitles: actionTitles, handlers: [ { [unowned self] editProfileAction in
+            
+            }, { [unowned self] supportAction in
+                
+            }, { [unowned self] signOutAction in
+                
+            }
+            ])
     }
 }
