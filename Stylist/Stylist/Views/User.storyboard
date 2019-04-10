@@ -153,8 +153,9 @@
                                                         <constraint firstAttribute="height" constant="168" id="qoj-wg-X2j"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DVO-XM-JwR">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DVO-XM-JwR">
                                                     <rect key="frame" x="112.5" y="11" width="189.5" height="168"/>
+                                                    <state key="normal" image="icons8-camera"/>
                                                     <connections>
                                                         <action selector="changeProfilePicButtonPressed:" destination="SEv-r5-cNM" eventType="touchUpInside" id="Bn5-c3-PNv"/>
                                                     </connections>
@@ -178,31 +179,64 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="64.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gqu-A4-Mlz">
-                                                    <rect key="frame" x="20" y="21" width="50" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gqu-A4-Mlz">
+                                                    <rect key="frame" x="20" y="21" width="100" height="22"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="HYL-Zu-dMp"/>
-                                                        <constraint firstAttribute="height" constant="22" id="gVk-rc-79w"/>
+                                                        <constraint firstAttribute="width" constant="100" id="rbR-Hi-8KR"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QVY-Cv-mGV">
-                                                    <rect key="frame" x="91" y="17" width="303" height="30"/>
+                                                    <rect key="frame" x="125" y="17" width="269" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Gqu-A4-Mlz" firstAttribute="leading" secondItem="rxb-eK-00s" secondAttribute="leadingMargin" id="1W1-sV-4UX"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="QVY-Cv-mGV" secondAttribute="bottom" constant="7" id="5G0-aS-xE5"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Gqu-A4-Mlz" secondAttribute="bottom" constant="11" id="Aqs-Oz-8IN"/>
-                                                <constraint firstItem="QVY-Cv-mGV" firstAttribute="top" secondItem="rxb-eK-00s" secondAttribute="topMargin" constant="6" id="YWN-eL-Bdh"/>
-                                                <constraint firstItem="Gqu-A4-Mlz" firstAttribute="top" secondItem="rxb-eK-00s" secondAttribute="topMargin" constant="10" id="ZCD-mx-kj6"/>
-                                                <constraint firstItem="QVY-Cv-mGV" firstAttribute="leading" secondItem="Gqu-A4-Mlz" secondAttribute="trailing" constant="21" id="eKX-rK-Gdv"/>
-                                                <constraint firstItem="QVY-Cv-mGV" firstAttribute="trailing" secondItem="rxb-eK-00s" secondAttribute="trailingMargin" id="tc2-Pj-I6V"/>
+                                                <constraint firstItem="QVY-Cv-mGV" firstAttribute="trailing" secondItem="rxb-eK-00s" secondAttribute="trailingMargin" id="0sG-0f-JlO"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="QVY-Cv-mGV" secondAttribute="bottom" constant="7" id="B8H-CY-FMe"/>
+                                                <constraint firstItem="QVY-Cv-mGV" firstAttribute="top" secondItem="rxb-eK-00s" secondAttribute="topMargin" constant="6" id="DoI-kH-Spp"/>
+                                                <constraint firstItem="Gqu-A4-Mlz" firstAttribute="leading" secondItem="rxb-eK-00s" secondAttribute="leadingMargin" id="SDE-4S-Dgm"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Gqu-A4-Mlz" secondAttribute="bottom" constant="11" id="bD4-kN-gcK"/>
+                                                <constraint firstItem="Gqu-A4-Mlz" firstAttribute="top" secondItem="rxb-eK-00s" secondAttribute="topMargin" constant="10" id="rnw-Ha-5lA"/>
+                                                <constraint firstItem="QVY-Cv-mGV" firstAttribute="leading" secondItem="Gqu-A4-Mlz" secondAttribute="trailing" constant="5" id="sxD-d8-k7A"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="65" id="NRC-eK-3l2">
+                                        <rect key="frame" x="0.0" y="290" width="414" height="65"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NRC-eK-3l2" id="aor-eV-F94">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="64.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7h-zb-LoX">
+                                                    <rect key="frame" x="20" y="21" width="100" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="m5Q-s3-PKq"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gLQ-wm-NYb">
+                                                    <rect key="frame" x="125" y="17" width="269" height="30"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gLQ-wm-NYb" firstAttribute="trailing" secondItem="aor-eV-F94" secondAttribute="trailingMargin" id="GBP-Gh-jcz"/>
+                                                <constraint firstItem="c7h-zb-LoX" firstAttribute="top" secondItem="aor-eV-F94" secondAttribute="topMargin" constant="10" id="Izq-7Y-9gB"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="gLQ-wm-NYb" secondAttribute="bottom" constant="7" id="VBb-lM-7Tp"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="c7h-zb-LoX" secondAttribute="bottom" constant="11" id="VU6-zy-A7V"/>
+                                                <constraint firstItem="gLQ-wm-NYb" firstAttribute="top" secondItem="aor-eV-F94" secondAttribute="topMargin" constant="6" id="gZO-fo-buD"/>
+                                                <constraint firstItem="c7h-zb-LoX" firstAttribute="leading" secondItem="aor-eV-F94" secondAttribute="leadingMargin" id="r0H-jq-pxl"/>
+                                                <constraint firstItem="gLQ-wm-NYb" firstAttribute="leading" secondItem="c7h-zb-LoX" secondAttribute="trailing" constant="5" id="xH8-pT-Aop"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -227,7 +261,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="nameTextFields" destination="QVY-Cv-mGV" id="YcC-16-Ajh"/>
+                        <outlet property="firstNameTextField" destination="QVY-Cv-mGV" id="YcC-16-Ajh"/>
+                        <outlet property="lastNameTextField" destination="gLQ-wm-NYb" id="oE2-L9-Jks"/>
                         <outlet property="profileImageView" destination="GuU-Q8-lUs" id="jib-dL-Okr"/>
                     </connections>
                 </tableViewController>
@@ -285,6 +320,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icons8-camera" width="50" height="50"/>
         <image name="icons8-more" width="50" height="50"/>
         <image name="placeholder" width="512" height="512"/>
     </resources>

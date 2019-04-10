@@ -23,7 +23,7 @@ struct Ratings{
   init(dict:[String:Any]) {
     self.ratingId = dict[RatingsCollectionKeys.ratingId] as? String ?? "no rating found"
     self.userId = dict[RatingsCollectionKeys.userId] as? String ?? "no user id found"
-    
+
     self.value =  dict[RatingsCollectionKeys.value] as? Int ?? 5
   
     self.raterId = dict[RatingsCollectionKeys.raterId] as? String ?? "no raterId found"

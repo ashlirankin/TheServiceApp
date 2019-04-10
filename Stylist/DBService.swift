@@ -52,7 +52,7 @@ firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(consumer
     
     let id = firestoreDB.collection(collectionName).document().documentID
     DBService.firestoreDB.collection(collectionName).document(userId).collection(RatingsCollectionKeys.ratings).addDocument(data: [RatingsCollectionKeys.ratingId:id,
-                                                                                                                                   RatingsCollectionKeys.value:rating.value,RatingsCollectionKeys.userId:rating.userId,RatingsCollectionKeys.raterId:userId]) { (error) in
+                                                                                                                                   RatingsCollectionKeys.value:rating.value,RatingsCollectionKeys.userId:rating.userId,RatingsCollectionKeys.ratingId:userId]) { (error) in
       if let error = error {
         print("there was an error: uploading your rating:\(error.localizedDescription)")
       }
