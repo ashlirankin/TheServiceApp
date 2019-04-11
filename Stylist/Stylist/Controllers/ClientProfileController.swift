@@ -18,14 +18,10 @@ class ClientProfileController: UIViewController {
     @IBOutlet weak var clientFullNameLabel: UILabel!
     @IBOutlet weak var userRatingView: CosmosView!
     @IBOutlet weak var clientEmail: UILabel!
-<<<<<<< HEAD:Stylist/Stylist/Controllers/ClientProfileController.swift
-    
-    private var user: StylistsUser? {
-=======
+
   
   let authService = AuthService()
     private var stylistUser: StylistsUser? {
->>>>>>> origin/qa:Stylist/Stylist/Controllers/Client Files/ClientProfileController.swift
         didSet {
             DispatchQueue.main.async {
                 self.updateUI()
@@ -77,14 +73,6 @@ class ClientProfileController: UIViewController {
 
     @IBAction func moreOptionsButtonPressed(_ sender: UIButton) {
         let actionTitles = ["Edit Profile", "Support", "Sign Out"]
-        
-<<<<<<< HEAD:Stylist/Stylist/Controllers/ClientProfileController.swift
-        showActionSheet(title: "Menu", message: nil, actionTitles: actionTitles, handlers: [ { [unowned self] editProfileAction in
-            
-            }, { [unowned self] supportAction in
-                
-            }, { [unowned self] signOutAction in
-=======
         showActionSheet(title: "Menu", message: nil, actionTitles: actionTitles, handlers: [ { [weak self] editProfileAction in
             let storyBoard = UIStoryboard(name: "User", bundle: nil)
             guard let destinationVC = storyBoard.instantiateViewController(withIdentifier: "EditProfileVC") as? ClientEditProfileController else {
@@ -109,14 +97,9 @@ class ClientProfileController: UIViewController {
                 mailComposer.setSubject("\(self?.stylistUser?.fullName ?? "Guest"): Help Me!")
                 mailComposer.setMessageBody("To: Customer Support, \n\n", isHTML: false)
                 self?.present(mailComposer, animated: true)
->>>>>>> origin/qa:Stylist/Stylist/Controllers/Client Files/ClientProfileController.swift
-                
             }
             ])
     }
-<<<<<<< HEAD:Stylist/Stylist/Controllers/ClientProfileController.swift
-=======
-  
   private func presentLoginViewController(){
     let window = (UIApplication.shared.delegate  as! AppDelegate).window
     guard let loginViewController = UIStoryboard(name: "Entrance", bundle: nil).instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController else {return}
@@ -155,5 +138,4 @@ extension ClientProfileController: MFMailComposeViewControllerDelegate {
         }
         controller.dismiss(animated: true)
     }
->>>>>>> origin/qa:Stylist/Stylist/Controllers/Client Files/ClientProfileController.swift
 }
