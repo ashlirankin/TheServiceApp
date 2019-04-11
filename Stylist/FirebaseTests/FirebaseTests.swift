@@ -118,14 +118,62 @@ DBService.firestoreDB.collection("serviceProvider").document(serviceProviderId).
     }
     wait(for: [exp], timeout: 3.0)
   }
+  
   func testCreateStockCategories(){
+   
+  
     let collectionName = "stockServices"
-    let jobTitle = "Barber"
-    
     let exp = expectation(description: "create stock ")
     
+    DBService.firestoreDB.collection(collectionName).addDocument(data: ["jobTitle":"Makeup Artist"]) { (error) in
+      if let error = error {
+        XCTFail("could not create service:\(error.localizedDescription)")
+      }
+      exp.fulfill()
+    }
+    wait(for: [exp], timeout: 3.0)
+    
+    
   }
-}
+  
+  func testAddingStockServices(){
+    
+//    let stockService = ["Moustache Trim","Shampoo","Conditioner","Beard Trim","Eyebrow Shaping","Shoe Shine","Facials","Massages"]
+//    let stockService = ["Bridal Makeup", "Special Event Makeup","Private Makeup Lesson"]
+    let stockService = ["Cuts", "Relaxers", "Perms", "Colors", "Shampoo", "Conditioning", "Curling", "Reconstructing", "Weaving", "Waving","Manicures", "Pedicures", "Polish", "Sculptured nails","European facials", "Body waxing", "Massage"]
+    let serviceId = "HHsx5njomzEVFDmkmlNN"
+    let exp = expectation(description: "set stock services offered")
+    DBService.firestoreDB.collection("stockServices").document(serviceId).updateData(["services" : stockService]) { (error) in
+      if let error = error {
+        XCTFail("could not update services:\(error.localizedDescription)")
+      }
+      exp.fulfill()
+      
+    }
+    wait(for: [exp], timeout: 3.0)
+  }
+  
+  
+  func testQureyForBarber(){
+    let jobTitle = "Barber"
+    let exp = expectation(description: "get data of barber")
+    
+    DBService.firestoreDB.collection("stockServices").whereField("jobTitle", isEqualTo: jobTitle).getDocuments { (snapshot, error) in
+      if let error = error {
+        XCTFail("failed to get job title:\(error.localizedDescription)")
+      }else if let snapshot = snapshot {
+        if snapshot.documents.isEmpty{
+          XCTFail("no results found")
+        }
+        exp.fulfill()
+          
+        }
+      }
+    wait(for: [exp], timeout: 3.0)
+
+    }
+  }
+
   
 
 

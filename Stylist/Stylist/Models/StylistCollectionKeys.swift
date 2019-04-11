@@ -79,3 +79,8 @@ struct DaysCollectionKeys{
   static let avalibliehours = "avalibleHours"
   static let daysId = "daysId"
 }
+struct ServicesCollectionKeys {
+  static let CollectionName = "stockServices"
+  static let jobTitle =  "jobTitle"
+  static let services = "services"
+}
