@@ -23,6 +23,7 @@
 		09DCD30D225E7E5D0090EE1F /* ProviderDetailReviews.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09DCD30C225E7E5D0090EE1F /* ProviderDetailReviews.xib */; };
 		09DCD30F225E7F7D0090EE1F /* ProviderDetailReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD30E225E7F7D0090EE1F /* ProviderDetailReviews.swift */; };
 		291F30A20B9AEA8931FF3E32 /* Pods_FirebaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F0689D22A995E41D8C2C56 /* Pods_FirebaseTests.framework */; };
+		2E5E74D9225FB6A8003D370F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5E74D7225FB6A3003D370F /* Service.swift */; };
 		2E9DD7C82257A8A300D74DD1 /* FirebaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7C72257A8A300D74DD1 /* FirebaseTests.swift */; };
 		2E9DD7D02257C93E00D74DD1 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7CF2257C93E00D74DD1 /* DBService.swift */; };
 		2E9DD7D22257E7E100D74DD1 /* Entrance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E9DD7D12257E7E100D74DD1 /* Entrance.storyboard */; };
@@ -57,6 +58,7 @@
 		2EF103D32255ABA10030FBFF /* Avalibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF103D22255ABA10030FBFF /* Avalibility.swift */; };
 		2EF103D52255AE060030FBFF /* Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF103D42255AE060030FBFF /* Days.swift */; };
 		8F8138881EF44484D5275681 /* Pods_Stylist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D89AABB01908945DBC5625A6 /* Pods_Stylist.framework */; };
+		D62EA117225FC92000101E4A /* ClientEditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62EA116225FC92000101E4A /* ClientEditProfileController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,7 @@
 		09DCD30C225E7E5D0090EE1F /* ProviderDetailReviews.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProviderDetailReviews.xib; sourceTree = "<group>"; };
 		09DCD30E225E7F7D0090EE1F /* ProviderDetailReviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderDetailReviews.swift; sourceTree = "<group>"; };
 		26FA858D08C6AC46AEBAE072 /* Pods-StylistTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylistTests.release.xcconfig"; path = "Target Support Files/Pods-StylistTests/Pods-StylistTests.release.xcconfig"; sourceTree = "<group>"; };
+		2E5E74D7225FB6A3003D370F /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		2E9DD7C52257A8A300D74DD1 /* FirebaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FirebaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E9DD7C72257A8A300D74DD1 /* FirebaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTests.swift; sourceTree = "<group>"; };
 		2E9DD7C92257A8A300D74DD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -129,6 +132,7 @@
 		A8787ACFCB7CCA4C79516777 /* Pods-Stylist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stylist.debug.xcconfig"; path = "Target Support Files/Pods-Stylist/Pods-Stylist.debug.xcconfig"; sourceTree = "<group>"; };
 		AD1D5ADFD62A113C77C9D79E /* Pods-FirebaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseTests.debug.xcconfig"; path = "Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C9F0689D22A995E41D8C2C56 /* Pods_FirebaseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FirebaseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D62EA116225FC92000101E4A /* ClientEditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientEditProfileController.swift; sourceTree = "<group>"; };
 		D89AABB01908945DBC5625A6 /* Pods_Stylist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stylist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD7F5DBCC2AE867436738D1 /* Pods_StylistTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StylistTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -264,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				2EB256DE225EEFD7006FE095 /* ClientProfileController.swift */,
+				D62EA116225FC92000101E4A /* ClientEditProfileController.swift */,
 				2E9DD7E92257FC0C00D74DD1 /* ClientBookingsController.swift */,
 				2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */,
 			);
@@ -341,6 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				2EF103C72255A4A30030FBFF /* ServiceProvider.swift */,
+				2E5E74D7225FB6A3003D370F /* Service.swift */,
 				2EF103CA2255A4C00030FBFF /* StylistsUsers.swift */,
 				2EF103CC2255A4D20030FBFF /* Ratings.swift */,
 				2EF103CE2255A4DB0030FBFF /* Reviews.swift */,
@@ -642,6 +648,7 @@
 				2EF1039C2255314A0030FBFF /* AppDelegate.swift in Sources */,
 				09DCD30B225E69860090EE1F /* ProviderAvailability.swift in Sources */,
 				2E9DD7E22257F95800D74DD1 /* ServiceConfirmedController.swift in Sources */,
+				D62EA117225FC92000101E4A /* ClientEditProfileController.swift in Sources */,
 				2EF103CF2255A4DB0030FBFF /* Reviews.swift in Sources */,
 				2EF103CD2255A4D20030FBFF /* Ratings.swift in Sources */,
 				2E9DD7DC2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift in Sources */,
@@ -652,6 +659,7 @@
 				2E9DD7E42257F9C000D74DD1 /* ServiceMessageViewController.swift in Sources */,
 				2EF103D12255A4E90030FBFF /* StylistCollectionKeys.swift in Sources */,
 				2EF103D32255ABA10030FBFF /* Avalibility.swift in Sources */,
+				2E5E74D9225FB6A8003D370F /* Service.swift in Sources */,
 				2EF103D52255AE060030FBFF /* Days.swift in Sources */,
 				2EF103CB2255A4C00030FBFF /* StylistsUsers.swift in Sources */,
 				2E9DD7EA2257FC0C00D74DD1 /* ClientBookingsController.swift in Sources */,
