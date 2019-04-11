@@ -90,11 +90,11 @@
 		2E9DD7C52257A8A300D74DD1 /* FirebaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FirebaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E9DD7C72257A8A300D74DD1 /* FirebaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTests.swift; sourceTree = "<group>"; };
 		2E9DD7C92257A8A300D74DD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2E9DD7CF2257C93E00D74DD1 /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DBService.swift; path = ../../DBService.swift; sourceTree = "<group>"; };
-		2E9DD7D12257E7E100D74DD1 /* Entrance.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Entrance.storyboard; path = ../Models/Entrance.storyboard; sourceTree = "<group>"; };
+		2E9DD7CF2257C93E00D74DD1 /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
+		2E9DD7D12257E7E100D74DD1 /* Entrance.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Entrance.storyboard; sourceTree = "<group>"; };
 		2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ServiceProvider.storyboard; sourceTree = "<group>"; };
 		2E9DD7D52257E80900D74DD1 /* User.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
-		2E9DD7D72257F69B00D74DD1 /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateViewController.swift; path = ../Views/CreateViewController.swift; sourceTree = "<group>"; };
+		2E9DD7D72257F69B00D74DD1 /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		2E9DD7D92257F6A800D74DD1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2E9DD7DB2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceUpcomingTableViewController.swift; sourceTree = "<group>"; };
 		2E9DD7DD2257F83900D74DD1 /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +158,7 @@
 		094DF890225D4904001EA2FE /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2EBDDC1D225D177E00583BC0 /* TableViewCell.swift */,
 				094DF891225D492D001EA2FE /* ProviderDetailCustomCell.swift */,
 			);
 			path = Cells;
@@ -200,6 +201,78 @@
 			path = FirebaseTests;
 			sourceTree = "<group>";
 		};
+		2EB256E2225EFB65006FE095 /* Firebase Services */ = {
+			isa = PBXGroup;
+			children = (
+				2E9DD7CF2257C93E00D74DD1 /* DBService.swift */,
+				2EBDDBCD225B91AD00583BC0 /* StorageService.swift */,
+				2EBDDBCF225B91D600583BC0 /* AuthService.swift */,
+			);
+			path = "Firebase Services";
+			sourceTree = "<group>";
+		};
+		2EB256E3225EFB82006FE095 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2EBDDBD3225B997B00583BC0 /* Alert+Extensions.swift */,
+				2EBDDBD5225B999400583BC0 /* String+Date.swift */,
+				2EBDDBD7225B99B000583BC0 /* Date+Extension.swift */,
+				09DCD302225E4AB80090EE1F /* UIViewController+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2EB256E4225EFB9F006FE095 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */,
+				2E9DD7D52257E80900D74DD1 /* User.storyboard */,
+				2E9DD7D12257E7E100D74DD1 /* Entrance.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		2EB256E5225EFBB4006FE095 /* View Files */ = {
+			isa = PBXGroup;
+			children = (
+				2EB256E0225EF00D006FE095 /* IBDesignableViews.swift */,
+			);
+			path = "View Files";
+			sourceTree = "<group>";
+		};
+		2EB256E6225EFBC7006FE095 /* Entrance Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2E9DD7D92257F6A800D74DD1 /* LoginViewController.swift */,
+				2E9DD7D72257F69B00D74DD1 /* CreateViewController.swift */,
+				2EBDDC1F225D2E9400583BC0 /* OnboardingTableViewController.swift */,
+			);
+			path = "Entrance Controllers";
+			sourceTree = "<group>";
+		};
+		2EB256E7225EFBFA006FE095 /* Service Provider Files */ = {
+			isa = PBXGroup;
+			children = (
+				094DF888225D2809001EA2FE /* ProviderDetailController.swift */,
+				2E9DD7DB2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift */,
+				2E9DD7DD2257F83900D74DD1 /* ServiceDetailViewController.swift */,
+				2E9DD7E12257F95800D74DD1 /* ServiceConfirmedController.swift */,
+				2E9DD7E32257F9C000D74DD1 /* ServiceMessageViewController.swift */,
+				09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */,
+			);
+			path = "Service Provider Files";
+			sourceTree = "<group>";
+		};
+		2EB256E8225EFC16006FE095 /* Client Files */ = {
+			isa = PBXGroup;
+			children = (
+				2EB256DE225EEFD7006FE095 /* ClientProfileController.swift */,
+				2E9DD7E92257FC0C00D74DD1 /* ClientBookingsController.swift */,
+				2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */,
+			);
+			path = "Client Files";
+			sourceTree = "<group>";
+		};
 		2EF1038F2255314A0030FBFF = {
 			isa = PBXGroup;
 			children = (
@@ -223,7 +296,6 @@
 		2EF1039A2255314A0030FBFF /* Stylist */ = {
 			isa = PBXGroup;
 			children = (
-				094DF890225D4904001EA2FE /* Cells */,
 				2EF103C92255A4AC0030FBFF /* Models */,
 				2EF103C62255A48C0030FBFF /* Controllers */,
 				2EF103C32255A4540030FBFF /* Views */,
@@ -237,16 +309,11 @@
 		2EF103C02255A4030030FBFF /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				2E9DD7CF2257C93E00D74DD1 /* DBService.swift */,
-				2EBDDBCD225B91AD00583BC0 /* StorageService.swift */,
-				2EBDDBCF225B91D600583BC0 /* AuthService.swift */,
-				2EBDDBD3225B997B00583BC0 /* Alert+Extensions.swift */,
-				2EBDDBD5225B999400583BC0 /* String+Date.swift */,
-				2EBDDBD7225B99B000583BC0 /* Date+Extension.swift */,
+				2EB256E2225EFB65006FE095 /* Firebase Services */,
+				2EB256E3225EFB82006FE095 /* Extensions */,
 				2EF1039B2255314A0030FBFF /* AppDelegate.swift */,
 				2EF103A22255314C0030FBFF /* Assets.xcassets */,
 				2EF103A42255314C0030FBFF /* LaunchScreen.storyboard */,
-				09DCD302225E4AB80090EE1F /* UIViewController+Extensions.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -255,11 +322,9 @@
 			isa = PBXGroup;
 			children = (
 				09A9D53F225BA8BB00DFB5E2 /* nibs */,
-				2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */,
-				2E9DD7D52257E80900D74DD1 /* User.storyboard */,
-				2EB256E0225EF00D006FE095 /* IBDesignableViews.swift */,
-				2E9DD7D12257E7E100D74DD1 /* Entrance.storyboard */,
-				2EBDDC1D225D177E00583BC0 /* TableViewCell.swift */,
+				094DF890225D4904001EA2FE /* Cells */,
+				2EB256E4225EFB9F006FE095 /* Storyboards */,
+				2EB256E5225EFBB4006FE095 /* View Files */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -267,19 +332,10 @@
 		2EF103C62255A48C0030FBFF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2EBDDC1F225D2E9400583BC0 /* OnboardingTableViewController.swift */,
 				2EBDDC1B225D0A7800583BC0 /* BaseViewController.swift */,
-				2EB256DE225EEFD7006FE095 /* ClientProfileController.swift */,
-				2E9DD7D72257F69B00D74DD1 /* CreateViewController.swift */,
-				2E9DD7D92257F6A800D74DD1 /* LoginViewController.swift */,
-				2E9DD7DB2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift */,
-				2E9DD7DD2257F83900D74DD1 /* ServiceDetailViewController.swift */,
-				2E9DD7E12257F95800D74DD1 /* ServiceConfirmedController.swift */,
-				2E9DD7E32257F9C000D74DD1 /* ServiceMessageViewController.swift */,
-				2E9DD7E92257FC0C00D74DD1 /* ClientBookingsController.swift */,
-				2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */,
-				09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */,
-				094DF888225D2809001EA2FE /* ProviderDetailController.swift */,
+				2EB256E8225EFC16006FE095 /* Client Files */,
+				2EB256E6225EFBC7006FE095 /* Entrance Controllers */,
+				2EB256E7225EFBFA006FE095 /* Service Provider Files */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

@@ -11,8 +11,6 @@ import Kingfisher
 import Cosmos
 
 class ClientProfileController: UIViewController {
-    
-    
     @IBOutlet weak var profileImageView: CircularImageView!
     @IBOutlet weak var clientFullNameLabel: UILabel!
     @IBOutlet weak var userRatingView: CosmosView!
@@ -43,8 +41,7 @@ class ClientProfileController: UIViewController {
             return
         }
         DBService.getDatabaseUser(userID: currentUser.uid) { (error, stylistUser) in
-            dump(currentUser)
-            if let error = error {
+                        if let error = error {
                 self.showAlert(title: "Error fetching account info", message: error.localizedDescription, actionTitle: "OK")
             } else if let stylistUser = stylistUser {
                 self.user = stylistUser

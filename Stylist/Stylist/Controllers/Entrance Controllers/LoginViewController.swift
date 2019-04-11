@@ -20,6 +20,8 @@ class LoginViewController: BaseViewController {
 
       authService.authserviceExistingAccountDelegate = self
     createGradientView()
+    emailTextField.delegate = self
+    passwordTextfield.delegate = self
     }
   
 
@@ -30,8 +32,6 @@ class LoginViewController: BaseViewController {
         return}
     
     authService.signInExistingAccount(email: email, password: password)
-    
-   presentTabbarController()
     
   }
   
@@ -52,8 +52,15 @@ extension LoginViewController:AuthServiceExistingAccountDelegate {
   
   func didSignInToExistingAccount(_ authservice: AuthService, user: User) {
 
-    showAlert(title: "Sucess", message: "Welcome back:\(user.email ?? "no email found")", actionTitle:  "OK")
+    presentTabbarController()
   }
   
   
+}
+extension LoginViewController:UITextFieldDelegate{
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    resignFirstResponder()
+    return true
+    
+  }
 }
