@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		09481797225F9ACC0026C066 /* BookingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09481796225F9ACC0026C066 /* BookingTableViewCell.swift */; };
+		09481799225FC6BE0026C066 /* Entrance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09481798225FC6BE0026C066 /* Entrance.storyboard */; };
 		094DF889225D2809001EA2FE /* ProviderDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094DF888225D2809001EA2FE /* ProviderDetailController.swift */; };
 		094DF88B225D2835001EA2FE /* UserDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 094DF88A225D2835001EA2FE /* UserDetailHeader.xib */; };
 		094DF88F225D2EB8001EA2FE /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094DF88E225D2EB8001EA2FE /* UserDetailView.swift */; };
@@ -30,7 +31,6 @@
 		2E5E74D9225FB6A8003D370F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5E74D7225FB6A3003D370F /* Service.swift */; };
 		2E9DD7C82257A8A300D74DD1 /* FirebaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7C72257A8A300D74DD1 /* FirebaseTests.swift */; };
 		2E9DD7D02257C93E00D74DD1 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7CF2257C93E00D74DD1 /* DBService.swift */; };
-		2E9DD7D22257E7E100D74DD1 /* Entrance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E9DD7D12257E7E100D74DD1 /* Entrance.storyboard */; };
 		2E9DD7D42257E7FD00D74DD1 /* ServiceProvider.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */; };
 		2E9DD7D62257E80900D74DD1 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E9DD7D52257E80900D74DD1 /* User.storyboard */; };
 		2E9DD7D82257F69B00D74DD1 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7D72257F69B00D74DD1 /* CreateViewController.swift */; };
@@ -77,6 +77,7 @@
 
 /* Begin PBXFileReference section */
 		09481796225F9ACC0026C066 /* BookingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTableViewCell.swift; sourceTree = "<group>"; };
+		09481798225FC6BE0026C066 /* Entrance.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Entrance.storyboard; sourceTree = "<group>"; };
 		094DF888225D2809001EA2FE /* ProviderDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderDetailController.swift; sourceTree = "<group>"; };
 		094DF88A225D2835001EA2FE /* UserDetailHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailHeader.xib; sourceTree = "<group>"; };
 		094DF88E225D2EB8001EA2FE /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
@@ -101,7 +102,6 @@
 		2E9DD7C72257A8A300D74DD1 /* FirebaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTests.swift; sourceTree = "<group>"; };
 		2E9DD7C92257A8A300D74DD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E9DD7CF2257C93E00D74DD1 /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DBService.swift; path = ../../DBService.swift; sourceTree = "<group>"; };
-		2E9DD7D12257E7E100D74DD1 /* Entrance.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Entrance.storyboard; path = ../Models/Entrance.storyboard; sourceTree = "<group>"; };
 		2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ServiceProvider.storyboard; sourceTree = "<group>"; };
 		2E9DD7D52257E80900D74DD1 /* User.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		2E9DD7D72257F69B00D74DD1 /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateViewController.swift; path = ../Views/CreateViewController.swift; sourceTree = "<group>"; };
@@ -271,7 +271,7 @@
 				09A9D53F225BA8BB00DFB5E2 /* nibs */,
 				2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */,
 				2E9DD7D52257E80900D74DD1 /* User.storyboard */,
-				2E9DD7D12257E7E100D74DD1 /* Entrance.storyboard */,
+				09481798225FC6BE0026C066 /* Entrance.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -420,11 +420,11 @@
 			files = (
 				09DCD309225E66C30090EE1F /* ProviderDetailAvailability.xib in Resources */,
 				094DF88B225D2835001EA2FE /* UserDetailHeader.xib in Resources */,
-				2E9DD7D22257E7E100D74DD1 /* Entrance.storyboard in Resources */,
 				2EF103A62255314C0030FBFF /* LaunchScreen.storyboard in Resources */,
 				2EF103AE22553D5E0030FBFF /* GoogleService-Info.plist in Resources */,
 				09DCD305225E4F290090EE1F /* ProviderDetailBio.xib in Resources */,
 				09A9D541225BA90D00DFB5E2 /* ProfileHeader.xib in Resources */,
+				09481799225FC6BE0026C066 /* Entrance.storyboard in Resources */,
 				2EF103A32255314C0030FBFF /* Assets.xcassets in Resources */,
 				09DCD30D225E7E5D0090EE1F /* ProviderDetailReviews.xib in Resources */,
 				2E9DD7D62257E80900D74DD1 /* User.storyboard in Resources */,
