@@ -17,7 +17,7 @@ class ServiceProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    setupScrollviewController(scrollView: profileScrollView, views: featureViews)
+    //setupScrollviewController(scrollView: profileScrollView, views: featureViews)
         loadSVFeatures()
     }
     
