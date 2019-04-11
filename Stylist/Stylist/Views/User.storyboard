@@ -262,6 +262,7 @@
                     <connections>
                         <outlet property="clientEmail" destination="mFG-KA-OS0" id="YDL-EW-07K"/>
                         <outlet property="clientFullNameLabel" destination="Iwa-Qa-61X" id="VpL-eb-Qzc"/>
+                        <outlet property="moreOptionsButton" destination="RVh-TF-xCO" id="KUP-fk-BYz"/>
                         <outlet property="profileImageView" destination="vHy-aH-Kpw" id="kjK-YX-gH2"/>
                         <outlet property="userRatingView" destination="wyw-CF-nUA" id="nyX-7x-MKy"/>
                     </connections>
@@ -273,7 +274,7 @@
         <!--Client Edit Profile Controller-->
         <scene sceneID="L2e-bj-el8">
             <objects>
-                <tableViewController id="SEv-r5-cNM" customClass="ClientEditProfileController" customModule="Stylist" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="EditProfileVC" id="SEv-r5-cNM" customClass="ClientEditProfileController" customModule="Stylist" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="aYa-Rb-npf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -459,7 +460,7 @@
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ButtonCell" id="gbn-g0-CrF" customClass="ProviderDetailCustomCell" customModule="Stylist" customModuleProvider="target">
-                                                            <rect key="frame" x="15" y="6" width="98" height="50"/>
+                                                            <rect key="frame" x="15" y="6.5" width="98" height="50"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                                 <rect key="frame" x="0.0" y="0.0" width="98" height="50"/>
@@ -539,7 +540,7 @@
         <!--Navigation Controller-->
         <scene sceneID="bfQ-GM-g17">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QyU-KR-MvZ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="EditProfileNav" automaticallyAdjustsScrollViewInsets="NO" id="QyU-KR-MvZ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ruC-c3-Nyg">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

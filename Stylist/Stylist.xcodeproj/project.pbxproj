@@ -277,7 +277,6 @@
 		2EF103C62255A48C0030FBFF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D6B4BF76225EA80C00F1E48C /* ClientProfileController.swift */,
 				2EBDDC1F225D2E9400583BC0 /* OnboardingTableViewController.swift */,
 				2EBDDC1B225D0A7800583BC0 /* BaseViewController.swift */,
 				2E9DD7D72257F69B00D74DD1 /* CreateViewController.swift */,
@@ -290,6 +289,7 @@
 				2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */,
 				09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */,
 				094DF888225D2809001EA2FE /* ProviderDetailController.swift */,
+				D6B4BF76225EA80C00F1E48C /* ClientProfileController.swift */,
 				D6B4BF6A225DE1DD00F1E48C /* ClientEditProfileController.swift */,
 				D6B4BF70225E9A2800F1E48C /* UserTabBarController.swift */,
 			);
