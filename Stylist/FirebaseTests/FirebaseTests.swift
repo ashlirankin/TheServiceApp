@@ -164,6 +164,13 @@ DBService.firestoreDB.collection("serviceProvider").document(serviceProviderId).
     }
     wait(for: [exp], timeout: 3.0)
   }
+  func testCreateStockCategories(){
+    let collectionName = "stockServices"
+    let jobTitle = "Barber"
+    
+    let exp = expectation(description: "create stock ")
+    
+  }
 }
   
 
