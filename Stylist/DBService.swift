@@ -66,6 +66,10 @@ firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(consumer
       }
     }
   }
+    
+    static func getProviders(completionHandler: @escaping([ServiceSideUser]?, Error) -> Void) {
+        DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
+    }
 }
 
 
