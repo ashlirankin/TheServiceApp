@@ -61,7 +61,6 @@ struct ReviewsCollectionKeys{
   static let ratings = "ratings"
   static let description = "description"
   static let createdDate = "createdDate"
-  
 }
 
 struct AvalibilityCollectionKeys{

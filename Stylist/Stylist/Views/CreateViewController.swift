@@ -12,14 +12,15 @@ class CreateViewController: BaseViewController {
 
   @IBOutlet weak var emailTextfield: UITextField!
   @IBOutlet weak var passwordTextfield: UITextField!
-
+  @IBOutlet weak var accountTypeControl: UISegmentedControl!
+  
+ 
   let authService = AuthService()
   
   override func viewDidLoad() {
         super.viewDidLoad()
     authService.authserviceCreateNewAccountDelegate = self
-      emailTextfield.delegate = self
-      passwordTextfield.delegate = self
+
     }
     
   @IBAction func createProfilePressed(_ sender: UIButton) {
@@ -29,9 +30,15 @@ class CreateViewController: BaseViewController {
       return
     }
    authService.createNewAccount(email: email, password: password)
-
+  
+    presentOnboardingScreen()
+  
   }
- 
+  
+  @IBAction func segmentedControlPressed(_ sender: UISegmentedControl) {
+    
+  }
+  
   private func presentOnboardingScreen(){
      let onbordingScreen = UIStoryboard(name: "Entrance", bundle: nil).instantiateViewController(withIdentifier: "OnboardingTableViewController")
     let navigationController = UINavigationController(rootViewController: onbordingScreen)
@@ -42,12 +49,9 @@ class CreateViewController: BaseViewController {
     navigationController.navigationBar.shadowImage = UIImage()
     self.present(navigationController, animated: true, completion: nil)
   }
-  
- 
 }
 extension CreateViewController:UITextFieldDelegate{
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    textField.resignFirstResponder()
     return true
     
   }
@@ -61,7 +65,8 @@ extension CreateViewController:AuthServiceCreateNewAccountDelegate{
   
   
   func didCreateConsumerAcoount(_ authService: AuthService, consumer: StylistsUser) {
-    presentOnboardingScreen()
-    
-}
+  showAlert(title: "Account Sucessfully  Created", message: "you sucessfully created your account", actionTitle: "Ok")
+  }
+  
+  
 }
