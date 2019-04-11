@@ -27,6 +27,7 @@
 		09DCD313225E97340090EE1F /* DiscoveryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD312225E97340090EE1F /* DiscoveryCollectionViewCell.swift */; };
 		09DCD315225EA5C20090EE1F /* DiscoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD314225EA5C20090EE1F /* DiscoverTableViewCell.swift */; };
 		291F30A20B9AEA8931FF3E32 /* Pods_FirebaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F0689D22A995E41D8C2C56 /* Pods_FirebaseTests.framework */; };
+		2E5E74D9225FB6A8003D370F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5E74D7225FB6A3003D370F /* Service.swift */; };
 		2E9DD7C82257A8A300D74DD1 /* FirebaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7C72257A8A300D74DD1 /* FirebaseTests.swift */; };
 		2E9DD7D02257C93E00D74DD1 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7CF2257C93E00D74DD1 /* DBService.swift */; };
 		2E9DD7D22257E7E100D74DD1 /* Entrance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E9DD7D12257E7E100D74DD1 /* Entrance.storyboard */; };
@@ -95,6 +96,7 @@
 		09DCD312225E97340090EE1F /* DiscoveryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryCollectionViewCell.swift; sourceTree = "<group>"; };
 		09DCD314225EA5C20090EE1F /* DiscoverTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewCell.swift; sourceTree = "<group>"; };
 		26FA858D08C6AC46AEBAE072 /* Pods-StylistTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylistTests.release.xcconfig"; path = "Target Support Files/Pods-StylistTests/Pods-StylistTests.release.xcconfig"; sourceTree = "<group>"; };
+		2E5E74D7225FB6A3003D370F /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		2E9DD7C52257A8A300D74DD1 /* FirebaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FirebaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E9DD7C72257A8A300D74DD1 /* FirebaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTests.swift; sourceTree = "<group>"; };
 		2E9DD7C92257A8A300D74DD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				2EF103C72255A4A30030FBFF /* ServiceProvider.swift */,
+				2E5E74D7225FB6A3003D370F /* Service.swift */,
 				2EF103CA2255A4C00030FBFF /* StylistsUsers.swift */,
 				2EF103CC2255A4D20030FBFF /* Ratings.swift */,
 				2EF103CE2255A4DB0030FBFF /* Reviews.swift */,
@@ -616,6 +619,7 @@
 				2E9DD7E42257F9C000D74DD1 /* ServiceMessageViewController.swift in Sources */,
 				2EF103D12255A4E90030FBFF /* StylistCollectionKeys.swift in Sources */,
 				2EF103D32255ABA10030FBFF /* Avalibility.swift in Sources */,
+				2E5E74D9225FB6A8003D370F /* Service.swift in Sources */,
 				2EF103D52255AE060030FBFF /* Days.swift in Sources */,
 				2EF103CB2255A4C00030FBFF /* StylistsUsers.swift in Sources */,
 				2E9DD7EA2257FC0C00D74DD1 /* ClientBookingsController.swift in Sources */,
