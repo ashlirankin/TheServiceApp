@@ -54,7 +54,7 @@ class ClientProfileController: UIViewController {
         guard let user = stylistUser else { return }
         if let imageUrl = user.imageURL {
             profileImageView.kf.indicatorType = .activity
-            profileImageView.kf.setImage(with: URL(string: imageUrl))
+            profileImageView.kf.setImage(with: URL(string: imageUrl), placeholder: #imageLiteral(resourceName: "placeholder.png"))
         }
         clientFullNameLabel.text = user.fullName
         clientEmail.text = user.email

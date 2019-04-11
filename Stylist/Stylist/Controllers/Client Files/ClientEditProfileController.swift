@@ -12,7 +12,7 @@ import Kingfisher
 import Cosmos
 import Toucan
 
-class ClientEditProfileController: UIViewController {
+class ClientEditProfileController: UITableViewController {
 
     @IBOutlet weak var profileImageView: CircularImageView!
     @IBOutlet weak var firstNameTextField: UITextField!
@@ -41,7 +41,8 @@ class ClientEditProfileController: UIViewController {
             profileImageView.kf.indicatorType = .activity
             profileImageView.kf.setImage(with: URL(string: imageURL), placeholder: #imageLiteral(resourceName: "placeholder.png"))
         }
-        firstNameTextField.text = stylistUser.fullName
+        firstNameTextField.text = stylistUser.firstName ?? ""
+        lastNameTextField.text = stylistUser.lastName ?? ""
     }
     
     @IBAction func changeProfilePicButtonPressed(_ sender: UIButton) {
@@ -69,7 +70,7 @@ class ClientEditProfileController: UIViewController {
                 return
         }
         
-        StorageService.postImage(imageData: imageData, imageName: "“profileImages/\(currentUser.uid)”") { [weak self] (error, imageURL) in
+        StorageService.postImage(imageData: imageData, imageName: "profileImages/\(currentUser.uid)”") { [weak self] (error, imageURL) in
             if let error = error {
                 self?.showAlert(title: "Error Saving Photo", message: error.localizedDescription, actionTitle: "Ok")
                 self?.navigationItem.rightBarButtonItem?.isEnabled = true
@@ -87,7 +88,7 @@ class ClientEditProfileController: UIViewController {
                     .document(currentUser.uid)
                     .updateData([StylistsUserCollectionKeys.firstName : firstName,
                                  StylistsUserCollectionKeys.lastName : lastName,
-                                 StylistsUserCollectionKeys.imageURL : imageURL
+                                 StylistsUserCollectionKeys.imageURL : imageURL.absoluteString
                         ], completion: { [weak self] (error) in
                             if let error = error {
                                 self?.showAlert(title: "Error Saving Account Info", message: error.localizedDescription, actionTitle: "Ok")
@@ -118,6 +119,7 @@ extension ClientEditProfileController: UIImagePickerControllerDelegate, UINaviga
         let size = CGSize(width: 500, height: 500)
         let resizedImage = Toucan.Resize.resizeImage(originalImage, size: size)
         selectedImage = resizedImage
+        profileImageView.image = resizedImage
         dismiss(animated: true)
     }
 }

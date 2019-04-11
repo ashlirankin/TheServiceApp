@@ -273,7 +273,7 @@
         <!--Client Edit Profile Controller-->
         <scene sceneID="L2e-bj-el8">
             <objects>
-                <tableViewController id="SEv-r5-cNM" customClass="ClientEditProfileController" customModule="Stylist" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="EditProfileVC" id="SEv-r5-cNM" customClass="ClientEditProfileController" customModule="Stylist" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="aYa-Rb-npf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -298,7 +298,7 @@
                                                     <rect key="frame" x="112.5" y="11" width="189.5" height="168"/>
                                                     <state key="normal" image="icons8-camera"/>
                                                     <connections>
-                                                        <action selector="changeProfilePicButtonPressed:" destination="SEv-r5-cNM" eventType="touchUpInside" id="Bn5-c3-PNv"/>
+                                                        <action selector="changeProfilePicButtonPressed:" destination="SEv-r5-cNM" eventType="touchUpInside" id="cMS-56-FfB"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -384,27 +384,23 @@
                                 </cells>
                             </tableViewSection>
                         </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="SEv-r5-cNM" id="Wqg-kA-KzY"/>
-                            <outlet property="delegate" destination="SEv-r5-cNM" id="Wj3-hU-DvS"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="4PA-uh-SsY">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="LRY-VE-zfD">
                             <connections>
-                                <action selector="cancelButtonPressed:" destination="SEv-r5-cNM" id="Rhh-NU-3db"/>
+                                <action selector="cancelButtonPressed:" destination="SEv-r5-cNM" id="k33-Vw-Wdy"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="WDI-cf-Nlt">
                             <connections>
-                                <action selector="saveButtonPressed:" destination="SEv-r5-cNM" id="zRA-10-w5o"/>
+                                <action selector="saveButtonPressed:" destination="SEv-r5-cNM" id="1lD-VL-cfc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="firstNameTextField" destination="QVY-Cv-mGV" id="YcC-16-Ajh"/>
-                        <outlet property="lastNameTextField" destination="gLQ-wm-NYb" id="oE2-L9-Jks"/>
-                        <outlet property="profileImageView" destination="GuU-Q8-lUs" id="jib-dL-Okr"/>
+                        <outlet property="firstNameTextField" destination="QVY-Cv-mGV" id="ROm-Yn-G0p"/>
+                        <outlet property="lastNameTextField" destination="gLQ-wm-NYb" id="7kq-xk-XNL"/>
+                        <outlet property="profileImageView" destination="GuU-Q8-lUs" id="5Dz-zT-Drm"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h2o-j0-OQp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -539,6 +535,7 @@
         <!--Navigation Controller-->
         <scene sceneID="bfQ-GM-g17">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lIh-SM-F4R" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QyU-KR-MvZ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ruC-c3-Nyg">
@@ -547,10 +544,9 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="SEv-r5-cNM" kind="relationship" relationship="rootViewController" id="dZH-Zg-N8V"/>
+                        <segue destination="SEv-r5-cNM" kind="relationship" relationship="rootViewController" id="FCI-HL-Ocx"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lIh-SM-F4R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="785.50724637681162" y="534.375"/>
         </scene>
