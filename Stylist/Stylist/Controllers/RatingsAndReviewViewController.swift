@@ -29,6 +29,21 @@ class RatingsAndReviewViewController: UIViewController {
         }
 
     }
+    @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
+    dismiss(animated: true)
+    
+    }
+    @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
+    navigationItem.rightBarButtonItem?.isEnabled = false
+        guard let reviewText = reviewTextView.text,
+        !reviewText.isEmpty,
+            let cosmos = cosmosView else {
+                print ("cosmos")
+            return
+        }
+        
+    
+    }
     
 
     

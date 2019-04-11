@@ -44,17 +44,19 @@ firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(consumer
     }
   }
 
-    static func reviewProvider(collectionName: String,reviewerId: String, ratingId: String, value: Int, description: String,completionHandle: @escaping (Error?) -> Void) {
+    static func reviewProvider(reviews: Reviews, completionHandler: @escaping (Error?) -> Void) {
         
         var ref: DocumentReference? = nil
-        var reviews = [Reviews]()
-        let docID = firestoreDB.collection(collectionName)
-        firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(collectionName).collection("reviewProvider").document()
-        
-        
-
-    
-    }
+        firestoreDB.collection(ReviewsCollectionKeys.reviewerId).document(reviews.reviewerId).collection("reviewProvider").document().setData([ReviewsCollectionKeys.reviewerId : reviews.reviewerId,
+                                                                                                                                               ReviewsCollectionKeys.reviews: reviews.value,
+                                                                                                                                               ReviewsCollectionKeys.ratings: reviews.ratingId,
+                                                                                                                                               ReviewsCollectionKeys.createdDate: reviews.createdDate,
+                                                                                                                                               ReviewsCollectionKeys.description: reviews.description                      ]) { (error) in
+if let error = error {
+    print("there was an error with the reviewProvider: \(error.localizedDescription)")
+          }
+       }
+   }
 }
 
 
