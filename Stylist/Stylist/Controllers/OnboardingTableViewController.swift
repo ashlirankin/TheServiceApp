@@ -61,8 +61,9 @@ class OnboardingTableViewController: UITableViewController {
     }
     
     let collectionName = "stylistUser"
-  updateUserInformation(collectionName: collectionName, userId: currentUser.uid)
-    
+    updateUserInformation(collectionName: collectionName, userId: currentUser.uid)
+    postButton.isEnabled = false
+    presentTabbarController()
   }
   
   func updateUserInformation(collectionName:String,userId:String){
@@ -75,14 +76,17 @@ class OnboardingTableViewController: UITableViewController {
         return
         
     }
-DBService.firestoreDB.collection(collectionName).document(userId).updateData([StylistsUserCollectionKeys.firstName:firstName,
-                                                                                  StylistsUserCollectionKeys.lastName:lastName,
-                                                                                  StylistsUserCollectionKeys.city:city,StylistsUserCollectionKeys.state:state,StylistsUserCollectionKeys.street:street]) { (error) in
-                                                                                    if let error = error {
-                                                                                      print("there was an error updating your information: \(error.localizedDescription)")
-                                                                                    }
-    }
-    print("your info was sucessfully updated")
+    let field = [StylistsUserCollectionKeys.firstName:firstName,
+                 StylistsUserCollectionKeys.lastName:lastName,
+                 StylistsUserCollectionKeys.city:city,StylistsUserCollectionKeys.state:state,StylistsUserCollectionKeys.street:street]
+    
+    updateUserfield(collectionName: collectionName, userId: userId, field: field)
+
+  }
+  
+  private func presentTabbarController(){
+    guard let tabbarController = UIStoryboard.init(name: "User", bundle: nil).instantiateViewController(withIdentifier: "UserTabBarController") as? UITabBarController else {return}
+    present(tabbarController, animated: true, completion: nil)
   }
   
   private func showImagePickerController(){
@@ -117,28 +121,24 @@ DBService.firestoreDB.collection(collectionName).document(userId).updateData([St
     
   }
   
-  private func updateUserfield(collectionName:String,userId:String,fieldName:String,fieldValue:Any){
-    DBService.firestoreDB.collection(collectionName).document(userId).updateData([fieldName :fieldName]) { (error) in
+  private func updateUserfield(collectionName:String,userId:String,field:[String:Any]){
+    DBService.firestoreDB.collection(collectionName).document(userId).updateData(field) { (error) in
       if let error = error {
         self.showAlert(title: "Error", message: "there was an error trying to update your field:\(error.localizedDescription)", actionTitle: "Try Again")
       }
     }
   }
   @IBAction func genderControlPressed(_ sender: UISegmentedControl) {
-    sender.selectedSegmentIndex = 0
     guard let currentUser = authService.getCurrentUser() else {return}
     if sender.selectedSegmentIndex == 0 {
-DBService.firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(currentUser.uid).updateData([StylistsUserCollectionKeys.gender : "male"]) { (error) in
-        if let error = error {
-          print("there was an error updating your gender: \(error.localizedDescription)")
-        }
-      }
+      
+      let field = [StylistsUserCollectionKeys.gender:"male"]
+      updateUserfield(collectionName: StylistsUserCollectionKeys.stylistUser, userId: currentUser.uid, field:field)
+      
     }else if sender.selectedSegmentIndex == 1 {
-      DBService.firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(currentUser.uid).updateData([StylistsUserCollectionKeys.gender :"female"]) { (error) in
-        if let error = error {
-          print("there was an error updating your gender: \(error.localizedDescription)")
-        }
-      }
+      let field = [StylistsUserCollectionKeys.gender:"female"]
+      updateUserfield(collectionName: StylistsUserCollectionKeys.stylistUser, userId: currentUser.uid, field:field)
+     
     }
   }
 }
@@ -154,7 +154,9 @@ extension OnboardingTableViewController:UIImagePickerControllerDelegate,UINaviga
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     
     guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage , let currentUser = authService.getCurrentUser() else {return}
+    
     let resizedImage = Toucan(image: image).resize(CGSize(width: 500, height: 500)).image
+    
     guard let imageData = resizedImage?.jpegData(compressionQuality: 0.5) else {return}
     
     storageService.postImage(imageData: imageData, imageName: "profileImages/\(currentUser.uid)") { [weak self] (error, url) in
@@ -163,7 +165,8 @@ extension OnboardingTableViewController:UIImagePickerControllerDelegate,UINaviga
         self?.showAlert(title: "Error", message: "there was an error updating your profile image:\(error.localizedDescription)", actionTitle: "Try Again")
         
       }else if let url = url {
-        self?.updateUserfield(collectionName: "stylistUser", userId: currentUser.uid, fieldName: "imageURL", fieldValue: url.absoluteString)
+        let field = [StylistsUserCollectionKeys.imageURL:url.absoluteString]
+        self?.updateUserfield(collectionName: StylistsUserCollectionKeys.stylistUser, userId: currentUser.uid, field: field)
       }
       self?.profileImage.setImage(resizedImage, for: .normal)
     }

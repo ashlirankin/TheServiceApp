@@ -31,11 +31,7 @@ class LoginViewController: BaseViewController {
     
     authService.signInExistingAccount(email: email, password: password)
     
-    presentSetUpView()
-    
-  }
-  
-  @IBAction func segmentedControlPressed(_ sender: UISegmentedControl) {
+   presentTabbarController()
     
   }
   
@@ -45,17 +41,7 @@ class LoginViewController: BaseViewController {
       self.present(userTabbarController, animated: true, completion: nil)
     
   }
-  func presentSetUpView(){
-    let onbordingScreen = UIStoryboard(name: "Entrance", bundle: nil).instantiateViewController(withIdentifier: "OnboardingTableViewController")
-    let navigationController = UINavigationController(rootViewController: onbordingScreen)
-    
-    navigationController.navigationBar.barTintColor = .clear
-    navigationController.navigationBar.setBackgroundImage(UIImage(), for:UIBarMetrics.default)
-    navigationController.navigationBar.isTranslucent = true
-    navigationController.navigationBar.shadowImage = UIImage()
-    self.present(navigationController, animated: true, completion: nil)
-    
-  }
+  
   
  
 }
@@ -66,7 +52,7 @@ extension LoginViewController:AuthServiceExistingAccountDelegate {
   
   func didSignInToExistingAccount(_ authservice: AuthService, user: User) {
 
-   
+    showAlert(title: "Sucess", message: "Welcome back:\(user.email ?? "no email found")", actionTitle:  "OK")
   }
   
   

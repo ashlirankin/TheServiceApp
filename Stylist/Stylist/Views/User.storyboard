@@ -224,7 +224,7 @@
                                 <rect key="frame" x="344" y="44" width="50" height="50"/>
                                 <state key="normal" image="icons8-more"/>
                                 <connections>
-                                    <action selector="moreOptionsButtonPressed:" destination="0U7-LY-BRK" eventType="touchUpInside" id="8Cu-Cz-ESZ"/>
+                                    <action selector="moreOptionsButtonPressed:" destination="0U7-LY-BRK" eventType="touchUpInside" id="CJg-Uw-2Wz"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFG-KA-OS0">
@@ -260,10 +260,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" id="UO3-13-u9t"/>
                     <connections>
-                        <outlet property="clientEmail" destination="mFG-KA-OS0" id="YDL-EW-07K"/>
-                        <outlet property="clientFullNameLabel" destination="Iwa-Qa-61X" id="VpL-eb-Qzc"/>
-                        <outlet property="profileImageView" destination="vHy-aH-Kpw" id="kjK-YX-gH2"/>
-                        <outlet property="userRatingView" destination="wyw-CF-nUA" id="nyX-7x-MKy"/>
+                        <outlet property="clientEmail" destination="mFG-KA-OS0" id="wQX-J8-joc"/>
+                        <outlet property="clientFullNameLabel" destination="Iwa-Qa-61X" id="Ssy-ks-X2X"/>
+                        <outlet property="profileImageView" destination="vHy-aH-Kpw" id="W1f-8D-WTd"/>
+                        <outlet property="userRatingView" destination="wyw-CF-nUA" id="oyZ-dz-u6H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="46G-dH-XOQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
