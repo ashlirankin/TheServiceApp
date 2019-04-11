@@ -62,6 +62,52 @@ class FirebaseTests: XCTestCase {
     wait(for: [exp], timeout: 3.0)
   }
   
+  func testToCreateCollection(){
+   
+    enum AccountType {
+      case serviceProvider
+      case consumer
+    }
+  
+  
+  guard let currentUser =  Auth.auth().currentUser else {
+      XCTFail("no current user found")
+      return
+    }
+    let accountState:AccountType = .serviceProvider
+  let exp = expectation(description: "create a user collection")
+    
+    if accountState == .consumer {
+      DBService.firestoreDB.collection("consumer").document(currentUser.uid)
+        .setData(["firstName": "Matty",
+                  "lastName":"Rankin",
+                  "accountType":"consumer",
+          "userId":currentUser.uid]) { (error) in
+                    if let error = error {
+                      XCTFail("there was an error updating user: \(error.localizedDescription)")
+                    }
+                    
+      }
+      exp.fulfill()
+      wait(for: [exp], timeout: 3.0)
+    }
+    if accountState == .serviceProvider{
+      
+      DBService.firestoreDB.collection("serviceProvider").document(currentUser.uid)
+        .setData(["firstName": "Ashli",
+                  "lastName":"Rankin",
+                  "accountType":"serviceProvider",
+                  "provider":currentUser.uid]) { (error) in
+                    
+                    if let error = error {
+                      XCTFail("there was an error updating user: \(error.localizedDescription)")
+                    }
+      }
+      exp.fulfill()
+      wait(for: [exp], timeout: 3.0)
+    }
+  }
+  
   func testCreateCurrentDateCollection(){
     let currentDay = "Monday"
     let serviceProviderId = "2WJwGOzfxDgBiBMbdj95fIelmFV2"

@@ -11,12 +11,13 @@ import Kingfisher
 import Cosmos
 
 class ClientProfileController: UIViewController {
+    
+    
     @IBOutlet weak var profileImageView: CircularImageView!
     @IBOutlet weak var clientFullNameLabel: UILabel!
     @IBOutlet weak var userRatingView: CosmosView!
     @IBOutlet weak var clientEmail: UILabel!
-  
-  let authService = AuthService()
+    
     private var user: StylistsUser? {
         didSet {
             DispatchQueue.main.async {
@@ -27,7 +28,6 @@ class ClientProfileController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      authService.authserviceSignOutDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +41,8 @@ class ClientProfileController: UIViewController {
             return
         }
         DBService.getDatabaseUser(userID: currentUser.uid) { (error, stylistUser) in
-                        if let error = error {
+            dump(currentUser)
+            if let error = error {
                 self.showAlert(title: "Error fetching account info", message: error.localizedDescription, actionTitle: "OK")
             } else if let stylistUser = stylistUser {
                 self.user = stylistUser
@@ -70,34 +71,13 @@ class ClientProfileController: UIViewController {
     @IBAction func moreOptionsButtonPressed(_ sender: UIButton) {
         let actionTitles = ["Edit Profile", "Support", "Sign Out"]
         
-        showActionSheet(title: "Menu", message: nil, actionTitles: actionTitles, handlers: [ { [weak self] editProfileAction in
+        showActionSheet(title: "Menu", message: nil, actionTitles: actionTitles, handlers: [ { [unowned self] editProfileAction in
             
-            }, { [weak self] supportAction in
+            }, { [unowned self] supportAction in
                 
-            }, { [weak self] signOutAction in
-              self?.authService.signOut()
-              self?.presentLoginViewController()
+            }, { [unowned self] signOutAction in
+                
             }
             ])
     }
-  
-  private func presentLoginViewController(){
-    let window = (UIApplication.shared.delegate  as! AppDelegate).window
-    guard let loginViewController = UIStoryboard(name: "Entrance", bundle: nil).instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController else {return}
-    loginViewController.modalPresentationStyle = .fullScreen
-    loginViewController.modalTransitionStyle = .coverVertical
-    window?.rootViewController = loginViewController
-    window?.makeKeyAndVisible()
-  }
-}
-extension ClientProfileController:AuthServiceSignOutDelegate{
-  func didSignOutWithError(_ authservice: AuthService, error: Error) {
-    showAlert(title: "Unable to SignOut", message: "There was an error signing you out:\(error.localizedDescription)", actionTitle: "Try Again")
-  }
-  
-  func didSignOut(_ authservice: AuthService) {
-   showAlert(title: "Sucess", message: "Sucessfully signed out", actionTitle: "OK")
-  }
-  
-  
 }

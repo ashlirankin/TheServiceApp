@@ -20,8 +20,6 @@ class LoginViewController: BaseViewController {
 
       authService.authserviceExistingAccountDelegate = self
     createGradientView()
-    emailTextField.delegate = self
-    passwordTextfield.delegate = self
     }
   
 
@@ -32,6 +30,11 @@ class LoginViewController: BaseViewController {
         return}
     
     authService.signInExistingAccount(email: email, password: password)
+  
+    presentTabbarController()
+  }
+  
+  @IBAction func segmentedControlPressed(_ sender: UISegmentedControl) {
     
   }
   
@@ -42,7 +45,6 @@ class LoginViewController: BaseViewController {
     
   }
   
-  
  
 }
 extension LoginViewController:AuthServiceExistingAccountDelegate {
@@ -52,15 +54,8 @@ extension LoginViewController:AuthServiceExistingAccountDelegate {
   
   func didSignInToExistingAccount(_ authservice: AuthService, user: User) {
 
-    presentTabbarController()
+   
   }
   
   
-}
-extension LoginViewController:UITextFieldDelegate{
-  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    resignFirstResponder()
-    return true
-    
-  }
 }
