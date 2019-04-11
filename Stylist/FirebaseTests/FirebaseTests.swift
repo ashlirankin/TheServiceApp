@@ -123,23 +123,20 @@ class FirebaseTests: XCTestCase {
   }
   
   func testCreateAnAvalibility(){
-    let dayId = "OKoIGq56GMdVLgAAW4oR"
-    let serviceProviderId = "2WJwGOzfxDgBiBMbdj95fIelmFV2"
-    let avalibleHours = ["1:00","3:00","5:00","8:00"]
+    
+    let serviceProviderId = "wuqEsmjA1COFlz9BaFS86QWHBSl2"
+    let avalibleHours = ["8:00am","9:00am","11:00pm","12:00pm","4:00pm","6:00pm","8:00pm"]
+    let currentDate = "Friday"
     let exp = expectation(description: "creating the hours that provider is avalible")
+   
     DBService.firestoreDB.collection("serviceProvider")
-      .document(serviceProviderId)
-      .collection("avalibility")
-      .document(dayId)
-      .collection("avalibleTime")
-      .addDocument(data: ["times":avalibleHours]) { (error) in
-      if let error = error {
-       
-        XCTFail("could not set your avalible hours:\(error.localizedDescription)")
-        
-      }
+      .document(serviceProviderId).collection("avalibility").addDocument(data: ["avalibleHours" : avalibleHours,"currentDate":currentDate]) { (error) in
+        if let error = error {
+          XCTFail("could not update your avalible hours:\(error.localizedDescription)")
+        }
         exp.fulfill()
     }
+    
     wait(for: [exp], timeout: 3.0)
     
   }
@@ -183,9 +180,6 @@ DBService.firestoreDB.collection("serviceProvider").document(serviceProviderId).
   }
   
   func testAddingStockServices(){
-    
-//    let stockService = ["Moustache Trim","Shampoo","Conditioner","Beard Trim","Eyebrow Shaping","Shoe Shine","Facials","Massages"]
-//    let stockService = ["Bridal Makeup", "Special Event Makeup","Private Makeup Lesson"]
     let stockService = ["Cuts", "Relaxers", "Perms", "Colors", "Shampoo", "Conditioning", "Curling", "Reconstructing", "Weaving", "Waving","Manicures", "Pedicures", "Polish", "Sculptured nails","European facials", "Body waxing", "Massage"]
     let serviceId = "HHsx5njomzEVFDmkmlNN"
     let exp = expectation(description: "set stock services offered")
