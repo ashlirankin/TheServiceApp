@@ -33,7 +33,14 @@ class DiscoverViewController: UIViewController {
         super.viewDidLoad()
     setupCollectionUI()
         setupTableView()
+        getServices()
+        
     }
+    
+    func  getServices() {
+        
+    }
+
     
     func setupCollectionUI() {
         collectionView.dataSource = self

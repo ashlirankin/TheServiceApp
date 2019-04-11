@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09481797225F9ACC0026C066 /* BookingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09481796225F9ACC0026C066 /* BookingTableViewCell.swift */; };
 		094DF889225D2809001EA2FE /* ProviderDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094DF888225D2809001EA2FE /* ProviderDetailController.swift */; };
 		094DF88B225D2835001EA2FE /* UserDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 094DF88A225D2835001EA2FE /* UserDetailHeader.xib */; };
 		094DF88F225D2EB8001EA2FE /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094DF88E225D2EB8001EA2FE /* UserDetailView.swift */; };
@@ -74,6 +75,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09481796225F9ACC0026C066 /* BookingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTableViewCell.swift; sourceTree = "<group>"; };
 		094DF888225D2809001EA2FE /* ProviderDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderDetailController.swift; sourceTree = "<group>"; };
 		094DF88A225D2835001EA2FE /* UserDetailHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailHeader.xib; sourceTree = "<group>"; };
 		094DF88E225D2EB8001EA2FE /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				094DF891225D492D001EA2FE /* ProviderDetailCustomCell.swift */,
 				09DCD312225E97340090EE1F /* DiscoveryCollectionViewCell.swift */,
 				09DCD314225EA5C20090EE1F /* DiscoverTableViewCell.swift */,
+				09481796225F9ACC0026C066 /* BookingTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -267,7 +270,6 @@
 				2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */,
 				2E9DD7D52257E80900D74DD1 /* User.storyboard */,
 				2E9DD7D12257E7E100D74DD1 /* Entrance.storyboard */,
-				2EBDDC1D225D177E00583BC0 /* TableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -609,6 +611,7 @@
 				09A9D545225BDAF200DFB5E2 /* ServiceBioView.swift in Sources */,
 				094DF88F225D2EB8001EA2FE /* UserDetailView.swift in Sources */,
 				09DCD315225EA5C20090EE1F /* DiscoverTableViewCell.swift in Sources */,
+				09481797225F9ACC0026C066 /* BookingTableViewCell.swift in Sources */,
 				2E9DD7EC2257FC4100D74DD1 /* ClientSearchController.swift in Sources */,
 				2E9DD7E42257F9C000D74DD1 /* ServiceMessageViewController.swift in Sources */,
 				2EF103D12255A4E90030FBFF /* StylistCollectionKeys.swift in Sources */,
