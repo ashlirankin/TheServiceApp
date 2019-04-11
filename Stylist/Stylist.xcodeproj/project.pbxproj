@@ -58,6 +58,7 @@
 		2EF103D32255ABA10030FBFF /* Avalibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF103D22255ABA10030FBFF /* Avalibility.swift */; };
 		2EF103D52255AE060030FBFF /* Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF103D42255AE060030FBFF /* Days.swift */; };
 		8F8138881EF44484D5275681 /* Pods_Stylist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D89AABB01908945DBC5625A6 /* Pods_Stylist.framework */; };
+		D62EA117225FC92000101E4A /* ClientEditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62EA116225FC92000101E4A /* ClientEditProfileController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		A8787ACFCB7CCA4C79516777 /* Pods-Stylist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stylist.debug.xcconfig"; path = "Target Support Files/Pods-Stylist/Pods-Stylist.debug.xcconfig"; sourceTree = "<group>"; };
 		AD1D5ADFD62A113C77C9D79E /* Pods-FirebaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseTests.debug.xcconfig"; path = "Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C9F0689D22A995E41D8C2C56 /* Pods_FirebaseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FirebaseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D62EA116225FC92000101E4A /* ClientEditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientEditProfileController.swift; sourceTree = "<group>"; };
 		D89AABB01908945DBC5625A6 /* Pods_Stylist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stylist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD7F5DBCC2AE867436738D1 /* Pods_StylistTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StylistTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -266,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				2EB256DE225EEFD7006FE095 /* ClientProfileController.swift */,
+				D62EA116225FC92000101E4A /* ClientEditProfileController.swift */,
 				2E9DD7E92257FC0C00D74DD1 /* ClientBookingsController.swift */,
 				2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */,
 			);
@@ -645,6 +648,7 @@
 				2EF1039C2255314A0030FBFF /* AppDelegate.swift in Sources */,
 				09DCD30B225E69860090EE1F /* ProviderAvailability.swift in Sources */,
 				2E9DD7E22257F95800D74DD1 /* ServiceConfirmedController.swift in Sources */,
+				D62EA117225FC92000101E4A /* ClientEditProfileController.swift in Sources */,
 				2EF103CF2255A4DB0030FBFF /* Reviews.swift in Sources */,
 				2EF103CD2255A4D20030FBFF /* Ratings.swift in Sources */,
 				2E9DD7DC2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift in Sources */,
