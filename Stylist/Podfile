@@ -1,0 +1,24 @@
+platform :ios, '12.0'
+
+use_frameworks!
+
+def stylist_pods
+  pod 'FirebaseAuth'
+  pod 'Firebase'
+  pod 'FirebaseStorage'
+  pod 'FirebaseFirestore'
+  pod 'FirebaseCore'
+  pod 'Toucan'
+  pod 'Kingfisher'
+  pod 'Cosmos'
+  pod 'Stripe'
+  pod 'Charts'
+end
+
+target 'Stylist' do
+  stylist_pods
+end
+
+target 'FirebaseTests' do
+  stylist_pods
+end
