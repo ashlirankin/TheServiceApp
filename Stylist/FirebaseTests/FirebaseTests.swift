@@ -24,7 +24,7 @@ class FirebaseTests: XCTestCase {
   }
   
   func testcreateAuthUser(){
-    let email = "ashli1@ashli1.com"
+    let email = "jianting@gmail.com"
     let password = "123456"
     let exp = expectation(description: "create user account")
     
@@ -62,11 +62,118 @@ class FirebaseTests: XCTestCase {
     wait(for: [exp], timeout: 3.0)
   }
   
-  func testToRetrieveUserFromDatabase(){
+  func testCreateCurrentDateCollection(){
+    let currentDay = "Monday"
+    let serviceProviderId = "2WJwGOzfxDgBiBMbdj95fIelmFV2"
+    let exp = expectation(description: "create date avalibility")
+    DBService.firestoreDB.collection("serviceProvider").document(serviceProviderId).collection("avalibility").addDocument(data: ["date" : currentDay]) { (error) in
+      if let error = error {
+        XCTFail("could not create avalibility:\(error.localizedDescription)")
+      }
+      exp.fulfill()
+      
+    }
+    wait(for: [exp], timeout: 3.0)
+  }
+  
+  func testCreateAnAvalibility(){
+    let dayId = "OKoIGq56GMdVLgAAW4oR"
+    let serviceProviderId = "2WJwGOzfxDgBiBMbdj95fIelmFV2"
+    let avalibleHours = ["1:00","3:00","5:00","8:00"]
+    let exp = expectation(description: "creating the hours that provider is avalible")
+    DBService.firestoreDB.collection("serviceProvider")
+      .document(serviceProviderId)
+      .collection("avalibility")
+      .document(dayId)
+      .collection("avalibleTime")
+      .addDocument(data: ["times":avalibleHours]) { (error) in
+      if let error = error {
+       
+        XCTFail("could not set your avalible hours:\(error.localizedDescription)")
+        
+      }
+        exp.fulfill()
+    }
+    wait(for: [exp], timeout: 3.0)
+    
+  }
+  
+  func testCreateReview(){
+    let reviewDescription = """
+We arrived at Laguna Hotel yesterday, hotel is the wrong word more like Laguna Nursing home. The rooms were very dated and you could not open the en-suite door without hitting the TV on the wall.
+    
+    Breakfast was an experience, sausages/orange juice were very cheap and not nice, I have never seen fried bread orange before little worrying!! I would not recommend anyone to stay at this hotel unless they’re over 80!!”
+"""
+    
+    let rate = 1
+    let serviceProviderId = "2WJwGOzfxDgBiBMbdj95fIelmFV2"
+
+    let exp = expectation(description: "create a rating of service provider")
+    
+DBService.firestoreDB.collection("serviceProvider").document(serviceProviderId).collection("reviews").addDocument(data: [ReviewsCollectionKeys.description : reviewDescription,ReviewsCollectionKeys.ratings:String(rate)]) { (error) in
+      if let error = error {
+        XCTFail("there was an error posting you review:\(error.localizedDescription)")
+      }
+  exp.fulfill()
+    }
+    wait(for: [exp], timeout: 3.0)
+  }
+  
+  func testCreateStockCategories(){
+   
+  
+    let collectionName = "stockServices"
+    let exp = expectation(description: "create stock ")
+    
+    DBService.firestoreDB.collection(collectionName).addDocument(data: ["jobTitle":"Makeup Artist"]) { (error) in
+      if let error = error {
+        XCTFail("could not create service:\(error.localizedDescription)")
+      }
+      exp.fulfill()
+    }
+    wait(for: [exp], timeout: 3.0)
     
     
   }
-}
+  
+  func testAddingStockServices(){
+    
+//    let stockService = ["Moustache Trim","Shampoo","Conditioner","Beard Trim","Eyebrow Shaping","Shoe Shine","Facials","Massages"]
+//    let stockService = ["Bridal Makeup", "Special Event Makeup","Private Makeup Lesson"]
+    let stockService = ["Cuts", "Relaxers", "Perms", "Colors", "Shampoo", "Conditioning", "Curling", "Reconstructing", "Weaving", "Waving","Manicures", "Pedicures", "Polish", "Sculptured nails","European facials", "Body waxing", "Massage"]
+    let serviceId = "HHsx5njomzEVFDmkmlNN"
+    let exp = expectation(description: "set stock services offered")
+    DBService.firestoreDB.collection("stockServices").document(serviceId).updateData(["services" : stockService]) { (error) in
+      if let error = error {
+        XCTFail("could not update services:\(error.localizedDescription)")
+      }
+      exp.fulfill()
+      
+    }
+    wait(for: [exp], timeout: 3.0)
+  }
+  
+  
+  func testQureyForBarber(){
+    let jobTitle = "Barber"
+    let exp = expectation(description: "get data of barber")
+    
+    DBService.firestoreDB.collection("stockServices").whereField("jobTitle", isEqualTo: jobTitle).getDocuments { (snapshot, error) in
+      if let error = error {
+        XCTFail("failed to get job title:\(error.localizedDescription)")
+      }else if let snapshot = snapshot {
+        if snapshot.documents.isEmpty{
+          XCTFail("no results found")
+        }
+        exp.fulfill()
+          
+        }
+      }
+    wait(for: [exp], timeout: 3.0)
+
+    }
+  }
+
   
 
 

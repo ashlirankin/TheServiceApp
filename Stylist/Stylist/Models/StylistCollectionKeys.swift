@@ -21,6 +21,13 @@ struct ServiceSideUserCollectionKeys{
   static let bio = "bio"
   static let licenseNumber = "licenseNumber"
   static let licenseExpiryDate = "licenseExpiryDate"
+  static let jobTitle = "jobTitle"
+  static let address = "address"
+  static let city = "city"
+  static let state = "state"
+  static let lat = "lat"
+  static let long = "long"
+  static let zip = "zip"
 }
 
 struct StylistsUserCollectionKeys{
@@ -31,8 +38,13 @@ struct StylistsUserCollectionKeys{
   static let email = "email"
   static let gender = "gender"
   static let address = "address"
- static let imageURL = "imageURL"
-  
+  static let imageURL = "imageURL"
+  static let joinedDate = "joinedDate"
+  static let type = "type"
+  static let street = "street"
+  static let city = "city"
+  static let state = "state"
+  static let zip = "zip"
 }
 
 struct RatingsCollectionKeys {
@@ -40,7 +52,7 @@ struct RatingsCollectionKeys {
     static  let ratingId = "ratingId"
     static let value = "value"
     static let userId = "userId"
-  
+    static let raterId = "raterId"
 }
 
 struct ReviewsCollectionKeys{
@@ -66,4 +78,9 @@ struct DaysCollectionKeys{
   static let userId = "userId"
   static let avalibliehours = "avalibleHours"
   static let daysId = "daysId"
+}
+struct ServicesCollectionKeys {
+  static let CollectionName = "stockServices"
+  static let jobTitle =  "jobTitle"
+  static let services = "services"
 }
