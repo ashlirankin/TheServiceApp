@@ -44,11 +44,18 @@ firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(consumer
     }
   }
 
+    static func reviewProvider(collectionName: String,reviewerId: String, ratingId: String, value: Int, description: String,completionHandle: @escaping (Error?) -> Void) {
+        
+        var ref: DocumentReference? = nil
+        var reviews = [Reviews]()
+        let docID = firestoreDB.collection(collectionName)
+        firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(collectionName).collection("reviewProvider").document()
+        
+        
 
-
-
+    
+    }
 }
-
 
 
 
