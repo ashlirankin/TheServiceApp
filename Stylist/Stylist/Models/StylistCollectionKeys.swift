@@ -61,7 +61,6 @@ struct ReviewsCollectionKeys{
   static let ratings = "ratings"
   static let description = "description"
   static let createdDate = "createdDate"
-  
 }
 
 struct AvalibilityCollectionKeys{
@@ -78,4 +77,9 @@ struct DaysCollectionKeys{
   static let userId = "userId"
   static let avalibliehours = "avalibleHours"
   static let daysId = "daysId"
+}
+struct ServicesCollectionKeys {
+  static let CollectionName = "stockServices"
+  static let jobTitle =  "jobTitle"
+  static let services = "services"
 }

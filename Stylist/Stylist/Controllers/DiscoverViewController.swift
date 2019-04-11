@@ -56,6 +56,15 @@ class DiscoverViewController: UIViewController {
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.tableFooterView = UIView()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? ProviderDetailController, let indexpath = tableView.indexPathForSelectedRow else {
+            return
+        }
+        let provider = serviceProviders[indexpath.row]
+         destination.provider = provider
     }
 
 
@@ -83,7 +92,9 @@ extension DiscoverViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension DiscoverViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
 }
 
 extension DiscoverViewController: UITableViewDataSource {
@@ -93,7 +104,10 @@ extension DiscoverViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DiscoveryCell", for: indexPath) as! DiscoverTableViewCell
-        
+        let provider = serviceProviders[indexPath.row]
+        cell.providerName.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
+        cell.ProviderCategory.text = provider.jobTitle
+        cell.ProviderPic.kf.setImage(with: URL(string: provider.imageURL ?? ""), placeholder:#imageLiteral(resourceName: "placeholder.png") )
         return cell
     }
     
