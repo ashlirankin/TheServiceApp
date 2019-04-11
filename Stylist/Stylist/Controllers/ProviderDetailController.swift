@@ -29,8 +29,8 @@ class ProviderDetailController: UITableViewController {
         super.viewDidLoad()
         setupUI()
         setupCollectionView()
-     setupScrollviewController(scrollView: scrollView, views: featureViews)
-    loadSVFeatures()
+        setupScrollviewController(scrollView: scrollView, views: featureViews)
+        loadSVFeatures()
         setupProvider()
     }
     
@@ -39,9 +39,9 @@ class ProviderDetailController: UITableViewController {
         providerDetailHeader.providerPhoto.kf.setImage(with: URL(string: provider.imageURL ?? ""), placeholder: #imageLiteral(resourceName: "iconfinder_icon-person-add_211872.png"))
         profileBio.providerBioText.text = provider.bio
     }
-
     
-
+    
+    
     private func loadSVFeatures() {
         for (index,view) in featureViews.enumerated() {
             scrollView.addSubview(view)
@@ -81,7 +81,7 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let view = featureViews[indexPath.row]
-       scrollView.scrollRectToVisible(view.frame, animated: true)
+        scrollView.scrollRectToVisible(view.frame, animated: true)
         view.frame.size.width = self.view.bounds.width
         view.frame.origin.x = CGFloat(indexPath.row) * self.view.bounds.size.width
     }
