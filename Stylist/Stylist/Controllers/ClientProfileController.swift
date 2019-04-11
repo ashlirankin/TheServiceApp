@@ -77,9 +77,6 @@ class ClientProfileController: UIViewController {
         
         showActionSheet(title: "Menu", message: nil, actionTitles: actionTitles, handlers: [ { [unowned self] editProfileAction in
             let storyBoard = UIStoryboard(name: "User", bundle: nil)
-//            guard let destinationVC = storyBoard.instantiateViewController(withIdentifier: "EditProfileVC") as? ClientEditProfileController else {
-//                fatalError("EditProfileVC is nil")
-//            }
             guard let destinationVC = storyBoard.instantiateViewController(withIdentifier: "EditProfileVC") as? ClientEditProfileController else {
                 fatalError("EditProfileVC is nil")
             }
