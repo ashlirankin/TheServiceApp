@@ -66,6 +66,19 @@ firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(consumer
       }
     }
   }
+  
+  func retrieveStockServices(qurey:String,collectionName:String,field:String,completion: @escaping(Service?,Error?) -> Void){
+    DBService.firestoreDB.collection(collectionName).whereField(field, isEqualTo: qurey).getDocuments { (snapshot, error) in
+      if let error = error {
+       completion(nil,error)
+      }else if let snapshot = snapshot {
+        guard let serviceData = snapshot.documents.first else {return}
+        let services = Service(dict: serviceData.data())
+        completion(services,nil)
+        
+      }
+    }
+  }
 }
 
 

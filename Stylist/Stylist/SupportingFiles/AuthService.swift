@@ -50,17 +50,18 @@ final class AuthService {
           print("no email found")
           return
         }
-        let consumer = StylistsUser(userId: authUser.uid, firstName: nil, lastName: nil, email: email, gender: nil, imageURL: nil, joinedDate: Date.getISOTimestamp(), street: nil, city: nil, state: nil, zip: nil)
-          DBService.createConsumerDatabaseAccount(consumer: consumer, completionHandle: { (error) in
-            if let error = error {
-              self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
-            }
-            self.authserviceCreateNewAccountDelegate?.didCreateConsumerAcoount(self, consumer: consumer)
-          })
-        }
-        }
+//          let consumer = StylistsUser(userId: authUser.uid, firstName: nil, lastName: nil, email: email, gender: nil, address: nil, imageURL: nil, joinedDate: Date.getISOTimestamp(),type: "consumer")
+//          DBService.createConsumerDatabaseAccount(consumer: "", completionHandle: { (error) in
+//            if let error = error {
+//              self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
+//            }
+//            self.authserviceCreateNewAccountDelegate?.didCreateConsumerAcoount(self, consumer: consumer)
+//          })
+//        }
+//        }
       }
-  
+    }
+  }
   public func signInExistingAccount(email: String, password: String) {
     Auth.auth().signIn(withEmail: email, password: password) { (authDataResult, error) in
       if let error = error {
