@@ -10,6 +10,7 @@ import UIKit
 
 class ServiceProfileViewController: UIViewController {
     @IBOutlet weak var profileScrollView: UIScrollView!
+  
     lazy var profileBio = ServiceBioView(frame: CGRect(x: 0, y: 0, width: view.bounds.width , height: 350))
     lazy var portfolioView = PortfolioView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 350))
     lazy var featureViews = [profileBio, portfolioView]
