@@ -12,25 +12,15 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-  let authService = AuthService()
+
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     FirebaseApp.configure()
     window = UIWindow(frame: UIScreen.main.bounds)
-    
-    if let _ = authService.getCurrentUser(){
-      let storyboard = UIStoryboard(name: "User", bundle: nil)
-      let servicetab = storyboard.instantiateViewController(withIdentifier: "UserTabBarController")
-      window?.rootViewController = servicetab
-
-    }else{
-      let storyboard = UIStoryboard(name: "Entrance", bundle: nil)
-      let login = storyboard.instantiateViewController(withIdentifier: "LoginVC")
-      window?.rootViewController = login
-
-    }
-   
-        window?.makeKeyAndVisible()
+    let storyboard = UIStoryboard(name: "User", bundle: nil)
+    let servicetab = storyboard.instantiateViewController(withIdentifier: "UserTabBarController")
+    window?.rootViewController = servicetab
+    window?.makeKeyAndVisible()
     return true
   }
 

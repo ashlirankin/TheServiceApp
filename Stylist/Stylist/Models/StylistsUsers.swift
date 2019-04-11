@@ -14,6 +14,7 @@ struct StylistsUser {
   let lastName:String?
   let email:String
   let gender:String?
+  let address:String?
   let imageURL:String?
   let joinedDate:String
   let street:String?
@@ -33,6 +34,7 @@ extension StylistsUser {
     self.lastName = dict[StylistsUserCollectionKeys.lastName] as? String ?? "no last name found"
     self.email = dict[StylistsUserCollectionKeys.email] as? String ?? "no user id found"
     self.gender =  dict[StylistsUserCollectionKeys.gender] as? String ?? "no gender found"
+    self.address = dict[StylistsUserCollectionKeys.address] as? String ?? "no address found"
     self.imageURL = dict[StylistsUserCollectionKeys.imageURL] as? String ?? "no imageURL found"
     self.joinedDate = dict[StylistsUserCollectionKeys.joinedDate] as? String ?? "no joined date found"
     self.street = dict[StylistsUserCollectionKeys.street] as? String ?? "no street found"
