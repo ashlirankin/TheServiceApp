@@ -12,13 +12,13 @@ import Kingfisher
 import Cosmos
 
 class ClientProfileController: UIViewController {
-    
-    
     @IBOutlet weak var profileImageView: CircularImageView!
     @IBOutlet weak var clientFullNameLabel: UILabel!
     @IBOutlet weak var userRatingView: CosmosView!
     @IBOutlet weak var clientEmail: UILabel!
     @IBOutlet weak var moreOptionsButton: UIButton!
+  
+    let authService = AuthService()
     
     private var stylistUser: StylistsUser? {
         didSet {
@@ -30,6 +30,7 @@ class ClientProfileController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      authService.authserviceSignOutDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,8 +45,7 @@ class ClientProfileController: UIViewController {
         }
         
         DBService.getDatabaseUser(userID: currentUser.uid) { (error, stylistUser) in
-            dump(currentUser)
-            if let error = error {
+                        if let error = error {
                 self.showAlert(title: "Error fetching account info", message: error.localizedDescription, actionTitle: "OK")
             } else if let stylistUser = stylistUser {
                 self.stylistUser = stylistUser
@@ -54,13 +54,13 @@ class ClientProfileController: UIViewController {
     }
     
     private func updateUI() {
-        guard let user = stylistUser else { return }
-        if let imageUrl = user.imageURL {
+        guard let stylistUser = stylistUser else { return }
+        if let imageUrl = stylistUser.imageURL {
             profileImageView.kf.indicatorType = .activity
             profileImageView.kf.setImage(with: URL(string: imageUrl))
         }
-        clientFullNameLabel.text = user.fullName
-        clientEmail.text = user.email
+        clientFullNameLabel.text = stylistUser.fullName
+        clientEmail.text = stylistUser.email
         
         // TODO: Set rating here also (Incomplete)
         setStylistUserRating()
@@ -74,38 +74,58 @@ class ClientProfileController: UIViewController {
 
     @IBAction func moreOptionsButtonPressed(_ sender: UIButton) {
         let actionTitles = ["Edit Profile", "Support", "Sign Out"]
-        
-        showActionSheet(title: "Menu", message: nil, actionTitles: actionTitles, handlers: [ { [unowned self] editProfileAction in
+        //
+        showActionSheet(title: "Menu", message: nil, actionTitles: actionTitles, handlers: [ { [weak self] editProfileAction in
             let storyBoard = UIStoryboard(name: "User", bundle: nil)
             guard let destinationVC = storyBoard.instantiateViewController(withIdentifier: "EditProfileVC") as? ClientEditProfileController else {
                 fatalError("EditProfileVC is nil")
             }
             destinationVC.modalPresentationStyle = .currentContext
-            if let currentUser = self.stylistUser {
+            if let currentUser = self?.stylistUser {
                 destinationVC.stylistUser = currentUser
             } else {
                 return
             }
-            self.present(UINavigationController(rootViewController: destinationVC), animated: true)
+            self?.present(UINavigationController(rootViewController: destinationVC), animated: true)
             
-            }, { [unowned self] supportAction in
+            }, { [weak self] supportAction in
                 guard MFMailComposeViewController.canSendMail() else {
-                    self.showAlert(title: "This Device Can't send email", message: nil, actionTitle: "Ok")
+                    self?.showAlert(title: "This Device Can't send email", message: nil, actionTitle: "Ok")
                     return
                 }
                 let mailComposer = MFMailComposeViewController()
                 mailComposer.mailComposeDelegate = self
                 mailComposer.setToRecipients(["jiantingli@pursuit.org"])
-                mailComposer.setSubject("\(self.stylistUser?.fullName ?? "Guest"): Help Me!")
+                mailComposer.setSubject("\(self?.stylistUser?.fullName ?? "Guest"): Help Me!")
                 mailComposer.setMessageBody("To: Customer Support, \n\n", isHTML: false)
-                self.present(mailComposer, animated: true)
+                self?.present(mailComposer, animated: true)
                 
-            }, { [unowned self] signOutAction in
-                AuthService().signOut()
-                self.showLoginView()
+            }, { [weak self] signOutAction in
+                self?.authService.signOut()
+                self?.presentLoginViewController()
             }
             ])
     }
+  
+  private func presentLoginViewController(){
+    let window = (UIApplication.shared.delegate  as! AppDelegate).window
+    guard let loginViewController = UIStoryboard(name: "Entrance", bundle: nil).instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController else {return}
+    loginViewController.modalPresentationStyle = .fullScreen
+    loginViewController.modalTransitionStyle = .coverVertical
+    window?.rootViewController = loginViewController
+    window?.makeKeyAndVisible()
+  }
+}
+extension ClientProfileController:AuthServiceSignOutDelegate{
+  func didSignOutWithError(_ authservice: AuthService, error: Error) {
+    showAlert(title: "Unable to SignOut", message: "There was an error signing you out:\(error.localizedDescription)", actionTitle: "Try Again")
+  }
+  
+  func didSignOut(_ authservice: AuthService) {
+   showAlert(title: "Sucess", message: "Sucessfully signed out", actionTitle: "OK")
+  }
+  
+  
 }
 
 extension ClientProfileController: MFMailComposeViewControllerDelegate {

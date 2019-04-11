@@ -7,15 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		094DF889225D2809001EA2FE /* ProviderDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094DF888225D2809001EA2FE /* ProviderDetailController.swift */; };
 		094DF88B225D2835001EA2FE /* UserDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 094DF88A225D2835001EA2FE /* UserDetailHeader.xib */; };
 		094DF88F225D2EB8001EA2FE /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094DF88E225D2EB8001EA2FE /* UserDetailView.swift */; };
 		094DF892225D492D001EA2FE /* ProviderDetailCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094DF891225D492D001EA2FE /* ProviderDetailCustomCell.swift */; };
 		09A9D541225BA90D00DFB5E2 /* ProfileHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09A9D540225BA90D00DFB5E2 /* ProfileHeader.xib */; };
-		09A9D543225BCFB200DFB5E2 /* ServiceProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */; };
 		09A9D545225BDAF200DFB5E2 /* ServiceBioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A9D544225BDAF200DFB5E2 /* ServiceBioView.swift */; };
 		09A9D547225BE7A200DFB5E2 /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A9D546225BE7A200DFB5E2 /* PortfolioView.swift */; };
-		09DCD303225E4AB90090EE1F /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD302225E4AB80090EE1F /* UIViewController+Extensions.swift */; };
 		09DCD305225E4F290090EE1F /* ProviderDetailBio.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09DCD304225E4F290090EE1F /* ProviderDetailBio.xib */; };
 		09DCD307225E50EA0090EE1F /* ProviderBio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD306225E50EA0090EE1F /* ProviderBio.swift */; };
 		09DCD309225E66C30090EE1F /* ProviderDetailAvailability.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09DCD308225E66C30090EE1F /* ProviderDetailAvailability.xib */; };
@@ -27,15 +24,8 @@
 		2E9DD7D02257C93E00D74DD1 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7CF2257C93E00D74DD1 /* DBService.swift */; };
 		2E9DD7D22257E7E100D74DD1 /* Entrance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E9DD7D12257E7E100D74DD1 /* Entrance.storyboard */; };
 		2E9DD7D42257E7FD00D74DD1 /* ServiceProvider.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */; };
-		2E9DD7D62257E80900D74DD1 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E9DD7D52257E80900D74DD1 /* User.storyboard */; };
-		2E9DD7D82257F69B00D74DD1 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7D72257F69B00D74DD1 /* CreateViewController.swift */; };
-		2E9DD7DA2257F6A800D74DD1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7D92257F6A800D74DD1 /* LoginViewController.swift */; };
-		2E9DD7DC2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7DB2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift */; };
-		2E9DD7DE2257F83900D74DD1 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7DD2257F83900D74DD1 /* ServiceDetailViewController.swift */; };
-		2E9DD7E22257F95800D74DD1 /* ServiceConfirmedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7E12257F95800D74DD1 /* ServiceConfirmedController.swift */; };
-		2E9DD7E42257F9C000D74DD1 /* ServiceMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7E32257F9C000D74DD1 /* ServiceMessageViewController.swift */; };
-		2E9DD7EA2257FC0C00D74DD1 /* ClientBookingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7E92257FC0C00D74DD1 /* ClientBookingsController.swift */; };
-		2E9DD7EC2257FC4100D74DD1 /* ClientSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */; };
+		2EB256DF225EEFD7006FE095 /* ClientProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB256DE225EEFD7006FE095 /* ClientProfileController.swift */; };
+		2EB256E1225EF00D006FE095 /* IBDesignableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB256E0225EF00D006FE095 /* IBDesignableViews.swift */; };
 		2EBDDBCE225B91AD00583BC0 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBDDBCD225B91AD00583BC0 /* StorageService.swift */; };
 		2EBDDBD0225B91D600583BC0 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBDDBCF225B91D600583BC0 /* AuthService.swift */; };
 		2EBDDBD4225B997B00583BC0 /* Alert+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBDDBD3225B997B00583BC0 /* Alert+Extensions.swift */; };
@@ -58,10 +48,19 @@
 		8F8138881EF44484D5275681 /* Pods_Stylist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D89AABB01908945DBC5625A6 /* Pods_Stylist.framework */; };
 		D6B4BF6F225E993200F1E48C /* UIViewController+Navigations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4BF6E225E993200F1E48C /* UIViewController+Navigations.swift */; };
 		D6B4BF71225E9A2800F1E48C /* UserTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4BF70225E9A2800F1E48C /* UserTabBarController.swift */; };
-		D6B4BF77225EA80C00F1E48C /* ClientProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4BF76225EA80C00F1E48C /* ClientProfileController.swift */; };
-		D6B4BF78225EA88F00F1E48C /* ClientEditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4BF6A225DE1DD00F1E48C /* ClientEditProfileController.swift */; };
-		D6B4BF7A225EA92100F1E48C /* IBDesignableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4BF79225EA92100F1E48C /* IBDesignableViews.swift */; };
-		D6B4BF7B225EA92100F1E48C /* IBDesignableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4BF79225EA92100F1E48C /* IBDesignableViews.swift */; };
+		D6DBDC13225F940C00275085 /* ClientBookingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DBDC12225F940C00275085 /* ClientBookingsController.swift */; };
+		D6DBDC15225F941900275085 /* ClientSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DBDC14225F941900275085 /* ClientSearchController.swift */; };
+		D6DBDC17225F942600275085 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DBDC16225F942600275085 /* LoginViewController.swift */; };
+		D6DBDC19225F942D00275085 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DBDC18225F942D00275085 /* CreateViewController.swift */; };
+		D6DBDC1B225F944400275085 /* ClientEditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DBDC1A225F944400275085 /* ClientEditProfileController.swift */; };
+		D6DBDC1D225F945F00275085 /* ProviderDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DBDC1C225F945F00275085 /* ProviderDetailController.swift */; };
+		D6DBDC1F225F947A00275085 /* ServiceConfirmedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DBDC1E225F947A00275085 /* ServiceConfirmedController.swift */; };
+		D6DBDC21225F948900275085 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DBDC20225F948800275085 /* ServiceDetailViewController.swift */; };
+		D6DBDC23225F948E00275085 /* ServiceMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DBDC22225F948E00275085 /* ServiceMessageViewController.swift */; };
+		D6DBDC25225F949300275085 /* ServiceProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DBDC24225F949300275085 /* ServiceProfileViewController.swift */; };
+		D6DBDC27225F949900275085 /* ServiceUpcomingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DBDC26225F949900275085 /* ServiceUpcomingTableViewController.swift */; };
+		D6DBDC29225F956B00275085 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DBDC28225F956B00275085 /* UIViewController+Extensions.swift */; };
+		D6DBDC2D225F987B00275085 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6DBDC2C225F987B00275085 /* User.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,15 +74,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		094DF888225D2809001EA2FE /* ProviderDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderDetailController.swift; sourceTree = "<group>"; };
 		094DF88A225D2835001EA2FE /* UserDetailHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailHeader.xib; sourceTree = "<group>"; };
 		094DF88E225D2EB8001EA2FE /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		094DF891225D492D001EA2FE /* ProviderDetailCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderDetailCustomCell.swift; sourceTree = "<group>"; };
 		09A9D540225BA90D00DFB5E2 /* ProfileHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeader.xib; sourceTree = "<group>"; };
-		09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProfileViewController.swift; sourceTree = "<group>"; };
 		09A9D544225BDAF200DFB5E2 /* ServiceBioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceBioView.swift; sourceTree = "<group>"; };
 		09A9D546225BE7A200DFB5E2 /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
-		09DCD302225E4AB80090EE1F /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		09DCD304225E4F290090EE1F /* ProviderDetailBio.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProviderDetailBio.xib; sourceTree = "<group>"; };
 		09DCD306225E50EA0090EE1F /* ProviderBio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderBio.swift; sourceTree = "<group>"; };
 		09DCD308225E66C30090EE1F /* ProviderDetailAvailability.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProviderDetailAvailability.xib; sourceTree = "<group>"; };
@@ -94,18 +90,11 @@
 		2E9DD7C52257A8A300D74DD1 /* FirebaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FirebaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E9DD7C72257A8A300D74DD1 /* FirebaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTests.swift; sourceTree = "<group>"; };
 		2E9DD7C92257A8A300D74DD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2E9DD7CF2257C93E00D74DD1 /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DBService.swift; path = ../../DBService.swift; sourceTree = "<group>"; };
-		2E9DD7D12257E7E100D74DD1 /* Entrance.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Entrance.storyboard; path = ../Models/Entrance.storyboard; sourceTree = "<group>"; };
+		2E9DD7CF2257C93E00D74DD1 /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
+		2E9DD7D12257E7E100D74DD1 /* Entrance.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Entrance.storyboard; sourceTree = "<group>"; };
 		2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ServiceProvider.storyboard; sourceTree = "<group>"; };
-		2E9DD7D52257E80900D74DD1 /* User.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
-		2E9DD7D72257F69B00D74DD1 /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateViewController.swift; path = ../Views/CreateViewController.swift; sourceTree = "<group>"; };
-		2E9DD7D92257F6A800D74DD1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		2E9DD7DB2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceUpcomingTableViewController.swift; sourceTree = "<group>"; };
-		2E9DD7DD2257F83900D74DD1 /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
-		2E9DD7E12257F95800D74DD1 /* ServiceConfirmedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceConfirmedController.swift; sourceTree = "<group>"; };
-		2E9DD7E32257F9C000D74DD1 /* ServiceMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMessageViewController.swift; sourceTree = "<group>"; };
-		2E9DD7E92257FC0C00D74DD1 /* ClientBookingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientBookingsController.swift; sourceTree = "<group>"; };
-		2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSearchController.swift; sourceTree = "<group>"; };
+		2EB256DE225EEFD7006FE095 /* ClientProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProfileController.swift; sourceTree = "<group>"; };
+		2EB256E0225EF00D006FE095 /* IBDesignableViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignableViews.swift; sourceTree = "<group>"; };
 		2EBDDBCD225B91AD00583BC0 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		2EBDDBCF225B91D600583BC0 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		2EBDDBD3225B997B00583BC0 /* Alert+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+Extensions.swift"; sourceTree = "<group>"; };
@@ -133,12 +122,22 @@
 		A8787ACFCB7CCA4C79516777 /* Pods-Stylist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stylist.debug.xcconfig"; path = "Target Support Files/Pods-Stylist/Pods-Stylist.debug.xcconfig"; sourceTree = "<group>"; };
 		AD1D5ADFD62A113C77C9D79E /* Pods-FirebaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseTests.debug.xcconfig"; path = "Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C9F0689D22A995E41D8C2C56 /* Pods_FirebaseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FirebaseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D6B4BF6A225DE1DD00F1E48C /* ClientEditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientEditProfileController.swift; sourceTree = "<group>"; };
 		D6B4BF6C225E384300F1E48C /* IBDesignableViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignableViews.swift; sourceTree = "<group>"; };
 		D6B4BF6E225E993200F1E48C /* UIViewController+Navigations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Navigations.swift"; sourceTree = "<group>"; };
 		D6B4BF70225E9A2800F1E48C /* UserTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTabBarController.swift; sourceTree = "<group>"; };
-		D6B4BF76225EA80C00F1E48C /* ClientProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProfileController.swift; sourceTree = "<group>"; };
-		D6B4BF79225EA92100F1E48C /* IBDesignableViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBDesignableViews.swift; sourceTree = "<group>"; };
+		D6DBDC12225F940C00275085 /* ClientBookingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientBookingsController.swift; sourceTree = "<group>"; };
+		D6DBDC14225F941900275085 /* ClientSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientSearchController.swift; sourceTree = "<group>"; };
+		D6DBDC16225F942600275085 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D6DBDC18225F942D00275085 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		D6DBDC1A225F944400275085 /* ClientEditProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClientEditProfileController.swift; path = Stylist/Controllers/ClientEditProfileController.swift; sourceTree = SOURCE_ROOT; };
+		D6DBDC1C225F945F00275085 /* ProviderDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProviderDetailController.swift; sourceTree = "<group>"; };
+		D6DBDC1E225F947A00275085 /* ServiceConfirmedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceConfirmedController.swift; sourceTree = "<group>"; };
+		D6DBDC20225F948800275085 /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
+		D6DBDC22225F948E00275085 /* ServiceMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceMessageViewController.swift; sourceTree = "<group>"; };
+		D6DBDC24225F949300275085 /* ServiceProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProfileViewController.swift; sourceTree = "<group>"; };
+		D6DBDC26225F949900275085 /* ServiceUpcomingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceUpcomingTableViewController.swift; sourceTree = "<group>"; };
+		D6DBDC28225F956B00275085 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Extensions.swift"; path = "Extensions/UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		D6DBDC2C225F987B00275085 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		D89AABB01908945DBC5625A6 /* Pods_Stylist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stylist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD7F5DBCC2AE867436738D1 /* Pods_StylistTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StylistTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -166,6 +165,7 @@
 		094DF890225D4904001EA2FE /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2EBDDC1D225D177E00583BC0 /* TableViewCell.swift */,
 				094DF891225D492D001EA2FE /* ProviderDetailCustomCell.swift */,
 			);
 			path = Cells;
@@ -208,6 +208,78 @@
 			path = FirebaseTests;
 			sourceTree = "<group>";
 		};
+		2EB256E2225EFB65006FE095 /* Firebase Services */ = {
+			isa = PBXGroup;
+			children = (
+				2E9DD7CF2257C93E00D74DD1 /* DBService.swift */,
+				2EBDDBCD225B91AD00583BC0 /* StorageService.swift */,
+				2EBDDBCF225B91D600583BC0 /* AuthService.swift */,
+			);
+			path = "Firebase Services";
+			sourceTree = "<group>";
+		};
+		2EB256E3225EFB82006FE095 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2EBDDBD3225B997B00583BC0 /* Alert+Extensions.swift */,
+				2EBDDBD5225B999400583BC0 /* String+Date.swift */,
+				2EBDDBD7225B99B000583BC0 /* Date+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2EB256E4225EFB9F006FE095 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */,
+				2E9DD7D12257E7E100D74DD1 /* Entrance.storyboard */,
+				D6DBDC2C225F987B00275085 /* User.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		2EB256E5225EFBB4006FE095 /* View Files */ = {
+			isa = PBXGroup;
+			children = (
+				2EB256E0225EF00D006FE095 /* IBDesignableViews.swift */,
+			);
+			path = "View Files";
+			sourceTree = "<group>";
+		};
+		2EB256E6225EFBC7006FE095 /* Entrance Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D6DBDC18225F942D00275085 /* CreateViewController.swift */,
+				D6DBDC16225F942600275085 /* LoginViewController.swift */,
+				2EBDDC1F225D2E9400583BC0 /* OnboardingTableViewController.swift */,
+			);
+			path = "Entrance Controllers";
+			sourceTree = "<group>";
+		};
+		2EB256E7225EFBFA006FE095 /* Service Provider Files */ = {
+			isa = PBXGroup;
+			children = (
+				D6DBDC1C225F945F00275085 /* ProviderDetailController.swift */,
+				D6DBDC22225F948E00275085 /* ServiceMessageViewController.swift */,
+				D6DBDC24225F949300275085 /* ServiceProfileViewController.swift */,
+				D6DBDC26225F949900275085 /* ServiceUpcomingTableViewController.swift */,
+				D6DBDC20225F948800275085 /* ServiceDetailViewController.swift */,
+				D6DBDC1E225F947A00275085 /* ServiceConfirmedController.swift */,
+			);
+			path = "Service Provider Files";
+			sourceTree = "<group>";
+		};
+		2EB256E8225EFC16006FE095 /* Client Files */ = {
+			isa = PBXGroup;
+			children = (
+				D6DBDC12225F940C00275085 /* ClientBookingsController.swift */,
+				D6DBDC1A225F944400275085 /* ClientEditProfileController.swift */,
+				2EB256DE225EEFD7006FE095 /* ClientProfileController.swift */,
+				D6DBDC14225F941900275085 /* ClientSearchController.swift */,
+			);
+			path = "Client Files";
+			sourceTree = "<group>";
+		};
 		2EF1038F2255314A0030FBFF = {
 			isa = PBXGroup;
 			children = (
@@ -232,7 +304,6 @@
 		2EF1039A2255314A0030FBFF /* Stylist */ = {
 			isa = PBXGroup;
 			children = (
-				094DF890225D4904001EA2FE /* Cells */,
 				2EF103C92255A4AC0030FBFF /* Models */,
 				2EF103C62255A48C0030FBFF /* Controllers */,
 				2EF103C32255A4540030FBFF /* Views */,
@@ -246,16 +317,12 @@
 		2EF103C02255A4030030FBFF /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				2E9DD7CF2257C93E00D74DD1 /* DBService.swift */,
-				2EBDDBCD225B91AD00583BC0 /* StorageService.swift */,
-				2EBDDBCF225B91D600583BC0 /* AuthService.swift */,
-				2EBDDBD3225B997B00583BC0 /* Alert+Extensions.swift */,
-				2EBDDBD5225B999400583BC0 /* String+Date.swift */,
-				2EBDDBD7225B99B000583BC0 /* Date+Extension.swift */,
+				2EB256E2225EFB65006FE095 /* Firebase Services */,
+				2EB256E3225EFB82006FE095 /* Extensions */,
 				2EF1039B2255314A0030FBFF /* AppDelegate.swift */,
 				2EF103A22255314C0030FBFF /* Assets.xcassets */,
 				2EF103A42255314C0030FBFF /* LaunchScreen.storyboard */,
-				09DCD302225E4AB80090EE1F /* UIViewController+Extensions.swift */,
+				D6DBDC28225F956B00275085 /* UIViewController+Extensions.swift */,
 				D6B4BF6E225E993200F1E48C /* UIViewController+Navigations.swift */,
 			);
 			path = SupportingFiles;
@@ -264,12 +331,10 @@
 		2EF103C32255A4540030FBFF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D6B4BF79225EA92100F1E48C /* IBDesignableViews.swift */,
 				09A9D53F225BA8BB00DFB5E2 /* nibs */,
-				2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */,
-				2E9DD7D52257E80900D74DD1 /* User.storyboard */,
-				2E9DD7D12257E7E100D74DD1 /* Entrance.storyboard */,
-				2EBDDC1D225D177E00583BC0 /* TableViewCell.swift */,
+				094DF890225D4904001EA2FE /* Cells */,
+				2EB256E4225EFB9F006FE095 /* Storyboards */,
+				2EB256E5225EFBB4006FE095 /* View Files */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -277,21 +342,11 @@
 		2EF103C62255A48C0030FBFF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2EBDDC1F225D2E9400583BC0 /* OnboardingTableViewController.swift */,
 				2EBDDC1B225D0A7800583BC0 /* BaseViewController.swift */,
-				2E9DD7D72257F69B00D74DD1 /* CreateViewController.swift */,
-				2E9DD7D92257F6A800D74DD1 /* LoginViewController.swift */,
-				2E9DD7DB2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift */,
-				2E9DD7DD2257F83900D74DD1 /* ServiceDetailViewController.swift */,
-				2E9DD7E12257F95800D74DD1 /* ServiceConfirmedController.swift */,
-				2E9DD7E32257F9C000D74DD1 /* ServiceMessageViewController.swift */,
-				2E9DD7E92257FC0C00D74DD1 /* ClientBookingsController.swift */,
-				2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */,
-				09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */,
-				094DF888225D2809001EA2FE /* ProviderDetailController.swift */,
-				D6B4BF76225EA80C00F1E48C /* ClientProfileController.swift */,
-				D6B4BF6A225DE1DD00F1E48C /* ClientEditProfileController.swift */,
 				D6B4BF70225E9A2800F1E48C /* UserTabBarController.swift */,
+				2EB256E8225EFC16006FE095 /* Client Files */,
+				2EB256E6225EFBC7006FE095 /* Entrance Controllers */,
+				2EB256E7225EFBFA006FE095 /* Service Provider Files */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -432,7 +487,7 @@
 				09A9D541225BA90D00DFB5E2 /* ProfileHeader.xib in Resources */,
 				2EF103A32255314C0030FBFF /* Assets.xcassets in Resources */,
 				09DCD30D225E7E5D0090EE1F /* ProviderDetailReviews.xib in Resources */,
-				2E9DD7D62257E80900D74DD1 /* User.storyboard in Resources */,
+				D6DBDC2D225F987B00275085 /* User.storyboard in Resources */,
 				2E9DD7D42257E7FD00D74DD1 /* ServiceProvider.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -584,7 +639,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E9DD7C82257A8A300D74DD1 /* FirebaseTests.swift in Sources */,
-				D6B4BF7B225EA92100F1E48C /* IBDesignableViews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,46 +646,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6B4BF78225EA88F00F1E48C /* ClientEditProfileController.swift in Sources */,
-				D6B4BF77225EA80C00F1E48C /* ClientProfileController.swift in Sources */,
+				2EB256E1225EF00D006FE095 /* IBDesignableViews.swift in Sources */,
+				2EB256DF225EEFD7006FE095 /* ClientProfileController.swift in Sources */,
 				2EBDDBD8225B99B000583BC0 /* Date+Extension.swift in Sources */,
 				2EBDDBD4225B997B00583BC0 /* Alert+Extensions.swift in Sources */,
-				2E9DD7DA2257F6A800D74DD1 /* LoginViewController.swift in Sources */,
 				09DCD30F225E7F7D0090EE1F /* ProviderDetailReviews.swift in Sources */,
-				2E9DD7D82257F69B00D74DD1 /* CreateViewController.swift in Sources */,
 				2EBDDC20225D2E9400583BC0 /* OnboardingTableViewController.swift in Sources */,
 				2EBDDBD6225B999400583BC0 /* String+Date.swift in Sources */,
 				2EF103C82255A4A30030FBFF /* ServiceProvider.swift in Sources */,
-				09DCD303225E4AB90090EE1F /* UIViewController+Extensions.swift in Sources */,
 				2E9DD7D02257C93E00D74DD1 /* DBService.swift in Sources */,
 				2EBDDBCE225B91AD00583BC0 /* StorageService.swift in Sources */,
 				2EBDDBD0225B91D600583BC0 /* AuthService.swift in Sources */,
 				09DCD307225E50EA0090EE1F /* ProviderBio.swift in Sources */,
+				D6DBDC29225F956B00275085 /* UIViewController+Extensions.swift in Sources */,
 				2EF1039C2255314A0030FBFF /* AppDelegate.swift in Sources */,
 				09DCD30B225E69860090EE1F /* ProviderAvailability.swift in Sources */,
-				2E9DD7E22257F95800D74DD1 /* ServiceConfirmedController.swift in Sources */,
 				2EF103CF2255A4DB0030FBFF /* Reviews.swift in Sources */,
+				D6DBDC15225F941900275085 /* ClientSearchController.swift in Sources */,
+				D6DBDC1B225F944400275085 /* ClientEditProfileController.swift in Sources */,
 				2EBDDC1E225D177E00583BC0 /* TableViewCell.swift in Sources */,
+				D6DBDC23225F948E00275085 /* ServiceMessageViewController.swift in Sources */,
 				D6B4BF71225E9A2800F1E48C /* UserTabBarController.swift in Sources */,
+				D6DBDC1F225F947A00275085 /* ServiceConfirmedController.swift in Sources */,
 				2EF103CD2255A4D20030FBFF /* Ratings.swift in Sources */,
-				2E9DD7DC2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift in Sources */,
 				094DF892225D492D001EA2FE /* ProviderDetailCustomCell.swift in Sources */,
+				D6DBDC1D225F945F00275085 /* ProviderDetailController.swift in Sources */,
 				09A9D545225BDAF200DFB5E2 /* ServiceBioView.swift in Sources */,
 				094DF88F225D2EB8001EA2FE /* UserDetailView.swift in Sources */,
-				2E9DD7EC2257FC4100D74DD1 /* ClientSearchController.swift in Sources */,
-				2E9DD7E42257F9C000D74DD1 /* ServiceMessageViewController.swift in Sources */,
 				2EF103D12255A4E90030FBFF /* StylistCollectionKeys.swift in Sources */,
+				D6DBDC13225F940C00275085 /* ClientBookingsController.swift in Sources */,
 				2EF103D32255ABA10030FBFF /* Avalibility.swift in Sources */,
 				2EF103D52255AE060030FBFF /* Days.swift in Sources */,
 				2EF103CB2255A4C00030FBFF /* StylistsUsers.swift in Sources */,
-				2E9DD7EA2257FC0C00D74DD1 /* ClientBookingsController.swift in Sources */,
-				D6B4BF7A225EA92100F1E48C /* IBDesignableViews.swift in Sources */,
+				D6DBDC19225F942D00275085 /* CreateViewController.swift in Sources */,
+				D6DBDC27225F949900275085 /* ServiceUpcomingTableViewController.swift in Sources */,
+				D6DBDC17225F942600275085 /* LoginViewController.swift in Sources */,
 				09A9D547225BE7A200DFB5E2 /* PortfolioView.swift in Sources */,
-				09A9D543225BCFB200DFB5E2 /* ServiceProfileViewController.swift in Sources */,
-				094DF889225D2809001EA2FE /* ProviderDetailController.swift in Sources */,
-				2E9DD7DE2257F83900D74DD1 /* ServiceDetailViewController.swift in Sources */,
 				D6B4BF6F225E993200F1E48C /* UIViewController+Navigations.swift in Sources */,
 				2EBDDC1C225D0A7800583BC0 /* BaseViewController.swift in Sources */,
+				D6DBDC25225F949300275085 /* ServiceProfileViewController.swift in Sources */,
+				D6DBDC21225F948900275085 /* ServiceDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
