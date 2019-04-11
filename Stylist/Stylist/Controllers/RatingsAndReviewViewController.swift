@@ -16,7 +16,11 @@ class RatingsAndReviewViewController: UIViewController {
     
     var reviews: Reviews!
     
+    var settings = CosmosSettings()
+    
     var userRating = 4.5
+    var userReview = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         cosmosView.settings.fillMode = .half
@@ -30,8 +34,7 @@ class RatingsAndReviewViewController: UIViewController {
 
     }
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
-    dismiss(animated: true)
-    
+        navigationController?.popViewController(animated: true)
     }
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
     navigationItem.rightBarButtonItem?.isEnabled = false
