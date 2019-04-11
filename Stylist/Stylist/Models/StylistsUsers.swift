@@ -17,7 +17,14 @@ struct StylistsUser {
   let address:String?
   let imageURL:String?
   let joinedDate:String
-  let type:String
+  let street:String?
+  let city:String?
+  let state:String?
+  let zip:String?
+    
+    public var fullName: String {
+        return ((firstName ?? "") + " " + (lastName ?? "")).trimmingCharacters(in: .whitespacesAndNewlines)
+    }
 }
 
 extension StylistsUser {
@@ -30,6 +37,9 @@ extension StylistsUser {
     self.address = dict[StylistsUserCollectionKeys.address] as? String ?? "no address found"
     self.imageURL = dict[StylistsUserCollectionKeys.imageURL] as? String ?? "no imageURL found"
     self.joinedDate = dict[StylistsUserCollectionKeys.joinedDate] as? String ?? "no joined date found"
-    self.type = dict[StylistsUserCollectionKeys.type] as? String ?? "no type found"
+    self.street = dict[StylistsUserCollectionKeys.street] as? String ?? "no street found"
+    self.city = dict[StylistsUserCollectionKeys.city] as? String ?? "no city found"
+    self.state = dict[StylistsUserCollectionKeys.state] as? String ?? "no state found"
+    self.zip = dict[StylistsUserCollectionKeys.zip] as? String ?? "no zip found"
   }
 }

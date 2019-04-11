@@ -11,38 +11,73 @@ import FirebaseFirestore
 import Firebase
 
 final class DBService {
-  private init() {}
-  
-  public static var firestoreDB: Firestore = {
-    let db = Firestore.firestore()
-    let settings = db.settings
-    settings.areTimestampsInSnapshotsEnabled = true
-    db.settings = settings
-    return db
-  }()
-  
-  
-  static func createConsumerDatabaseAccount(consumer:StylistsUser,completionHandle: @escaping (Error?) -> Void ){
+    private init() {}
     
-firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(consumer.userId).setData([StylistsUserCollectionKeys.userId : consumer.userId, StylistsUserCollectionKeys.firstName: consumer.firstName ?? ""
-      ,StylistsUserCollectionKeys.lastName:consumer.lastName ?? "" , StylistsUserCollectionKeys.address: consumer.address ?? "", StylistsUserCollectionKeys.email : consumer.email,StylistsUserCollectionKeys.gender: consumer.gender ?? "", StylistsUserCollectionKeys.imageURL: consumer.imageURL ?? "", StylistsUserCollectionKeys.joinedDate: Date.getISOTimestamp()]) { (error) in
-      if let error = error {
-        print(" there was an error: \(error.localizedDescription)")
-      }
-      
+    public static var firestoreDB: Firestore = {
+        let db = Firestore.firestore()
+        let settings = db.settings
+        settings.areTimestampsInSnapshotsEnabled = true
+        db.settings = settings
+        return db
+    }()
+    static func CreateServiceProvider(serviceProvider:ServiceSideUser,completionHandler: @escaping (Error?) -> Void){
+        firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).document(serviceProvider.userId).setData([ServiceSideUserCollectionKeys.firstName: serviceProvider.firstName
+            ?? "" ,
+                                                                                                                        ServiceSideUserCollectionKeys.lastName:serviceProvider.lastName ?? "" ,
+                                                                                                                        ServiceSideUserCollectionKeys.bio: serviceProvider.bio ?? "" , ServiceSideUserCollectionKeys.email:serviceProvider.email, ServiceSideUserCollectionKeys.gender: serviceProvider.gender ?? "" ,ServiceSideUserCollectionKeys.imageURL:serviceProvider.imageURL ?? "" , ServiceSideUserCollectionKeys.joinedDate:serviceProvider.joinedDate, ServiceSideUserCollectionKeys.licenseExpiryDate:serviceProvider.licenseExpiryDate ?? "" , ServiceSideUserCollectionKeys.licenseNumber:serviceProvider.licenseNumber ?? "" , ServiceSideUserCollectionKeys.isCertified : serviceProvider.isCertified, ServiceSideUserCollectionKeys.userId: serviceProvider.userId ]) { (error) in
+                                                                                                                            if let error = error {
+                                                                                                                                print("there was an error:\(error.localizedDescription)")
+                                                                                                                            }
+                                                                                                                            print("database user sucessfully created")
+        }
     }
-  }
-  static func getDatabaseUser(collectionName:String,user:User, completionHandler: @escaping (Error?,DocumentSnapshot?)-> Void){
+    static func createConsumerDatabaseAccount(consumer:StylistsUser,completionHandle: @escaping (Error?) -> Void ){
+        
+        firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(consumer.userId).setData([StylistsUserCollectionKeys.userId : consumer.userId, StylistsUserCollectionKeys.firstName: consumer.firstName ?? ""
+            ,StylistsUserCollectionKeys.lastName:consumer.lastName ?? "" , StylistsUserCollectionKeys.address: consumer.address ?? "", StylistsUserCollectionKeys.email : consumer.email,StylistsUserCollectionKeys.gender: consumer.gender ?? "", StylistsUserCollectionKeys.imageURL: consumer.imageURL ?? "", StylistsUserCollectionKeys.joinedDate: Date.getISOTimestamp()]) { (error) in
+                if let error = error {
+                    print(" there was an error: \(error.localizedDescription)")
+                }
+        }
+    }
     
-    firestoreDB.collection(collectionName).document(user.uid).getDocument { (snapshot, error) in
-      if let error = error{
-        completionHandler(error,nil)
-      }
-      if let snapshot = snapshot {
-        completionHandler(nil,snapshot)
-      }
+    
+    static func getDatabaseUser(userID: String, completionHandler: @escaping (Error?,StylistsUser?)-> Void){
+        firestoreDB.collection(StylistsUserCollectionKeys.stylistUser)
+            .whereField(StylistsUserCollectionKeys.userId, isEqualTo: userID)
+            .getDocuments(completion: { (snapshot, error) in
+                if let error = error {
+                    completionHandler(error, nil)
+                } else if let snapshot = snapshot?.documents.first {
+                    let stylistUser = StylistsUser(dict: snapshot.data())
+                    completionHandler(nil, stylistUser)
+                }
+            })
     }
-  }
+    
+    
+    static func rateUser(collectionName:String,userId:String,rating:Ratings){
+        
+        let id = firestoreDB.collection(collectionName).document().documentID
+        DBService.firestoreDB.collection(collectionName).document(userId).collection(RatingsCollectionKeys.ratings).addDocument(data: [RatingsCollectionKeys.ratingId:id,
+                                                                                                                                       RatingsCollectionKeys.value:rating.value,RatingsCollectionKeys.userId:rating.userId,RatingsCollectionKeys.ratingId:userId]) { (error) in
+                                                                                                                                        if let error = error {
+                                                                                                                                            print("there was an error: uploading your rating:\(error.localizedDescription)")
+                                                                                                                                        }
+        }
+    }
+    
+    static func getProviders(completionHandler: @escaping([ServiceSideUser]?, Error?) -> Void) {
+        DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                    completionHandler(nil, error)
+                } else if let snapshot = snapshot {
+                    completionHandler(snapshot.documents.map{ServiceSideUser(dict: $0.data())}, nil)
+                }
+        }
+    }
+
 
     static func reviewProvider(reviews: Reviews, completionHandler: @escaping (Error?) -> Void) {
         
