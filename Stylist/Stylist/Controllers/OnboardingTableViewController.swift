@@ -61,8 +61,9 @@ class OnboardingTableViewController: UITableViewController {
     }
     
     let collectionName = "stylistUser"
-  updateUserInformation(collectionName: collectionName, userId: currentUser.uid)
-    
+    updateUserInformation(collectionName: collectionName, userId: currentUser.uid)
+    postButton.isEnabled = false
+    presentTabbarController()
   }
   
   func updateUserInformation(collectionName:String,userId:String){
@@ -81,6 +82,11 @@ class OnboardingTableViewController: UITableViewController {
     
     updateUserfield(collectionName: collectionName, userId: userId, field: field)
 
+  }
+  
+  private func presentTabbarController(){
+    guard let tabbarController = UIStoryboard.init(name: "User", bundle: nil).instantiateViewController(withIdentifier: "UserTabBarController") as? UITabBarController else {return}
+    present(tabbarController, animated: true, completion: nil)
   }
   
   private func showImagePickerController(){
@@ -123,11 +129,12 @@ class OnboardingTableViewController: UITableViewController {
     }
   }
   @IBAction func genderControlPressed(_ sender: UISegmentedControl) {
-    sender.selectedSegmentIndex = 0
     guard let currentUser = authService.getCurrentUser() else {return}
     if sender.selectedSegmentIndex == 0 {
+      
       let field = [StylistsUserCollectionKeys.gender:"male"]
       updateUserfield(collectionName: StylistsUserCollectionKeys.stylistUser, userId: currentUser.uid, field:field)
+      
     }else if sender.selectedSegmentIndex == 1 {
       let field = [StylistsUserCollectionKeys.gender:"female"]
       updateUserfield(collectionName: StylistsUserCollectionKeys.stylistUser, userId: currentUser.uid, field:field)
