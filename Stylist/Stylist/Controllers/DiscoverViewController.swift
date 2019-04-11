@@ -38,7 +38,13 @@ class DiscoverViewController: UIViewController {
     }
     
     func  getServices() {
-        
+        DBService.getProviders { (services, error) in
+            if let error = error {
+                print(error)
+            } else if let services = services {
+                self.serviceProviders = services
+            }
+        }
     }
 
     
