@@ -97,6 +97,27 @@ class FirebaseTests: XCTestCase {
     wait(for: [exp], timeout: 3.0)
     
   }
+  
+  func testCreateReview(){
+    let reviewDescription = """
+We arrived at Laguna Hotel yesterday, hotel is the wrong word more like Laguna Nursing home. The rooms were very dated and you could not open the en-suite door without hitting the TV on the wall.
+    
+    Breakfast was an experience, sausages/orange juice were very cheap and not nice, I have never seen fried bread orange before little worrying!! I would not recommend anyone to stay at this hotel unless they’re over 80!!”
+"""
+    
+    let rate = 1
+    let serviceProviderId = "2WJwGOzfxDgBiBMbdj95fIelmFV2"
+
+    let exp = expectation(description: "create a rating of service provider")
+    
+DBService.firestoreDB.collection("serviceProvider").document(serviceProviderId).collection("reviews").addDocument(data: [ReviewsCollectionKeys.description : reviewDescription,ReviewsCollectionKeys.ratings:String(rate)]) { (error) in
+      if let error = error {
+        XCTFail("there was an error posting you review:\(error.localizedDescription)")
+      }
+  exp.fulfill()
+    }
+    wait(for: [exp], timeout: 3.0)
+  }
 }
   
 

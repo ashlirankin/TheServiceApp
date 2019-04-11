@@ -10,6 +10,7 @@ import UIKit
 
 class ClientBookingsController: UITableViewController {
 
+  
     override func viewDidLoad() {
         super.viewDidLoad()
 
