@@ -11,7 +11,9 @@ import Cosmos
 
 
 class UserDetailView: UIView {
+    
     @IBOutlet var contentView: UIView!
+    @IBOutlet weak var bookingButton: UIButton!
     
     @IBOutlet weak var providerPhoto: UIImageView!
     @IBOutlet weak var providerFullname: UILabel!
