@@ -44,8 +44,19 @@ class RatingsAndReviewViewController: UIViewController {
                 showAlert(title: "Missing fields", message: "All fields are required", actionTitle: "Ok")
                 return
         }
+        
         // send rating to firebase
+        
+        
+        
+        
+        
+        
+        
+        
         // send review to firebase
+        
+        // since I am making two calls how do i know when both network calls have been made 
     }
     
     
