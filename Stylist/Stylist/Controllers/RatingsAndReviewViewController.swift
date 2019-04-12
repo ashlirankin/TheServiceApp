@@ -18,13 +18,13 @@ class RatingsAndReviewViewController: UIViewController {
     
     var settings = CosmosSettings()
     
-    var userRating = 4.5
+    var userRating: Double?
     var userReview = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         cosmosView.settings.fillMode = .half
-        cosmosView.rating = userRating
+        cosmosView.rating = 0
         
         cosmosView.didFinishTouchingCosmos = { captureRating in
             self.userRating = captureRating
@@ -37,16 +37,17 @@ class RatingsAndReviewViewController: UIViewController {
         dismiss(animated: true)
     }
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
-    navigationItem.rightBarButtonItem?.isEnabled = false
-        guard let reviewText = reviewTextView.text,
-        !reviewText.isEmpty,
-            let cosmos = cosmosView else {
-                print ("cosmos")
-            return
-        }
+        navigationItem.rightBarButtonItem?.isEnabled = false
         
-    
+        guard let reviewText = reviewTextView.text, !reviewText.isEmpty,
+            let userRating = userRating else {
+                showAlert(title: "Missing fields", message: "All fields are required", actionTitle: "Ok")
+                return
+        }
+        // send rating to firebase
+        // send review to firebase
     }
+    
     
 
     
