@@ -583,7 +583,13 @@
                             <outlet property="delegate" destination="JyM-sN-TXm" id="wbc-nM-RwQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Provider" id="DlD-2k-Jez"/>
+                    <navigationItem key="navigationItem" title="Provider" id="DlD-2k-Jez">
+                        <barButtonItem key="rightBarButtonItem" title="Favorite" id="e5F-NG-sse">
+                            <connections>
+                                <action selector="AddToFavorite:" destination="JyM-sN-TXm" id="g1t-D3-gIE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Fy4-UH-eFA" id="Ju4-RW-BAS"/>
                         <outlet property="scrollView" destination="IeW-tF-F7W" id="VRK-Qa-7dN"/>
