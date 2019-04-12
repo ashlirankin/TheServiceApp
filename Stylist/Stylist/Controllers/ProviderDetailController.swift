@@ -75,13 +75,22 @@ class ProviderDetailController: UITableViewController {
     
     private func setupUI() {
         tableView.tableHeaderView = providerDetailHeader
-        
+      providerDetailHeader.bookingButton.addTarget(self, action: #selector(bookButtonPressed), for: .touchUpInside)
     }
     
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
+  
+ 
+  
+  @objc func bookButtonPressed(){
+    guard let bookingController = UIStoryboard(name: "BookService", bundle: nil).instantiateViewController(withIdentifier: "BookingController") as? BookingViewController else {return}
+    
+    self.present(bookingController, animated: true, completion: nil)
+  }
+
 }
 
 extension ProviderDetailController: UICollectionViewDataSource {

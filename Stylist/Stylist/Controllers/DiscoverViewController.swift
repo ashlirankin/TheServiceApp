@@ -65,6 +65,8 @@ class DiscoverViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
+      
+      
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
