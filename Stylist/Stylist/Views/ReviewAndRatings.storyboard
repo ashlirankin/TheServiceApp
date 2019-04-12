@@ -13,7 +13,7 @@
         <!--Ratings And Review View Controller-->
         <scene sceneID="DcH-rP-Lcp">
             <objects>
-                <viewController id="3o9-NV-IiY" customClass="RatingsAndReviewViewController" customModule="Stylist" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addReviewsVC" id="3o9-NV-IiY" customClass="RatingsAndReviewViewController" customModule="Stylist" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kkG-QI-aU5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
