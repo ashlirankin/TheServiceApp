@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ProviderDetailController: UITableViewController {
-  
     @IBOutlet weak var scrollView: UIScrollView!
-  
     lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 300))
+    var provider: ServiceSideUser!
     @IBOutlet weak var collectionView: UICollectionView!
     var buttons = ["Bio", "Portfolio","Availability", "Reviews"] {
         didSet {
@@ -31,8 +31,15 @@ class ProviderDetailController: UITableViewController {
         setupCollectionView()
      setupScrollviewController(scrollView: scrollView, views: featureViews)
     loadSVFeatures()
-        
+        setupProvider()
     }
+    
+    private func setupProvider() {
+        providerDetailHeader.providerFullname.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
+        providerDetailHeader.providerPhoto.kf.setImage(with: URL(string: provider.imageURL ?? ""), placeholder: #imageLiteral(resourceName: "iconfinder_icon-person-add_211872.png"))
+        profileBio.providerBioText.text = provider.bio
+    }
+
     
 
     private func loadSVFeatures() {

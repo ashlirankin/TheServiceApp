@@ -63,7 +63,7 @@ class OnboardingTableViewController: UITableViewController {
     let collectionName = "stylistUser"
     updateUserInformation(collectionName: collectionName, userId: currentUser.uid)
     postButton.isEnabled = false
-    presentTabbarController()
+  
   }
   
   func updateUserInformation(collectionName:String,userId:String){
@@ -122,10 +122,14 @@ class OnboardingTableViewController: UITableViewController {
   }
   
   private func updateUserfield(collectionName:String,userId:String,field:[String:Any]){
-    DBService.firestoreDB.collection(collectionName).document(userId).updateData(field) { (error) in
+DBService.firestoreDB.collection(collectionName).document(userId).updateData(field) { (error) in
       if let error = error {
         self.showAlert(title: "Error", message: "there was an error trying to update your field:\(error.localizedDescription)", actionTitle: "Try Again")
+      }else{
+        self.presentTabbarController()
+        
       }
+      
     }
   }
   @IBAction func genderControlPressed(_ sender: UISegmentedControl) {
