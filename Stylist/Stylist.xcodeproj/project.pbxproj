@@ -33,6 +33,8 @@
 		2E7739BE22601267004C188A /* Entrance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7739BD22601267004C188A /* Entrance.storyboard */; };
 		2E90A61A2261124A0016462C /* BookService.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E90A6192261124A0016462C /* BookService.storyboard */; };
 		2E90A61C226112620016462C /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90A61B226112620016462C /* BookingViewController.swift */; };
+		2E90A61E22611A010016462C /* ServicesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90A61D22611A010016462C /* ServicesCollectionViewCell.swift */; };
+		2E90A62022611B4F0016462C /* AvalibilityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90A61F22611B4F0016462C /* AvalibilityCollectionViewCell.swift */; };
 		2E9DD7C82257A8A300D74DD1 /* FirebaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7C72257A8A300D74DD1 /* FirebaseTests.swift */; };
 		2E9DD7D02257C93E00D74DD1 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7CF2257C93E00D74DD1 /* DBService.swift */; };
 		2E9DD7D42257E7FD00D74DD1 /* ServiceProvider.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */; };
@@ -109,6 +111,8 @@
 		2E7739BD22601267004C188A /* Entrance.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Entrance.storyboard; sourceTree = "<group>"; };
 		2E90A6192261124A0016462C /* BookService.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BookService.storyboard; sourceTree = "<group>"; };
 		2E90A61B226112620016462C /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewController.swift; sourceTree = "<group>"; };
+		2E90A61D22611A010016462C /* ServicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCollectionViewCell.swift; sourceTree = "<group>"; };
+		2E90A61F22611B4F0016462C /* AvalibilityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvalibilityCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E9DD7C52257A8A300D74DD1 /* FirebaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FirebaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E9DD7C72257A8A300D74DD1 /* FirebaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTests.swift; sourceTree = "<group>"; };
 		2E9DD7C92257A8A300D74DD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -283,6 +287,8 @@
 		2EF103C32255A4540030FBFF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2E90A61D22611A010016462C /* ServicesCollectionViewCell.swift */,
+				2E90A61F22611B4F0016462C /* AvalibilityCollectionViewCell.swift */,
 				D6B4BF6C225E384300F1E48C /* IBDesignableViews.swift */,
 				09A9D53F225BA8BB00DFB5E2 /* nibs */,
 				2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */,
@@ -651,10 +657,12 @@
 				09481797225F9ACC0026C066 /* BookingTableViewCell.swift in Sources */,
 				2E9DD7EC2257FC4100D74DD1 /* ClientSearchController.swift in Sources */,
 				2E9DD7E42257F9C000D74DD1 /* ServiceMessageViewController.swift in Sources */,
+				2E90A61E22611A010016462C /* ServicesCollectionViewCell.swift in Sources */,
 				2EF103D12255A4E90030FBFF /* StylistCollectionKeys.swift in Sources */,
 				2EF103D32255ABA10030FBFF /* Avalibility.swift in Sources */,
 				2E5E74D9225FB6A8003D370F /* Service.swift in Sources */,
 				2EF103D52255AE060030FBFF /* Days.swift in Sources */,
+				2E90A62022611B4F0016462C /* AvalibilityCollectionViewCell.swift in Sources */,
 				2EF103CB2255A4C00030FBFF /* StylistsUsers.swift in Sources */,
 				2E9DD7EA2257FC0C00D74DD1 /* ClientBookingsController.swift in Sources */,
 				09A9D547225BE7A200DFB5E2 /* PortfolioView.swift in Sources */,
