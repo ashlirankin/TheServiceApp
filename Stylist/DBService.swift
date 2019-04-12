@@ -79,19 +79,52 @@ final class DBService {
     }
 
 
-    static func reviewProvider(reviews: Reviews, completionHandler: @escaping (Error?) -> Void) {
+    static func postProviderRating(ratings: Ratings, completionHandler: @escaping (Error?) -> Void) {
         
-        var ref: DocumentReference? = nil
-        firestoreDB.collection(ReviewsCollectionKeys.reviewerId).document(reviews.reviewerId).collection("reviewProvider").document().setData([ReviewsCollectionKeys.reviewerId : reviews.reviewerId,
-                                                                                                                                               ReviewsCollectionKeys.reviews: reviews.value,
-                                                                                                                                               ReviewsCollectionKeys.ratings: reviews.ratingId,
-                                                                                                                                               ReviewsCollectionKeys.createdDate: reviews.createdDate,
-                                                                                                                                               ReviewsCollectionKeys.description: reviews.description                      ]) { (error) in
-if let error = error {
-    print("there was an error with the reviewProvider: \(error.localizedDescription)")
-          }
-       }
-   }
+        firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
+            .document(ratings.userId)
+            .collection(RatingsCollectionKeys.ratings)
+            .document().setData([
+                        RatingsCollectionKeys.ratingId : ratings.ratingId,
+                        RatingsCollectionKeys.value: ratings.value,
+                        RatingsCollectionKeys.raterId: ratings.raterId,
+                        RatingsCollectionKeys.userId: ratings.userId
+                        
+            ]) { (error) in
+                if let error = error {
+                    completionHandler(error)
+                    print("there was an error with the postProviderRating: \(error.localizedDescription)")
+                } else {
+                    completionHandler(nil)
+                    print("rating posted successfully to reference: \(ratings.ratingId)")
+                }
+        }
+    }
+
+    static func postProviderReview(reviews: Reviews, completionHandler: @escaping (Error?) -> Void) {
+        
+        firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
+        .document(reviews.reviewerId)
+        .collection(ReviewsCollectionKeys.reviews)
+        .document().setData([
+            ReviewsCollectionKeys.reviewerId  : reviews.reviewerId,
+            ReviewsCollectionKeys.createdDate : reviews.createdDate,
+            ReviewsCollectionKeys.description : reviews.description,
+            ReviewsCollectionKeys.ratingId : reviews.ratingId,
+            ReviewsCollectionKeys.value : reviews.value    
+        ]) { (error) in
+            if let error = error {
+                completionHandler(error)
+                print("there was an error with the postProviderReview: \(error.localizedDescription)")
+            } else {
+                completionHandler(nil)
+                print("review posted successfully to rating reference: \(reviews.ratingId)")
+            }
+        }
+        
+        
+        
+    }
 }
 
 
