@@ -31,6 +31,10 @@
 		291F30A20B9AEA8931FF3E32 /* Pods_FirebaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F0689D22A995E41D8C2C56 /* Pods_FirebaseTests.framework */; };
 		2E5E74D9225FB6A8003D370F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5E74D7225FB6A3003D370F /* Service.swift */; };
 		2E7739BE22601267004C188A /* Entrance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7739BD22601267004C188A /* Entrance.storyboard */; };
+		2E90A61A2261124A0016462C /* BookService.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E90A6192261124A0016462C /* BookService.storyboard */; };
+		2E90A61C226112620016462C /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90A61B226112620016462C /* BookingViewController.swift */; };
+		2E90A61E22611A010016462C /* ServicesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90A61D22611A010016462C /* ServicesCollectionViewCell.swift */; };
+		2E90A62022611B4F0016462C /* AvalibilityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90A61F22611B4F0016462C /* AvalibilityCollectionViewCell.swift */; };
 		2E9DD7C82257A8A300D74DD1 /* FirebaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7C72257A8A300D74DD1 /* FirebaseTests.swift */; };
 		2E9DD7D02257C93E00D74DD1 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7CF2257C93E00D74DD1 /* DBService.swift */; };
 		2E9DD7D42257E7FD00D74DD1 /* ServiceProvider.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */; };
@@ -107,6 +111,10 @@
 		26FA858D08C6AC46AEBAE072 /* Pods-StylistTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylistTests.release.xcconfig"; path = "Target Support Files/Pods-StylistTests/Pods-StylistTests.release.xcconfig"; sourceTree = "<group>"; };
 		2E5E74D7225FB6A3003D370F /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		2E7739BD22601267004C188A /* Entrance.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Entrance.storyboard; sourceTree = "<group>"; };
+		2E90A6192261124A0016462C /* BookService.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BookService.storyboard; sourceTree = "<group>"; };
+		2E90A61B226112620016462C /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewController.swift; sourceTree = "<group>"; };
+		2E90A61D22611A010016462C /* ServicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCollectionViewCell.swift; sourceTree = "<group>"; };
+		2E90A61F22611B4F0016462C /* AvalibilityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvalibilityCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E9DD7C52257A8A300D74DD1 /* FirebaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FirebaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E9DD7C72257A8A300D74DD1 /* FirebaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTests.swift; sourceTree = "<group>"; };
 		2E9DD7C92257A8A300D74DD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -283,10 +291,13 @@
 		2EF103C32255A4540030FBFF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2E90A61D22611A010016462C /* ServicesCollectionViewCell.swift */,
+				2E90A61F22611B4F0016462C /* AvalibilityCollectionViewCell.swift */,
 				D6B4BF6C225E384300F1E48C /* IBDesignableViews.swift */,
 				09A9D53F225BA8BB00DFB5E2 /* nibs */,
 				2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */,
 				2E9DD7D52257E80900D74DD1 /* User.storyboard */,
+				2E90A6192261124A0016462C /* BookService.storyboard */,
 				45864F50225D0449005FDBD5 /* ReviewAndRatings.storyboard */,
 				2E7739BD22601267004C188A /* Entrance.storyboard */,
 				D6FE74E92261138600B4A49A /* FilterProviders.storyboard */,
@@ -297,6 +308,7 @@
 		2EF103C62255A48C0030FBFF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2E90A61B226112620016462C /* BookingViewController.swift */,
 				2EBDDC1F225D2E9400583BC0 /* OnboardingTableViewController.swift */,
 				2EBDDC1B225D0A7800583BC0 /* BaseViewController.swift */,
 				2E9DD7D72257F69B00D74DD1 /* CreateViewController.swift */,
@@ -448,6 +460,7 @@
 			files = (
 				2E7739BE22601267004C188A /* Entrance.storyboard in Resources */,
 				09DCD309225E66C30090EE1F /* ProviderDetailAvailability.xib in Resources */,
+				2E90A61A2261124A0016462C /* BookService.storyboard in Resources */,
 				094DF88B225D2835001EA2FE /* UserDetailHeader.xib in Resources */,
 				2EF103A62255314C0030FBFF /* LaunchScreen.storyboard in Resources */,
 				2EF103AE22553D5E0030FBFF /* GoogleService-Info.plist in Resources */,
@@ -635,6 +648,7 @@
 				2EBDDBD0225B91D600583BC0 /* AuthService.swift in Sources */,
 				09DCD307225E50EA0090EE1F /* ProviderBio.swift in Sources */,
 				2EF1039C2255314A0030FBFF /* AppDelegate.swift in Sources */,
+				2E90A61C226112620016462C /* BookingViewController.swift in Sources */,
 				09DCD30B225E69860090EE1F /* ProviderAvailability.swift in Sources */,
 				2E9DD7E22257F95800D74DD1 /* ServiceConfirmedController.swift in Sources */,
 				09DCD311225E91FA0090EE1F /* DiscoverViewController.swift in Sources */,
@@ -651,10 +665,12 @@
 				09481797225F9ACC0026C066 /* BookingTableViewCell.swift in Sources */,
 				2E9DD7EC2257FC4100D74DD1 /* ClientSearchController.swift in Sources */,
 				2E9DD7E42257F9C000D74DD1 /* ServiceMessageViewController.swift in Sources */,
+				2E90A61E22611A010016462C /* ServicesCollectionViewCell.swift in Sources */,
 				2EF103D12255A4E90030FBFF /* StylistCollectionKeys.swift in Sources */,
 				2EF103D32255ABA10030FBFF /* Avalibility.swift in Sources */,
 				2E5E74D9225FB6A8003D370F /* Service.swift in Sources */,
 				2EF103D52255AE060030FBFF /* Days.swift in Sources */,
+				2E90A62022611B4F0016462C /* AvalibilityCollectionViewCell.swift in Sources */,
 				2EF103CB2255A4C00030FBFF /* StylistsUsers.swift in Sources */,
 				2E9DD7EA2257FC0C00D74DD1 /* ClientBookingsController.swift in Sources */,
 				09A9D547225BE7A200DFB5E2 /* PortfolioView.swift in Sources */,

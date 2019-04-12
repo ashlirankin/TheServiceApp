@@ -29,6 +29,8 @@ class DiscoverViewController: UIViewController {
     }
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     setupCollectionUI()
@@ -46,7 +48,13 @@ class DiscoverViewController: UIViewController {
             }
         }
     }
-
+    
+    @IBAction func filterPressed(_ sender: UIBarButtonItem) {
+        let storyboard = UIStoryboard(name: "FilterProviders", bundle: nil)
+        let filterVC = storyboard.instantiateViewController(withIdentifier: "FilterProvidersVC")
+        self.present(UINavigationController(rootViewController: filterVC), animated: true, completion: nil)
+    }
+    
     
     func setupCollectionUI() {
         collectionView.dataSource = self
@@ -57,6 +65,8 @@ class DiscoverViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
+      
+      
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
