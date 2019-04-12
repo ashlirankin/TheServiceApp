@@ -34,7 +34,7 @@ class RatingsAndReviewViewController: UIViewController {
 
     }
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        navigationController?.popViewController(animated: true)
+        dismiss(animated: true)
     }
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
     navigationItem.rightBarButtonItem?.isEnabled = false
