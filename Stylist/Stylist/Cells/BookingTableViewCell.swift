@@ -10,9 +10,6 @@ import UIKit
 
 class BookingTableViewCell: UITableViewCell {
     @IBOutlet weak var bookingImage: UIImageView!
-    
     @IBOutlet weak var providerName: UILabel!
-    
     @IBOutlet weak var bookingTime: UILabel!
-    
 }

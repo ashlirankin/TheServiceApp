@@ -14,8 +14,4 @@ class DiscoverTableViewCell: UITableViewCell {
     @IBOutlet weak var ProviderCategory: UILabel!
     @IBOutlet weak var providerRating: UILabel!
     @IBOutlet weak var providerDistance: UILabel!
-    
-    
- 
-
 }
