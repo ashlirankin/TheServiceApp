@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		09481797225F9ACC0026C066 /* BookingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09481796225F9ACC0026C066 /* BookingTableViewCell.swift */; };
-		09481799225FC6BE0026C066 /* Entrance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09481798225FC6BE0026C066 /* Entrance.storyboard */; };
 		094DF889225D2809001EA2FE /* ProviderDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094DF888225D2809001EA2FE /* ProviderDetailController.swift */; };
 		094DF88B225D2835001EA2FE /* UserDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 094DF88A225D2835001EA2FE /* UserDetailHeader.xib */; };
 		094DF88F225D2EB8001EA2FE /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094DF88E225D2EB8001EA2FE /* UserDetailView.swift */; };
@@ -60,6 +59,10 @@
 		2EF103D12255A4E90030FBFF /* StylistCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF103D02255A4E90030FBFF /* StylistCollectionKeys.swift */; };
 		2EF103D32255ABA10030FBFF /* Avalibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF103D22255ABA10030FBFF /* Avalibility.swift */; };
 		2EF103D52255AE060030FBFF /* Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF103D42255AE060030FBFF /* Days.swift */; };
+		45864F51225D0449005FDBD5 /* ReviewAndRatings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45864F50225D0449005FDBD5 /* ReviewAndRatings.storyboard */; };
+		45864F53225D124A005FDBD5 /* RatingsAndReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45864F52225D124A005FDBD5 /* RatingsAndReviewViewController.swift */; };
+		45864F58225FD6F6005FDBD5 /* Entrance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45864F57225FD6F5005FDBD5 /* Entrance.storyboard */; };
+		45864F5A225FDD1D005FDBD5 /* ClientEditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45864F59225FDD1D005FDBD5 /* ClientEditProfileController.swift */; };
 		8F8138881EF44484D5275681 /* Pods_Stylist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D89AABB01908945DBC5625A6 /* Pods_Stylist.framework */; };
 		D6B4BF6B225DE1DD00F1E48C /* ClientEditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4BF6A225DE1DD00F1E48C /* ClientEditProfileController.swift */; };
 		D6B4BF6D225E384300F1E48C /* IBDesignableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4BF6C225E384300F1E48C /* IBDesignableViews.swift */; };
@@ -133,6 +136,10 @@
 		2EF103D02255A4E90030FBFF /* StylistCollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StylistCollectionKeys.swift; sourceTree = "<group>"; };
 		2EF103D22255ABA10030FBFF /* Avalibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avalibility.swift; sourceTree = "<group>"; };
 		2EF103D42255AE060030FBFF /* Days.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Days.swift; sourceTree = "<group>"; };
+		45864F50225D0449005FDBD5 /* ReviewAndRatings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReviewAndRatings.storyboard; sourceTree = "<group>"; };
+		45864F52225D124A005FDBD5 /* RatingsAndReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingsAndReviewViewController.swift; sourceTree = "<group>"; };
+		45864F57225FD6F5005FDBD5 /* Entrance.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Entrance.storyboard; path = ../../../../../Downloads/Entrance.storyboard; sourceTree = "<group>"; };
+		45864F59225FDD1D005FDBD5 /* ClientEditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientEditProfileController.swift; sourceTree = "<group>"; };
 		63E768A8D86006AD0C630A3F /* Pods-StylistTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylistTests.debug.xcconfig"; path = "Target Support Files/Pods-StylistTests/Pods-StylistTests.debug.xcconfig"; sourceTree = "<group>"; };
 		929C1E92E4811B03B80F4987 /* Pods-FirebaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseTests.release.xcconfig"; path = "Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests.release.xcconfig"; sourceTree = "<group>"; };
 		A57421994C7FAE45048DF33C /* Pods-Stylist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stylist.release.xcconfig"; path = "Target Support Files/Pods-Stylist/Pods-Stylist.release.xcconfig"; sourceTree = "<group>"; };
@@ -221,6 +228,7 @@
 				2EF103992255314A0030FBFF /* Products */,
 				B5510D80F4AFE1DB6B98444D /* Pods */,
 				22221D3EC18620EA7B2A0CEF /* Frameworks */,
+				45864F56225FD52F005FDBD5 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -271,7 +279,8 @@
 				09A9D53F225BA8BB00DFB5E2 /* nibs */,
 				2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */,
 				2E9DD7D52257E80900D74DD1 /* User.storyboard */,
-				09481798225FC6BE0026C066 /* Entrance.storyboard */,
+				45864F50225D0449005FDBD5 /* ReviewAndRatings.storyboard */,
+				45864F57225FD6F5005FDBD5 /* Entrance.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -290,9 +299,10 @@
 				2E9DD7E92257FC0C00D74DD1 /* ClientBookingsController.swift */,
 				2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */,
 				09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */,
+				45864F52225D124A005FDBD5 /* RatingsAndReviewViewController.swift */,
 				094DF888225D2809001EA2FE /* ProviderDetailController.swift */,
+				45864F59225FDD1D005FDBD5 /* ClientEditProfileController.swift */,
 				2E9DD7E72257FB2200D74DD1 /* ClientProfileController.swift */,
-				D6B4BF6A225DE1DD00F1E48C /* ClientEditProfileController.swift */,
 				09DCD310225E91FA0090EE1F /* DiscoverViewController.swift */,
 			);
 			path = Controllers;
@@ -311,6 +321,15 @@
 				2EF103D42255AE060030FBFF /* Days.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		45864F56225FD52F005FDBD5 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				09481798225FC6BE0026C066 /* Entrance.storyboard */,
+				D62EA116225FC92000101E4A /* ClientEditProfileController.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		B5510D80F4AFE1DB6B98444D /* Pods */ = {
@@ -424,11 +443,12 @@
 				2EF103AE22553D5E0030FBFF /* GoogleService-Info.plist in Resources */,
 				09DCD305225E4F290090EE1F /* ProviderDetailBio.xib in Resources */,
 				09A9D541225BA90D00DFB5E2 /* ProfileHeader.xib in Resources */,
-				09481799225FC6BE0026C066 /* Entrance.storyboard in Resources */,
 				2EF103A32255314C0030FBFF /* Assets.xcassets in Resources */,
 				09DCD30D225E7E5D0090EE1F /* ProviderDetailReviews.xib in Resources */,
 				2E9DD7D62257E80900D74DD1 /* User.storyboard in Resources */,
 				2E9DD7D42257E7FD00D74DD1 /* ServiceProvider.storyboard in Resources */,
+				45864F51225D0449005FDBD5 /* ReviewAndRatings.storyboard in Resources */,
+				45864F58225FD6F6005FDBD5 /* Entrance.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,18 +606,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45864F5A225FDD1D005FDBD5 /* ClientEditProfileController.swift in Sources */,
 				2EBDDBD8225B99B000583BC0 /* Date+Extension.swift in Sources */,
 				2EBDDBD4225B997B00583BC0 /* Alert+Extensions.swift in Sources */,
 				2E9DD7DA2257F6A800D74DD1 /* LoginViewController.swift in Sources */,
 				09DCD30F225E7F7D0090EE1F /* ProviderDetailReviews.swift in Sources */,
 				2E9DD7D82257F69B00D74DD1 /* CreateViewController.swift in Sources */,
+				45864F53225D124A005FDBD5 /* RatingsAndReviewViewController.swift in Sources */,
 				2EBDDC20225D2E9400583BC0 /* OnboardingTableViewController.swift in Sources */,
 				2EBDDBD6225B999400583BC0 /* String+Date.swift in Sources */,
 				2EF103C82255A4A30030FBFF /* ServiceProvider.swift in Sources */,
 				09DCD303225E4AB90090EE1F /* UIViewController+Extensions.swift in Sources */,
 				09DCD313225E97340090EE1F /* DiscoveryCollectionViewCell.swift in Sources */,
 				2E9DD7D02257C93E00D74DD1 /* DBService.swift in Sources */,
-				D6B4BF6B225DE1DD00F1E48C /* ClientEditProfileController.swift in Sources */,
 				2E9DD7E82257FB2200D74DD1 /* ClientProfileController.swift in Sources */,
 				2EBDDBCE225B91AD00583BC0 /* StorageService.swift in Sources */,
 				2EBDDBD0225B91D600583BC0 /* AuthService.swift in Sources */,

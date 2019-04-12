@@ -82,7 +82,7 @@ class ClientEditProfileController: UITableViewController {
                     .document(currentUser.uid)
                     .updateData([StylistsUserCollectionKeys.firstName : firstName,
                                  StylistsUserCollectionKeys.lastName : lastName,
-                                 StylistsUserCollectionKeys.imageURL : imageURL
+                                 StylistsUserCollectionKeys.imageURL : imageURL.absoluteString
                         ], completion: { [weak self] (error) in
                             if let error = error {
                                 self?.showAlert(title: "Error Saving Account Info", message: error.localizedDescription, actionTitle: "Ok")
