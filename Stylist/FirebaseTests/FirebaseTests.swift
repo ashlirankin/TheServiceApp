@@ -153,7 +153,7 @@ We arrived at Laguna Hotel yesterday, hotel is the wrong word more like Laguna N
 
     let exp = expectation(description: "create a rating of service provider")
     
-DBService.firestoreDB.collection("serviceProvider").document(serviceProviderId).collection("reviews").addDocument(data: [ReviewsCollectionKeys.description : reviewDescription,ReviewsCollectionKeys.ratings:String(rate)]) { (error) in
+    DBService.firestoreDB.collection("serviceProvider").document(serviceProviderId).collection("reviews").addDocument(data: [ReviewsCollectionKeys.description : reviewDescription,ReviewsCollectionKeys.ratingId:String(rate)]) { (error) in
       if let error = error {
         XCTFail("there was an error posting you review:\(error.localizedDescription)")
       }
