@@ -108,6 +108,17 @@ extension DiscoverViewController: UITableViewDataSource {
         cell.providerName.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
         cell.ProviderCategory.text = provider.jobTitle
         cell.ProviderPic.kf.setImage(with: URL(string: provider.imageURL ?? ""), placeholder:#imageLiteral(resourceName: "placeholder.png") )
+        switch provider.jobTitle {
+        case "Barber":
+            cell.providerRating.text = "4.5"
+            cell.providerDistance.text = "2.9 Mi."
+        case "Hair Stylist":
+            cell.providerRating.text = "5.0"
+             cell.providerDistance.text = "5.0 Mi."
+        default:
+            cell.providerRating.text = "3.5"
+             cell.providerDistance.text = "3.25 Mi."
+        }
         return cell
     }
     

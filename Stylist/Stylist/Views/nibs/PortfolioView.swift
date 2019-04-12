@@ -15,8 +15,9 @@ class PortfolioView: UIView {
         layout.itemSize = CGSize(width: 60, height: 60)
          let cv = UICollectionView(frame: self.frame, collectionViewLayout: layout)
         layout.scrollDirection = .vertical
+        cv.register(PortfolioCollectionViewCell.self, forCellWithReuseIdentifier: "PortfolioCell")
         cv.isScrollEnabled = true
-        cv.backgroundColor = .red
+        cv.backgroundColor = #colorLiteral(red: 0.1619916558, green: 0.224360168, blue: 0.3768204153, alpha: 1)
         return cv
     }()
     
