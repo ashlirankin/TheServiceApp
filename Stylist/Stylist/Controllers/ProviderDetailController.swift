@@ -13,6 +13,10 @@ class ProviderDetailController: UITableViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 300))
     var provider: ServiceSideUser!
+    let sectionInset = UIEdgeInsets(top: -200.0,
+                                    left: 20.0,
+                                    bottom: 400.0,
+                                    right: 20.0)
     @IBOutlet weak var collectionView: UICollectionView!
     var buttons = ["Bio", "Portfolio","Availability", "Reviews"] {
         didSet {
@@ -34,10 +38,29 @@ class ProviderDetailController: UITableViewController {
         setupProvider()
     }
     
+    @IBAction func AddToFavorite(_ sender: UIBarButtonItem) {
+        
+    }
+    
+    
     private func setupProvider() {
         providerDetailHeader.providerFullname.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
         providerDetailHeader.providerPhoto.kf.setImage(with: URL(string: provider.imageURL ?? ""), placeholder: #imageLiteral(resourceName: "iconfinder_icon-person-add_211872.png"))
         profileBio.providerBioText.text = provider.bio
+        switch provider.jobTitle {
+        case "Barber":
+            providerDetailHeader.ratingsValue.text = "4.5"
+        case "Hair Stylist":
+             providerDetailHeader.ratingsValue.text = "5.0"
+        default:
+             providerDetailHeader.ratingsValue.text = "3.5"
+        }
+        setupProviderPortfolio()
+    }
+
+    private func setupProviderPortfolio() {
+        portfolioView.portfolioCollectionView.delegate = self
+        portfolioView.portfolioCollectionView.dataSource = self
     }
 
     
@@ -52,32 +75,80 @@ class ProviderDetailController: UITableViewController {
     
     private func setupUI() {
         tableView.tableHeaderView = providerDetailHeader
-        
+      providerDetailHeader.bookingButton.addTarget(self, action: #selector(bookButtonPressed), for: .touchUpInside)
     }
     
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
+  
+ 
+  
+  @objc func bookButtonPressed(){
+    guard let bookingController = UIStoryboard(name: "BookService", bundle: nil).instantiateViewController(withIdentifier: "BookingController") as? BookingViewController else {return}
+    
+    self.present(bookingController, animated: true, completion: nil)
+  }
+
 }
 
 extension ProviderDetailController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return buttons.count
+        if collectionView == self.collectionView {
+            return buttons.count
+        } else {
+            switch provider.jobTitle {
+            case "Barber":
+                return 4
+            case "Hair Stylist":
+                return 9
+            default:
+                return 10
+            }
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ButtonCell", for: indexPath) as! ProviderDetailCustomCell
-        let buttonLabel = buttons[indexPath.row]
-        cell.buttonLabel.text = buttonLabel
-        return cell
+        if collectionView == self.collectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ButtonCell", for: indexPath) as! ProviderDetailCustomCell
+            let buttonLabel = buttons[indexPath.row]
+            cell.buttonLabel.text = buttonLabel
+            return cell
+        } else {
+           let portfolioCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PortfolioCell", for: indexPath) as! PortfolioCollectionViewCell
+            switch provider.jobTitle {
+            case "Barber":
+                portfolioCell.protoflioImage.image = UIImage(named: "barber\(indexPath.row)")
+            case "Hair Stylist":
+                portfolioCell.protoflioImage.image = UIImage(named: "hairstyle\(indexPath.row)")
+            default:
+                portfolioCell.protoflioImage.image = UIImage(named: "makeup\(indexPath.row)")
+            }
+            return portfolioCell
+        }
     }
 }
 
 extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 120, height: 40)
+        if collectionView == self.collectionView {
+             return CGSize(width: 120, height: 40)
+        } else {
+            return CGSize(width: UIScreen.main.bounds.width / 2, height: 200)
+        }
+       
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if collectionView == portfolioView.portfolioCollectionView {
+            return sectionInset
+        } else {
+            return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        }
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let view = featureViews[indexPath.row]
@@ -85,5 +156,4 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
         view.frame.size.width = self.view.bounds.width
         view.frame.origin.x = CGFloat(indexPath.row) * self.view.bounds.size.width
     }
-    
 }

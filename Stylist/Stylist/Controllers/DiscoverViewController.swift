@@ -12,14 +12,7 @@ import Firebase
 
 
 class DiscoverViewController: UIViewController {
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
-    var providersCategory = ["Hair Dresser", "Barber", "MUA"] {
-        didSet {
-            self.collectionView.reloadData()
-        }
-    }
     var serviceProviders = [ServiceSideUser]() {
         didSet {
             DispatchQueue.main.async {
@@ -29,9 +22,10 @@ class DiscoverViewController: UIViewController {
     }
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    setupCollectionUI()
         setupTableView()
         getServices()
         
@@ -46,17 +40,20 @@ class DiscoverViewController: UIViewController {
             }
         }
     }
-
     
-    func setupCollectionUI() {
-        collectionView.dataSource = self
-        collectionView.delegate = self
+    @IBAction func filterPressed(_ sender: UIBarButtonItem) {
+        let storyboard = UIStoryboard(name: "FilterProviders", bundle: nil)
+        let filterVC = storyboard.instantiateViewController(withIdentifier: "FilterProvidersVC") as! FilterProvidersController
+        self.present(UINavigationController(rootViewController: filterVC), animated: true, completion: nil)
     }
+    
     
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
+      
+      
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -70,20 +67,7 @@ class DiscoverViewController: UIViewController {
 
 }
 
-extension DiscoverViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return providersCategory.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoveryCollectionCell", for: indexPath) as! DiscoveryCollectionViewCell
-        let providerCategory = providersCategory[indexPath.row]
-        cell.label.text = providerCategory
-        return cell
-    }
-    
-    
-}
+
 
 extension DiscoverViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -108,6 +92,17 @@ extension DiscoverViewController: UITableViewDataSource {
         cell.providerName.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
         cell.ProviderCategory.text = provider.jobTitle
         cell.ProviderPic.kf.setImage(with: URL(string: provider.imageURL ?? ""), placeholder:#imageLiteral(resourceName: "placeholder.png") )
+        switch provider.jobTitle {
+        case "Barber":
+            cell.providerRating.text = "4.5"
+            cell.providerDistance.text = "2.9 Mi."
+        case "Hair Stylist":
+            cell.providerRating.text = "5.0"
+             cell.providerDistance.text = "5.0 Mi."
+        default:
+            cell.providerRating.text = "3.5"
+             cell.providerDistance.text = "3.25 Mi."
+        }
         return cell
     }
     

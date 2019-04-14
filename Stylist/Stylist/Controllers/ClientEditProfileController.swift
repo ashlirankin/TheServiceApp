@@ -17,6 +17,7 @@ class ClientEditProfileController: UITableViewController {
     
     public var stylistUser: StylistsUser!
     
+    
     private lazy var imagePickerController: UIImagePickerController = {
         let ip = UIImagePickerController()
         ip.delegate = self
