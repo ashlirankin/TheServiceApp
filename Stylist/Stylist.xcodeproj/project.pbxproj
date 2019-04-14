@@ -73,6 +73,8 @@
 		D6B4BF6D225E384300F1E48C /* IBDesignableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4BF6C225E384300F1E48C /* IBDesignableViews.swift */; };
 		D6FE74EA2261138600B4A49A /* FilterProviders.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6FE74E92261138600B4A49A /* FilterProviders.storyboard */; };
 		D6FE74EC22611A1B00B4A49A /* FilterProvidersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE74EB22611A1B00B4A49A /* FilterProvidersController.swift */; };
+		D6FE75152263EDA500B4A49A /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE75132263EDA500B4A49A /* ServiceCell.swift */; };
+		D6FE75162263EDA500B4A49A /* ServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6FE75142263EDA500B4A49A /* ServiceCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +164,8 @@
 		D6B4BF6C225E384300F1E48C /* IBDesignableViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignableViews.swift; sourceTree = "<group>"; };
 		D6FE74E92261138600B4A49A /* FilterProviders.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FilterProviders.storyboard; sourceTree = "<group>"; };
 		D6FE74EB22611A1B00B4A49A /* FilterProvidersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterProvidersController.swift; sourceTree = "<group>"; };
+		D6FE75132263EDA500B4A49A /* ServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
+		D6FE75142263EDA500B4A49A /* ServiceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceCell.xib; sourceTree = "<group>"; };
 		D89AABB01908945DBC5625A6 /* Pods_Stylist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stylist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD7F5DBCC2AE867436738D1 /* Pods_StylistTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StylistTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -213,6 +217,8 @@
 				09DCD30C225E7E5D0090EE1F /* ProviderDetailReviews.xib */,
 				09DCD30E225E7F7D0090EE1F /* ProviderDetailReviews.swift */,
 				098E826A2260CE5C0023E41B /* PortfolioCell.xib */,
+				D6FE75132263EDA500B4A49A /* ServiceCell.swift */,
+				D6FE75142263EDA500B4A49A /* ServiceCell.xib */,
 			);
 			path = nibs;
 			sourceTree = "<group>";
@@ -459,6 +465,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E7739BE22601267004C188A /* Entrance.storyboard in Resources */,
+				D6FE75162263EDA500B4A49A /* ServiceCell.xib in Resources */,
 				09DCD309225E66C30090EE1F /* ProviderDetailAvailability.xib in Resources */,
 				2E90A61A2261124A0016462C /* BookService.storyboard in Resources */,
 				094DF88B225D2835001EA2FE /* UserDetailHeader.xib in Resources */,
@@ -647,6 +654,7 @@
 				2EBDDBCE225B91AD00583BC0 /* StorageService.swift in Sources */,
 				2EBDDBD0225B91D600583BC0 /* AuthService.swift in Sources */,
 				09DCD307225E50EA0090EE1F /* ProviderBio.swift in Sources */,
+				D6FE75152263EDA500B4A49A /* ServiceCell.swift in Sources */,
 				2EF1039C2255314A0030FBFF /* AppDelegate.swift in Sources */,
 				2E90A61C226112620016462C /* BookingViewController.swift in Sources */,
 				09DCD30B225E69860090EE1F /* ProviderAvailability.swift in Sources */,

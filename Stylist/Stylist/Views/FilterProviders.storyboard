@@ -20,7 +20,7 @@
                         <sections>
                             <tableViewSection headerTitle="Gender" id="PhB-0H-ZJP">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="lWN-c0-CvQ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GenderCell" id="lWN-c0-CvQ">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lWN-c0-CvQ" id="BEX-hE-nQP">
@@ -64,7 +64,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Profession" id="KZU-kl-g9u">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="h1d-Qr-amU">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfessionCell" id="h1d-Qr-amU">
                                         <rect key="frame" x="0.0" y="100" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h1d-Qr-amU" id="UNI-oT-EG8">
@@ -104,30 +104,12 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Services" id="kJg-LN-a98">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="H9D-qd-6rN">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ServiceCell" id="H9D-qd-6rN">
                                         <rect key="frame" x="0.0" y="172" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H9D-qd-6rN" id="l16-1z-fxb">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ZL-b1-wsk">
-                                                    <rect key="frame" x="20" y="11" width="39" height="22"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="EuB-Ry-bsI">
-                                                    <rect key="frame" x="345" y="6.5" width="51" height="31"/>
-                                                </switch>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="0ZL-b1-wsk" firstAttribute="leading" secondItem="l16-1z-fxb" secondAttribute="leadingMargin" id="3b2-OQ-rSU"/>
-                                                <constraint firstItem="EuB-Ry-bsI" firstAttribute="centerY" secondItem="l16-1z-fxb" secondAttribute="centerY" id="ff5-pn-lMJ"/>
-                                                <constraint firstItem="0ZL-b1-wsk" firstAttribute="top" secondItem="l16-1z-fxb" secondAttribute="topMargin" id="lU1-vq-biz"/>
-                                                <constraint firstAttribute="trailing" secondItem="EuB-Ry-bsI" secondAttribute="trailing" constant="20" id="mP0-wa-FMY"/>
-                                                <constraint firstItem="0ZL-b1-wsk" firstAttribute="bottom" secondItem="l16-1z-fxb" secondAttribute="bottomMargin" id="yhn-3t-D56"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -142,6 +124,11 @@
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="Ga4-IE-PxW"/>
                         <barButtonItem key="rightBarButtonItem" title="Search" id="nzn-T5-KTG"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="genderCell" destination="lWN-c0-CvQ" id="KpS-P2-hYW"/>
+                        <outlet property="professionCell" destination="h1d-Qr-amU" id="BKL-jj-4R0"/>
+                        <outlet property="servicesCell" destination="H9D-qd-6rN" id="vHa-KY-XKO"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S8c-Fv-sIo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
