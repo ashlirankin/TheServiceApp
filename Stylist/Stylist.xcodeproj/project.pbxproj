@@ -206,11 +206,8 @@
 				09DCD314225EA5C20090EE1F /* DiscoverTableViewCell.swift */,
 				09481796225F9ACC0026C066 /* BookingTableViewCell.swift */,
 				098E826C2260CE8E0023E41B /* PortfolioCollectionViewCell.swift */,
-<<<<<<< HEAD
 				D6FE75172265118A00B4A49A /* ProfessionCell.swift */,
-=======
 				095BF72C2264E68D00F416ED /* UserProfileTableViewCell.swift */,
->>>>>>> 7ada05003f72094f19c87c667ba0df10360c4a15
 			);
 			path = Cells;
 			sourceTree = "<group>";

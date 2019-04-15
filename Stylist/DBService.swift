@@ -122,8 +122,7 @@ final class DBService {
             }
         }
     }
-<<<<<<< HEAD
-    
+
     static func getServices(completionHandler: @escaping ([Service]?, Error?) -> Void) {
         firestoreDB.collection("stockServices")
             .getDocuments { (snapshot, error) in
@@ -135,10 +134,6 @@ final class DBService {
             }
         }
     }
-=======
->>>>>>> 7ada05003f72094f19c87c667ba0df10360c4a15
-  
-  
 }
 
 
