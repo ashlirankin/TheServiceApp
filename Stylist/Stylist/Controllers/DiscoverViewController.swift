@@ -28,7 +28,6 @@ class DiscoverViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         getServices()
-        
     }
     
     func  getServices() {
@@ -52,8 +51,6 @@ class DiscoverViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
-      
-      
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
