@@ -11,4 +11,8 @@ import UIKit
 class ServiceCell: UITableViewCell {
     @IBOutlet weak var ServiceLabel: UILabel!
     @IBOutlet weak var ServiceSwitch: UISwitch!
+    
+    public func configureCell() {
+        
+    }
 }
