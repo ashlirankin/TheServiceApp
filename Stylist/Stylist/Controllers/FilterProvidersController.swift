@@ -26,7 +26,7 @@ class FilterProvidersController: UITableViewController {
     
     let professions: [Profession] = [.barber, .hairdresser, .makeup]
     let genders: [Gender] = [.male, .female, .other]
-    var services = [String]() {
+    var services = ["Cut", "Shampoo"] {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -38,9 +38,10 @@ class FilterProvidersController: UITableViewController {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "ServiceCell", bundle: nil), forCellReuseIdentifier: "ServiceCell")
         
-        fetchAllServices()
+        //fetchAllServices()
     }
     
+    // change this function
     private func fetchAllServices() {
         var allServices = [String]()
         DBService.getServices { (professionServices, error) in
@@ -74,12 +75,10 @@ extension FilterProvidersController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 4 {
-            
-            print("test")
-//            guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: "ServiceCell") as? ServiceCell else { fatalError("ServiceCell is nil") }
-//            let currentServiceName = services[indexPath.row]
-//            serviceCell.ServiceLabel.text = currentServiceName
-//            return serviceCell
+            guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: "ServiceCell") as? ServiceCell else { fatalError("ServiceCell is nil") }
+            let currentServiceName = services[indexPath.row]
+            serviceCell.ServiceLabel.text = currentServiceName
+            return serviceCell
         }
         return super.tableView(tableView, cellForRowAt: indexPath)
     }
