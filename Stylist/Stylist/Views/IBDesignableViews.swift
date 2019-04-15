@@ -21,7 +21,7 @@ class CircularButton: UIButton {
 }
 
 @IBDesignable
-class RoundedButton: UIButton {
+class RoundedImageButton: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews()
         imageView?.contentMode = .scaleAspectFill
@@ -29,6 +29,21 @@ class RoundedButton: UIButton {
         layer.borderColor = UIColor.lightGray.cgColor
         layer.borderWidth = 0.5
         clipsToBounds = true
+    }
+}
+
+@IBDesignable
+class RoundedTextButton: UIButton {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        backgroundColor = .darkGray
+        layer.cornerRadius = self.frame.height / 2
+        setTitleColor(.white, for: .normal)
+        
+        layer.shadowColor = UIColor.red.cgColor
+        layer.shadowRadius = 6
+        layer.shadowOpacity = 0.5
+        layer.shadowOffset = CGSize(width: 0, height: 0)
     }
 }
 

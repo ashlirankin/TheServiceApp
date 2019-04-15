@@ -37,7 +37,8 @@ class ClientEditProfileController: UITableViewController {
             profileImageView.kf.indicatorType = .activity
             profileImageView.kf.setImage(with: URL(string: imageURL), placeholder: #imageLiteral(resourceName: "placeholder.png"))
         }
-        firstNameTextField.text = stylistUser.fullName
+        firstNameTextField.text = stylistUser.firstName ?? ""
+        lastNameTextField.text = stylistUser.lastName ?? ""
     }
     
     @IBAction func changeProfilePicButtonPressed(_ sender: UIButton) {
