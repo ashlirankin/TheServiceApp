@@ -31,6 +31,10 @@
 		291F30A20B9AEA8931FF3E32 /* Pods_FirebaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F0689D22A995E41D8C2C56 /* Pods_FirebaseTests.framework */; };
 		2E5E74D9225FB6A8003D370F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5E74D7225FB6A3003D370F /* Service.swift */; };
 		2E7739BE22601267004C188A /* Entrance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7739BD22601267004C188A /* Entrance.storyboard */; };
+		2E90A61A2261124A0016462C /* BookService.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E90A6192261124A0016462C /* BookService.storyboard */; };
+		2E90A61C226112620016462C /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90A61B226112620016462C /* BookingViewController.swift */; };
+		2E90A61E22611A010016462C /* ServicesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90A61D22611A010016462C /* ServicesCollectionViewCell.swift */; };
+		2E90A62022611B4F0016462C /* AvalibilityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90A61F22611B4F0016462C /* AvalibilityCollectionViewCell.swift */; };
 		2E9DD7C82257A8A300D74DD1 /* FirebaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7C72257A8A300D74DD1 /* FirebaseTests.swift */; };
 		2E9DD7D02257C93E00D74DD1 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7CF2257C93E00D74DD1 /* DBService.swift */; };
 		2E9DD7D42257E7FD00D74DD1 /* ServiceProvider.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */; };
@@ -62,11 +66,15 @@
 		2EF103D12255A4E90030FBFF /* StylistCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF103D02255A4E90030FBFF /* StylistCollectionKeys.swift */; };
 		2EF103D32255ABA10030FBFF /* Avalibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF103D22255ABA10030FBFF /* Avalibility.swift */; };
 		2EF103D52255AE060030FBFF /* Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF103D42255AE060030FBFF /* Days.swift */; };
+		2EFC36472264E2E5001B54F8 /* ProviderServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFC36462264E2E5001B54F8 /* ProviderServices.swift */; };
+		2EFC364922651FEC001B54F8 /* OrderSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFC364822651FEC001B54F8 /* OrderSummaryTableViewCell.swift */; };
 		45864F51225D0449005FDBD5 /* ReviewAndRatings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45864F50225D0449005FDBD5 /* ReviewAndRatings.storyboard */; };
 		45864F53225D124A005FDBD5 /* RatingsAndReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45864F52225D124A005FDBD5 /* RatingsAndReviewViewController.swift */; };
 		45864F5A225FDD1D005FDBD5 /* ClientEditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45864F59225FDD1D005FDBD5 /* ClientEditProfileController.swift */; };
 		8F8138881EF44484D5275681 /* Pods_Stylist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D89AABB01908945DBC5625A6 /* Pods_Stylist.framework */; };
 		D6B4BF6D225E384300F1E48C /* IBDesignableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4BF6C225E384300F1E48C /* IBDesignableViews.swift */; };
+		D6FE74EA2261138600B4A49A /* FilterProviders.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6FE74E92261138600B4A49A /* FilterProviders.storyboard */; };
+		D6FE74EC22611A1B00B4A49A /* FilterProvidersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE74EB22611A1B00B4A49A /* FilterProvidersController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +113,10 @@
 		26FA858D08C6AC46AEBAE072 /* Pods-StylistTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylistTests.release.xcconfig"; path = "Target Support Files/Pods-StylistTests/Pods-StylistTests.release.xcconfig"; sourceTree = "<group>"; };
 		2E5E74D7225FB6A3003D370F /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		2E7739BD22601267004C188A /* Entrance.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Entrance.storyboard; sourceTree = "<group>"; };
+		2E90A6192261124A0016462C /* BookService.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BookService.storyboard; sourceTree = "<group>"; };
+		2E90A61B226112620016462C /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewController.swift; sourceTree = "<group>"; };
+		2E90A61D22611A010016462C /* ServicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCollectionViewCell.swift; sourceTree = "<group>"; };
+		2E90A61F22611B4F0016462C /* AvalibilityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvalibilityCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E9DD7C52257A8A300D74DD1 /* FirebaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FirebaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E9DD7C72257A8A300D74DD1 /* FirebaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTests.swift; sourceTree = "<group>"; };
 		2E9DD7C92257A8A300D74DD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -140,6 +152,8 @@
 		2EF103D02255A4E90030FBFF /* StylistCollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StylistCollectionKeys.swift; sourceTree = "<group>"; };
 		2EF103D22255ABA10030FBFF /* Avalibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avalibility.swift; sourceTree = "<group>"; };
 		2EF103D42255AE060030FBFF /* Days.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Days.swift; sourceTree = "<group>"; };
+		2EFC36462264E2E5001B54F8 /* ProviderServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderServices.swift; sourceTree = "<group>"; };
+		2EFC364822651FEC001B54F8 /* OrderSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		45864F50225D0449005FDBD5 /* ReviewAndRatings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReviewAndRatings.storyboard; sourceTree = "<group>"; };
 		45864F52225D124A005FDBD5 /* RatingsAndReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingsAndReviewViewController.swift; sourceTree = "<group>"; };
 		45864F59225FDD1D005FDBD5 /* ClientEditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientEditProfileController.swift; sourceTree = "<group>"; };
@@ -150,6 +164,8 @@
 		AD1D5ADFD62A113C77C9D79E /* Pods-FirebaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseTests.debug.xcconfig"; path = "Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C9F0689D22A995E41D8C2C56 /* Pods_FirebaseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FirebaseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6B4BF6C225E384300F1E48C /* IBDesignableViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignableViews.swift; sourceTree = "<group>"; };
+		D6FE74E92261138600B4A49A /* FilterProviders.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FilterProviders.storyboard; sourceTree = "<group>"; };
+		D6FE74EB22611A1B00B4A49A /* FilterProvidersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterProvidersController.swift; sourceTree = "<group>"; };
 		D89AABB01908945DBC5625A6 /* Pods_Stylist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stylist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD7F5DBCC2AE867436738D1 /* Pods_StylistTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StylistTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -279,12 +295,17 @@
 		2EF103C32255A4540030FBFF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2EFC364822651FEC001B54F8 /* OrderSummaryTableViewCell.swift */,
+				2E90A61D22611A010016462C /* ServicesCollectionViewCell.swift */,
+				2E90A61F22611B4F0016462C /* AvalibilityCollectionViewCell.swift */,
 				D6B4BF6C225E384300F1E48C /* IBDesignableViews.swift */,
 				09A9D53F225BA8BB00DFB5E2 /* nibs */,
 				2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */,
 				2E9DD7D52257E80900D74DD1 /* User.storyboard */,
+				2E90A6192261124A0016462C /* BookService.storyboard */,
 				45864F50225D0449005FDBD5 /* ReviewAndRatings.storyboard */,
 				2E7739BD22601267004C188A /* Entrance.storyboard */,
+				D6FE74E92261138600B4A49A /* FilterProviders.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -292,6 +313,7 @@
 		2EF103C62255A48C0030FBFF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2E90A61B226112620016462C /* BookingViewController.swift */,
 				2EBDDC1F225D2E9400583BC0 /* OnboardingTableViewController.swift */,
 				2EBDDC1B225D0A7800583BC0 /* BaseViewController.swift */,
 				2E9DD7D72257F69B00D74DD1 /* CreateViewController.swift */,
@@ -308,6 +330,7 @@
 				45864F59225FDD1D005FDBD5 /* ClientEditProfileController.swift */,
 				2E9DD7E72257FB2200D74DD1 /* ClientProfileController.swift */,
 				09DCD310225E91FA0090EE1F /* DiscoverViewController.swift */,
+				D6FE74EB22611A1B00B4A49A /* FilterProvidersController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -321,6 +344,7 @@
 				2EF103CC2255A4D20030FBFF /* Ratings.swift */,
 				2EF103CE2255A4DB0030FBFF /* Reviews.swift */,
 				2EF103D02255A4E90030FBFF /* StylistCollectionKeys.swift */,
+				2EFC36462264E2E5001B54F8 /* ProviderServices.swift */,
 				2EF103D22255ABA10030FBFF /* Avalibility.swift */,
 				2EF103D42255AE060030FBFF /* Days.swift */,
 			);
@@ -442,6 +466,7 @@
 			files = (
 				2E7739BE22601267004C188A /* Entrance.storyboard in Resources */,
 				09DCD309225E66C30090EE1F /* ProviderDetailAvailability.xib in Resources */,
+				2E90A61A2261124A0016462C /* BookService.storyboard in Resources */,
 				094DF88B225D2835001EA2FE /* UserDetailHeader.xib in Resources */,
 				2EF103A62255314C0030FBFF /* LaunchScreen.storyboard in Resources */,
 				2EF103AE22553D5E0030FBFF /* GoogleService-Info.plist in Resources */,
@@ -452,6 +477,7 @@
 				09DCD30D225E7E5D0090EE1F /* ProviderDetailReviews.xib in Resources */,
 				2E9DD7D62257E80900D74DD1 /* User.storyboard in Resources */,
 				2E9DD7D42257E7FD00D74DD1 /* ServiceProvider.storyboard in Resources */,
+				D6FE74EA2261138600B4A49A /* FilterProviders.storyboard in Resources */,
 				45864F51225D0449005FDBD5 /* ReviewAndRatings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -614,6 +640,7 @@
 				2EBDDBD8225B99B000583BC0 /* Date+Extension.swift in Sources */,
 				2EBDDBD4225B997B00583BC0 /* Alert+Extensions.swift in Sources */,
 				2E9DD7DA2257F6A800D74DD1 /* LoginViewController.swift in Sources */,
+				2EFC36472264E2E5001B54F8 /* ProviderServices.swift in Sources */,
 				09DCD30F225E7F7D0090EE1F /* ProviderDetailReviews.swift in Sources */,
 				2E9DD7D82257F69B00D74DD1 /* CreateViewController.swift in Sources */,
 				45864F53225D124A005FDBD5 /* RatingsAndReviewViewController.swift in Sources */,
@@ -628,25 +655,30 @@
 				2EBDDBD0225B91D600583BC0 /* AuthService.swift in Sources */,
 				09DCD307225E50EA0090EE1F /* ProviderBio.swift in Sources */,
 				2EF1039C2255314A0030FBFF /* AppDelegate.swift in Sources */,
+				2E90A61C226112620016462C /* BookingViewController.swift in Sources */,
 				09DCD30B225E69860090EE1F /* ProviderAvailability.swift in Sources */,
 				2E9DD7E22257F95800D74DD1 /* ServiceConfirmedController.swift in Sources */,
 				09DCD311225E91FA0090EE1F /* DiscoverViewController.swift in Sources */,
 				2EF103CF2255A4DB0030FBFF /* Reviews.swift in Sources */,
 				2EF103CD2255A4D20030FBFF /* Ratings.swift in Sources */,
+				2EFC364922651FEC001B54F8 /* OrderSummaryTableViewCell.swift in Sources */,
 				098E826D2260CE8E0023E41B /* PortfolioCollectionViewCell.swift in Sources */,
 				2E9DD7DC2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift in Sources */,
 				094DF892225D492D001EA2FE /* ProviderDetailCustomCell.swift in Sources */,
 				D6B4BF6D225E384300F1E48C /* IBDesignableViews.swift in Sources */,
+				D6FE74EC22611A1B00B4A49A /* FilterProvidersController.swift in Sources */,
 				09A9D545225BDAF200DFB5E2 /* ServiceBioView.swift in Sources */,
 				094DF88F225D2EB8001EA2FE /* UserDetailView.swift in Sources */,
 				09DCD315225EA5C20090EE1F /* DiscoverTableViewCell.swift in Sources */,
 				09481797225F9ACC0026C066 /* BookingTableViewCell.swift in Sources */,
 				2E9DD7EC2257FC4100D74DD1 /* ClientSearchController.swift in Sources */,
 				2E9DD7E42257F9C000D74DD1 /* ServiceMessageViewController.swift in Sources */,
+				2E90A61E22611A010016462C /* ServicesCollectionViewCell.swift in Sources */,
 				2EF103D12255A4E90030FBFF /* StylistCollectionKeys.swift in Sources */,
 				2EF103D32255ABA10030FBFF /* Avalibility.swift in Sources */,
 				2E5E74D9225FB6A8003D370F /* Service.swift in Sources */,
 				2EF103D52255AE060030FBFF /* Days.swift in Sources */,
+				2E90A62022611B4F0016462C /* AvalibilityCollectionViewCell.swift in Sources */,
 				2EF103CB2255A4C00030FBFF /* StylistsUsers.swift in Sources */,
 				2E9DD7EA2257FC0C00D74DD1 /* ClientBookingsController.swift in Sources */,
 				09A9D547225BE7A200DFB5E2 /* PortfolioView.swift in Sources */,
