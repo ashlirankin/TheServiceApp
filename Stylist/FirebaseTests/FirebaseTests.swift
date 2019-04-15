@@ -23,6 +23,23 @@ class FirebaseTests: XCTestCase {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
   }
   
+  func testFetchProviderServices() {
+    let exp = expectation(description: "fetched services")
+    DBService.firestoreDB
+      .collection("serviceProvider")
+      .document("4UathYHKvyXZV739xBD9FaJFH2D2")
+      .collection("services")
+      .getDocuments { (snapshot, error) in
+        if let error = error {
+          XCTFail("failed to fetch services: \(error.localizedDescription)")
+        } else if let snapshot = snapshot {
+          exp.fulfill()
+          XCTAssertEqual(snapshot.documents.count, 1, "count should be more than 0")
+        }
+    }
+    wait(for: [exp], timeout: 3.0)
+  }
+  
   func testcreateAuthUser(){
     let email = "jianting@gmail.com"
     let password = "123456"
