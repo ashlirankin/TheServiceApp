@@ -108,28 +108,9 @@ extension BookingViewController:UICollectionViewDelegateFlowLayout{
     }
   }
   
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
-    switch tableView {
-    case serviceSummary:
-      guard let cell = serviceSummary.dequeueReusableCell(withIdentifier: "summaryCell", for: indexPath) as? OrderSummaryTableViewCell else {fatalError("no summary cell found")}
-      
-      return cell
-    default:
-      
-    return UITableViewCell()
-      
-    }
+  
   }
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    switch tableView {
-    case serviceSummary:
-      return 4
-    default:
-      return 1
-    }
-  }
-}
+
 extension BookingViewController:UICollectionViewDataSource{
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     switch collectionView {
