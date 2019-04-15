@@ -55,14 +55,14 @@ class RatingsAndReviewViewController: UIViewController {
             return
         }
 
-        let rating = Ratings(ratingId: "", value: userRating , userId: stylist.userId, raterId: loggedInUser)
+        let rating = Ratings(ratingId: "", value: userRating , userId: "4UathYHKvyXZV739xBD9FaJFH2D2", raterId: loggedInUser)
         DBService.postProviderRating(ratings: rating) { (error) in
             if let error = error {
                 print("There was an error sending the rating to firebase \(error.localizedDescription)")
             }
         }
 
-        let review = Reviews(reviewerId: loggedInUser, description: userReview, createdDate: Date.getISOTimestamp(), ratingId: "", value: userRating, reviewId: "", reviewStylist: stylist.userId)
+        let review = Reviews(reviewerId: loggedInUser, description: userReview, createdDate: Date.getISOTimestamp(), ratingId: "", value: userRating, reviewId: "", reviewStylist: "4UathYHKvyXZV739xBD9FaJFH2D2")
             
         DBService.postProviderReview(reviews: review) { (error) in
             if let error = error {
@@ -82,7 +82,7 @@ extension RatingsAndReviewViewController: UITextViewDelegate {
         }
     }
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text == "Leave a Review!" {
+        if textView.text == "" {
         textView.text = "Leave a Review!"
             textView.textColor = .lightGray
         }
