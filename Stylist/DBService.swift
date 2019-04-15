@@ -121,10 +121,9 @@ final class DBService {
                 print("review posted successfully to rating reference: \(reviews.ratingId)")
             }
         }
-        
-        
-        
     }
+  
+  
 }
 
 
