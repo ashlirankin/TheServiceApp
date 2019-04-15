@@ -43,6 +43,15 @@ class RatingsAndReviewViewController: UIViewController {
     }
     
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
+        var networkCallCount = 0 {
+            didSet {
+                if networkCallCount == 2 {
+                    navigationItem.rightBarButtonItem?.isEnabled = true
+                    dismiss(animated: true)
+                }
+            }
+        }
+        
         navigationItem.rightBarButtonItem?.isEnabled = false
         
         guard let reviewText = reviewTextView.text, !reviewText.isEmpty,
@@ -52,22 +61,30 @@ class RatingsAndReviewViewController: UIViewController {
         }
     
         guard let loggedInUser = authService.getCurrentUser()?.uid else {
+            showAlert(title: "No Logged User", message: nil , actionTitle: "Ok")
+            navigationItem.rightBarButtonItem?.isEnabled = true 
             return
         }
 
         let rating = Ratings(ratingId: "", value: userRating , userId: "4UathYHKvyXZV739xBD9FaJFH2D2", raterId: loggedInUser)
         DBService.postProviderRating(ratings: rating) { (error) in
             if let error = error {
-                print("There was an error sending the rating to firebase \(error.localizedDescription)")
+                self.showAlert(title: "Network Error", message: "There was an error sending the rating to firebase \(error.localizedDescription)", actionTitle: "Ok")
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                return
             }
+            networkCallCount += 1
         }
 
         let review = Reviews(reviewerId: loggedInUser, description: userReview, createdDate: Date.getISOTimestamp(), ratingId: "", value: userRating, reviewId: "", reviewStylist: "4UathYHKvyXZV739xBD9FaJFH2D2")
             
         DBService.postProviderReview(reviews: review) { (error) in
             if let error = error {
-                print("There was an error sending the review to firebase \(error.localizedDescription)")
+                self.showAlert(title: "Network Error", message: "There was an error sending the review to firebase \(error.localizedDescription)", actionTitle: "Ok")
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                return
             }
+            networkCallCount += 1
         }
         
     }

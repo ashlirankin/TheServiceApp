@@ -18,9 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     FirebaseApp.configure()
     window = UIWindow(frame: UIScreen.main.bounds)
     if let _ = authService.getCurrentUser(){
-        let storyboard = UIStoryboard(name: "User", bundle: nil)
-        let servicetab = storyboard.instantiateViewController(withIdentifier: "UserTabBarController")
-        window?.rootViewController = servicetab
+        let storyboard = UIStoryboard(name: "ReviewAndRatings", bundle: nil)
+        let servicetab = storyboard.instantiateViewController(withIdentifier: "addReviewsVC")
+        let navController = UINavigationController(rootViewController: servicetab)
+        window?.rootViewController = navController
         
     }else{
         let storyboard = UIStoryboard(name: "Entrance", bundle: nil)

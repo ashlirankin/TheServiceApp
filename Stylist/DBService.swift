@@ -112,7 +112,6 @@ final class DBService {
             .document(reviews.reviewStylist)
             .collection(ReviewsCollectionKeys.reviews).document().documentID
         
-        
         firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
         .document(reviews.reviewerId)
         .collection(ReviewsCollectionKeys.reviews)
