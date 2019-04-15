@@ -37,6 +37,8 @@ class FilterProvidersController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "ServiceCell", bundle: nil), forCellReuseIdentifier: "ServiceCell")
+        
+        fetchAllServices()
     }
     
     private func fetchAllServices() {
@@ -72,11 +74,12 @@ extension FilterProvidersController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 4 {
-            guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: "ServiceCell") as? ServiceCell else { fatalError("ServiceCell is nil") }
-//            serviceCell.configureCell()
-            let currentService = services[indexPath.row]
-            serviceCell.ServiceLabel.text = currentService
-            return serviceCell
+            
+            print("test")
+//            guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: "ServiceCell") as? ServiceCell else { fatalError("ServiceCell is nil") }
+//            let currentServiceName = services[indexPath.row]
+//            serviceCell.ServiceLabel.text = currentServiceName
+//            return serviceCell
         }
         return super.tableView(tableView, cellForRowAt: indexPath)
     }
