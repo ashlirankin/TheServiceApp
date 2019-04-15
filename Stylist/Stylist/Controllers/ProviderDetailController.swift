@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 
+
 class ProviderDetailController: UITableViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 300))
