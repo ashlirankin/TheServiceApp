@@ -75,6 +75,7 @@
 		D6FE74EC22611A1B00B4A49A /* FilterProvidersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE74EB22611A1B00B4A49A /* FilterProvidersController.swift */; };
 		D6FE75152263EDA500B4A49A /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE75132263EDA500B4A49A /* ServiceCell.swift */; };
 		D6FE75162263EDA500B4A49A /* ServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6FE75142263EDA500B4A49A /* ServiceCell.xib */; };
+		D6FE75182265118A00B4A49A /* ProfessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE75172265118A00B4A49A /* ProfessionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,6 +167,7 @@
 		D6FE74EB22611A1B00B4A49A /* FilterProvidersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterProvidersController.swift; sourceTree = "<group>"; };
 		D6FE75132263EDA500B4A49A /* ServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
 		D6FE75142263EDA500B4A49A /* ServiceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceCell.xib; sourceTree = "<group>"; };
+		D6FE75172265118A00B4A49A /* ProfessionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionCell.swift; sourceTree = "<group>"; };
 		D89AABB01908945DBC5625A6 /* Pods_Stylist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stylist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD7F5DBCC2AE867436738D1 /* Pods_StylistTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StylistTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -198,6 +200,7 @@
 				09DCD314225EA5C20090EE1F /* DiscoverTableViewCell.swift */,
 				09481796225F9ACC0026C066 /* BookingTableViewCell.swift */,
 				098E826C2260CE8E0023E41B /* PortfolioCollectionViewCell.swift */,
+				D6FE75172265118A00B4A49A /* ProfessionCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -640,6 +643,7 @@
 				45864F5A225FDD1D005FDBD5 /* ClientEditProfileController.swift in Sources */,
 				2EBDDBD8225B99B000583BC0 /* Date+Extension.swift in Sources */,
 				2EBDDBD4225B997B00583BC0 /* Alert+Extensions.swift in Sources */,
+				D6FE75182265118A00B4A49A /* ProfessionCell.swift in Sources */,
 				2E9DD7DA2257F6A800D74DD1 /* LoginViewController.swift in Sources */,
 				09DCD30F225E7F7D0090EE1F /* ProviderDetailReviews.swift in Sources */,
 				2E9DD7D82257F69B00D74DD1 /* CreateViewController.swift in Sources */,
