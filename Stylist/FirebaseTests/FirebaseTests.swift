@@ -180,11 +180,8 @@ We arrived at Laguna Hotel yesterday, hotel is the wrong word more like Laguna N
   }
   
   func testCreateStockCategories(){
-   
-  
     let collectionName = "stockServices"
     let exp = expectation(description: "create stock ")
-    
     DBService.firestoreDB.collection(collectionName).addDocument(data: ["jobTitle":"Makeup Artist"]) { (error) in
       if let error = error {
         XCTFail("could not create service:\(error.localizedDescription)")
@@ -192,8 +189,6 @@ We arrived at Laguna Hotel yesterday, hotel is the wrong word more like Laguna N
       exp.fulfill()
     }
     wait(for: [exp], timeout: 3.0)
-    
-    
   }
   
   func testAddingStockServices(){
@@ -227,7 +222,6 @@ We arrived at Laguna Hotel yesterday, hotel is the wrong word more like Laguna N
         }
       }
     wait(for: [exp], timeout: 3.0)
-
     }
   }
 

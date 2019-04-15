@@ -15,7 +15,14 @@ class ClientProfileController: UIViewController {
     @IBOutlet weak var clientFullNameLabel: UILabel!
     @IBOutlet weak var userRatingView: CosmosView!
     @IBOutlet weak var clientEmail: UILabel!
-    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bookingsButton: CircularButton!
+    @IBOutlet weak var historyButton: CircularButton!
+    let historyproviders = [ServiceSideUser(userId: "", firstName: "Joe", lastName: "James", email: "", joinedDate: "", gender: "Male", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "Barber", address: "", city: "", state: "", lat: "", long: "", zip: ""),
+                            ServiceSideUser(userId: "", firstName: "lisa", lastName: "lane", email: "", joinedDate: "", gender: "female", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "Hair Stylist", address: "", city: "", state: "", lat: "", long: "", zip: ""),
+                            ServiceSideUser(userId: "", firstName: "tina", lastName: "Martinez", email: "", joinedDate: "", gender: "female", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "MUA", address: "", city: "", state: "", lat: "", long: "", zip: ""),
+                            ServiceSideUser(userId: "", firstName: "chris", lastName: "thompson", email: "", joinedDate: "", gender: "Male", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "Barber", address: "", city: "", state: "", lat: "", long: "", zip: ""),
+    ]
     let authService = AuthService()
     private var stylistUser: StylistsUser? {
         didSet {
@@ -27,7 +34,10 @@ class ClientProfileController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = #colorLiteral(red: 0.2461647391, green: 0.3439296186, blue: 0.5816915631, alpha: 1)
         authService.authserviceSignOutDelegate = self
+        setupTableView()
+        updateUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,6 +59,17 @@ class ClientProfileController: UIViewController {
         }
     }
     
+    
+    @IBAction func toggleButtons(_ sender: CircularButton) {
+        if sender == bookingsButton {
+            print("bookings pressed")
+        } else  {
+            print("history pressed")
+        }
+        
+    }
+    
+    
     private func updateUI() {
         guard let user = stylistUser else { return }
         if let imageUrl = user.imageURL {
@@ -56,10 +77,25 @@ class ClientProfileController: UIViewController {
             profileImageView.kf.setImage(with: URL(string: imageUrl), placeholder: #imageLiteral(resourceName: "placeholder.png"))
         }
         clientFullNameLabel.text = user.fullName
+        clientFullNameLabel.textColor = .white
+        clientEmail.textColor = .white
         clientEmail.text = user.email
         // TODO: Set rating here also (Incomplete)
         setStylistUserRating()
     }
+    
+    private func setupTableView() {
+        historyButton.layer.borderWidth = 5
+        bookingsButton.layer.borderWidth = 5
+        historyButton.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        bookingsButton.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.layer.cornerRadius = 10
+        tableView.backgroundColor = #colorLiteral(red: 0.2462786138, green: 0.3436814547, blue: 0.5806058645, alpha: 1)
+        tableView.tableFooterView = UIView()
+    }
+    
     
     private func setStylistUserRating() {
         userRatingView.settings.updateOnTouch = false
@@ -140,4 +176,28 @@ extension ClientProfileController: MFMailComposeViewControllerDelegate {
         }
         controller.dismiss(animated: true)
     }
+}
+
+extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return historyproviders.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! UserProfileTableViewCell
+        let provider = historyproviders[indexPath.row]
+        cell.providerName.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
+        cell.providerService.text = provider.jobTitle
+        cell.providerService.textColor = .white
+        cell.backgroundColor = #colorLiteral(red: 0.2462786138, green: 0.3436814547, blue: 0.5806058645, alpha: 1)
+        cell.providerName.textColor = .white
+        cell.providerService.textColor = .white
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
+    
 }
