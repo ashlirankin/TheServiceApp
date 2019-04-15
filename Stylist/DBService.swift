@@ -81,11 +81,16 @@ final class DBService {
 
     static func postProviderRating(ratings: Ratings, completionHandler: @escaping (Error?) -> Void) {
         
+        let rateId = firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
+            .document(ratings.userId)
+            .collection(RatingsCollectionKeys.ratings).document().documentID
+        
+        
         firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
             .document(ratings.userId)
             .collection(RatingsCollectionKeys.ratings)
             .document().setData([
-                        RatingsCollectionKeys.ratingId : ratings.ratingId,
+                        RatingsCollectionKeys.ratingId : rateId,
                         RatingsCollectionKeys.value: ratings.value,
                         RatingsCollectionKeys.raterId: ratings.raterId,
                         RatingsCollectionKeys.userId: ratings.userId
@@ -103,6 +108,11 @@ final class DBService {
 
     static func postProviderReview(reviews: Reviews, completionHandler: @escaping (Error?) -> Void) {
         
+        let reviewId = firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
+            .document(reviews.reviewStylist)
+            .collection(ReviewsCollectionKeys.reviews).document().documentID
+        
+        
         firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
         .document(reviews.reviewerId)
         .collection(ReviewsCollectionKeys.reviews)
@@ -111,7 +121,9 @@ final class DBService {
             ReviewsCollectionKeys.createdDate : reviews.createdDate,
             ReviewsCollectionKeys.description : reviews.description,
             ReviewsCollectionKeys.ratingId : reviews.ratingId,
-            ReviewsCollectionKeys.value : reviews.value    
+            ReviewsCollectionKeys.value : reviews.value,
+            ReviewsCollectionKeys.reviewId : reviewId,
+            ReviewsCollectionKeys.reviewStylist : reviews.reviewStylist
         ]) { (error) in
             if let error = error {
                 completionHandler(error)
