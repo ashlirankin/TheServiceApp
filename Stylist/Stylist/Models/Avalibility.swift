@@ -11,23 +11,21 @@ import Foundation
 struct Avalibility {
   let userId:String
   let avalibilityId:String
-  let dayName:String
-  let day:Days
-  let createdDate:String
+  let currentDate:String
+  let avalibleHours: [String]
+
   
-  init(userId:String,avalibilityId:String,dayName:String,day:Days,createdDate:String){
+  init(userId:String,avalibilityId:String,currentDate:String,avalibleHours:[String]){
     self.userId = userId
     self.avalibilityId = avalibilityId
-    self.dayName = dayName
-    self.day = day
-    self.createdDate = createdDate
+    self.avalibleHours = avalibleHours
+    self.currentDate = currentDate
   }
   init(dict:[String:Any]){
     
     self.userId = dict[AvalibilityCollectionKeys.userId] as? String ?? "no user found for avalibility"
-    self.avalibilityId = dict[AvalibilityCollectionKeys.avalibilityId] as? String ?? "no avalibility id found"
-    self.dayName = dict[AvalibilityCollectionKeys.dayName] as? String ?? "no dayName found"
-    self.createdDate = dict[AvalibilityCollectionKeys.createdDate] as? String ?? "no created date found"
-    self.day = (dict[AvalibilityCollectionKeys.days] as? Days)! 
+    self.avalibilityId = dict[AvalibilityCollectionKeys.avalibility] as? String ?? "no avalibility id found"
+   self.avalibleHours = dict["avalibleHours"] as? [String] ?? [String]()
+    self.currentDate =  dict["currentDate"] as? String ?? "no current date found"
   }
 }
