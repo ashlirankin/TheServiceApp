@@ -62,15 +62,15 @@ struct ReviewsCollectionKeys{
     static let ratingId = "ratingId"
     static let description = "description"
     static let createdDate = "createdDate"
+    static let reviewId = "reviewId"
+    static let reviewStylist = "reviewStylist"
 }
 
 struct AvalibilityCollectionKeys{
   static let avalibility = "avalibility"
   static let userId = "userId"
-  static let avalibilityId = "avalibility"
-  static let dayName = "dayName"
-  static let createdDate = "createdDate"
-  static let days = "days"
+  static let currentDate = "currentDate"
+  static let avalibleHours = "avalibleHours"
 }
 
 struct DaysCollectionKeys{
@@ -81,6 +81,10 @@ struct DaysCollectionKeys{
 }
 struct ServicesCollectionKeys {
   static let CollectionName = "stockServices"
+  static let subCollectionName = "services"
   static let jobTitle =  "jobTitle"
   static let services = "services"
+  static let price = "price"
+  static let serviceName = "serviceName"
+  static let serviceId = "serviceId"
 }
