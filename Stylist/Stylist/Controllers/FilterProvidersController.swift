@@ -8,25 +8,47 @@
 
 import UIKit
 
-enum Profession: String {
+enum Profession: String, CaseIterable {
     case barber = "Barber"
     case hairdresser = "Hairdresser"
     case makeup = "Makeup Artist"
+    
+    static func fetchAllProfessions() -> [Profession] {
+        var professions = [Profession]()
+        for profession in Profession.allCases {
+            professions.append(profession)
+        }
+        return professions
+    }
 }
 
-enum Gender: String {
+enum Gender: String, CaseIterable {
     case male = "Male"
     case female = "Female"
     case other = "Other"
+    
+    static func fetchAllGenders() -> [Gender] {
+        var genders = [Gender]()
+        for gender in Gender.allCases {
+            genders.append(gender)
+        }
+        return genders
+    }
 }
 
 class FilterProvidersController: UITableViewController {
     
+    @IBOutlet weak var professionsCollectionView: UICollectionView!
     
-    
-    let professions: [Profession] = [.barber, .hairdresser, .makeup]
-    let genders: [Gender] = [.male, .female, .other]
-    var services = ["Cut", "Shampoo"] {
+    let allGenders = Gender.fetchAllGenders()
+    var allProfessions = [Profession]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.professionsCollectionView.reloadData()
+            }
+        }
+    }
+    var allServices = [String]() {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -36,31 +58,58 @@ class FilterProvidersController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "ServiceCell", bundle: nil), forCellReuseIdentifier: "ServiceCell")
-        
-        //fetchAllServices()
+        tableView.register(UINib(nibName: "ServicesCell", bundle: nil), forCellReuseIdentifier: "ServicesCell")
+        professionsCollectionView.dataSource = self
+        professionsCollectionView.delegate = self
+        fetchAllServices()
     }
     
-    // change this function
     private func fetchAllServices() {
-        var allServices = [String]()
         DBService.getServices { (professionServices, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else if let professionServices = professionServices {
-                for professionService in professionServices {
-                    for offerService in professionService.services {
-                        allServices.append(offerService)
-                    }
-                }
-                self.services = allServices
+                self.allServices = professionServices.map { $0.services }
+                        .flatMap{ $0 }
+                        .filter{ $0 != "Other"}
             }
         }
     }
     
+    @IBAction func availableNowButtonPressed(_ sender: RoundedTextButton) {
+        // use a state to indicate whether it's available now or not
+        self.allServices = ["Cut", "Shampoo"]
+    }
+    
+    @IBAction func genderButtonPressed(_ sender: RoundedTextButton) {
+        switch sender.tag {
+        case 0: // male
+            break
+        case 1: // female
+            break
+        case 2: // other
+            break
+        default:
+            break
+        }
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
+    }
+    
+    @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
+    }
+    
 }
 
-// Mark: Setup TableView
+// MARK: Actions
+extension FilterProvidersController {
+    
+}
+
+// MARK: Setup TableView (Filters)
 extension FilterProvidersController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 5
@@ -68,17 +117,24 @@ extension FilterProvidersController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 4 {
-            return services.count
+            return allServices.count
         }
         return super.tableView(tableView, numberOfRowsInSection: section)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 4 {
-            guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: "ServiceCell") as? ServiceCell else { fatalError("ServiceCell is nil") }
-            let currentServiceName = services[indexPath.row]
-            serviceCell.ServiceLabel.text = currentServiceName
-            return serviceCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ServicesCell", for: indexPath) as! ServicesCell
+
+            let currentServiceName = allServices[indexPath.row]
+            cell.serviceNameLabel.text = currentServiceName
+            cell.serviceSwitch.tag = indexPath.row
+            return cell
+        }
+        else if indexPath.section == 2 {
+            guard let professionCell = tableView.dequeueReusableCell(withIdentifier: "ProfessionCell") else { return UITableViewCell()}
+            return professionCell
+          
         }
         return super.tableView(tableView, cellForRowAt: indexPath)
     }
@@ -97,5 +153,33 @@ extension FilterProvidersController {
             return 45
         }
         return super.tableView(tableView, heightForRowAt: indexPath)
+    }
+}
+
+// MARK: Setup CollectionView (Profession Filter)
+extension FilterProvidersController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return allProfessions.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let professionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfessionCell", for: indexPath) as? ProfessionCell else {
+            fatalError("ProfessionCell is nil")
+        }
+        let currentProfession = allProfessions[indexPath.row]
+        professionCell.professionLabel.text = currentProfession.rawValue
+        return professionCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // set filter here for profession
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 126, height: 31)
     }
 }

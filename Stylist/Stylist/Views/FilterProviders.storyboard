@@ -34,6 +34,9 @@
                                                         <constraint firstAttribute="height" constant="30" id="iIZ-nk-oNE"/>
                                                     </constraints>
                                                     <state key="normal" title="Available Now"/>
+                                                    <connections>
+                                                        <action selector="availableNowButtonPressed:" destination="1HN-1I-IUk" eventType="touchUpInside" id="ljk-la-q98"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -63,8 +66,11 @@
                                                     <state key="normal" title="Male">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="genderButtonPressed:" destination="1HN-1I-IUk" eventType="touchUpInside" id="yej-LR-zR9"/>
+                                                    </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NQ5-lc-TUe" customClass="RoundedTextButton" customModule="Stylist" customModuleProvider="target">
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NQ5-lc-TUe" customClass="RoundedTextButton" customModule="Stylist" customModuleProvider="target">
                                                     <rect key="frame" x="100" y="7" width="70" height="30"/>
                                                     <color key="backgroundColor" red="0.90303797370000005" green="1" blue="0.994254741" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
@@ -74,8 +80,11 @@
                                                     <state key="normal" title="Female">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="genderButtonPressed:" destination="1HN-1I-IUk" eventType="touchUpInside" id="D0n-7C-miH"/>
+                                                    </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYC-WG-1cY" customClass="RoundedTextButton" customModule="Stylist" customModuleProvider="target">
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYC-WG-1cY" customClass="RoundedTextButton" customModule="Stylist" customModuleProvider="target">
                                                     <rect key="frame" x="190" y="7" width="60" height="30"/>
                                                     <color key="backgroundColor" red="0.90303797370000005" green="1" blue="0.994254741" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
@@ -85,6 +94,9 @@
                                                     <state key="normal" title="Other">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="genderButtonPressed:" destination="1HN-1I-IUk" eventType="touchUpInside" id="fBb-Ov-7H6"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -205,7 +217,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Services" id="kJg-LN-a98">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ServiceCell" id="CVh-0i-10h" customClass="ServiceCell" customModule="Stylist" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="CVh-0i-10h">
                                         <rect key="frame" x="0.0" y="316" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CVh-0i-10h" id="DOW-1f-g05">
@@ -222,9 +234,20 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="3hh-ax-2W3">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Ga4-IE-PxW"/>
-                        <barButtonItem key="rightBarButtonItem" title="Search" id="nzn-T5-KTG"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Ga4-IE-PxW">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="1HN-1I-IUk" id="xTa-EB-1fo"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Search" id="nzn-T5-KTG">
+                            <connections>
+                                <action selector="searchButtonPressed:" destination="1HN-1I-IUk" id="IrZ-Ec-g3C"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="professionsCollectionView" destination="SMR-yi-ZQz" id="9Z9-EJ-3fW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S8c-Fv-sIo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
