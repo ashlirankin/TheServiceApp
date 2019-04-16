@@ -79,32 +79,21 @@ final class DBService {
     
     
     static func postProviderRating(ratings: Ratings, completionHandler: @escaping (Error?) -> Void) {
-<<<<<<< HEAD
-=======
         
         let rateId = firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
             .document(ratings.userId)
             .collection(RatingsCollectionKeys.ratings).document().documentID
         
         
->>>>>>> ee5021bc64829f6a504869e0fa2fb49f139f0626
         firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
             .document(ratings.userId)
             .collection(RatingsCollectionKeys.ratings)
             .document().setData([
-<<<<<<< HEAD
-                RatingsCollectionKeys.ratingId : ratings.ratingId,
-                RatingsCollectionKeys.value: ratings.value,
-                RatingsCollectionKeys.raterId: ratings.raterId,
-                RatingsCollectionKeys.userId: ratings.userId
-                
-=======
                         RatingsCollectionKeys.ratingId : rateId,
                         RatingsCollectionKeys.value: ratings.value,
                         RatingsCollectionKeys.raterId: ratings.raterId,
                         RatingsCollectionKeys.userId: ratings.userId
-                        
->>>>>>> ee5021bc64829f6a504869e0fa2fb49f139f0626
+
             ]) { (error) in
                 if let error = error {
                     completionHandler(error)
@@ -122,26 +111,7 @@ final class DBService {
             .document(reviews.reviewStylist)
             .collection(ReviewsCollectionKeys.reviews).document().documentID
         
-        
         firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
-<<<<<<< HEAD
-            .document(reviews.reviewerId)
-            .collection(ReviewsCollectionKeys.reviews)
-            .document().setData([
-                ReviewsCollectionKeys.reviewerId  : reviews.reviewerId,
-                ReviewsCollectionKeys.createdDate : reviews.createdDate,
-                ReviewsCollectionKeys.description : reviews.description,
-                ReviewsCollectionKeys.ratingId : reviews.ratingId,
-                ReviewsCollectionKeys.value : reviews.value
-            ]) { (error) in
-                if let error = error {
-                    completionHandler(error)
-                    print("there was an error with the postProviderReview: \(error.localizedDescription)")
-                } else {
-                    completionHandler(nil)
-                    print("review posted successfully to rating reference: \(reviews.ratingId)")
-                }
-=======
         .document(reviews.reviewerId)
         .collection(ReviewsCollectionKeys.reviews)
         .document().setData([
@@ -160,7 +130,6 @@ final class DBService {
                 completionHandler(nil)
                 print("review posted successfully to rating reference: \(reviews.ratingId)")
             }
->>>>>>> ee5021bc64829f6a504869e0fa2fb49f139f0626
         }
     }
     
