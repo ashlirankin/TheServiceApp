@@ -20,7 +20,7 @@
                         <sections>
                             <tableViewSection headerTitle="Availability" id="K4Z-oe-ey8">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ServiceCell" id="VAU-32-OFl">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ServiceCell" id="VAU-32-OFl">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VAU-32-OFl" id="45q-m3-oxN">
@@ -49,7 +49,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Gender" id="PhB-0H-ZJP">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GenderCell" id="lWN-c0-CvQ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="GenderCell" id="lWN-c0-CvQ">
                                         <rect key="frame" x="0.0" y="100" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lWN-c0-CvQ" id="BEX-hE-nQP">
@@ -113,57 +113,60 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Profession" id="KZU-kl-g9u">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfessionCell" id="h1d-Qr-amU">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="BD0-t6-OAV">
                                         <rect key="frame" x="0.0" y="172" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h1d-Qr-amU" id="UNI-oT-EG8">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BD0-t6-OAV" id="YFZ-i5-FhP">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SMR-yi-ZQz">
-                                                    <rect key="frame" x="20" y="5" width="374" height="33.5"/>
-                                                    <color key="backgroundColor" red="0.90303797370000005" green="1" blue="0.994254741" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Juj-UO-Ecn">
-                                                        <size key="itemSize" width="126" height="31"/>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="d6C-7o-Ewu">
+                                                    <rect key="frame" x="20" y="3" width="374" height="37.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="50M-jz-8ai">
+                                                        <size key="itemSize" width="189" height="53"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProfessionCell" id="ubC-nq-S3e" customClass="ProfessionCell" customModule="Stylist" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="126" height="31"/>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProfessionCell" id="O7M-6u-CrM" customClass="ProfessionCell" customModule="Stylist" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="-8" width="189" height="53"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="126" height="31"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="189" height="53"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Makeup Artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2j-ke-U5C">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="126" height="31"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <nil key="textColor"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Makeup Artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNy-S7-Dst">
+                                                                        <rect key="frame" x="19" y="16" width="151" height="21"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="21" id="Ktt-Vb-Ci9"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
                                                             </view>
-                                                            <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstItem="n2j-ke-U5C" firstAttribute="width" secondItem="ubC-nq-S3e" secondAttribute="width" id="5Lc-2w-LCx"/>
-                                                                <constraint firstItem="n2j-ke-U5C" firstAttribute="centerY" secondItem="ubC-nq-S3e" secondAttribute="centerY" id="ISc-H3-qZl"/>
-                                                                <constraint firstItem="n2j-ke-U5C" firstAttribute="centerX" secondItem="ubC-nq-S3e" secondAttribute="centerX" id="bWH-dG-TpF"/>
-                                                                <constraint firstItem="n2j-ke-U5C" firstAttribute="height" secondItem="ubC-nq-S3e" secondAttribute="height" id="smu-MH-diF"/>
+                                                                <constraint firstAttribute="trailingMargin" secondItem="zNy-S7-Dst" secondAttribute="trailing" constant="3" id="e2g-mp-Fat"/>
+                                                                <constraint firstItem="zNy-S7-Dst" firstAttribute="centerX" secondItem="O7M-6u-CrM" secondAttribute="centerX" id="jzl-Xj-tdA"/>
+                                                                <constraint firstItem="zNy-S7-Dst" firstAttribute="leading" secondItem="O7M-6u-CrM" secondAttribute="leadingMargin" constant="3" id="olC-sw-bLX"/>
+                                                                <constraint firstItem="zNy-S7-Dst" firstAttribute="centerY" secondItem="O7M-6u-CrM" secondAttribute="centerY" id="pdB-CI-5rG"/>
                                                             </constraints>
                                                             <connections>
-                                                                <outlet property="professionLabel" destination="n2j-ke-U5C" id="B4C-Mx-JH4"/>
+                                                                <outlet property="professionLabel" destination="zNy-S7-Dst" id="hcg-zt-X7s"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="SMR-yi-ZQz" firstAttribute="leading" secondItem="UNI-oT-EG8" secondAttribute="leading" constant="20" id="Atm-JR-xc7"/>
-                                                <constraint firstAttribute="bottom" secondItem="SMR-yi-ZQz" secondAttribute="bottom" constant="5" id="TwT-fv-bFQ"/>
-                                                <constraint firstAttribute="trailing" secondItem="SMR-yi-ZQz" secondAttribute="trailing" constant="20" id="vaG-IF-dA8"/>
-                                                <constraint firstItem="SMR-yi-ZQz" firstAttribute="top" secondItem="UNI-oT-EG8" secondAttribute="top" constant="5" id="yPz-JH-e9u"/>
+                                                <constraint firstItem="d6C-7o-Ewu" firstAttribute="leading" secondItem="YFZ-i5-FhP" secondAttribute="leading" constant="20" id="3UV-GH-WzB"/>
+                                                <constraint firstItem="d6C-7o-Ewu" firstAttribute="top" secondItem="YFZ-i5-FhP" secondAttribute="top" constant="3" id="eWO-bU-yDz"/>
+                                                <constraint firstAttribute="trailing" secondItem="d6C-7o-Ewu" secondAttribute="trailing" constant="20" id="klu-dB-1rf"/>
+                                                <constraint firstAttribute="bottom" secondItem="d6C-7o-Ewu" secondAttribute="bottom" constant="3" id="s2v-rh-vMA"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -246,7 +249,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="professionsCollectionView" destination="SMR-yi-ZQz" id="9Z9-EJ-3fW"/>
+                        <outlet property="professionCollectionView" destination="d6C-7o-Ewu" id="S37-WT-33u"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S8c-Fv-sIo" userLabel="First Responder" sceneMemberID="firstResponder"/>

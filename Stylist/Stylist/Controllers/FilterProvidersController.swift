@@ -36,18 +36,26 @@ enum Gender: String, CaseIterable {
     }
 }
 
+enum PriceRange: String {
+    case low = "Low"
+    case high = "Hight"
+}
+
+// 5 UserDefaults Settings:
+    // Available now
+    // Gender
+    // Profession
+    // Price
+    // Services
+
+// at the main screen reset user defaults in ViewDidLoad
+// check user defaults at view will appear
 class FilterProvidersController: UITableViewController {
     
-    @IBOutlet weak var professionsCollectionView: UICollectionView!
+    @IBOutlet weak var professionCollectionView: UICollectionView!
     
     let allGenders = Gender.fetchAllGenders()
-    var allProfessions = [Profession]() {
-        didSet {
-            DispatchQueue.main.async {
-                self.professionsCollectionView.reloadData()
-            }
-        }
-    }
+    var allProfessions = Profession.fetchAllProfessions()
     var allServices = [String]() {
         didSet {
             DispatchQueue.main.async {
@@ -55,12 +63,18 @@ class FilterProvidersController: UITableViewController {
             }
         }
     }
+    
+    var availableNow = false
+    var genderFitler = [Gender : String]()
+    var professionFilter = [Profession : String]()
+    var priceRangeFilter = [PriceRange : Int]()
+    var servicesFilter = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "ServicesCell", bundle: nil), forCellReuseIdentifier: "ServicesCell")
-        professionsCollectionView.dataSource = self
-        professionsCollectionView.delegate = self
+        professionCollectionView.dataSource = self
+        professionCollectionView.delegate = self
         fetchAllServices()
     }
     
@@ -76,9 +90,12 @@ class FilterProvidersController: UITableViewController {
         }
     }
     
+    // MARK: Actions
+    
+    // Filter 1: Available
     @IBAction func availableNowButtonPressed(_ sender: RoundedTextButton) {
         // use a state to indicate whether it's available now or not
-        self.allServices = ["Cut", "Shampoo"]
+        
     }
     
     @IBAction func genderButtonPressed(_ sender: RoundedTextButton) {
@@ -104,10 +121,6 @@ class FilterProvidersController: UITableViewController {
     
 }
 
-// MARK: Actions
-extension FilterProvidersController {
-    
-}
 
 // MARK: Setup TableView (Filters)
 extension FilterProvidersController {
@@ -129,17 +142,13 @@ extension FilterProvidersController {
             let currentServiceName = allServices[indexPath.row]
             cell.serviceNameLabel.text = currentServiceName
             cell.serviceSwitch.tag = indexPath.row
+            cell.selectionStyle = .none
             return cell
         }
-        else if indexPath.section == 2 {
-            guard let professionCell = tableView.dequeueReusableCell(withIdentifier: "ProfessionCell") else { return UITableViewCell()}
-            return professionCell
-          
-        }
+        
         return super.tableView(tableView, cellForRowAt: indexPath)
     }
     
-    // Why I need these functions or it will be out of bound and crash?
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
         if indexPath.section == 4 {
             let newIndexPath = IndexPath(row: 0, section: indexPath.section)
@@ -158,27 +167,30 @@ extension FilterProvidersController {
 
 // MARK: Setup CollectionView (Profession Filter)
 extension FilterProvidersController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return allProfessions.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let professionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfessionCell", for: indexPath) as? ProfessionCell else {
             fatalError("ProfessionCell is nil")
         }
         let currentProfession = allProfessions[indexPath.row]
         professionCell.professionLabel.text = currentProfession.rawValue
+        
+        professionCell.layer.cornerRadius = professionCell.frame.height / 2
+        professionCell.layer.borderWidth = 1
+        professionCell.layer.borderColor = UIColor(hexString: "#ff7f7f ").cgColor
+        professionCell.clipsToBounds = true
+        professionCell.layer.masksToBounds = true
         return professionCell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // set filter here for profession
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 126, height: 31)
     }
