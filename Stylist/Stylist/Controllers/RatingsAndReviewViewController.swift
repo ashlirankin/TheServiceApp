@@ -15,19 +15,26 @@ class RatingsAndReviewViewController: UIViewController {
     @IBOutlet weak var reviewTextView: UITextView!
     
    
-    var stylist: ServiceSideUser!
+    var stylist: ServiceSideUser?
     var settings = CosmosSettings()
     private var authService = (UIApplication.shared.delegate as! AppDelegate).authService
     
     
     var userRating: Double?
-    var userReview = ""
+    var userReview = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCosmos()
+        configureTextView()
+        
+        //DBService.
+    }
+    
+    private func configureTextView() {
         reviewTextView.delegate = self
-        reviewTextView.textColor = .black
+        reviewTextView.textColor = .lightGray
+        reviewTextView.text = "Leave a Review!"
     }
     
     private func setupCosmos() {
@@ -65,8 +72,10 @@ class RatingsAndReviewViewController: UIViewController {
             navigationItem.rightBarButtonItem?.isEnabled = true 
             return
         }
-
-        let rating = Ratings(ratingId: "", value: userRating , userId: "4UathYHKvyXZV739xBD9FaJFH2D2", raterId: loggedInUser)
+        
+        let databaseUserId = "4UathYHKvyXZV739xBD9FaJFH2D2"
+        
+        let rating = Ratings(ratingId: "", value: userRating , userId: databaseUserId, raterId: loggedInUser)
         DBService.postProviderRating(ratings: rating) { (error) in
             if let error = error {
                 self.showAlert(title: "Network Error", message: "There was an error sending the rating to firebase \(error.localizedDescription)", actionTitle: "Ok")
@@ -76,9 +85,9 @@ class RatingsAndReviewViewController: UIViewController {
             networkCallCount += 1
         }
 
-        let review = Reviews(reviewerId: loggedInUser, description: userReview, createdDate: Date.getISOTimestamp(), ratingId: "", value: userRating, reviewId: "", reviewStylist: "4UathYHKvyXZV739xBD9FaJFH2D2")
-            
-        DBService.postProviderReview(reviews: review) { (error) in
+        let review = Reviews(reviewerId: databaseUserId, description: reviewTextView.text, createdDate: Date.getISOTimestamp(), ratingId: "", value: userRating, reviewId: "", reviewStylist: "4UathYHKvyXZV739xBD9FaJFH2D2")
+        
+        DBService.postProviderReview(stylistReviewed: stylist, review: review) { (error) in
             if let error = error {
                 self.showAlert(title: "Network Error", message: "There was an error sending the review to firebase \(error.localizedDescription)", actionTitle: "Ok")
                 self.navigationItem.rightBarButtonItem?.isEnabled = true
@@ -95,13 +104,15 @@ extension RatingsAndReviewViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == "Leave a Review!" {
             textView.text = ""
-            textView.textColor = .blue
+            textView.textColor = .black
         }
     }
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text == "" {
         textView.text = "Leave a Review!"
             textView.textColor = .lightGray
+        } else {
+            reviewTextView.text = textView.text
         }
     }
 

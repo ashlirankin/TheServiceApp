@@ -106,30 +106,29 @@ final class DBService {
         }
     }
 
-    static func postProviderReview(reviews: Reviews, completionHandler: @escaping (Error?) -> Void) {
-        
+    static func postProviderReview(stylistReviewed: ServiceSideUser?, review: Reviews, completionHandler: @escaping (Error?) -> Void) {
         let reviewId = firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
-            .document(reviews.reviewStylist)
+            .document("4UathYHKvyXZV739xBD9FaJFH2D2") //.document(stylistReviewed.userId)
             .collection(ReviewsCollectionKeys.reviews).document().documentID
         
         firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
-        .document(reviews.reviewerId)
+        .document("4UathYHKvyXZV739xBD9FaJFH2D2") //.document(stylistReviewed.userId)
         .collection(ReviewsCollectionKeys.reviews)
         .document().setData([
-            ReviewsCollectionKeys.reviewerId  : reviews.reviewerId,
-            ReviewsCollectionKeys.createdDate : reviews.createdDate,
-            ReviewsCollectionKeys.description : reviews.description,
-            ReviewsCollectionKeys.ratingId : reviews.ratingId,
-            ReviewsCollectionKeys.value : reviews.value,
+            ReviewsCollectionKeys.reviewerId  : review.reviewerId,
+            ReviewsCollectionKeys.createdDate : review.createdDate,
+            ReviewsCollectionKeys.description : review.description,
+            ReviewsCollectionKeys.ratingId : review.ratingId,
+            ReviewsCollectionKeys.value : review.value,
             ReviewsCollectionKeys.reviewId : reviewId,
-            ReviewsCollectionKeys.reviewStylist : reviews.reviewStylist
+            ReviewsCollectionKeys.reviewStylist : review.reviewStylist
         ]) { (error) in
             if let error = error {
                 completionHandler(error)
                 print("there was an error with the postProviderReview: \(error.localizedDescription)")
             } else {
                 completionHandler(nil)
-                print("review posted successfully to rating reference: \(reviews.ratingId)")
+                print("review posted successfully to  reference: \(review.reviewId)")
             }
         }
     }
