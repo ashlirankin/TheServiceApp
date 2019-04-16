@@ -12,7 +12,6 @@ import Firebase
 
 final class DBService {
     private init() {}
-    
     public static var firestoreDB: Firestore = {
         let db = Firestore.firestore()
         let settings = db.settings
@@ -77,19 +76,18 @@ final class DBService {
                 }
         }
     }
-
-
+    
+    
     static func postProviderRating(ratings: Ratings, completionHandler: @escaping (Error?) -> Void) {
-        
         firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
             .document(ratings.userId)
             .collection(RatingsCollectionKeys.ratings)
             .document().setData([
-                        RatingsCollectionKeys.ratingId : ratings.ratingId,
-                        RatingsCollectionKeys.value: ratings.value,
-                        RatingsCollectionKeys.raterId: ratings.raterId,
-                        RatingsCollectionKeys.userId: ratings.userId
-                        
+                RatingsCollectionKeys.ratingId : ratings.ratingId,
+                RatingsCollectionKeys.value: ratings.value,
+                RatingsCollectionKeys.raterId: ratings.raterId,
+                RatingsCollectionKeys.userId: ratings.userId
+                
             ]) { (error) in
                 if let error = error {
                     completionHandler(error)
@@ -100,37 +98,52 @@ final class DBService {
                 }
         }
     }
-
+    
     static func postProviderReview(reviews: Reviews, completionHandler: @escaping (Error?) -> Void) {
         
         firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
-        .document(reviews.reviewerId)
-        .collection(ReviewsCollectionKeys.reviews)
-        .document().setData([
-            ReviewsCollectionKeys.reviewerId  : reviews.reviewerId,
-            ReviewsCollectionKeys.createdDate : reviews.createdDate,
-            ReviewsCollectionKeys.description : reviews.description,
-            ReviewsCollectionKeys.ratingId : reviews.ratingId,
-            ReviewsCollectionKeys.value : reviews.value    
-        ]) { (error) in
-            if let error = error {
-                completionHandler(error)
-                print("there was an error with the postProviderReview: \(error.localizedDescription)")
-            } else {
-                completionHandler(nil)
-                print("review posted successfully to rating reference: \(reviews.ratingId)")
-            }
+            .document(reviews.reviewerId)
+            .collection(ReviewsCollectionKeys.reviews)
+            .document().setData([
+                ReviewsCollectionKeys.reviewerId  : reviews.reviewerId,
+                ReviewsCollectionKeys.createdDate : reviews.createdDate,
+                ReviewsCollectionKeys.description : reviews.description,
+                ReviewsCollectionKeys.ratingId : reviews.ratingId,
+                ReviewsCollectionKeys.value : reviews.value
+            ]) { (error) in
+                if let error = error {
+                    completionHandler(error)
+                    print("there was an error with the postProviderReview: \(error.localizedDescription)")
+                } else {
+                    completionHandler(nil)
+                    print("review posted successfully to rating reference: \(reviews.ratingId)")
+                }
         }
     }
-
+    
     static func getServices(completionHandler: @escaping ([Service]?, Error?) -> Void) {
         firestoreDB.collection("stockServices")
             .getDocuments { (snapshot, error) in
+                if let error = error {
+                    completionHandler(nil, error)
+                } else {
+                    let services = snapshot?.documents.map { Service(dict: $0.data()) }
+                    completionHandler(services, nil)
+                }
+        }
+    }
+    
+    static func addToFavorites(id: String,prodider: ServiceSideUser, completionHandler: @escaping(Error?) -> Void) {
+        firestoreDB.collection(StylistsUserCollectionKeys.stylistUser)
+        .document(id)
+        .collection("userFavorites")
+        .addDocument(data: ["providerId" : prodider.userId,
+                            "createdAt" : Date.getISOTimestamp(),
+        ]) { (error) in
             if let error = error {
-                completionHandler(nil, error)
+                completionHandler(error)
             } else {
-                let services = snapshot?.documents.map { Service(dict: $0.data()) }
-                completionHandler(services, nil)
+                completionHandler(nil)
             }
         }
     }
