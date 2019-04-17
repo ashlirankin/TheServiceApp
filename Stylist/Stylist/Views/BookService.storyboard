@@ -170,7 +170,7 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEb-vp-nR9">
-                                                                        <rect key="frame" x="63" y="20" width="42" height="68"/>
+                                                                        <rect key="frame" x="63" y="55.5" width="42" height="68"/>
                                                                         <state key="normal" image="icons8-cancel-25"/>
                                                                         <connections>
                                                                             <action selector="cancelButtonPressed:" destination="HzX-nb-YUr" eventType="touchUpInside" id="Vz6-mf-i1F"/>
@@ -183,7 +183,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hO2-Pk-RQm">
-                                                                        <rect key="frame" x="160" y="20" width="42" height="68"/>
+                                                                        <rect key="frame" x="160" y="55.5" width="42" height="68"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -256,6 +256,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NDQ-Ek-4VX">
                                                     <rect key="frame" x="143" y="0.0" width="128" height="146"/>
                                                     <state key="normal" title="Book Appointment"/>
+                                                    <connections>
+                                                        <action selector="bookButtonPressed:" destination="HzX-nb-YUr" eventType="touchUpInside" id="qxf-qL-YSB"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
