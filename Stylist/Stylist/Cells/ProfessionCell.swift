@@ -10,5 +10,4 @@ import UIKit
 
 class ProfessionCell: UICollectionViewCell {
     @IBOutlet weak var professionLabel: UILabel!
-    
 }
