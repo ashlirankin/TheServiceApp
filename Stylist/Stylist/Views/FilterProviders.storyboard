@@ -252,6 +252,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="availableNowButton" destination="aiP-Gb-qEM" id="xrD-e1-mgq"/>
+                        <outlet property="femaleGenderButton" destination="NQ5-lc-TUe" id="JCr-IB-3oJ"/>
+                        <outlet property="maleGenderButton" destination="mvB-WJ-bKI" id="ewj-7K-VZ3"/>
+                        <outlet property="otherGenderButton" destination="aYC-WG-1cY" id="w4x-hT-Wqn"/>
                         <outlet property="professionCollectionView" destination="d6C-7o-Ewu" id="S37-WT-33u"/>
                     </connections>
                 </tableViewController>

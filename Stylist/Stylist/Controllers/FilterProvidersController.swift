@@ -41,18 +41,19 @@ enum PriceRange: String {
     case high = "Hight"
 }
 
-// 5 UserDefaults Settings:
-    // Available now
-    // Gender (✔️)
-    // Profession
+// UserDefaults Settings:
     // Price
-    // Services (✔️)
-
 // at the main screen reset user defaults in ViewDidLoad
 // check user defaults at view will appear
 class FilterProvidersController: UITableViewController {
     
     @IBOutlet weak var professionCollectionView: UICollectionView!
+    @IBOutlet weak var availableNowButton: RoundedTextButton!
+    @IBOutlet weak var maleGenderButton: RoundedTextButton!
+    @IBOutlet weak var femaleGenderButton: RoundedTextButton!
+    @IBOutlet weak var otherGenderButton: RoundedTextButton!
+    
+    let defaults = UserDefaults.standard
     
     let allGenders = Gender.fetchAllGenders()
     var allProfessions = Profession.fetchAllProfessions()
@@ -64,21 +65,36 @@ class FilterProvidersController: UITableViewController {
         }
     }
     
-    var availableNow = false
-    var genderFilter = [Gender : String]()
-    var professionFilter = [Profession : String]()
-    var priceRangeFilter = [PriceRange : Int]()
-    var servicesFilter = [String : String]()
+    lazy var availableNow = defaults.object(forKey: UserDefaultsKeys.availableNow) as? Bool ?? false
+    lazy var genderFilter = defaults.object(forKey: UserDefaultsKeys.genderFilter) as? [String : String] ?? [String : String]()
+    lazy var professionFilter = defaults.object(forKey: UserDefaultsKeys.professionFilter) as? [String : String] ?? [String : String]()
+    lazy var priceRangeFilter = defaults.object(forKey: UserDefaultsKeys.priceRangeFilter) as? [String : Int] ?? [String : Int]()
+    lazy var servicesFilter = defaults.object(forKey: UserDefaultsKeys.servicesFilter) as? [String: String] ?? [String : String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        callUserDefaults()
         setupFilterTableView()
         setupProfessionCollectionView()
+        setupAvailableNowButtonUI()
+        setupGenderButtonsUI()
     }
     
-    private func callUserDefaults() {
-        
+    private func setupAvailableNowButtonUI() {
+        availableNow ? buttonSelectedUI(button: availableNowButton) : buttonDeselectedUI(button: availableNowButton)
+    }
+    private func setupGenderButtonsUI() {
+        for gender in genderFilter {
+            switch gender.key {
+            case Gender.male.rawValue:
+                buttonSelectedUI(button: maleGenderButton)
+            case Gender.female.rawValue:
+                buttonSelectedUI(button: femaleGenderButton)
+            case Gender.other.rawValue:
+                buttonSelectedUI(button: otherGenderButton)
+            default:
+                break
+            }
+        }
     }
     
     private func setupProfessionCollectionView() {
@@ -90,7 +106,6 @@ class FilterProvidersController: UITableViewController {
         tableView.register(UINib(nibName: "ServicesCell", bundle: nil), forCellReuseIdentifier: "ServicesCell")
         fetchAllServices()
     }
-    
     
     private func fetchAllServices() {
         DBService.getServices { (professionServices, error) in
@@ -105,29 +120,35 @@ class FilterProvidersController: UITableViewController {
     }
     
     // MARK: Actions
-    @IBAction func availableNowButtonPressed(_ sender: UIButton) {
-        // use a state to indicate whether it's available now or not
-        
+    @IBAction func availableNowButtonPressed(_ sender: RoundedTextButton) {
+        if availableNow {
+            availableNow = false
+            buttonDeselectedUI(button: sender)
+        } else {
+            availableNow = true
+            buttonSelectedUI(button: sender)
+        }
+        print(availableNow)
     }
     
     @IBAction func genderButtonPressed(_ sender: RoundedTextButton) {
         let selectedGender = allGenders[sender.tag]
-        if let _ = genderFilter[selectedGender] {
-            buttonDeselectedUI(button: sender, gender: selectedGender)
+        if let _ = genderFilter[selectedGender.rawValue] {
+            genderFilter[selectedGender.rawValue] = nil
+            buttonDeselectedUI(button: sender)
         } else {
-            buttonSelectedUI(button: sender, gender: selectedGender)
+            genderFilter[selectedGender.rawValue] = selectedGender.rawValue
+            buttonSelectedUI(button: sender)
         }
         print(genderFilter)
     }
     
-    private func buttonSelectedUI(button: RoundedTextButton, gender: Gender) {
-        genderFilter[gender] = gender.rawValue
+    private func buttonSelectedUI(button: RoundedTextButton) {
         button.backgroundColor = .darkGray
         button.layer.shadowColor = UIColor.red.cgColor
         button.setTitleColor(.white, for: .normal)
     }
-    private func buttonDeselectedUI(button: RoundedTextButton, gender: Gender) {
-        genderFilter[gender] = nil
+    private func buttonDeselectedUI(button: RoundedTextButton) {
         button.backgroundColor = .white
         button.layer.shadowColor = UIColor.black.cgColor
         button.setTitleColor(.black, for: .normal)
@@ -139,7 +160,11 @@ class FilterProvidersController: UITableViewController {
     }
     
     @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
-        // Save Item to User Defaults
+        defaults.set(availableNow, forKey: UserDefaultsKeys.availableNow)
+        defaults.set(genderFilter, forKey: UserDefaultsKeys.genderFilter)
+        defaults.set(priceRangeFilter, forKey: UserDefaultsKeys.priceRangeFilter)
+        defaults.set(professionFilter, forKey: UserDefaultsKeys.professionFilter)
+        defaults.set(servicesFilter, forKey: UserDefaultsKeys.servicesFilter)
         dismiss(animated: true)
     }
     
@@ -165,6 +190,7 @@ extension FilterProvidersController {
             let currentServiceName = allServices[indexPath.row]
             cell.delegate = self
             cell.configureCell(serviceName: currentServiceName, indexPath: indexPath)
+            cell.serviceSwitch.isOn = servicesFilter[currentServiceName] != nil
             return cell
         }
         return super.tableView(tableView, cellForRowAt: indexPath)
@@ -202,28 +228,33 @@ extension FilterProvidersController: UICollectionViewDataSource, UICollectionVie
         }
         let currentProfession = allProfessions[indexPath.row]
         cell.configureCell(profession: currentProfession)
+        if let _ = professionFilter[currentProfession.rawValue] {
+            professionSelected(profession: currentProfession, cell: cell)
+        } else {
+            professionDeselected(profession: currentProfession, cell: cell)
+        }
         return cell
     }
 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // set filter here for profession
         let selectedCell = collectionView.cellForItem(at: indexPath) as! ProfessionCell
         let selectedProfession = allProfessions[indexPath.row]
-        if let _ = professionFilter[selectedProfession] {
+        if let _ = professionFilter[selectedProfession.rawValue] {
             professionDeselected(profession: selectedProfession, cell: selectedCell)
         } else {
             professionSelected(profession: selectedProfession, cell: selectedCell)
         }
+        print(professionFilter)
     }
     private func professionSelected(profession: Profession, cell: ProfessionCell) {
-        professionFilter[profession] = profession.rawValue
+        professionFilter[profession.rawValue] = profession.rawValue
         cell.professionLabel.textColor = .white
         cell.backgroundColor = .darkGray
         cell.layer.borderColor = UIColor(hexString: "#FA8072").cgColor
     }
     private func professionDeselected(profession: Profession, cell: ProfessionCell) {
-        professionFilter[profession] = nil
+        professionFilter[profession.rawValue] = nil
         cell.professionLabel.textColor = .black
         cell.backgroundColor = .white
         cell.layer.borderColor = UIColor.darkGray.cgColor

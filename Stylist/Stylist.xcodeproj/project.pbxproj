@@ -79,6 +79,7 @@
 		D6CD419A22664C6000F79DAA /* ServicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD419922664C6000F79DAA /* ServicesCell.swift */; };
 		D6CD419C22664C7300F79DAA /* ServicesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6CD419B22664C7300F79DAA /* ServicesCell.xib */; };
 		D6CD419E22667B0800F79DAA /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD419D22667B0800F79DAA /* UIColor+Extensions.swift */; };
+		D6CD41A02267B25B00F79DAA /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD419F2267B25B00F79DAA /* UserDefaultsKeys.swift */; };
 		D6FE74EA2261138600B4A49A /* FilterProviders.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6FE74E92261138600B4A49A /* FilterProviders.storyboard */; };
 		D6FE74EC22611A1B00B4A49A /* FilterProvidersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE74EB22611A1B00B4A49A /* FilterProvidersController.swift */; };
 		D6FE75182265118A00B4A49A /* ProfessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE75172265118A00B4A49A /* ProfessionCell.swift */; };
@@ -177,6 +178,7 @@
 		D6CD419922664C6000F79DAA /* ServicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCell.swift; sourceTree = "<group>"; };
 		D6CD419B22664C7300F79DAA /* ServicesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServicesCell.xib; sourceTree = "<group>"; };
 		D6CD419D22667B0800F79DAA /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		D6CD419F2267B25B00F79DAA /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		D6FE74E92261138600B4A49A /* FilterProviders.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FilterProviders.storyboard; sourceTree = "<group>"; };
 		D6FE74EB22611A1B00B4A49A /* FilterProvidersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterProvidersController.swift; sourceTree = "<group>"; };
 		D6FE75172265118A00B4A49A /* ProfessionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionCell.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				2EF103A42255314C0030FBFF /* LaunchScreen.storyboard */,
 				09DCD302225E4AB80090EE1F /* UIViewController+Extensions.swift */,
 				D6CD419D22667B0800F79DAA /* UIColor+Extensions.swift */,
+				D6CD419F2267B25B00F79DAA /* UserDefaultsKeys.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -683,6 +686,7 @@
 				2E90A61C226112620016462C /* BookingViewController.swift in Sources */,
 				09DCD30B225E69860090EE1F /* ProviderAvailability.swift in Sources */,
 				2E9DD7E22257F95800D74DD1 /* ServiceConfirmedController.swift in Sources */,
+				D6CD41A02267B25B00F79DAA /* UserDefaultsKeys.swift in Sources */,
 				09DCD311225E91FA0090EE1F /* DiscoverViewController.swift in Sources */,
 				2EF103CF2255A4DB0030FBFF /* Reviews.swift in Sources */,
 				D6CD419E22667B0800F79DAA /* UIColor+Extensions.swift in Sources */,
