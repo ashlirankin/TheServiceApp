@@ -15,10 +15,12 @@ final class DBService {
     public static var firestoreDB: Firestore = {
         let db = Firestore.firestore()
         let settings = db.settings
-        settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
         return db
     }()
+  static public var generateDocumentId: String {
+    return firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document().documentID
+  }
     static func CreateServiceProvider(serviceProvider:ServiceSideUser,completionHandler: @escaping (Error?) -> Void){
         firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).document(serviceProvider.userId).setData([ServiceSideUserCollectionKeys.firstName: serviceProvider.firstName
             ?? "" ,
