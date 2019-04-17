@@ -14,14 +14,14 @@ struct UserDefaultsKeys {
     static let availableNow = "AvailableNow"
     static let genderFilter = "GenderFilter"
     static let professionFilter = "ProfessionFilter"
-    static let priceRangeFilter = "PriceRangeFilter"
+    static let maxPriceFilter = "PriceRangeFilter"
     static let servicesFilter = "ServicesFilter"
     
     static func wipeUserDefaults() {
         defaults.set(false, forKey: availableNow)
         defaults.set([String: String](), forKey: genderFilter)
         defaults.set([String: String](), forKey: professionFilter)
-        defaults.set([String: String](), forKey: priceRangeFilter)
+        defaults.set(1000, forKey: maxPriceFilter)
         defaults.set([String: String](), forKey: servicesFilter)
     }
 }

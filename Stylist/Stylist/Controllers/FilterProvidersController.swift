@@ -65,7 +65,7 @@ class FilterProvidersController: UITableViewController {
     lazy var availableNow = defaults.object(forKey: UserDefaultsKeys.availableNow) as? Bool ?? false
     lazy var genderFilter = defaults.object(forKey: UserDefaultsKeys.genderFilter) as? [String : String] ?? [String : String]()
     lazy var professionFilter = defaults.object(forKey: UserDefaultsKeys.professionFilter) as? [String : String] ?? [String : String]()
-    lazy var priceRangeFilter = defaults.object(forKey: UserDefaultsKeys.priceRangeFilter) as? [String : Int] ?? [String : Int]()
+    lazy var maxPriceFilter = defaults.object(forKey: UserDefaultsKeys.maxPriceFilter) as? Int ?? 1000
     lazy var servicesFilter = defaults.object(forKey: UserDefaultsKeys.servicesFilter) as? [String: String] ?? [String : String]()
 
     override func viewDidLoad() {
@@ -95,7 +95,8 @@ class FilterProvidersController: UITableViewController {
         }
     }
     private func setupMaxPriceSliderUI() {
-        // hello
+        maxPriceSlider.value = Float(maxPriceFilter)
+        maxPriceLabel.text = "$\(maxPriceFilter)"
     }
     
     private func setupProfessionCollectionView() {
@@ -161,12 +162,15 @@ class FilterProvidersController: UITableViewController {
     }
     
     @IBAction func sliderValueChange(_ sender: UISlider) {
+        let maxPrice = Int(sender.value)
+        maxPriceFilter = maxPrice
+        maxPriceLabel.text = "$\(maxPrice)"
     }
     
     @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
         defaults.set(availableNow, forKey: UserDefaultsKeys.availableNow)
         defaults.set(genderFilter, forKey: UserDefaultsKeys.genderFilter)
-        defaults.set(priceRangeFilter, forKey: UserDefaultsKeys.priceRangeFilter)
+        defaults.set(maxPriceFilter, forKey: UserDefaultsKeys.maxPriceFilter)
         defaults.set(professionFilter, forKey: UserDefaultsKeys.professionFilter)
         defaults.set(servicesFilter, forKey: UserDefaultsKeys.servicesFilter)
         dismiss(animated: true)
