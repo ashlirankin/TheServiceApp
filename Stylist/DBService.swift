@@ -91,11 +91,11 @@ final class DBService {
             .document(ratings.userId)
             .collection(RatingsCollectionKeys.ratings)
             .document().setData([
-                        RatingsCollectionKeys.ratingId : rateId,
-                        RatingsCollectionKeys.value: ratings.value,
-                        RatingsCollectionKeys.raterId: ratings.raterId,
-                        RatingsCollectionKeys.userId: ratings.userId
-
+                RatingsCollectionKeys.ratingId : rateId,
+                RatingsCollectionKeys.value: ratings.value,
+                RatingsCollectionKeys.raterId: ratings.raterId,
+                RatingsCollectionKeys.userId: ratings.userId
+                
             ]) { (error) in
                 if let error = error {
                     completionHandler(error)
@@ -111,24 +111,24 @@ final class DBService {
             .document("4UathYHKvyXZV739xBD9FaJFH2D2") //.document(stylistReviewed.userId)
             .collection(ReviewsCollectionKeys.reviews).document().documentID
         firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
-        .document("4UathYHKvyXZV739xBD9FaJFH2D2") //.document(stylistReviewed.userId)
-        .collection(ReviewsCollectionKeys.reviews)
-        .document().setData([
-            ReviewsCollectionKeys.reviewerId  : review.reviewerId,
-            ReviewsCollectionKeys.createdDate : review.createdDate,
-            ReviewsCollectionKeys.description : review.description,
-            ReviewsCollectionKeys.ratingId : review.ratingId,
-            ReviewsCollectionKeys.value : review.value,
-            ReviewsCollectionKeys.reviewId : reviewId,
-            ReviewsCollectionKeys.reviewStylist : review.reviewStylist
-        ]) { (error) in
-            if let error = error {
-                completionHandler(error)
-                print("there was an error with the postProviderReview: \(error.localizedDescription)")
-            } else {
-                completionHandler(nil)
-                print("review posted successfully to  reference: \(review.reviewId)")
-            }
+            .document("4UathYHKvyXZV739xBD9FaJFH2D2") //.document(stylistReviewed.userId)
+            .collection(ReviewsCollectionKeys.reviews)
+            .document().setData([
+                ReviewsCollectionKeys.reviewerId  : review.reviewerId,
+                ReviewsCollectionKeys.createdDate : review.createdDate,
+                ReviewsCollectionKeys.description : review.description,
+                ReviewsCollectionKeys.ratingId : review.ratingId,
+                ReviewsCollectionKeys.value : review.value,
+                ReviewsCollectionKeys.reviewId : reviewId,
+                ReviewsCollectionKeys.reviewStylist : review.reviewStylist
+            ]) { (error) in
+                if let error = error {
+                    completionHandler(error)
+                    print("there was an error with the postProviderReview: \(error.localizedDescription)")
+                } else {
+                    completionHandler(nil)
+                    print("review posted successfully to  reference: \(review.reviewId)")
+                }
         }
     }
     
@@ -146,16 +146,30 @@ final class DBService {
     
     static func addToFavorites(id: String,prodider: ServiceSideUser, completionHandler: @escaping(Error?) -> Void) {
         firestoreDB.collection(StylistsUserCollectionKeys.stylistUser)
-        .document(id)
-        .collection("userFavorites")
-        .addDocument(data: ["providerId" : prodider.userId,
-                            "createdAt" : Date.getISOTimestamp(),
-        ]) { (error) in
-            if let error = error {
-                completionHandler(error)
-            } else {
-                completionHandler(nil)
-            }
+            .document(id)
+            .collection("userFavorites")
+            .addDocument(data: ["userId" : prodider.userId,
+                                "createdAt" : Date.getISOTimestamp(),
+            ]) { (error) in
+                if let error = error {
+                    completionHandler(error)
+                } else {
+                    completionHandler(nil)
+                }
+        }
+    }
+    
+    static func getFavorites(id: String, completionHandler: @escaping([ServiceSideUser]?, Error?) -> Void) {
+        
+        firestoreDB.collection(StylistsUserCollectionKeys.stylistUser)
+            .document(id)
+            .collection("userFavorites")
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                    completionHandler(nil, error)
+                } else {
+                    completionHandler(snapshot?.documents.map{ServiceSideUser(dict:$0.data())}, nil)
+                }
         }
     }
 }
