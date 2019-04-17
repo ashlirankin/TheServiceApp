@@ -32,6 +32,7 @@
 		09DCD313225E97340090EE1F /* DiscoveryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD312225E97340090EE1F /* DiscoveryCollectionViewCell.swift */; };
 		09DCD315225EA5C20090EE1F /* DiscoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD314225EA5C20090EE1F /* DiscoverTableViewCell.swift */; };
 		291F30A20B9AEA8931FF3E32 /* Pods_FirebaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F0689D22A995E41D8C2C56 /* Pods_FirebaseTests.framework */; };
+		2E16B841226611A500332ADC /* OrderSummaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E16B840226611A500332ADC /* OrderSummaryCollectionViewCell.swift */; };
 		2E5E74D9225FB6A8003D370F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5E74D7225FB6A3003D370F /* Service.swift */; };
 		2E7739BE22601267004C188A /* Entrance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7739BD22601267004C188A /* Entrance.storyboard */; };
 		2E90A61A2261124A0016462C /* BookService.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E90A6192261124A0016462C /* BookService.storyboard */; };
@@ -70,7 +71,6 @@
 		2EF103D32255ABA10030FBFF /* Avalibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF103D22255ABA10030FBFF /* Avalibility.swift */; };
 		2EF103D52255AE060030FBFF /* Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF103D42255AE060030FBFF /* Days.swift */; };
 		2EFC36472264E2E5001B54F8 /* ProviderServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFC36462264E2E5001B54F8 /* ProviderServices.swift */; };
-		2EFC364922651FEC001B54F8 /* OrderSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFC364822651FEC001B54F8 /* OrderSummaryTableViewCell.swift */; };
 		45864F51225D0449005FDBD5 /* ReviewAndRatings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45864F50225D0449005FDBD5 /* ReviewAndRatings.storyboard */; };
 		45864F53225D124A005FDBD5 /* RatingsAndReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45864F52225D124A005FDBD5 /* RatingsAndReviewViewController.swift */; };
 		45864F5A225FDD1D005FDBD5 /* ClientEditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45864F59225FDD1D005FDBD5 /* ClientEditProfileController.swift */; };
@@ -121,6 +121,7 @@
 		09DCD312225E97340090EE1F /* DiscoveryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryCollectionViewCell.swift; sourceTree = "<group>"; };
 		09DCD314225EA5C20090EE1F /* DiscoverTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewCell.swift; sourceTree = "<group>"; };
 		26FA858D08C6AC46AEBAE072 /* Pods-StylistTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylistTests.release.xcconfig"; path = "Target Support Files/Pods-StylistTests/Pods-StylistTests.release.xcconfig"; sourceTree = "<group>"; };
+		2E16B840226611A500332ADC /* OrderSummaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E5E74D7225FB6A3003D370F /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		2E7739BD22601267004C188A /* Entrance.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Entrance.storyboard; sourceTree = "<group>"; };
 		2E90A6192261124A0016462C /* BookService.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BookService.storyboard; sourceTree = "<group>"; };
@@ -163,7 +164,6 @@
 		2EF103D22255ABA10030FBFF /* Avalibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avalibility.swift; sourceTree = "<group>"; };
 		2EF103D42255AE060030FBFF /* Days.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Days.swift; sourceTree = "<group>"; };
 		2EFC36462264E2E5001B54F8 /* ProviderServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderServices.swift; sourceTree = "<group>"; };
-		2EFC364822651FEC001B54F8 /* OrderSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		45864F50225D0449005FDBD5 /* ReviewAndRatings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReviewAndRatings.storyboard; sourceTree = "<group>"; };
 		45864F52225D124A005FDBD5 /* RatingsAndReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingsAndReviewViewController.swift; sourceTree = "<group>"; };
 		45864F59225FDD1D005FDBD5 /* ClientEditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientEditProfileController.swift; sourceTree = "<group>"; };
@@ -315,7 +315,6 @@
 		2EF103C32255A4540030FBFF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2EFC364822651FEC001B54F8 /* OrderSummaryTableViewCell.swift */,
 				2E90A61D22611A010016462C /* ServicesCollectionViewCell.swift */,
 				2E90A61F22611B4F0016462C /* AvalibilityCollectionViewCell.swift */,
 				D6B4BF6C225E384300F1E48C /* IBDesignableViews.swift */,
@@ -323,6 +322,7 @@
 				2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */,
 				2E9DD7D52257E80900D74DD1 /* User.storyboard */,
 				2E90A6192261124A0016462C /* BookService.storyboard */,
+				2E16B840226611A500332ADC /* OrderSummaryCollectionViewCell.swift */,
 				45864F50225D0449005FDBD5 /* ReviewAndRatings.storyboard */,
 				2E7739BD22601267004C188A /* Entrance.storyboard */,
 				D6FE74E92261138600B4A49A /* FilterProviders.storyboard */,
@@ -687,13 +687,13 @@
 				2EF103CF2255A4DB0030FBFF /* Reviews.swift in Sources */,
 				D6CD419E22667B0800F79DAA /* UIColor+Extensions.swift in Sources */,
 				2EF103CD2255A4D20030FBFF /* Ratings.swift in Sources */,
-				2EFC364922651FEC001B54F8 /* OrderSummaryTableViewCell.swift in Sources */,
 				098E826D2260CE8E0023E41B /* PortfolioCollectionViewCell.swift in Sources */,
 				2E9DD7DC2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift in Sources */,
 				094DF892225D492D001EA2FE /* ProviderDetailCustomCell.swift in Sources */,
 				D6B4BF6D225E384300F1E48C /* IBDesignableViews.swift in Sources */,
 				D6FE74EC22611A1B00B4A49A /* FilterProvidersController.swift in Sources */,
 				09A9D545225BDAF200DFB5E2 /* ServiceBioView.swift in Sources */,
+				2E16B841226611A500332ADC /* OrderSummaryCollectionViewCell.swift in Sources */,
 				094DF88F225D2EB8001EA2FE /* UserDetailView.swift in Sources */,
 				09DCD315225EA5C20090EE1F /* DiscoverTableViewCell.swift in Sources */,
 				095BF72D2264E68D00F416ED /* UserProfileTableViewCell.swift in Sources */,

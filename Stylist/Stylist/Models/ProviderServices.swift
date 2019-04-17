@@ -8,12 +8,13 @@
 
 import Foundation
 
-struct ProviderServices{
+struct ProviderServices: Equatable {
+  
   let serviceId: String
-  let price:String
+  let price:Int
   let service:String
   
-  init(serviceId:String,price:String,service:String){
+  init(serviceId:String,price:Int,service:String){
     self.price = price
     self.service = service
     self.serviceId = serviceId
@@ -21,7 +22,7 @@ struct ProviderServices{
   }
   init(dict:[String:Any]) {
     
-    self.price = dict[ServicesCollectionKeys.price] as? String ?? "no price found"
+    self.price = dict[ServicesCollectionKeys.price] as? Int ?? 0
     
     self.serviceId = dict[ServicesCollectionKeys.serviceId] as? String ?? "no serviceId found"
 
