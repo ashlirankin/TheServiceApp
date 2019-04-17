@@ -34,6 +34,7 @@
 		291F30A20B9AEA8931FF3E32 /* Pods_FirebaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F0689D22A995E41D8C2C56 /* Pods_FirebaseTests.framework */; };
 		2E16B841226611A500332ADC /* OrderSummaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E16B840226611A500332ADC /* OrderSummaryCollectionViewCell.swift */; };
 		2E409BEE2267C2AD00130CBA /* Appointments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E409BED2267C2AD00130CBA /* Appointments.swift */; };
+		2E409BF02267DF0E00130CBA /* Payments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E409BEF2267DF0E00130CBA /* Payments.storyboard */; };
 		2E5E74D9225FB6A8003D370F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5E74D7225FB6A3003D370F /* Service.swift */; };
 		2E7739BE22601267004C188A /* Entrance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7739BD22601267004C188A /* Entrance.storyboard */; };
 		2E90A61A2261124A0016462C /* BookService.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E90A6192261124A0016462C /* BookService.storyboard */; };
@@ -124,6 +125,7 @@
 		26FA858D08C6AC46AEBAE072 /* Pods-StylistTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylistTests.release.xcconfig"; path = "Target Support Files/Pods-StylistTests/Pods-StylistTests.release.xcconfig"; sourceTree = "<group>"; };
 		2E16B840226611A500332ADC /* OrderSummaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E409BED2267C2AD00130CBA /* Appointments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointments.swift; sourceTree = "<group>"; };
+		2E409BEF2267DF0E00130CBA /* Payments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payments.storyboard; sourceTree = "<group>"; };
 		2E5E74D7225FB6A3003D370F /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		2E7739BD22601267004C188A /* Entrance.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Entrance.storyboard; sourceTree = "<group>"; };
 		2E90A6192261124A0016462C /* BookService.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BookService.storyboard; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				2E90A6192261124A0016462C /* BookService.storyboard */,
 				2E16B840226611A500332ADC /* OrderSummaryCollectionViewCell.swift */,
 				45864F50225D0449005FDBD5 /* ReviewAndRatings.storyboard */,
+				2E409BEF2267DF0E00130CBA /* Payments.storyboard */,
 				2E7739BD22601267004C188A /* Entrance.storyboard */,
 				D6FE74E92261138600B4A49A /* FilterProviders.storyboard */,
 			);
@@ -490,6 +493,7 @@
 			files = (
 				2E7739BE22601267004C188A /* Entrance.storyboard in Resources */,
 				09DCD309225E66C30090EE1F /* ProviderDetailAvailability.xib in Resources */,
+				2E409BF02267DF0E00130CBA /* Payments.storyboard in Resources */,
 				2E90A61A2261124A0016462C /* BookService.storyboard in Resources */,
 				094DF88B225D2835001EA2FE /* UserDetailHeader.xib in Resources */,
 				2EF103A62255314C0030FBFF /* LaunchScreen.storyboard in Resources */,
