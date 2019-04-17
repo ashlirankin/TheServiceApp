@@ -175,7 +175,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Price Range $" id="rtY-zb-rlK">
+                            <tableViewSection headerTitle="Max Price $" id="rtY-zb-rlK">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ServiceCell" id="1lA-om-e9I">
                                         <rect key="frame" x="0.0" y="244" width="414" height="44"/>
@@ -184,38 +184,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyP-hi-cfJ">
-                                                    <rect key="frame" x="362" y="11.5" width="32" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="0n7-Da-AYg"/>
-                                                        <constraint firstAttribute="width" constant="32" id="G2C-QN-pZR"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9jF-Sl-cih">
-                                                    <rect key="frame" x="20" y="11.5" width="28" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="28" id="CFc-MX-0LR"/>
-                                                        <constraint firstAttribute="height" constant="21" id="Yut-uN-orX"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="DwV-6j-rlg">
-                                                    <rect key="frame" x="66" y="7" width="278" height="31"/>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1000" minValue="0.0" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="DwV-6j-rlg">
+                                                    <rect key="frame" x="18" y="7" width="301" height="31"/>
+                                                    <connections>
+                                                        <action selector="sliderValueChange:" destination="1HN-1I-IUk" eventType="valueChanged" id="I7f-vy-YDL"/>
+                                                    </connections>
                                                 </slider>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 1,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyP-hi-cfJ">
+                                                    <rect key="frame" x="332" y="11.5" width="62" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="I94-Vg-dd7"/>
+                                                        <constraint firstAttribute="width" constant="62" id="XmK-xd-DWf"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="DwV-6j-rlg" firstAttribute="centerY" secondItem="MFw-oO-aYf" secondAttribute="centerY" id="2eO-An-rhp"/>
-                                                <constraint firstItem="pyP-hi-cfJ" firstAttribute="trailing" secondItem="MFw-oO-aYf" secondAttribute="trailingMargin" id="OrI-50-Eoh"/>
-                                                <constraint firstItem="9jF-Sl-cih" firstAttribute="centerY" secondItem="MFw-oO-aYf" secondAttribute="centerY" id="UWe-Dk-0G1"/>
-                                                <constraint firstItem="pyP-hi-cfJ" firstAttribute="centerY" secondItem="MFw-oO-aYf" secondAttribute="centerY" id="YNt-fU-sgZ"/>
-                                                <constraint firstItem="DwV-6j-rlg" firstAttribute="leading" secondItem="9jF-Sl-cih" secondAttribute="trailing" constant="20" id="qDw-o2-yrN"/>
-                                                <constraint firstItem="pyP-hi-cfJ" firstAttribute="leading" secondItem="DwV-6j-rlg" secondAttribute="trailing" constant="20" id="vUx-fD-CTa"/>
-                                                <constraint firstItem="9jF-Sl-cih" firstAttribute="leading" secondItem="MFw-oO-aYf" secondAttribute="leading" constant="20" id="y95-TV-Bgx"/>
+                                                <constraint firstItem="pyP-hi-cfJ" firstAttribute="centerY" secondItem="MFw-oO-aYf" secondAttribute="centerY" id="dZa-mm-LjW"/>
+                                                <constraint firstItem="DwV-6j-rlg" firstAttribute="centerY" secondItem="MFw-oO-aYf" secondAttribute="centerY" id="lLb-Cw-ZUr"/>
+                                                <constraint firstItem="pyP-hi-cfJ" firstAttribute="leading" secondItem="DwV-6j-rlg" secondAttribute="trailing" constant="15" id="nvJ-zJ-Hg8"/>
+                                                <constraint firstItem="DwV-6j-rlg" firstAttribute="leading" secondItem="MFw-oO-aYf" secondAttribute="leading" constant="20" id="voR-He-UlS"/>
+                                                <constraint firstItem="pyP-hi-cfJ" firstAttribute="trailing" secondItem="MFw-oO-aYf" secondAttribute="trailingMargin" id="y21-3p-tT5"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -255,6 +246,8 @@
                         <outlet property="availableNowButton" destination="aiP-Gb-qEM" id="xrD-e1-mgq"/>
                         <outlet property="femaleGenderButton" destination="NQ5-lc-TUe" id="JCr-IB-3oJ"/>
                         <outlet property="maleGenderButton" destination="mvB-WJ-bKI" id="ewj-7K-VZ3"/>
+                        <outlet property="maxPriceLabel" destination="pyP-hi-cfJ" id="AIu-uG-o5S"/>
+                        <outlet property="maxPriceSlider" destination="DwV-6j-rlg" id="8ff-gB-Wys"/>
                         <outlet property="otherGenderButton" destination="aYC-WG-1cY" id="w4x-hT-Wqn"/>
                         <outlet property="professionCollectionView" destination="d6C-7o-Ewu" id="S37-WT-33u"/>
                     </connections>

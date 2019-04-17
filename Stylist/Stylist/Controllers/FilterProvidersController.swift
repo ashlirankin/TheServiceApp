@@ -21,7 +21,6 @@ enum Profession: String, CaseIterable {
         return professions
     }
 }
-
 enum Gender: String, CaseIterable {
     case male = "Male"
     case female = "Female"
@@ -35,16 +34,12 @@ enum Gender: String, CaseIterable {
         return genders
     }
 }
-
 enum PriceRange: String {
     case low = "Low"
     case high = "Hight"
 }
 
-// UserDefaults Settings:
-    // Price
-// at the main screen reset user defaults in ViewDidLoad
-// check user defaults at view will appear
+
 class FilterProvidersController: UITableViewController {
     
     @IBOutlet weak var professionCollectionView: UICollectionView!
@@ -52,6 +47,8 @@ class FilterProvidersController: UITableViewController {
     @IBOutlet weak var maleGenderButton: RoundedTextButton!
     @IBOutlet weak var femaleGenderButton: RoundedTextButton!
     @IBOutlet weak var otherGenderButton: RoundedTextButton!
+    @IBOutlet weak var maxPriceSlider: UISlider!
+    @IBOutlet weak var maxPriceLabel: UILabel!
     
     let defaults = UserDefaults.standard
     
@@ -77,6 +74,7 @@ class FilterProvidersController: UITableViewController {
         setupProfessionCollectionView()
         setupAvailableNowButtonUI()
         setupGenderButtonsUI()
+        setupMaxPriceSliderUI()
     }
     
     private func setupAvailableNowButtonUI() {
@@ -95,6 +93,9 @@ class FilterProvidersController: UITableViewController {
                 break
             }
         }
+    }
+    private func setupMaxPriceSliderUI() {
+        // hello
     }
     
     private func setupProfessionCollectionView() {
@@ -157,6 +158,9 @@ class FilterProvidersController: UITableViewController {
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
+    }
+    
+    @IBAction func sliderValueChange(_ sender: UISlider) {
     }
     
     @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
