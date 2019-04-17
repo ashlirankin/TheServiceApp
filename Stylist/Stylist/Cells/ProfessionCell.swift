@@ -10,4 +10,20 @@ import UIKit
 
 class ProfessionCell: UICollectionViewCell {
     @IBOutlet weak var professionLabel: UILabel!
+    
+    public func configureCell(profession: Profession) {
+        professionLabel.text = profession.rawValue
+        professionLabel.textColor = .black
+        backgroundColor = .white
+        layer.cornerRadius = frame.height / 2
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.darkGray.cgColor
+        layer.shadowColor = UIColor.darkGray.cgColor
+        layer.shadowRadius = 6
+        layer.shadowOpacity = 0.5
+        layer.shadowOffset = CGSize(width: 0, height: 0)
+        clipsToBounds = true
+        layer.masksToBounds = true
+    }
 }
+
