@@ -158,6 +158,7 @@ extension ProviderDetailController: UICollectionViewDataSource {
             let buttonLabel = buttons[indexPath.row]
             cell.buttonLabel.text = buttonLabel
             return cell
+            
         } else {
             let portfolioCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PortfolioCell", for: indexPath) as! PortfolioCollectionViewCell
             switch provider.jobTitle {
@@ -196,5 +197,7 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
         scrollView.scrollRectToVisible(view.frame, animated: true)
         view.frame.size.width = self.view.bounds.width
         view.frame.origin.x = CGFloat(indexPath.row) * self.view.bounds.size.width
+        
     }
+    
 }
