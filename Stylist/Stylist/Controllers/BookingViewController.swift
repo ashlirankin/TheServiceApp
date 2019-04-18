@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 enum CurrentaDate:String {
   case Monday
@@ -16,14 +17,12 @@ enum CurrentaDate:String {
   case Friday
 }
 class BookingViewController: UITableViewController {
-
   @IBOutlet weak var avalibilityCollectionView: UICollectionView!
   @IBOutlet weak var servicesCollectionView: UICollectionView!
   @IBOutlet weak var orderSummaryCollectionView: UICollectionView!
-  
   @IBOutlet weak var priceCell: UITableViewCell!
-  
-  lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 250))
+    let sectionsTitle = ["Services","Available times","Summary"]
+  lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 300))
   private var providerServices = [ProviderServices](){
     didSet{
       servicesCollectionView.reloadData()
@@ -69,15 +68,33 @@ class BookingViewController: UITableViewController {
     setUpUi()
     
     }
+    
+    private func setupNotification() {
+        let center = UNUserNotificationCenter.current()
+        let content = UNMutableNotificationContent()
+        content.title = "Appointment Booked!"
+        content.subtitle = "We will alert you when \(provider?.firstName ?? "") is on their way!"
+        content.sound = UNNotificationSound.default
+        content.threadIdentifier = "local-notifcations temp"
+        let date = Date(timeIntervalSinceNow: 2)
+         let dateComponent = Calendar.current.dateComponents([.year, .month,.day,.hour, .minute, .second, .second, .nanosecond], from: date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: false)
+        let request = UNNotificationRequest.init(identifier: "content", content: content, trigger: trigger)
+        center.add(request) { (error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
   @IBAction func bookButtonPressed(_ sender: UIButton) {
     guard let provider  = provider ,
       let currentUser = authService.getCurrentUser(),
     !localServices.isEmpty else {return}
     localAppointments["providerId"] = provider.userId
     localAppointments["userId"] = currentUser.uid
-    
     createBooking(collectionName: "bookedAppointments", providerId: provider.userId, information: localAppointments, userId: currentUser.uid)
-   
+   setupNotification()
  
   }
   
@@ -203,13 +220,12 @@ extension BookingViewController:UICollectionViewDataSource{
       let avalibleTime = providerAvalibility.first { (avalibility) -> Bool in
         avalibility.currentDate == currentDate.rawValue
       }
-      
-      cell.timeButton.setTitle(avalibleTime?.avalibleHours[indexPath.row], for: .normal)
+      cell.timeButton.text = avalibleTime?.avalibleHours[indexPath.row]
       
       title = avalibleTime?.currentDate
-      
+
       cell.timeButton.tag = indexPath.row
-      cell.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+      
       return cell
       
     case servicesCollectionView:
@@ -217,7 +233,6 @@ extension BookingViewController:UICollectionViewDataSource{
       guard let cell = servicesCollectionView.dequeueReusableCell(withReuseIdentifier: "servicesCell", for: indexPath) as? ServicesCollectionViewCell else {fatalError("no service cell found")}
       cell.serviceNameButton.setTitle(aService.service, for: .normal)
       cell.priceLabel.text = "$\(aService.price)"
-      cell.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
       cell.serviceNameButton.tag = indexPath.row
       return cell
     
@@ -278,4 +293,20 @@ extension BookingViewController:UICollectionViewDataSource{
     print("something")
     }
   }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        let headerLabel = UILabel(frame: CGRect(x: 30, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+        headerLabel.font = UIFont(name: "Verdana", size: 20)
+        headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
+        headerLabel.textColor = #colorLiteral(red: 0, green: 0.5772375464, blue: 0.5888287425, alpha: 1)
+        headerLabel.sizeToFit()
+        view.addSubview(headerLabel)
+        return view
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionsTitle[section]
+    }
+
 }

@@ -150,6 +150,11 @@ final class DBService {
             .collection("userFavorites")
             .addDocument(data: ["userId" : prodider.userId,
                                 "createdAt" : Date.getISOTimestamp(),
+                                StylistsUserCollectionKeys.imageURL: prodider.imageURL ?? "",
+                                ServiceSideUserCollectionKeys.firstName: prodider.firstName
+                                    ?? "" ,
+                                ServiceSideUserCollectionKeys.lastName:prodider.lastName ?? "" ,
+                                "jobTitle": prodider.jobTitle,
             ]) { (error) in
                 if let error = error {
                     completionHandler(error)

@@ -7,16 +7,26 @@
 //
 
 import UIKit
+import UserNotifications
 import Firebase
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
   var window: UIWindow?
  let authService = AuthService()
+//static var container = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     FirebaseApp.configure()
     window = UIWindow(frame: UIScreen.main.bounds)
+    let center = UNUserNotificationCenter.current()
+    let options: UNAuthorizationOptions = [.sound, .alert]
+    center.requestAuthorization(options: options) { (granted, error) in
+        if let error = error {
+            print(error.localizedDescription)
+        }
+    }
+    center.delegate = self
     if let _ = authService.getCurrentUser(){
         let storyboard = UIStoryboard(name: "User", bundle: nil)
         let servicetab = storyboard.instantiateViewController(withIdentifier: "UserTabBarController")
@@ -31,6 +41,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.makeKeyAndVisible()
     return true
   }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert,.badge,.sound])
+    }
 
   func applicationWillResignActive(_ application: UIApplication) {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
