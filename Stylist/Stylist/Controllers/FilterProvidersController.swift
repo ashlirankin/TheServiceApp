@@ -21,7 +21,6 @@ enum Profession: String, CaseIterable {
         return professions
     }
 }
-
 enum Gender: String, CaseIterable {
     case male = "Male"
     case female = "Female"
@@ -35,24 +34,23 @@ enum Gender: String, CaseIterable {
         return genders
     }
 }
-
 enum PriceRange: String {
     case low = "Low"
     case high = "Hight"
 }
 
-// 5 UserDefaults Settings:
-    // Available now
-    // Gender
-    // Profession
-    // Price
-    // Services
 
-// at the main screen reset user defaults in ViewDidLoad
-// check user defaults at view will appear
 class FilterProvidersController: UITableViewController {
     
     @IBOutlet weak var professionCollectionView: UICollectionView!
+    @IBOutlet weak var availableNowButton: RoundedTextButton!
+    @IBOutlet weak var maleGenderButton: RoundedTextButton!
+    @IBOutlet weak var femaleGenderButton: RoundedTextButton!
+    @IBOutlet weak var otherGenderButton: RoundedTextButton!
+    @IBOutlet weak var maxPriceSlider: UISlider!
+    @IBOutlet weak var maxPriceLabel: UILabel!
+    
+    let defaults = UserDefaults.standard
     
     let allGenders = Gender.fetchAllGenders()
     var allProfessions = Profession.fetchAllProfessions()
@@ -64,17 +62,50 @@ class FilterProvidersController: UITableViewController {
         }
     }
     
-    var availableNow = false
-    var genderFitler = [Gender : String]()
-    var professionFilter = [Profession : String]()
-    var priceRangeFilter = [PriceRange : Int]()
-    var servicesFilter = [String]()
+    lazy var availableNow = defaults.object(forKey: UserDefaultsKeys.availableNow) as? Bool ?? false
+    lazy var genderFilter = defaults.object(forKey: UserDefaultsKeys.genderFilter) as? [String : String] ?? [String : String]()
+    lazy var professionFilter = defaults.object(forKey: UserDefaultsKeys.professionFilter) as? [String : String] ?? [String : String]()
+    lazy var maxPriceFilter = defaults.object(forKey: UserDefaultsKeys.maxPriceFilter) as? Int ?? 1000
+    lazy var servicesFilter = defaults.object(forKey: UserDefaultsKeys.servicesFilter) as? [String: String] ?? [String : String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "ServicesCell", bundle: nil), forCellReuseIdentifier: "ServicesCell")
+        setupFilterTableView()
+        setupProfessionCollectionView()
+        setupAvailableNowButtonUI()
+        setupGenderButtonsUI()
+        setupMaxPriceSliderUI()
+    }
+    
+    private func setupAvailableNowButtonUI() {
+        availableNow ? buttonSelectedUI(button: availableNowButton) : buttonDeselectedUI(button: availableNowButton)
+    }
+    private func setupGenderButtonsUI() {
+        for gender in genderFilter {
+            switch gender.key {
+            case Gender.male.rawValue:
+                buttonSelectedUI(button: maleGenderButton)
+            case Gender.female.rawValue:
+                buttonSelectedUI(button: femaleGenderButton)
+            case Gender.other.rawValue:
+                buttonSelectedUI(button: otherGenderButton)
+            default:
+                break
+            }
+        }
+    }
+    private func setupMaxPriceSliderUI() {
+        maxPriceSlider.value = Float(maxPriceFilter)
+        maxPriceLabel.text = "$\(maxPriceFilter)"
+    }
+    
+    private func setupProfessionCollectionView() {
         professionCollectionView.dataSource = self
         professionCollectionView.delegate = self
+    }
+    
+    private func setupFilterTableView() {
+        tableView.register(UINib(nibName: "ServicesCell", bundle: nil), forCellReuseIdentifier: "ServicesCell")
         fetchAllServices()
     }
     
@@ -91,31 +122,57 @@ class FilterProvidersController: UITableViewController {
     }
     
     // MARK: Actions
-    
-    // Filter 1: Available
     @IBAction func availableNowButtonPressed(_ sender: RoundedTextButton) {
-        // use a state to indicate whether it's available now or not
-        
+        if availableNow {
+            availableNow = false
+            buttonDeselectedUI(button: sender)
+        } else {
+            availableNow = true
+            buttonSelectedUI(button: sender)
+        }
+        print(availableNow)
     }
     
     @IBAction func genderButtonPressed(_ sender: RoundedTextButton) {
-        switch sender.tag {
-        case 0: // male
-            break
-        case 1: // female
-            break
-        case 2: // other
-            break
-        default:
-            break
+        let selectedGender = allGenders[sender.tag]
+        if let _ = genderFilter[selectedGender.rawValue] {
+            genderFilter[selectedGender.rawValue] = nil
+            buttonDeselectedUI(button: sender)
+        } else {
+            genderFilter[selectedGender.rawValue] = selectedGender.rawValue
+            buttonSelectedUI(button: sender)
         }
+        print(genderFilter)
     }
+    
+    private func buttonSelectedUI(button: RoundedTextButton) {
+        button.backgroundColor = .darkGray
+        button.layer.shadowColor = UIColor.red.cgColor
+        button.setTitleColor(.white, for: .normal)
+    }
+    private func buttonDeselectedUI(button: RoundedTextButton) {
+        button.backgroundColor = .white
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.setTitleColor(.black, for: .normal)
+    }
+    
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
     
+    @IBAction func sliderValueChange(_ sender: UISlider) {
+        let maxPrice = Int(sender.value)
+        maxPriceFilter = maxPrice
+        maxPriceLabel.text = "$\(maxPrice)"
+    }
+    
     @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
+        defaults.set(availableNow, forKey: UserDefaultsKeys.availableNow)
+        defaults.set(genderFilter, forKey: UserDefaultsKeys.genderFilter)
+        defaults.set(maxPriceFilter, forKey: UserDefaultsKeys.maxPriceFilter)
+        defaults.set(professionFilter, forKey: UserDefaultsKeys.professionFilter)
+        defaults.set(servicesFilter, forKey: UserDefaultsKeys.servicesFilter)
         dismiss(animated: true)
     }
     
@@ -138,14 +195,12 @@ extension FilterProvidersController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ServicesCell", for: indexPath) as! ServicesCell
-
             let currentServiceName = allServices[indexPath.row]
-            cell.serviceNameLabel.text = currentServiceName
-            cell.serviceSwitch.tag = indexPath.row
-            cell.selectionStyle = .none
+            cell.delegate = self
+            cell.configureCell(serviceName: currentServiceName, indexPath: indexPath)
+            cell.serviceSwitch.isOn = servicesFilter[currentServiceName] != nil
             return cell
         }
-        
         return super.tableView(tableView, cellForRowAt: indexPath)
     }
     
@@ -167,31 +222,61 @@ extension FilterProvidersController {
 
 // MARK: Setup CollectionView (Profession Filter)
 extension FilterProvidersController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 118, height: 31)
+    }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return allProfessions.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let professionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfessionCell", for: indexPath) as? ProfessionCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfessionCell", for: indexPath) as? ProfessionCell else {
             fatalError("ProfessionCell is nil")
         }
         let currentProfession = allProfessions[indexPath.row]
-        professionCell.professionLabel.text = currentProfession.rawValue
-        
-        professionCell.layer.cornerRadius = professionCell.frame.height / 2
-        professionCell.layer.borderWidth = 1
-        professionCell.layer.borderColor = UIColor(hexString: "#ff7f7f ").cgColor
-        professionCell.clipsToBounds = true
-        professionCell.layer.masksToBounds = true
-        return professionCell
+        cell.configureCell(profession: currentProfession)
+        if let _ = professionFilter[currentProfession.rawValue] {
+            professionSelected(profession: currentProfession, cell: cell)
+        } else {
+            professionDeselected(profession: currentProfession, cell: cell)
+        }
+        return cell
     }
 
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // set filter here for profession
+        let selectedCell = collectionView.cellForItem(at: indexPath) as! ProfessionCell
+        let selectedProfession = allProfessions[indexPath.row]
+        if let _ = professionFilter[selectedProfession.rawValue] {
+            professionDeselected(profession: selectedProfession, cell: selectedCell)
+        } else {
+            professionSelected(profession: selectedProfession, cell: selectedCell)
+        }
+        print(professionFilter)
     }
+    private func professionSelected(profession: Profession, cell: ProfessionCell) {
+        professionFilter[profession.rawValue] = profession.rawValue
+        cell.professionLabel.textColor = .white
+        cell.backgroundColor = .darkGray
+        cell.layer.borderColor = UIColor(hexString: "#FA8072").cgColor
+    }
+    private func professionDeselected(profession: Profession, cell: ProfessionCell) {
+        professionFilter[profession.rawValue] = nil
+        cell.professionLabel.textColor = .black
+        cell.backgroundColor = .white
+        cell.layer.borderColor = UIColor.darkGray.cgColor
+    }
+}
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 126, height: 31)
+extension FilterProvidersController: ServicesCellDelegate {
+    func serviceSwitchToggled(serviceSwitch: UISwitch) {
+        let serviceName = allServices[serviceSwitch.tag]
+        if let _ = servicesFilter[serviceName] {
+            servicesFilter[serviceName] = nil
+        } else {
+            servicesFilter[serviceName] = serviceName
+        }
+        print(servicesFilter)
     }
 }

@@ -41,34 +41,47 @@ class ProviderDetailController: UITableViewController {
         setupProvider()
     }
     
-    func checkForDuplicates(id: String, provider: ServiceSideUser) -> Bool {
+    func checkForDuplicates(id: String, provider: ServiceSideUser, completionHandler: @escaping(Error?, Bool) -> Void) {
         guard let currentUser = authservice.getCurrentUser() else  {
-            return false
+            return
         }
         DBService.firestoreDB.collection(StylistsUserCollectionKeys.stylistUser)
             .document(currentUser.uid)
             .collection("userFavorites")
-            .whereField("providerId", isEqualTo: provider.userId)
-        return true
+            .whereField("userId", isEqualTo: provider.userId)
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                    completionHandler(error, false)
+                } else if let snapshot = snapshot {
+                    if snapshot.documents.count > 0 {
+                        completionHandler(nil, true)
+                    } else {
+                    completionHandler(nil, false)
+                    }
+                }
+        }
     }
     
     @IBAction func AddToFavorite(_ sender: UIBarButtonItem) {
         guard let currentUser = authservice.getCurrentUser() else  {
             return
         }
-        DBService.addToFavorites(id: currentUser.uid, prodider: provider) { (error) in
+        self.checkForDuplicates(id: currentUser.uid, provider: self.provider, completionHandler: { (error, success) in
             if let error = error {
                 print(error)
-            }
-            if self.checkForDuplicates(id: currentUser.uid, provider: self.provider) {
-                self.showAlert(title: "", message: "Provider already favorited", actionTitle: "OK")
-                return
+            } else if success {
+                self.showAlert(title: "", message: "\(self.provider.firstName ?? "") al ready favorited", actionTitle: "OK")
             } else {
-                DispatchQueue.main.async {
-                    self.showAlert(title: "", message: "Added to Favorites", actionTitle: "OK")
+                DBService.addToFavorites(id: currentUser.uid, prodider: self.provider) { (error) in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        self.showAlert(title: "Success", message: "\(self.provider.firstName ?? "") is added to your favorites", actionTitle: "OK")
+                    }
                 }
             }
-        }
+            
+        })
     }
     
     
@@ -145,6 +158,7 @@ extension ProviderDetailController: UICollectionViewDataSource {
             let buttonLabel = buttons[indexPath.row]
             cell.buttonLabel.text = buttonLabel
             return cell
+            
         } else {
             let portfolioCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PortfolioCell", for: indexPath) as! PortfolioCollectionViewCell
             switch provider.jobTitle {
@@ -183,5 +197,7 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
         scrollView.scrollRectToVisible(view.frame, animated: true)
         view.frame.size.width = self.view.bounds.width
         view.frame.origin.x = CGFloat(indexPath.row) * self.view.bounds.size.width
+        
     }
+    
 }
