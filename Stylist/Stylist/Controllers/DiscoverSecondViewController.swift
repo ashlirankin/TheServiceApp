@@ -26,7 +26,6 @@ class DiscoverSecondViewController: UIViewController {
         super.viewDidLoad()
         setupcollectionView()
         getServices()
-      
     }
     
     func  getServices() {
@@ -84,11 +83,9 @@ class DiscoverSecondViewController: UIViewController {
             let indexPath = collectionView.indexPath(for: cell) else {
                 return
         }
-        
-        let provider = serviceProviders[indexPath.row]
+        let provider = allServices[indexPath.row]
         destination.provider = provider
     }
-    
 }
 
 extension DiscoverSecondViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
