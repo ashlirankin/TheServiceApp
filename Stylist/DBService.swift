@@ -18,9 +18,9 @@ final class DBService {
         db.settings = settings
         return db
     }()
-  static public var generateDocumentId: String {
-    return firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document().documentID
-  }
+    static public var generateDocumentId: String {
+        return firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document().documentID
+    }
     static func CreateServiceProvider(serviceProvider:ServiceSideUser,completionHandler: @escaping (Error?) -> Void){
         firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).document(serviceProvider.userId).setData([ServiceSideUserCollectionKeys.firstName: serviceProvider.firstName
             ?? "" ,
@@ -174,6 +174,19 @@ final class DBService {
                     completionHandler(nil, error)
                 } else {
                     completionHandler(snapshot?.documents.map{ServiceSideUser(dict:$0.data())}, nil)
+                }
+        }
+    }
+    
+    static func getReviews(provider: ServiceSideUser, completionHandler: @escaping([Reviews]?, Error?) -> Void) {
+        DBService.firestoreDB.collection("serviceProvider")
+            .document(provider.userId)
+            .collection("reviews")
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                    completionHandler(nil, error)
+                } else if let snapshot = snapshot {
+                    completionHandler(snapshot.documents.map{Reviews(dict: $0.data())},nil)
                 }
         }
     }
