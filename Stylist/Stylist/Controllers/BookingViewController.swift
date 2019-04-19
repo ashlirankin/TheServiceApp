@@ -22,6 +22,7 @@ class BookingViewController: UITableViewController {
   @IBOutlet weak var orderSummaryCollectionView: UICollectionView!
   @IBOutlet weak var priceCell: UITableViewCell!
 <<<<<<< HEAD
+<<<<<<< HEAD
   
   lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 250))
   
@@ -29,6 +30,12 @@ class BookingViewController: UITableViewController {
     let sectionsTitle = ["Services","Available times","Summary"]
   lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 300))
 >>>>>>> 4cff799570a7185b569bb89d291b01dc7a5728df
+=======
+
+    let sectionsTitle = ["Services","Available times","Summary"]
+  lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 300))
+
+>>>>>>> 53dc8e18bffb82d0535ba1c7c21e4006dd4861c9
   private var providerServices = [ProviderServices](){
     didSet{
       servicesCollectionView.reloadData()
@@ -74,8 +81,11 @@ class BookingViewController: UITableViewController {
     setUpUi()
     
 <<<<<<< HEAD
+<<<<<<< HEAD
   }
 =======
+=======
+>>>>>>> 53dc8e18bffb82d0535ba1c7c21e4006dd4861c9
     }
     
     private func setupNotification() {
@@ -95,8 +105,13 @@ class BookingViewController: UITableViewController {
             }
         }
     }
+<<<<<<< HEAD
     
 >>>>>>> 4cff799570a7185b569bb89d291b01dc7a5728df
+=======
+  }
+
+>>>>>>> 53dc8e18bffb82d0535ba1c7c21e4006dd4861c9
   @IBAction func bookButtonPressed(_ sender: UIButton) {
     
     guard let provider  = provider ,
@@ -230,12 +245,18 @@ extension BookingViewController:UICollectionViewDataSource{
         avalibility.currentDate == currentDate.rawValue
       }
 <<<<<<< HEAD
+<<<<<<< HEAD
       
     cell.timeButton.setTitle(avalibleTime?.avalibleHours[indexPath.row], for: .normal)
 =======
       cell.timeButton.text = avalibleTime?.avalibleHours[indexPath.row]
 >>>>>>> 4cff799570a7185b569bb89d291b01dc7a5728df
       
+=======
+
+      cell.timeButton.text = avalibleTime?.avalibleHours[indexPath.row]
+
+>>>>>>> 53dc8e18bffb82d0535ba1c7c21e4006dd4861c9
       title = avalibleTime?.currentDate
 
       cell.timeButton.tag = indexPath.row
