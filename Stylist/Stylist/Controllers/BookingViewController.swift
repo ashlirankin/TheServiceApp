@@ -86,7 +86,7 @@ class BookingViewController: UITableViewController {
             }
         }
     }
-  }
+  
 
   @IBAction func bookButtonPressed(_ sender: UIButton) {
     
