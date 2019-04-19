@@ -34,13 +34,20 @@ class RoundedImageButton: UIButton {
 
 @IBDesignable
 class RoundedTextButton: UIButton {
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        backgroundColor = .darkGray
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupButtonUI()
+    }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setupButtonUI()
+    }
+    private func setupButtonUI() {
+        backgroundColor = .white
         layer.cornerRadius = self.frame.height / 2
-        setTitleColor(.white, for: .normal)
+        setTitleColor(.black, for: .normal)
         
-        layer.shadowColor = UIColor.red.cgColor
+        layer.shadowColor = UIColor.darkGray.cgColor
         layer.shadowRadius = 6
         layer.shadowOpacity = 0.5
         layer.shadowOffset = CGSize(width: 0, height: 0)
