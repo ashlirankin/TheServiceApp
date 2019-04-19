@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		092C93B02269076300A1470E /* ReviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 092C93AF2269076300A1470E /* ReviewCell.xib */; };
+		092C93B2226907BE00A1470E /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092C93B1226907BE00A1470E /* ReviewCell.swift */; };
 		09481797225F9ACC0026C066 /* BookingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09481796225F9ACC0026C066 /* BookingTableViewCell.swift */; };
 		094DF889225D2809001EA2FE /* ProviderDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094DF888225D2809001EA2FE /* ProviderDetailController.swift */; };
 		094DF88B225D2835001EA2FE /* UserDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 094DF88A225D2835001EA2FE /* UserDetailHeader.xib */; };
@@ -98,6 +100,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		092C93AF2269076300A1470E /* ReviewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewCell.xib; sourceTree = "<group>"; };
+		092C93B1226907BE00A1470E /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
 		09481796225F9ACC0026C066 /* BookingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTableViewCell.swift; sourceTree = "<group>"; };
 		09481798225FC6BE0026C066 /* Entrance.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Entrance.storyboard; sourceTree = "<group>"; };
 		094DF888225D2809001EA2FE /* ProviderDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderDetailController.swift; sourceTree = "<group>"; };
@@ -221,6 +225,7 @@
 				D6FE75172265118A00B4A49A /* ProfessionCell.swift */,
 				095BF72C2264E68D00F416ED /* UserProfileTableViewCell.swift */,
 				099B0C12226648F300474066 /* DiscoverCollectionViewCell.swift */,
+				092C93B1226907BE00A1470E /* ReviewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -238,6 +243,7 @@
 				09DCD308225E66C30090EE1F /* ProviderDetailAvailability.xib */,
 				09DCD30A225E69860090EE1F /* ProviderAvailability.swift */,
 				09DCD30C225E7E5D0090EE1F /* ProviderDetailReviews.xib */,
+				092C93AF2269076300A1470E /* ReviewCell.xib */,
 				09DCD30E225E7F7D0090EE1F /* ProviderDetailReviews.swift */,
 				098E826A2260CE5C0023E41B /* PortfolioCell.xib */,
 				D6CD419922664C6000F79DAA /* ServicesCell.swift */,
@@ -495,6 +501,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E7739BE22601267004C188A /* Entrance.storyboard in Resources */,
+				092C93B02269076300A1470E /* ReviewCell.xib in Resources */,
 				09DCD309225E66C30090EE1F /* ProviderDetailAvailability.xib in Resources */,
 				2E409BF02267DF0E00130CBA /* Payments.storyboard in Resources */,
 				2E90A61A2261124A0016462C /* BookService.storyboard in Resources */,
@@ -681,6 +688,7 @@
 				2EBDDBD6225B999400583BC0 /* String+Date.swift in Sources */,
 				2EF103C82255A4A30030FBFF /* ServiceProvider.swift in Sources */,
 				099B0C13226648F300474066 /* DiscoverCollectionViewCell.swift in Sources */,
+				092C93B2226907BE00A1470E /* ReviewCell.swift in Sources */,
 				09DCD303225E4AB90090EE1F /* UIViewController+Extensions.swift in Sources */,
 				09DCD313225E97340090EE1F /* DiscoveryCollectionViewCell.swift in Sources */,
 				2E9DD7D02257C93E00D74DD1 /* DBService.swift in Sources */,
