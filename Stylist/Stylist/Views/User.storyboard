@@ -358,7 +358,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RVh-TF-xCO">
-                                <rect key="frame" x="378" y="44" width="16" height="22"/>
+                                <rect key="frame" x="344" y="44" width="50" height="50"/>
                                 <state key="normal" image="icons8-more"/>
                                 <connections>
                                     <action selector="moreOptionsButtonPressed:" destination="0U7-LY-BRK" eventType="touchUpInside" id="8Cu-Cz-ESZ"/>

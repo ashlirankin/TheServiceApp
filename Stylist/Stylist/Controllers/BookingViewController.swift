@@ -50,10 +50,8 @@ class BookingViewController: UITableViewController {
       tableView.reloadData()
     }
   }
-  
   var currentDate:CurrentaDate = .Tuesday
-  
-  lazy var price = servicesArray.map{$0.price}.reduce(0, +)
+   lazy var price = servicesArray.map{$0.price}.reduce(0, +)
   let authService = AuthService()
   
  lazy var localAppointments = [String:Any]()
@@ -88,7 +86,7 @@ class BookingViewController: UITableViewController {
             }
         }
     }
-  }
+  
 
   @IBAction func bookButtonPressed(_ sender: UIButton) {
     
@@ -302,7 +300,7 @@ extension BookingViewController:UICollectionViewDataSource{
         let headerLabel = UILabel(frame: CGRect(x: 30, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
         headerLabel.font = UIFont(name: "Verdana", size: 20)
         headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
-        headerLabel.textColor = #colorLiteral(red: 0, green: 0.5772375464, blue: 0.5888287425, alpha: 1)
+        headerLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         headerLabel.sizeToFit()
         view.addSubview(headerLabel)
         return view
@@ -313,3 +311,4 @@ extension BookingViewController:UICollectionViewDataSource{
     }
 
 }
+

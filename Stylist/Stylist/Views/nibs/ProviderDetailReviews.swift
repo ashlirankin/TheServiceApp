@@ -23,9 +23,7 @@ class ProviderDetailReviews: UIView {
     }
     
     func commonInit() {
-        Bundle.main.loadNibNamed("ProviderDetailReviews", owner: self, options: nil)
+    Bundle.main.loadNibNamed("ProviderDetailReviews", owner: self, options: nil)
         addSubview(tableView)
     }
-
-    
 }
