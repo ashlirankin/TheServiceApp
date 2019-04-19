@@ -21,8 +21,10 @@ class BookingViewController: UITableViewController {
   @IBOutlet weak var servicesCollectionView: UICollectionView!
   @IBOutlet weak var orderSummaryCollectionView: UICollectionView!
   @IBOutlet weak var priceCell: UITableViewCell!
+
     let sectionsTitle = ["Services","Available times","Summary"]
   lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 300))
+
   private var providerServices = [ProviderServices](){
     didSet{
       servicesCollectionView.reloadData()
@@ -41,8 +43,7 @@ class BookingViewController: UITableViewController {
       getProviderAvalibility(providerId: provider?.userId ?? "no provider id found")
     }
   }
-  let docId  = DBService.generateDocumentId
-  
+
   var servicesArray = [ProviderServices](){
     didSet{
       orderSummaryCollectionView.reloadData()
@@ -56,6 +57,7 @@ class BookingViewController: UITableViewController {
   let authService = AuthService()
   
  lazy var localAppointments = [String:Any]()
+ 
   var localServices = [String](){
     didSet{
       localAppointments["services"] = localServices
@@ -86,8 +88,10 @@ class BookingViewController: UITableViewController {
             }
         }
     }
-    
+  }
+
   @IBAction func bookButtonPressed(_ sender: UIButton) {
+    
     guard let provider  = provider ,
       let currentUser = authService.getCurrentUser(),
     !localServices.isEmpty else {return}
@@ -128,6 +132,7 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
   }
   
   func setUpUi(){
+    
     tableView.tableHeaderView = providerDetailHeader
     providerDetailHeader.bookingButton.isHidden = true
     providerDetailHeader.ratingsValue.isHidden = true
@@ -147,12 +152,9 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
    
   @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
     dismiss(animated: true)
-    
-    
   }
   
   @IBAction func cancelButtonPressed(_ sender: UIButton) {
-    
     servicesArray.remove(at: sender.tag)
     orderSummaryCollectionView.reloadData()
     
@@ -220,8 +222,9 @@ extension BookingViewController:UICollectionViewDataSource{
       let avalibleTime = providerAvalibility.first { (avalibility) -> Bool in
         avalibility.currentDate == currentDate.rawValue
       }
+
       cell.timeButton.text = avalibleTime?.avalibleHours[indexPath.row]
-      
+
       title = avalibleTime?.currentDate
 
       cell.timeButton.tag = indexPath.row
