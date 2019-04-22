@@ -28,6 +28,7 @@ struct ServiceSideUserCollectionKeys{
   static let lat = "lat"
   static let long = "long"
   static let zip = "zip"
+  static let isAvailable = "isAvailable"
 }
 
 struct StylistsUserCollectionKeys{
