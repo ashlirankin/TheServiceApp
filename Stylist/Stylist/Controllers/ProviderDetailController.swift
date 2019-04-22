@@ -31,13 +31,6 @@ class ProviderDetailController: UITableViewController {
     lazy var availabilityTimes = ProviderAvailability(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 642.5))
     lazy var reviewsTable = ProviderDetailReviews(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 642.5))
     lazy var featureViews = [profileBio, portfolioView, reviewsTable]
-    var reviews = [Reviews]() {
-        didSet {
-            DispatchQueue.main.async {
-                self.reviewsTable.tableView.reloadData()
-            }
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +39,6 @@ class ProviderDetailController: UITableViewController {
         setupScrollviewController(scrollView: scrollView, views: featureViews)
         loadSVFeatures()
         setupProvider()
-        reviewsTable.tableView.dataSource = self
-        reviewsTable.tableView.delegate = self
-        reviewsTable.tableView.register(UINib(nibName: "ReviewCell", bundle: nil), forCellReuseIdentifier: "ReviewCell")
-        
     }
     
     func checkForDuplicates(id: String, provider: ServiceSideUser, completionHandler: @escaping(Error?, Bool) -> Void) {
@@ -67,7 +56,7 @@ class ProviderDetailController: UITableViewController {
                     if snapshot.documents.count > 0 {
                         completionHandler(nil, true)
                     } else {
-                        completionHandler(nil, false)
+                    completionHandler(nil, false)
                     }
                 }
         }
@@ -109,26 +98,11 @@ class ProviderDetailController: UITableViewController {
             providerDetailHeader.ratingsValue.text = "3.5"
         }
         setupProviderPortfolio()
-        setupReviews()
     }
     
     private func setupProviderPortfolio() {
         portfolioView.portfolioCollectionView.delegate = self
         portfolioView.portfolioCollectionView.dataSource = self
-    }
-    
-    private func setupReviews() {
-        DBService.getReviews(provider: provider) { (reviews, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else if let reviews = reviews{
-                self.reviews = reviews
-            }
-        }
-        reviewsTable.tableView.dataSource = self
-        reviewsTable.tableView.delegate = self
-        reviewsTable.tableView.register(UINib(nibName: "ReviewCell", bundle: nil), forCellReuseIdentifier: "ReviewCell")
-        reviewsTable.tableView.tableFooterView = UIView()
     }
     
     
@@ -226,27 +200,4 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
         
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView == reviewsTable.tableView {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath) as! ReviewCell
-            let review = reviews[indexPath.row]
-            cell.reviewLabel.text = review.description
-            cell.reviewLabel.textColor = .white
-            cell.backgroundColor = #colorLiteral(red: 0.1619916558, green: 0.224360168, blue: 0.3768204153, alpha: 1)
-            return cell
-        } else {
-           return super.tableView(tableView, cellForRowAt: indexPath)
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == reviewsTable.tableView {
-            return reviews.count
-        } else {
-            return 2
-        }
-    }
-    
 }
-
-

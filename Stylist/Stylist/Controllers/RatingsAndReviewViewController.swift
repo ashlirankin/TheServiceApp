@@ -14,8 +14,15 @@ class RatingsAndReviewViewController: UIViewController {
     @IBOutlet weak var cosmosView: CosmosView!
     @IBOutlet weak var reviewTextView: UITextView!
     
-   
-    var stylist: ServiceSideUser?
+  @IBOutlet weak var promptLabel: UILabel!
+  
+  @IBOutlet weak var tipLabelPrompt: UILabel!
+  
+  @IBOutlet weak var tipCollectionView: UICollectionView!
+  
+  @IBOutlet weak var orderTableView: UITableView!
+  
+  var stylist: ServiceSideUser?
     var settings = CosmosSettings()
     private var authService = (UIApplication.shared.delegate as! AppDelegate).authService
     
