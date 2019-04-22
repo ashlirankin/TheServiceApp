@@ -34,11 +34,6 @@ enum Gender: String, CaseIterable {
         return genders
     }
 }
-//enum PriceRange: String {
-//    case low = "Low"
-//    case high = "Hight"
-//}
-
 
 class FilterProvidersController: UITableViewController {
     
