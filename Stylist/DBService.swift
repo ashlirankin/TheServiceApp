@@ -177,6 +177,16 @@ final class DBService {
                 }
         }
     }
+  
+  static func createUserWallet(userId:String,information:[String:Any],documentId:String,completionHandler: @escaping(Error?) -> Void){
+    firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(userId).collection("wallet").document(documentId).setData(information) { (error) in
+      if let error = error {
+        completionHandler(error)
+      }
+    print("sucessfully added to your wallet")
+      
+    }
+  }
 }
 
 
