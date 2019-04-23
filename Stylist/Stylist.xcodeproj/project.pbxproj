@@ -81,6 +81,7 @@
 		45864F53225D124A005FDBD5 /* RatingsAndReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45864F52225D124A005FDBD5 /* RatingsAndReviewViewController.swift */; };
 		45864F5A225FDD1D005FDBD5 /* ClientEditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45864F59225FDD1D005FDBD5 /* ClientEditProfileController.swift */; };
 		8F8138881EF44484D5275681 /* Pods_Stylist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D89AABB01908945DBC5625A6 /* Pods_Stylist.framework */; };
+		D6006938226FB86200DBB38F /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6006937226FB86200DBB38F /* Array+Extensions.swift */; };
 		D6B4BF6D225E384300F1E48C /* IBDesignableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4BF6C225E384300F1E48C /* IBDesignableViews.swift */; };
 		D6CD419A22664C6000F79DAA /* ServicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD419922664C6000F79DAA /* ServicesCell.swift */; };
 		D6CD419C22664C7300F79DAA /* ServicesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6CD419B22664C7300F79DAA /* ServicesCell.xib */; };
@@ -186,6 +187,7 @@
 		A8787ACFCB7CCA4C79516777 /* Pods-Stylist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stylist.debug.xcconfig"; path = "Target Support Files/Pods-Stylist/Pods-Stylist.debug.xcconfig"; sourceTree = "<group>"; };
 		AD1D5ADFD62A113C77C9D79E /* Pods-FirebaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseTests.debug.xcconfig"; path = "Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C9F0689D22A995E41D8C2C56 /* Pods_FirebaseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FirebaseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6006937226FB86200DBB38F /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		D6B4BF6C225E384300F1E48C /* IBDesignableViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignableViews.swift; sourceTree = "<group>"; };
 		D6CD419922664C6000F79DAA /* ServicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCell.swift; sourceTree = "<group>"; };
 		D6CD419B22664C7300F79DAA /* ServicesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServicesCell.xib; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				09DCD302225E4AB80090EE1F /* UIViewController+Extensions.swift */,
 				D6CD419D22667B0800F79DAA /* UIColor+Extensions.swift */,
 				D6CD419F2267B25B00F79DAA /* UserDefaultsKeys.swift */,
+				D6006937226FB86200DBB38F /* Array+Extensions.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -710,6 +713,7 @@
 				2EF103CD2255A4D20030FBFF /* Ratings.swift in Sources */,
 				090EF6D4226FAA1C00AD19AA /* UserChoiceViewController.swift in Sources */,
 				098E826D2260CE8E0023E41B /* PortfolioCollectionViewCell.swift in Sources */,
+				D6006938226FB86200DBB38F /* Array+Extensions.swift in Sources */,
 				2E9DD7DC2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift in Sources */,
 				094DF892225D492D001EA2FE /* ProviderDetailCustomCell.swift in Sources */,
 				D6B4BF6D225E384300F1E48C /* IBDesignableViews.swift in Sources */,

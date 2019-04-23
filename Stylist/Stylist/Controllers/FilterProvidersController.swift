@@ -10,7 +10,7 @@ import UIKit
 
 enum Profession: String, CaseIterable {
     case barber = "Barber"
-    case hairdresser = "Hairdresser"
+    case hairStylist = "Hair Stylist"
     case makeup = "Makeup Artist"
     
     static func fetchAllProfessions() -> [Profession] {
@@ -22,9 +22,9 @@ enum Profession: String, CaseIterable {
     }
 }
 enum Gender: String, CaseIterable {
-    case male = "Male"
-    case female = "Female"
-    case other = "Other"
+    case male = "male"
+    case female = "female"
+    case other = "other"
     
     static func fetchAllGenders() -> [Gender] {
         var genders = [Gender]()
@@ -34,12 +34,8 @@ enum Gender: String, CaseIterable {
         return genders
     }
 }
-//enum PriceRange: String {
-//    case low = "Low"
-//    case high = "Hight"
-//}
 
-
+// TODO: Collapsable Cell & Divide services by profession
 class FilterProvidersController: UITableViewController {
     
     @IBOutlet weak var professionCollectionView: UICollectionView!
@@ -78,17 +74,17 @@ class FilterProvidersController: UITableViewController {
     }
     
     private func setupAvailableNowButtonUI() {
-        availableNow ? buttonSelectedUI(button: availableNowButton) : buttonDeselectedUI(button: availableNowButton)
+        availableNow ? availableNowButton.buttonSelectedUI() : availableNowButton.buttonDeselectedUI()
     }
     private func setupGenderButtonsUI() {
         for gender in genderFilter {
             switch gender.key {
             case Gender.male.rawValue:
-                buttonSelectedUI(button: maleGenderButton)
+                maleGenderButton.buttonSelectedUI()
             case Gender.female.rawValue:
-                buttonSelectedUI(button: femaleGenderButton)
+                femaleGenderButton.buttonSelectedUI()
             case Gender.other.rawValue:
-                buttonSelectedUI(button: otherGenderButton)
+                otherGenderButton.buttonSelectedUI()
             default:
                 break
             }
@@ -109,8 +105,6 @@ class FilterProvidersController: UITableViewController {
         fetchAllServices()
     }
     
-    // divide by all profession
-    // collasable cell
     private func fetchAllServices() {
         DBService.getServices { (professionServices, error) in
             if let error = error {
@@ -119,6 +113,7 @@ class FilterProvidersController: UITableViewController {
                 self.allServices = professionServices.map { $0.services }
                         .flatMap{ $0 }
                         .filter{ $0 != "Other" }
+                        .removingDuplicates()
             }
         }
     }
@@ -127,10 +122,10 @@ class FilterProvidersController: UITableViewController {
     @IBAction func availableNowButtonPressed(_ sender: RoundedTextButton) {
         if availableNow {
             availableNow = false
-            buttonDeselectedUI(button: sender)
+            sender.buttonDeselectedUI()
         } else {
             availableNow = true
-            buttonSelectedUI(button: sender)
+            sender.buttonSelectedUI()
         }
         print(availableNow)
     }
@@ -139,25 +134,15 @@ class FilterProvidersController: UITableViewController {
         let selectedGender = allGenders[sender.tag]
         if let _ = genderFilter[selectedGender.rawValue] {
             genderFilter[selectedGender.rawValue] = nil
-            buttonDeselectedUI(button: sender)
+            sender.buttonDeselectedUI()
         } else {
             genderFilter[selectedGender.rawValue] = selectedGender.rawValue
-            buttonSelectedUI(button: sender)
+            sender.buttonSelectedUI()
         }
         print(genderFilter)
     }
     
-    private func buttonSelectedUI(button: RoundedTextButton) {
-        button.backgroundColor = .darkGray
-        button.layer.shadowColor = UIColor.red.cgColor
-        button.setTitleColor(.white, for: .normal)
-    }
-    private func buttonDeselectedUI(button: RoundedTextButton) {
-        button.backgroundColor = .white
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.setTitleColor(.black, for: .normal)
-    }
-    
+
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
