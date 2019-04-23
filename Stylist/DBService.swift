@@ -187,6 +187,18 @@ final class DBService {
       
     }
   }
+    
+    static func getProviderServices(providerId: String, completion: @escaping (Error?, [ProviderServices]?) -> Void) {
+        firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)   .document(providerId)
+            .collection("services")
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                     completion(error, nil)
+                } else {
+                    completion(nil, snapshot?.documents.map{ ProviderServices.init(dict: $0.data()) })
+                }
+        }
+    }
 }
 
 
