@@ -141,7 +141,7 @@
                         <viewLayoutGuide key="safeArea" id="Tz0-HD-jAp"/>
                     </view>
                     <navigationItem key="navigationItem" title="Discover" id="pvM-BQ-U83">
-                        <barButtonItem key="rightBarButtonItem" image="filter" id="Rtk-Xv-sN6">
+                        <barButtonItem key="rightBarButtonItem" image="icons8-slider-48" id="Rtk-Xv-sN6">
                             <connections>
                                 <action selector="filterPressed:" destination="w3m-fQ-zhL" id="iDv-xX-CXX"/>
                             </connections>
@@ -384,7 +384,7 @@
                                     <constraint firstAttribute="width" constant="70" id="ufE-9C-CiP"/>
                                     <constraint firstAttribute="width" secondItem="9eB-As-Ea2" secondAttribute="height" multiplier="1:1" id="wnc-oK-rl7"/>
                                 </constraints>
-                                <state key="normal" image="barbershop"/>
+                                <state key="normal" image="icons8-data-pending-50 (1)"/>
                                 <connections>
                                     <action selector="toggleButtons:" destination="0U7-LY-BRK" eventType="touchUpInside" id="5zc-55-aia"/>
                                 </connections>
@@ -395,7 +395,7 @@
                                     <constraint firstAttribute="width" secondItem="2iz-7O-EH4" secondAttribute="height" multiplier="1:1" id="AQW-GB-2QR"/>
                                     <constraint firstAttribute="width" constant="70" id="FHH-uO-FA5"/>
                                 </constraints>
-                                <state key="normal" image="history"/>
+                                <state key="normal" image="icons8-filing-cabinet-50"/>
                                 <connections>
                                     <action selector="toggleButtons:" destination="0U7-LY-BRK" eventType="touchUpInside" id="5Q0-jN-3iz"/>
                                 </connections>
@@ -485,7 +485,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1bk-ey-hPF"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="icons8-resume_website" id="UO3-13-u9t">
+                    <tabBarItem key="tabBarItem" title="Profile" image="icons8-resume-website-filled-24" id="UO3-13-u9t">
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <connections>
@@ -647,7 +647,7 @@
         <scene sceneID="LTn-o5-sSM">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZNX-GN-qun" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Discover" image="icons8-barbershop" id="NIE-JF-BLN">
+                    <tabBarItem key="tabBarItem" title="Discover" image="icons8-barbershop-32" id="NIE-JF-BLN">
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -761,9 +761,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Provider" id="DlD-2k-Jez">
-                        <barButtonItem key="rightBarButtonItem" title="Favorite" id="e5F-NG-sse">
+                        <barButtonItem key="rightBarButtonItem" image="icons8-star-48" id="e5F-NG-sse">
                             <connections>
-                                <action selector="AddToFavorite:" destination="JyM-sN-TXm" id="g1t-D3-gIE"/>
+                                <action selector="FavoriteButtonPressed:" destination="JyM-sN-TXm" id="g1t-D3-gIE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -796,14 +796,16 @@
         </scene>
     </scenes>
     <resources>
-        <image name="barbershop" width="25" height="25"/>
         <image name="filter" width="25" height="25"/>
         <image name="goldenStar" width="3580" height="3402"/>
-        <image name="history" width="25" height="25"/>
-        <image name="icons8-barbershop" width="25" height="25"/>
+        <image name="icons8-barbershop-32" width="32" height="32"/>
         <image name="icons8-camera" width="50" height="50"/>
+        <image name="icons8-data-pending-50 (1)" width="50" height="50"/>
+        <image name="icons8-filing-cabinet-50" width="50" height="50"/>
         <image name="icons8-more" width="50" height="50"/>
-        <image name="icons8-resume_website" width="25" height="25"/>
+        <image name="icons8-resume-website-filled-24" width="24" height="24"/>
+        <image name="icons8-slider-48" width="48" height="48"/>
+        <image name="icons8-star-48" width="48" height="48"/>
         <image name="placeholder" width="512" height="512"/>
     </resources>
     <color key="tintColor" red="0.174853128" green="0.2225734221" blue="0.3657343045" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

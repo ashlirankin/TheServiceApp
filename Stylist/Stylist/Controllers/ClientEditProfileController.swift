@@ -14,7 +14,6 @@ class ClientEditProfileController: UITableViewController {
     @IBOutlet weak var profileImageView: CircularImageView!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
-    
     public var stylistUser: StylistsUser!
     
     

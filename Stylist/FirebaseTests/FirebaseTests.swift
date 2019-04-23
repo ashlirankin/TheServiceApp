@@ -223,6 +223,13 @@ We arrived at Laguna Hotel yesterday, hotel is the wrong word more like Laguna N
       }
     wait(for: [exp], timeout: 3.0)
     }
+    
+    
+    func testGetFairRide() {
+        
+        
+        
+    }
   }
 
   

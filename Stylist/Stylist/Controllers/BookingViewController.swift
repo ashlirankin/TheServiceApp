@@ -16,6 +16,8 @@ enum CurrentaDate:String {
   case Thursday
   case Friday
 }
+
+
 class BookingViewController: UITableViewController {
   @IBOutlet weak var avalibilityCollectionView: UICollectionView!
   @IBOutlet weak var servicesCollectionView: UICollectionView!

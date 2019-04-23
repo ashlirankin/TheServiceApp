@@ -10,8 +10,17 @@ import UIKit
 import Kingfisher
 import Firebase
 
+enum FavoriteButtonState: String {
+    case favorite
+    case unfavorite
+}
+
+
 
 class ProviderDetailController: UITableViewController {
+    var isFavorite: Bool!
+    var favoriteId: String? 
+    
     let authservice = AuthService()
     @IBOutlet weak var scrollView: UIScrollView!
     lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 300))
@@ -46,10 +55,26 @@ class ProviderDetailController: UITableViewController {
         setupScrollviewController(scrollView: scrollView, views: featureViews)
         loadSVFeatures()
         setupProvider()
+        setupReviewsTableview()
+        switch isFavorite {
+        case true:
+            self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-filled-50 (1)")
+             self.navigationItem.rightBarButtonItem?.isEnabled = true
+        default:
+            self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-48")
+             self.navigationItem.rightBarButtonItem?.isEnabled = true
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.navigationItem.rightBarButtonItem?.isEnabled = true
+    }
+    
+    private func setupReviewsTableview() {
         reviewsTable.tableView.dataSource = self
         reviewsTable.tableView.delegate = self
         reviewsTable.tableView.register(UINib(nibName: "ReviewCell", bundle: nil), forCellReuseIdentifier: "ReviewCell")
-        
     }
     
     func checkForDuplicates(id: String, provider: ServiceSideUser, completionHandler: @escaping(Error?, Bool) -> Void) {
@@ -73,28 +98,51 @@ class ProviderDetailController: UITableViewController {
         }
     }
     
-    @IBAction func AddToFavorite(_ sender: UIBarButtonItem) {
+    @IBAction func FavoriteButtonPressed(_ sender: UIBarButtonItem) {
+        switch isFavorite {
+        case true:
+            deleteFavorite()
+            isFavorite = false
+            navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-48")
+             self.navigationItem.rightBarButtonItem?.isEnabled = false
+        default:
+            setToFavorites()
+            isFavorite = true
+            navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-filled-50 (1)")
+             self.navigationItem.rightBarButtonItem?.isEnabled = false
+        }
+        
+        
+        
+    }
+    
+    @objc private func deleteFavorite() {
+        guard let currentUser = authservice.getCurrentUser(), let favoriteId = favoriteId else  {
+            return
+        }
+        DBService.removeFromFavorites(id: currentUser.uid, favoirteId: favoriteId, provider: self.provider) { (error, success) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if success {
+                self.showAlert(title: "", message: "unfavorited", actionTitle: "OK")
+            }
+        }
+    }
+    
+    @objc private func setToFavorites() {
         guard let currentUser = authservice.getCurrentUser() else  {
             return
         }
-        self.checkForDuplicates(id: currentUser.uid, provider: self.provider, completionHandler: { (error, success) in
+        let documentRef = DBService.generateDocumentId
+        DBService.addToFavorites(id: currentUser.uid, prodider: self.provider, documentID: documentRef) { (error) in
             if let error = error {
                 print(error)
-            } else if success {
-                self.showAlert(title: "", message: "\(self.provider.firstName ?? "") al ready favorited", actionTitle: "OK")
-            } else {
-                DBService.addToFavorites(id: currentUser.uid, prodider: self.provider) { (error) in
-                    if let error = error {
-                        print(error)
-                    } else {
-                        self.showAlert(title: "Success", message: "\(self.provider.firstName ?? "") is added to your favorites", actionTitle: "OK")
-                    }
-                }
+            } else  {
+                self.showAlert(title: "", message: "favorited", actionTitle: "OK")
             }
-            
-        })
+        }
+        
     }
-    
     
     private func setupProvider() {
         providerDetailHeader.providerFullname.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
@@ -235,7 +283,7 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
             cell.backgroundColor = #colorLiteral(red: 0.1619916558, green: 0.224360168, blue: 0.3768204153, alpha: 1)
             return cell
         } else {
-           return super.tableView(tableView, cellForRowAt: indexPath)
+            return super.tableView(tableView, cellForRowAt: indexPath)
         }
     }
     

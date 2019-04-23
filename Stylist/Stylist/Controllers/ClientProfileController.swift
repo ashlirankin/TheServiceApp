@@ -18,10 +18,11 @@ class ClientProfileController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bookingsButton: CircularButton!
     @IBOutlet weak var historyButton: CircularButton!
-    let historyproviders = [ServiceSideUser(userId: "", firstName: "Joe", lastName: "James", email: "", joinedDate: "", gender: "Male", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "Barber", address: "", city: "", state: "", lat: "", long: "", zip: ""),
-                            ServiceSideUser(userId: "", firstName: "lisa", lastName: "lane", email: "", joinedDate: "", gender: "female", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "Hair Stylist", address: "", city: "", state: "", lat: "", long: "", zip: ""),
-                            ServiceSideUser(userId: "", firstName: "tina", lastName: "Martinez", email: "", joinedDate: "", gender: "female", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "MUA", address: "", city: "", state: "", lat: "", long: "", zip: ""),
-                            ServiceSideUser(userId: "", firstName: "chris", lastName: "thompson", email: "", joinedDate: "", gender: "Male", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "Barber", address: "", city: "", state: "", lat: "", long: "", zip: ""),
+    
+    let historyproviders = [ServiceSideUser(userId: "", firstName: "Joe", lastName: "James", email: "", joinedDate: "", gender: "Male", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "Barber", address: "", city: "", state: "", lat: "", long: "", zip: "", favoriteId: ""),
+                            ServiceSideUser(userId: "", firstName: "lisa", lastName: "lane", email: "", joinedDate: "", gender: "female", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "Hair Stylist", address: "", city: "", state: "", lat: "", long: "", zip: "", favoriteId: ""),
+                            ServiceSideUser(userId: "", firstName: "tina", lastName: "Martinez", email: "", joinedDate: "", gender: "female", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "MUA", address: "", city: "", state: "", lat: "", long: "", zip: "", favoriteId: ""),
+                            ServiceSideUser(userId: "", firstName: "chris", lastName: "thompson", email: "", joinedDate: "", gender: "Male", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "Barber", address: "", city: "", state: "", lat: "", long: "", zip: "", favoriteId: ""),
     ]
     let authService = AuthService()
     private var stylistUser: StylistsUser? {
