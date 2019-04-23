@@ -52,7 +52,20 @@ class RoundedTextButton: UIButton {
         layer.shadowOpacity = 0.5
         layer.shadowOffset = CGSize(width: 0, height: 0)
     }
+    
+    func buttonSelectedUI() {
+        backgroundColor = .darkGray
+        layer.shadowColor = UIColor.red.cgColor
+        setTitleColor(.white, for: .normal)
+    }
+    
+    func buttonDeselectedUI() {
+        backgroundColor = .white
+        layer.shadowColor = UIColor.black.cgColor
+        setTitleColor(.black, for: .normal)
+    }
 }
+
 
 @IBDesignable
 class CircularImageView: UIImageView {

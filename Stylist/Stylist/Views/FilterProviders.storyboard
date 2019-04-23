@@ -175,7 +175,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Max Price $" id="rtY-zb-rlK">
+                            <tableViewSection headerTitle="Max Average $" id="rtY-zb-rlK">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ServiceCell" id="1lA-om-e9I">
                                         <rect key="frame" x="0.0" y="244" width="414" height="44"/>
