@@ -50,7 +50,6 @@ class DiscoverSecondViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-<<<<<<< HEAD
         self.listener = DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
             .addSnapshotListener({ (snapshot, error) in
                 if let error = error {
@@ -59,8 +58,6 @@ class DiscoverSecondViewController: UIViewController {
                   self.getServices()
                 }
             })
-        
-=======
         callUserDefaults()
         getServices()
     }
@@ -94,7 +91,6 @@ class DiscoverSecondViewController: UIViewController {
         if !genderFilter.isEmpty {
             
         }
->>>>>>> 19dd2fa1ec6d399165e3c681e883a1bfa318636b
     }
     
     func getFavorites() {

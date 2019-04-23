@@ -5,7 +5,6 @@
 //  Created by Oniel Rosario on 4/9/19.
 //  Copyright © 2019 Ashli Rankin. All rights reserved.
 //
-
 import UIKit
 import Kingfisher
 import Firebase
@@ -19,7 +18,7 @@ enum FavoriteButtonState: String {
 
 class ProviderDetailController: UITableViewController {
     var isFavorite: Bool!
-    var favoriteId: String? 
+    var favoriteId: String?
     
     let authservice = AuthService()
     @IBOutlet weak var scrollView: UIScrollView!
@@ -40,6 +39,13 @@ class ProviderDetailController: UITableViewController {
     lazy var availabilityTimes = ProviderAvailability(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 642.5))
     lazy var reviewsTable = ProviderDetailReviews(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 642.5))
     lazy var featureViews = [profileBio, portfolioView, reviewsTable]
+    var reviews = [Reviews]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.reviewsTable.tableView.reloadData()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,15 +54,14 @@ class ProviderDetailController: UITableViewController {
         setupScrollviewController(scrollView: scrollView, views: featureViews)
         loadSVFeatures()
         setupProvider()
-<<<<<<< HEAD
         setupReviewsTableview()
         switch isFavorite {
         case true:
             self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-filled-50 (1)")
-             self.navigationItem.rightBarButtonItem?.isEnabled = true
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
         default:
             self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-48")
-             self.navigationItem.rightBarButtonItem?.isEnabled = true
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
         }
     }
     
@@ -69,8 +74,6 @@ class ProviderDetailController: UITableViewController {
         reviewsTable.tableView.dataSource = self
         reviewsTable.tableView.delegate = self
         reviewsTable.tableView.register(UINib(nibName: "ReviewCell", bundle: nil), forCellReuseIdentifier: "ReviewCell")
-=======
->>>>>>> 19dd2fa1ec6d399165e3c681e883a1bfa318636b
     }
     
     func checkForDuplicates(id: String, provider: ServiceSideUser, completionHandler: @escaping(Error?, Bool) -> Void) {
@@ -88,7 +91,7 @@ class ProviderDetailController: UITableViewController {
                     if snapshot.documents.count > 0 {
                         completionHandler(nil, true)
                     } else {
-                    completionHandler(nil, false)
+                        completionHandler(nil, false)
                     }
                 }
         }
@@ -100,12 +103,12 @@ class ProviderDetailController: UITableViewController {
             deleteFavorite()
             isFavorite = false
             navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-48")
-             self.navigationItem.rightBarButtonItem?.isEnabled = false
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
         default:
             setToFavorites()
             isFavorite = true
             navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-filled-50 (1)")
-             self.navigationItem.rightBarButtonItem?.isEnabled = false
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
         }
         
         
@@ -153,11 +156,26 @@ class ProviderDetailController: UITableViewController {
             providerDetailHeader.ratingsValue.text = "3.5"
         }
         setupProviderPortfolio()
+        setupReviews()
     }
     
     private func setupProviderPortfolio() {
         portfolioView.portfolioCollectionView.delegate = self
         portfolioView.portfolioCollectionView.dataSource = self
+    }
+    
+    private func setupReviews() {
+        DBService.getReviews(provider: provider) { (reviews, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let reviews = reviews{
+                self.reviews = reviews
+            }
+        }
+        reviewsTable.tableView.dataSource = self
+        reviewsTable.tableView.delegate = self
+        reviewsTable.tableView.register(UINib(nibName: "ReviewCell", bundle: nil), forCellReuseIdentifier: "ReviewCell")
+        reviewsTable.tableView.tableFooterView = UIView()
     }
     
     
@@ -255,7 +273,6 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
         
     }
     
-<<<<<<< HEAD
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == reviewsTable.tableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath) as! ReviewCell
@@ -277,6 +294,4 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
         }
     }
     
-=======
->>>>>>> 19dd2fa1ec6d399165e3c681e883a1bfa318636b
 }
