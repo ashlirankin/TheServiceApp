@@ -353,8 +353,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="uZ7-XR-MQr" kind="relationship" relationship="viewControllers" id="fhr-21-oOF"/>
-                        <segue destination="ObD-KM-vNM" kind="relationship" relationship="viewControllers" id="Om6-K4-mJr"/>
-                        <segue destination="mt6-2i-1MJ" kind="relationship" relationship="viewControllers" id="Fba-2S-MPC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8JJ-8s-ss6" userLabel="First Responder" sceneMemberID="firstResponder"/>

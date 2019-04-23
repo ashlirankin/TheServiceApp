@@ -26,9 +26,9 @@ struct ServiceSideUser{
   let lat:String?
   let long:String?
   let zip:String?
+   let favoriteId: String?
   let isAvailable: Bool
-    init(userId:String,firstName:String?,lastName:String?,email:String,joinedDate:String,gender:String?,isCertified:Bool,imageURL:String?,bio:String?,licenseNumber:String?,licenseExpiryDate:String?,type:String,address:String?,city:String,state:String,lat:String,long:String,zip:String,isAvailable:Bool){
-    
+    init(userId:String,firstName:String?,lastName:String?,email:String,joinedDate:String,gender:String?,isCertified:Bool,imageURL:String?,bio:String?,licenseNumber:String?,licenseExpiryDate:String?,type:String,address:String?,city:String,state:String,lat:String,long:String,zip:String, favoriteId: String?, isAvailable:Bool) {
     self.userId = userId
     self.firstName = firstName
     self.lastName = lastName
@@ -47,6 +47,7 @@ struct ServiceSideUser{
     self.lat = lat
     self.long = long
     self.zip = zip
+    self.favoriteId = favoriteId
     self.isAvailable = isAvailable
   }
   init(dict:[String:Any]){
@@ -68,6 +69,7 @@ struct ServiceSideUser{
     self.long = dict[ServiceSideUserCollectionKeys.long] as? String ?? "no long found"
     self.zip = dict[ServiceSideUserCollectionKeys.zip] as?  String ?? "no zip found"
     self.state = dict[ServiceSideUserCollectionKeys.state] as? String ?? "no state found"
+    self.favoriteId = dict[ServiceSideUserCollectionKeys.favoriteId] as? String ?? "no favorited"
     self.isAvailable = dict[ServiceSideUserCollectionKeys.isAvailable] as? Bool ?? false
   }
 }
