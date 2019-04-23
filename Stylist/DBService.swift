@@ -18,9 +18,9 @@ final class DBService {
         db.settings = settings
         return db
     }()
-    static public var generateDocumentId: String {
-        return firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document().documentID
-    }
+  static public var generateDocumentId: String {
+    return firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document().documentID
+  }
     static func CreateServiceProvider(serviceProvider:ServiceSideUser,completionHandler: @escaping (Error?) -> Void){
         firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).document(serviceProvider.userId).setData([ServiceSideUserCollectionKeys.firstName: serviceProvider.firstName
             ?? "" ,
@@ -196,19 +196,16 @@ final class DBService {
                 }
         }
     }
-    
-    static func getReviews(provider: ServiceSideUser, completionHandler: @escaping([Reviews]?, Error?) -> Void) {
-        DBService.firestoreDB.collection("serviceProvider")
-            .document(provider.userId)
-            .collection("reviews")
-            .getDocuments { (snapshot, error) in
-                if let error = error {
-                    completionHandler(nil, error)
-                } else if let snapshot = snapshot {
-                    completionHandler(snapshot.documents.map{Reviews(dict: $0.data())},nil)
-                }
-        }
+  
+  static func createUserWallet(userId:String,information:[String:Any],documentId:String,completionHandler: @escaping(Error?) -> Void){
+    firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(userId).collection("wallet").document(documentId).setData(information) { (error) in
+      if let error = error {
+        completionHandler(error)
+      }
+    print("sucessfully added to your wallet")
+      
     }
+  }
 }
 
 

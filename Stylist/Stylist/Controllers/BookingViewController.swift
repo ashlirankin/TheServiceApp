@@ -52,8 +52,10 @@ class BookingViewController: UITableViewController {
       tableView.reloadData()
     }
   }
+  
   var currentDate:CurrentaDate = .Tuesday
-   lazy var price = servicesArray.map{$0.price}.reduce(0, +)
+  
+  lazy var price = servicesArray.map{$0.price}.reduce(0, +)
   let authService = AuthService()
   
  lazy var localAppointments = [String:Any]()
@@ -68,7 +70,6 @@ class BookingViewController: UITableViewController {
         super.viewDidLoad()
     setupCollectionViewDelegates()
     setUpUi()
-    
     }
     
     private func setupNotification() {
@@ -88,18 +89,26 @@ class BookingViewController: UITableViewController {
             }
         }
     }
+
   
 
+
   @IBAction func bookButtonPressed(_ sender: UIButton) {
-    
-    guard let provider  = provider ,
-      let currentUser = authService.getCurrentUser(),
-    !localServices.isEmpty else {return}
-    localAppointments["providerId"] = provider.userId
-    localAppointments["userId"] = currentUser.uid
-    createBooking(collectionName: "bookedAppointments", providerId: provider.userId, information: localAppointments, userId: currentUser.uid)
-   setupNotification()
+//
+//    guard let provider  = provider ,
+//      let currentUser = authService.getCurrentUser(),
+//    !localServices.isEmpty else {return}
+//    localAppointments["providerId"] = provider.userId
+//    localAppointments["userId"] = currentUser.uid
+//    createBooking(collectionName: "bookedAppointments", providerId: provider.userId, information: localAppointments, userId: currentUser.uid)
+//   setupNotification()
  
+    guard let paymentController = UIStoryboard(name: "Payments", bundle: nil).instantiateViewController(withIdentifier: "PaymentsViewController") as? PaymentsViewController else {return}
+    let navController = UINavigationController(rootViewController: paymentController)
+    paymentController.modalPresentationStyle = .currentContext
+    paymentController.modalTransitionStyle = .coverVertical
+    paymentController.amountDue = price
+    present(navController, animated: true, completion: nil)
   }
   
   func getServices(serviceProviderId:String){
@@ -222,11 +231,8 @@ extension BookingViewController:UICollectionViewDataSource{
       let avalibleTime = providerAvalibility.first { (avalibility) -> Bool in
         avalibility.currentDate == currentDate.rawValue
       }
-
-      cell.timeButton.text = avalibleTime?.avalibleHours[indexPath.row]
-
+      
       title = avalibleTime?.currentDate
-
       cell.timeButton.tag = indexPath.row
       
       return cell
@@ -302,7 +308,7 @@ extension BookingViewController:UICollectionViewDataSource{
         let headerLabel = UILabel(frame: CGRect(x: 30, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
         headerLabel.font = UIFont(name: "Verdana", size: 20)
         headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
-        headerLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        headerLabel.textColor = #colorLiteral(red: 0, green: 0.5772375464, blue: 0.5888287425, alpha: 1)
         headerLabel.sizeToFit()
         view.addSubview(headerLabel)
         return view
@@ -313,4 +319,3 @@ extension BookingViewController:UICollectionViewDataSource{
     }
 
 }
-

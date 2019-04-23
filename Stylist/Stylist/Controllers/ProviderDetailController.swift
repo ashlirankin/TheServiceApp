@@ -40,13 +40,6 @@ class ProviderDetailController: UITableViewController {
     lazy var availabilityTimes = ProviderAvailability(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 642.5))
     lazy var reviewsTable = ProviderDetailReviews(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 642.5))
     lazy var featureViews = [profileBio, portfolioView, reviewsTable]
-    var reviews = [Reviews]() {
-        didSet {
-            DispatchQueue.main.async {
-                self.reviewsTable.tableView.reloadData()
-            }
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +48,7 @@ class ProviderDetailController: UITableViewController {
         setupScrollviewController(scrollView: scrollView, views: featureViews)
         loadSVFeatures()
         setupProvider()
+<<<<<<< HEAD
         setupReviewsTableview()
         switch isFavorite {
         case true:
@@ -75,6 +69,8 @@ class ProviderDetailController: UITableViewController {
         reviewsTable.tableView.dataSource = self
         reviewsTable.tableView.delegate = self
         reviewsTable.tableView.register(UINib(nibName: "ReviewCell", bundle: nil), forCellReuseIdentifier: "ReviewCell")
+=======
+>>>>>>> 19dd2fa1ec6d399165e3c681e883a1bfa318636b
     }
     
     func checkForDuplicates(id: String, provider: ServiceSideUser, completionHandler: @escaping(Error?, Bool) -> Void) {
@@ -92,7 +88,7 @@ class ProviderDetailController: UITableViewController {
                     if snapshot.documents.count > 0 {
                         completionHandler(nil, true)
                     } else {
-                        completionHandler(nil, false)
+                    completionHandler(nil, false)
                     }
                 }
         }
@@ -157,26 +153,11 @@ class ProviderDetailController: UITableViewController {
             providerDetailHeader.ratingsValue.text = "3.5"
         }
         setupProviderPortfolio()
-        setupReviews()
     }
     
     private func setupProviderPortfolio() {
         portfolioView.portfolioCollectionView.delegate = self
         portfolioView.portfolioCollectionView.dataSource = self
-    }
-    
-    private func setupReviews() {
-        DBService.getReviews(provider: provider) { (reviews, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else if let reviews = reviews{
-                self.reviews = reviews
-            }
-        }
-        reviewsTable.tableView.dataSource = self
-        reviewsTable.tableView.delegate = self
-        reviewsTable.tableView.register(UINib(nibName: "ReviewCell", bundle: nil), forCellReuseIdentifier: "ReviewCell")
-        reviewsTable.tableView.tableFooterView = UIView()
     }
     
     
@@ -274,6 +255,7 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
         
     }
     
+<<<<<<< HEAD
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == reviewsTable.tableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath) as! ReviewCell
@@ -295,6 +277,6 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
         }
     }
     
+=======
+>>>>>>> 19dd2fa1ec6d399165e3c681e883a1bfa318636b
 }
-
-

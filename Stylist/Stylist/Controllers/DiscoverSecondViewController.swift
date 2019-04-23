@@ -24,10 +24,17 @@ class DiscoverSecondViewController: UIViewController {
         }
     }
     
+    let defaults = UserDefaults.standard
+    var availableNow = false
+    var genderFilter = [String : String]()
+    var professionFilter = [String : String]()
+    var maxPriceFilter = 1000
+    var servicesFilter = [String : String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        UserDefaultsKeys.wipeUserDefaults()
         setupcollectionView()
-        getServices()
     }
     
     func  getServices() {
@@ -36,13 +43,14 @@ class DiscoverSecondViewController: UIViewController {
                 print(error)
             } else if let services = services {
                 self.serviceProviders = services
+                self.checkFilters()
             }
-            self.getFavorites()
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+<<<<<<< HEAD
         self.listener = DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
             .addSnapshotListener({ (snapshot, error) in
                 if let error = error {
@@ -52,6 +60,41 @@ class DiscoverSecondViewController: UIViewController {
                 }
             })
         
+=======
+        callUserDefaults()
+        getServices()
+    }
+    
+    private func callUserDefaults() {
+        availableNow = defaults.object(forKey: UserDefaultsKeys.availableNow) as? Bool ?? false
+        genderFilter = defaults.object(forKey: UserDefaultsKeys.genderFilter) as? [String : String] ?? [String : String]()
+        professionFilter = defaults.object(forKey: UserDefaultsKeys.professionFilter) as? [String : String] ?? [String : String]()
+        maxPriceFilter = defaults.object(forKey: UserDefaultsKeys.maxPriceFilter) as? Int ?? 1000
+        servicesFilter = defaults.object(forKey: UserDefaultsKeys.servicesFilter) as? [String: String] ?? [String : String]()
+    }
+    
+    private func checkFilters() {
+        var serviceProviders = self.serviceProviders
+        var filterTasksComplete = 0 {
+            didSet {
+                if filterTasksComplete == 1 {
+                    self.serviceProviders = serviceProviders
+                    getFavorites()
+                }
+            }
+        }
+        if availableNow {
+            serviceProviders = serviceProviders.filter { (provider) -> Bool in
+                if provider.isAvailable { return true }
+                return false
+            }
+            filterTasksComplete += 1
+        } else { filterTasksComplete += 1 }
+        
+        if !genderFilter.isEmpty {
+            
+        }
+>>>>>>> 19dd2fa1ec6d399165e3c681e883a1bfa318636b
     }
     
     func getFavorites() {

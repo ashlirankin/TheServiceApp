@@ -34,10 +34,10 @@ enum Gender: String, CaseIterable {
         return genders
     }
 }
-enum PriceRange: String {
-    case low = "Low"
-    case high = "Hight"
-}
+//enum PriceRange: String {
+//    case low = "Low"
+//    case high = "Hight"
+//}
 
 
 class FilterProvidersController: UITableViewController {
@@ -109,6 +109,8 @@ class FilterProvidersController: UITableViewController {
         fetchAllServices()
     }
     
+    // divide by all profession
+    // collasable cell
     private func fetchAllServices() {
         DBService.getServices { (professionServices, error) in
             if let error = error {
@@ -116,7 +118,7 @@ class FilterProvidersController: UITableViewController {
             } else if let professionServices = professionServices {
                 self.allServices = professionServices.map { $0.services }
                         .flatMap{ $0 }
-                        .filter{ $0 != "Other"}
+                        .filter{ $0 != "Other" }
             }
         }
     }
