@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		090EF6D4226FAA1C00AD19AA /* UserChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090EF6D3226FAA1C00AD19AA /* UserChoiceViewController.swift */; };
 		09481797225F9ACC0026C066 /* BookingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09481796225F9ACC0026C066 /* BookingTableViewCell.swift */; };
 		094DF889225D2809001EA2FE /* ProviderDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094DF888225D2809001EA2FE /* ProviderDetailController.swift */; };
 		094DF88B225D2835001EA2FE /* UserDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 094DF88A225D2835001EA2FE /* UserDetailHeader.xib */; };
@@ -101,6 +102,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		090EF6D3226FAA1C00AD19AA /* UserChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChoiceViewController.swift; sourceTree = "<group>"; };
 		09481796225F9ACC0026C066 /* BookingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTableViewCell.swift; sourceTree = "<group>"; };
 		09481798225FC6BE0026C066 /* Entrance.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Entrance.storyboard; sourceTree = "<group>"; };
 		094DF888225D2809001EA2FE /* ProviderDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderDetailController.swift; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 				09DCD310225E91FA0090EE1F /* DiscoverViewController.swift */,
 				D6FE74EB22611A1B00B4A49A /* FilterProvidersController.swift */,
 				099B0C14226649CA00474066 /* DiscoverSecondViewController.swift */,
+				090EF6D3226FAA1C00AD19AA /* UserChoiceViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -705,6 +708,7 @@
 				2EF103CF2255A4DB0030FBFF /* Reviews.swift in Sources */,
 				D6CD419E22667B0800F79DAA /* UIColor+Extensions.swift in Sources */,
 				2EF103CD2255A4D20030FBFF /* Ratings.swift in Sources */,
+				090EF6D4226FAA1C00AD19AA /* UserChoiceViewController.swift in Sources */,
 				098E826D2260CE8E0023E41B /* PortfolioCollectionViewCell.swift in Sources */,
 				2E9DD7DC2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift in Sources */,
 				094DF892225D492D001EA2FE /* ProviderDetailCustomCell.swift in Sources */,
@@ -921,7 +925,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = AVC7FB3M8N;
 				INFOPLIST_FILE = Stylist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -940,7 +944,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = AVC7FB3M8N;
 				INFOPLIST_FILE = Stylist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
