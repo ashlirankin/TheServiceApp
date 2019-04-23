@@ -10,6 +10,5 @@ import UIKit
 
 class ServicesCollectionViewCell: UICollectionViewCell {
   @IBOutlet weak var serviceNameButton: UIButton!
-  
   @IBOutlet weak var priceLabel: UILabel!
 }

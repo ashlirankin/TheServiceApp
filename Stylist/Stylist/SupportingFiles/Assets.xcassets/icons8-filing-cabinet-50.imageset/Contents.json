@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icons8-barbershop.png",
+      "filename" : "icons8-filing-cabinet-50.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "icons8-filing-cabinet-100.png",
       "scale" : "2x"
     },
     {

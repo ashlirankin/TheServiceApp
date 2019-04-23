@@ -8,10 +8,12 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 class DiscoverSecondViewController: UIViewController {
     let authservice = AuthService()
     @IBOutlet weak var collectionView: UICollectionView!
+    var listener: ListenerRegistration!
     var serviceProviders = [ServiceSideUser]()
     var favorites = [ServiceSideUser]()
     var allServices = [ServiceSideUser]() {
@@ -36,7 +38,7 @@ class DiscoverSecondViewController: UIViewController {
     }
     
     func  getServices() {
-        DBService.getProviders { (services, error) in
+   DBService.getProviders { (services, error) in
             if let error = error {
                 print(error)
             } else if let services = services {
@@ -48,6 +50,14 @@ class DiscoverSecondViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.listener = DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
+            .addSnapshotListener({ (snapshot, error) in
+                if let error = error {
+                    print(error)
+                } else if snapshot != nil {
+                  self.getServices()
+                }
+            })
         callUserDefaults()
         getServices()
     }
@@ -87,7 +97,7 @@ class DiscoverSecondViewController: UIViewController {
         guard let currentUser = authservice.getCurrentUser() else {
             return
         }
-        DBService.getFavorites(id: currentUser.uid) { (favorites, error) in
+       DBService.getFavorites(id: currentUser.uid) { (favorites, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else if let favorites = favorites {
@@ -123,7 +133,19 @@ class DiscoverSecondViewController: UIViewController {
                 return
         }
         let provider = allServices[indexPath.row]
+        
+        
+
+        let isFavoirte = cell.goldStar.isHidden ? false : true
+        destination.isFavorite = isFavoirte
         destination.provider = provider
+        
+        let index = favorites.firstIndex { provider.userId == $0.userId }
+        if let foundIndex = index {
+            let favorite = favorites[foundIndex]
+            let favoritedId = favorite.favoriteId
+            destination.favoriteId = favoritedId
+        }
     }
 }
 
