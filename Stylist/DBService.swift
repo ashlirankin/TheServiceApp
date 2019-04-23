@@ -197,7 +197,7 @@ final class DBService {
         }
     }
   
-  static func createUserWallet(userId:String,information:[String:Any],documentId:String,completionHandler: @escaping(Error?) -> Void){
+  static func createUserWallet(userId:String,information:[String:Any],documentId:String,completionHandler: @escaping(Error?) -> Void) {
     firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(userId).collection("wallet").document(documentId).setData(information) { (error) in
       if let error = error {
         completionHandler(error)
@@ -206,6 +206,19 @@ final class DBService {
       
     }
   }
+    
+    static func getReviews(provider: ServiceSideUser, completionHandler: @escaping([Reviews]?, Error?) -> Void) {
+        DBService.firestoreDB.collection("serviceProvider")
+            .document(provider.userId)
+            .collection("reviews")
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                    completionHandler(nil, error)
+                } else if let snapshot = snapshot {
+                    completionHandler(snapshot.documents.map{Reviews(dict: $0.data())},nil)
+                }
+        }
+    }
 }
 
 
