@@ -15,6 +15,8 @@
 		095BF72D2264E68D00F416ED /* UserProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095BF72C2264E68D00F416ED /* UserProfileTableViewCell.swift */; };
 		098E826B2260CE5C0023E41B /* PortfolioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 098E826A2260CE5C0023E41B /* PortfolioCell.xib */; };
 		098E826D2260CE8E0023E41B /* PortfolioCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098E826C2260CE8E0023E41B /* PortfolioCollectionViewCell.swift */; };
+		0995FD2C226F8E75005434B3 /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0995FD2B226F8E75005434B3 /* ReviewCell.swift */; };
+		0995FD2E226F9777005434B3 /* ReviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0995FD2D226F9777005434B3 /* ReviewCell.xib */; };
 		099B0C13226648F300474066 /* DiscoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099B0C12226648F300474066 /* DiscoverCollectionViewCell.swift */; };
 		099B0C15226649CA00474066 /* DiscoverSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099B0C14226649CA00474066 /* DiscoverSecondViewController.swift */; };
 		09A9D541225BA90D00DFB5E2 /* ProfileHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09A9D540225BA90D00DFB5E2 /* ProfileHeader.xib */; };
@@ -84,6 +86,7 @@
 		45864F53225D124A005FDBD5 /* RatingsAndReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45864F52225D124A005FDBD5 /* RatingsAndReviewViewController.swift */; };
 		45864F5A225FDD1D005FDBD5 /* ClientEditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45864F59225FDD1D005FDBD5 /* ClientEditProfileController.swift */; };
 		8F8138881EF44484D5275681 /* Pods_Stylist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D89AABB01908945DBC5625A6 /* Pods_Stylist.framework */; };
+		D6006938226FB86200DBB38F /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6006937226FB86200DBB38F /* Array+Extensions.swift */; };
 		D6B4BF6D225E384300F1E48C /* IBDesignableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4BF6C225E384300F1E48C /* IBDesignableViews.swift */; };
 		D6CD419A22664C6000F79DAA /* ServicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD419922664C6000F79DAA /* ServicesCell.swift */; };
 		D6CD419C22664C7300F79DAA /* ServicesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6CD419B22664C7300F79DAA /* ServicesCell.xib */; };
@@ -114,6 +117,8 @@
 		095BF72C2264E68D00F416ED /* UserProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewCell.swift; sourceTree = "<group>"; };
 		098E826A2260CE5C0023E41B /* PortfolioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PortfolioCell.xib; sourceTree = "<group>"; };
 		098E826C2260CE8E0023E41B /* PortfolioCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioCollectionViewCell.swift; sourceTree = "<group>"; };
+		0995FD2B226F8E75005434B3 /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
+		0995FD2D226F9777005434B3 /* ReviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewCell.xib; sourceTree = "<group>"; };
 		099B0C12226648F300474066 /* DiscoverCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCollectionViewCell.swift; sourceTree = "<group>"; };
 		099B0C14226649CA00474066 /* DiscoverSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverSecondViewController.swift; sourceTree = "<group>"; };
 		09A9D540225BA90D00DFB5E2 /* ProfileHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeader.xib; sourceTree = "<group>"; };
@@ -192,6 +197,7 @@
 		A8787ACFCB7CCA4C79516777 /* Pods-Stylist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stylist.debug.xcconfig"; path = "Target Support Files/Pods-Stylist/Pods-Stylist.debug.xcconfig"; sourceTree = "<group>"; };
 		AD1D5ADFD62A113C77C9D79E /* Pods-FirebaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseTests.debug.xcconfig"; path = "Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C9F0689D22A995E41D8C2C56 /* Pods_FirebaseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FirebaseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6006937226FB86200DBB38F /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		D6B4BF6C225E384300F1E48C /* IBDesignableViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignableViews.swift; sourceTree = "<group>"; };
 		D6CD419922664C6000F79DAA /* ServicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCell.swift; sourceTree = "<group>"; };
 		D6CD419B22664C7300F79DAA /* ServicesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServicesCell.xib; sourceTree = "<group>"; };
@@ -235,6 +241,7 @@
 				D6FE75172265118A00B4A49A /* ProfessionCell.swift */,
 				095BF72C2264E68D00F416ED /* UserProfileTableViewCell.swift */,
 				099B0C12226648F300474066 /* DiscoverCollectionViewCell.swift */,
+				0995FD2B226F8E75005434B3 /* ReviewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -256,6 +263,7 @@
 				098E826A2260CE5C0023E41B /* PortfolioCell.xib */,
 				D6CD419922664C6000F79DAA /* ServicesCell.swift */,
 				D6CD419B22664C7300F79DAA /* ServicesCell.xib */,
+				0995FD2D226F9777005434B3 /* ReviewCell.xib */,
 			);
 			path = nibs;
 			sourceTree = "<group>";
@@ -329,6 +337,7 @@
 				09DCD302225E4AB80090EE1F /* UIViewController+Extensions.swift */,
 				D6CD419D22667B0800F79DAA /* UIColor+Extensions.swift */,
 				D6CD419F2267B25B00F79DAA /* UserDefaultsKeys.swift */,
+				D6006937226FB86200DBB38F /* Array+Extensions.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -526,6 +535,7 @@
 				09DCD305225E4F290090EE1F /* ProviderDetailBio.xib in Resources */,
 				09A9D541225BA90D00DFB5E2 /* ProfileHeader.xib in Resources */,
 				2EF103A32255314C0030FBFF /* Assets.xcassets in Resources */,
+				0995FD2E226F9777005434B3 /* ReviewCell.xib in Resources */,
 				09DCD30D225E7E5D0090EE1F /* ProviderDetailReviews.xib in Resources */,
 				D6CD419C22664C7300F79DAA /* ServicesCell.xib in Resources */,
 				2E9DD7D62257E80900D74DD1 /* User.storyboard in Resources */,
@@ -687,6 +697,7 @@
 			files = (
 				2E49A4A7226FB385002B230E /* OrderSummaryAndPaymentViewController.swift in Sources */,
 				45864F5A225FDD1D005FDBD5 /* ClientEditProfileController.swift in Sources */,
+				0995FD2C226F8E75005434B3 /* ReviewCell.swift in Sources */,
 				2EBDDBD8225B99B000583BC0 /* Date+Extension.swift in Sources */,
 				2EBDDBD4225B997B00583BC0 /* Alert+Extensions.swift in Sources */,
 				D6FE75182265118A00B4A49A /* ProfessionCell.swift in Sources */,
@@ -721,6 +732,7 @@
 				D6CD419E22667B0800F79DAA /* UIColor+Extensions.swift in Sources */,
 				2EF103CD2255A4D20030FBFF /* Ratings.swift in Sources */,
 				098E826D2260CE8E0023E41B /* PortfolioCollectionViewCell.swift in Sources */,
+				D6006938226FB86200DBB38F /* Array+Extensions.swift in Sources */,
 				2E9DD7DC2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift in Sources */,
 				094DF892225D492D001EA2FE /* ProviderDetailCustomCell.swift in Sources */,
 				D6B4BF6D225E384300F1E48C /* IBDesignableViews.swift in Sources */,

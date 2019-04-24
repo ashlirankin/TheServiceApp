@@ -58,7 +58,6 @@ final class DBService {
     
     
     static func rateUser(collectionName:String,userId:String,rating:Ratings){
-        
         let id = firestoreDB.collection(collectionName).document().documentID
         DBService.firestoreDB.collection(collectionName).document(userId).collection(RatingsCollectionKeys.ratings).addDocument(data: [RatingsCollectionKeys.ratingId:id,
                                                                                                                                        RatingsCollectionKeys.value:rating.value,RatingsCollectionKeys.userId:rating.userId,RatingsCollectionKeys.ratingId:userId]) { (error) in
@@ -144,17 +143,23 @@ final class DBService {
         }
     }
     
-    static func addToFavorites(id: String,prodider: ServiceSideUser, completionHandler: @escaping(Error?) -> Void) {
+    static func addToFavorites(id: String,prodider: ServiceSideUser, documentID: String, completionHandler: @escaping(Error?) -> Void) {
+        if prodider.favoriteId == documentID {
+            return
+        }
         firestoreDB.collection(StylistsUserCollectionKeys.stylistUser)
             .document(id)
             .collection("userFavorites")
-            .addDocument(data: ["userId" : prodider.userId,
+            .document(documentID).setData(["userId" : prodider.userId,
                                 "createdAt" : Date.getISOTimestamp(),
                                 StylistsUserCollectionKeys.imageURL: prodider.imageURL ?? "",
                                 ServiceSideUserCollectionKeys.firstName: prodider.firstName
                                     ?? "" ,
                                 ServiceSideUserCollectionKeys.lastName:prodider.lastName ?? "" ,
+                                ServiceSideUserCollectionKeys.bio: prodider.bio ?? "" ,
                                 "jobTitle": prodider.jobTitle,
+                                ServiceSideUserCollectionKeys.favoriteId : documentID
+                
             ]) { (error) in
                 if let error = error {
                     completionHandler(error)
@@ -164,8 +169,22 @@ final class DBService {
         }
     }
     
-    static func getFavorites(id: String, completionHandler: @escaping([ServiceSideUser]?, Error?) -> Void) {
+    static func removeFromFavorites(id: String,favoirteId: String, provider: ServiceSideUser, completionHandler: @escaping(Error?, Bool) -> Void) {
         
+        firestoreDB.collection(StylistsUserCollectionKeys.stylistUser)
+            .document(id)
+            .collection("userFavorites")
+            .document(favoirteId)
+            .delete { (error) in
+                if let error = error {
+                    completionHandler(error, false)
+                } else  {
+                    completionHandler(nil, true)
+                }
+        }
+    }
+    
+    static func getFavorites(id: String, completionHandler: @escaping([ServiceSideUser]?, Error?) -> Void) {
         firestoreDB.collection(StylistsUserCollectionKeys.stylistUser)
             .document(id)
             .collection("userFavorites")
@@ -178,7 +197,7 @@ final class DBService {
         }
     }
   
-  static func createUserWallet(userId:String,information:[String:Any],documentId:String,completionHandler: @escaping(Error?) -> Void){
+  static func createUserWallet(userId:String,information:[String:Any],documentId:String,completionHandler: @escaping(Error?) -> Void) {
     firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(userId).collection("wallet").document(documentId).setData(information) { (error) in
       if let error = error {
         completionHandler(error)
@@ -187,6 +206,31 @@ final class DBService {
       
     }
   }
+    
+    static func getProviderServices(providerId: String, completion: @escaping (Error?, [ProviderServices]?) -> Void) {
+        firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)   .document(providerId)
+            .collection("services")
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                     completion(error, nil)
+                } else {
+                    completion(nil, snapshot?.documents.map{ ProviderServices.init(dict: $0.data()) })
+                }
+        }
+    }
+
+    static func getReviews(provider: ServiceSideUser, completionHandler: @escaping([Reviews]?, Error?) -> Void) {
+        DBService.firestoreDB.collection("serviceProvider")
+            .document(provider.userId)
+            .collection("reviews")
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                    completionHandler(nil, error)
+                } else if let snapshot = snapshot {
+                    completionHandler(snapshot.documents.map{Reviews(dict: $0.data())},nil)
+                }
+        }
+    }
 }
 
 

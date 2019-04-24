@@ -8,6 +8,13 @@
 
 import Foundation
 
+enum AppointmentStatus: String {
+    case pending
+    case inProgress
+    case completed
+}
+
+
 struct Appointments{
   let providerId:String
   let userId:String
