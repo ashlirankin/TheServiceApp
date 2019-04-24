@@ -189,12 +189,25 @@ func getAppointmentInfo(serviceProviderId:String) {
           self?.CardImage.setImage(self?.getCardImage(cardType: savedCard.cardType), for: .normal)
           self?.cardNumberCell.textLabel?.text = "Card Number"
           self?.cardNumberCell.textLabel?.textColor = .lightGray
-          self?.cardNumberCell.detailTextLabel?.text = savedCard.cardNumber
+          self?.cardNumberCell.detailTextLabel?.text = self?.returnCodedCardNumber(cardNumber: savedCard.cardNumber)
           self?.localInformation["cardType"] = savedCard.cardType
           self?.localInformation["cardNumber"] = savedCard.cardNumber
+          
+          
         }
     }
     
+  }
+  func returnCodedCardNumber(cardNumber:String) -> String{
+   
+    var cardArray = Array(cardNumber)
+    
+    cardArray.replaceSubrange(0...12, with: repeatElement("X", count: 12))
+    
+    cardArray.insert("-", at: 4)
+    cardArray.insert("-", at: 9)
+    cardArray.insert("-", at: 14)
+    return String(cardArray)
   }
   
   }

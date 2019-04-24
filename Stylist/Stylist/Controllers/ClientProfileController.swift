@@ -69,7 +69,13 @@ class ClientProfileController: UIViewController {
         
     }
     
+  func getCardInforation(userId:String){
     
+    DBService.firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(userId).collection("wallet")
+    
+    
+    
+  }
     private func updateUI() {
         guard let user = stylistUser else { return }
         if let imageUrl = user.imageURL {
