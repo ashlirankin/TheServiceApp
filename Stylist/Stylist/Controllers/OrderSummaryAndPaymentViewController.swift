@@ -66,7 +66,11 @@ class OrderSummaryAndPaymentViewController: UITableViewController {
   }
   @IBAction func editButtonPressed(_ sender: UIButton) {
     
-    
+   guard let wallet = UIStoryboard(name: "Payments", bundle: nil).instantiateInitialViewController() as? PaymentsViewController else {
+      print("no payment view controller found")
+      return
+    }
+    present(wallet, animated: true, completion: nil)
     
   }
   
