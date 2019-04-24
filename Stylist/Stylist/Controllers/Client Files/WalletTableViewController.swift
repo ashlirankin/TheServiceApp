@@ -15,10 +15,7 @@ class WalletTableViewController: UITableViewController {
   @IBOutlet weak var cardNumber: UITextField!
   
   @IBOutlet weak var expiryDate: UITextField!
-  
-  @IBOutlet weak var scc: UITextField!
-  
-  @IBOutlet weak var addButton: UIButton!
+
   lazy var cardDisplayCollectionView:UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .horizontal
@@ -35,12 +32,6 @@ class WalletTableViewController: UITableViewController {
     setupHeaderView()
       
     }
-
-  @IBAction func addButtonPressed(_ sender: UIButton) {
-    
-    
-  }
-  
   
   func setupHeaderView(){
     tableView.tableHeaderView = cardDisplayCollectionView
@@ -63,17 +54,6 @@ extension WalletTableViewController:UICollectionViewDataSource{
     
    
   }
-  
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    if indexPath.row == 0 {
-    addButton.isHidden = false
-    tableView.reloadData()
-    }else {
-      addButton.isHidden = true
-      tableView.reloadData()
-    }
-  }
-  
 }
 extension WalletTableViewController:UICollectionViewDelegateFlowLayout
 {

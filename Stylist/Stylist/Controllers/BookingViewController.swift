@@ -239,7 +239,7 @@ extension BookingViewController:UICollectionViewDataSource{
       let avalibleTime = providerAvalibility.first { (avalibility) -> Bool in
         avalibility.currentDate == currentDate.rawValue
       }
-      
+      cell.timeButton.text = avalibleTime?.avalibleHours[indexPath.row]
       title = avalibleTime?.currentDate
       cell.timeButton.tag = indexPath.row
       
