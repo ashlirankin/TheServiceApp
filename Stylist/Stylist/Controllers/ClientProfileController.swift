@@ -37,7 +37,6 @@ class ClientProfileController: UIViewController {
         self.view.backgroundColor = #colorLiteral(red: 0.2461647391, green: 0.3439296186, blue: 0.5816915631, alpha: 1)
         authService.authserviceSignOutDelegate = self
         setupTableView()
-        updateUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +44,7 @@ class ClientProfileController: UIViewController {
         fetchCurrentUser()
     }
     
+    // MARK: Initial Setup
     private func fetchCurrentUser() {
         guard let currentUser = AuthService().getCurrentUser() else {
             showAlert(title: "No User Login", message: nil, actionTitle: "Ok")
@@ -59,17 +59,6 @@ class ClientProfileController: UIViewController {
         }
     }
     
-    
-    @IBAction func toggleButtons(_ sender: CircularButton) {
-        if sender == bookingsButton {
-            print("bookings pressed")
-        } else  {
-            print("history pressed")
-        }
-        
-    }
-    
-    
     private func updateUI() {
         guard let user = stylistUser else { return }
         if let imageUrl = user.imageURL {
@@ -80,8 +69,13 @@ class ClientProfileController: UIViewController {
         clientFullNameLabel.textColor = .white
         clientEmail.textColor = .white
         clientEmail.text = user.email
-        // TODO: Set rating here also (Incomplete)
         setStylistUserRating()
+    }
+    
+    private func setStylistUserRating() {
+        userRatingView.settings.updateOnTouch = false
+        userRatingView.settings.fillMode = .precise
+        userRatingView.rating = 5
     }
     
     private func setupTableView() {
@@ -96,11 +90,14 @@ class ClientProfileController: UIViewController {
         tableView.tableFooterView = UIView()
     }
     
-    
-    private func setStylistUserRating() {
-        userRatingView.settings.updateOnTouch = false
-        userRatingView.settings.fillMode = .precise
-        userRatingView.rating = 5
+    // MARK: Actions
+    @IBAction func toggleButtons(_ sender: CircularButton) {
+        if sender == bookingsButton {
+            print("bookings pressed")
+        } else  {
+            print("history pressed")
+        }
+        
     }
     
     @IBAction func moreOptionsButtonPressed(_ sender: UIButton) {
@@ -198,6 +195,5 @@ extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
-    
     
 }
