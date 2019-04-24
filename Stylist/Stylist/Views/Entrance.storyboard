@@ -167,6 +167,73 @@
             </objects>
             <point key="canvasLocation" x="1311.2" y="74.212893553223395"/>
         </scene>
+        <!--User Choice View Controller-->
+        <scene sceneID="4gc-Da-XJX">
+            <objects>
+                <viewController storyboardIdentifier="UserChoiceVC" id="QQA-B1-rhn" customClass="UserChoiceViewController" customModule="Stylist" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TY7-bf-3Uq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CXV-4G-x1U">
+                                <rect key="frame" x="77.5" y="236.5" width="220" height="61"/>
+                                <color key="backgroundColor" red="0.2666666667" green="0.3411764706" blue="0.56470588239999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="GEg-ZQ-Gbm"/>
+                                    <constraint firstAttribute="height" constant="61" id="Vbm-V1-s3t"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="User">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="QQA-B1-rhn" eventType="touchUpInside" id="eNH-FB-iaf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jKt-9n-d2k">
+                                <rect key="frame" x="77.5" y="347.5" width="220" height="61"/>
+                                <color key="backgroundColor" red="0.2666925879" green="0.34093691390000003" blue="0.56366989209999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="61" id="5L4-My-rKr"/>
+                                    <constraint firstAttribute="width" constant="220" id="sq5-N7-8Bp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Provider">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="QQA-B1-rhn" eventType="touchUpInside" id="brx-WU-pVN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.174853128" green="0.2225734221" blue="0.3657343045" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="jKt-9n-d2k" firstAttribute="top" secondItem="CXV-4G-x1U" secondAttribute="bottom" constant="50" id="Pol-3B-gEl"/>
+                            <constraint firstItem="jKt-9n-d2k" firstAttribute="centerX" secondItem="CXV-4G-x1U" secondAttribute="centerX" id="irC-aL-Btl"/>
+                            <constraint firstItem="CXV-4G-x1U" firstAttribute="centerY" secondItem="TY7-bf-3Uq" secondAttribute="centerY" multiplier="0.8" id="iya-UL-vad"/>
+                            <constraint firstItem="CXV-4G-x1U" firstAttribute="centerX" secondItem="TY7-bf-3Uq" secondAttribute="centerX" id="wBZ-tq-oWj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jie-Rj-Jff"/>
+                    </view>
+                    <connections>
+                        <outlet property="providerButton" destination="jKt-9n-d2k" id="AUL-Tm-0bq"/>
+                        <outlet property="userButton" destination="CXV-4G-x1U" id="D5v-NY-lCW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Egh-cq-E5p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2407.1999999999998" y="63.418290854572717"/>
+        </scene>
         <!--Onboarding Table View Controller-->
         <scene sceneID="IdU-4k-NsH">
             <objects>
@@ -481,7 +548,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0PN-GP-Mt8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3008.8000000000002" y="22.938530734632685"/>
+            <point key="canvasLocation" x="3900" y="45"/>
         </scene>
     </scenes>
     <resources>

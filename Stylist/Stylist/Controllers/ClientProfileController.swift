@@ -101,7 +101,7 @@ class ClientProfileController: UIViewController {
     }
     
     @IBAction func moreOptionsButtonPressed(_ sender: UIButton) {
-        let actionTitles = ["Edit Profile", "Support", "Sign Out"]
+        let actionTitles = ["Edit Profile", "Support", "Sign Out","Wallet"]
         
         showActionSheet(title: "Menu", message: nil, actionTitles: actionTitles, handlers: [ { [weak self] editProfileAction in
             let storyBoard = UIStoryboard(name: "User", bundle: nil)
@@ -131,7 +131,15 @@ class ClientProfileController: UIViewController {
             }, { [weak self] signOutAction in
                 self?.authService.signOut()
                 self?.presentLoginViewController()
-            }
+          },{ [weak self] walletAction in
+
+        guard let walletController = UIStoryboard(name: "Payments", bundle: nil).instantiateViewController(withIdentifier: "WalletViewController") as? WalletTableViewController else {fatalError("no wallet controller found")}
+        let walletNav = UINavigationController(rootViewController: walletController)
+         walletController.modalPresentationStyle = .overCurrentContext
+          walletController.modalTransitionStyle = .coverVertical
+         self?.present(walletNav, animated: true, completion: nil)
+            
+          }
             ])
     }
     

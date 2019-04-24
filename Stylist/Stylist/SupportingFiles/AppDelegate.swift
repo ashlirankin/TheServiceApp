@@ -28,10 +28,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     center.delegate = self
     if let _ = authService.getCurrentUser(){
-        let storyboard = UIStoryboard(name: "User", bundle: nil)
-        let servicetab = storyboard.instantiateViewController(withIdentifier: "UserTabBarController")
-        window?.rootViewController = servicetab
-        
+        let storyBoardID = UserDefaults.standard.object(forKey: "UserType") as? String
+        let userDefaultVC = UserDefaults.standard.object(forKey: "VC") as? String
+        if let provider = storyBoardID {
+            if let vc = userDefaultVC {
+                let storyboard = UIStoryboard(name: provider, bundle: nil)
+                let initialTab = storyboard.instantiateViewController(withIdentifier: vc)
+                window?.rootViewController = initialTab
+            }
+        } else  {
+            let storyboard = UIStoryboard(name: "User", bundle: nil)
+            let initialTab = storyboard.instantiateViewController(withIdentifier: "UserTabBarController")
+            window?.rootViewController = initialTab
+        }
     }else{
         let storyboard = UIStoryboard(name: "Entrance", bundle: nil)
         let login = storyboard.instantiateViewController(withIdentifier: "LoginVC")
