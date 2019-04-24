@@ -32,10 +32,16 @@
 		09DCD313225E97340090EE1F /* DiscoveryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD312225E97340090EE1F /* DiscoveryCollectionViewCell.swift */; };
 		09DCD315225EA5C20090EE1F /* DiscoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD314225EA5C20090EE1F /* DiscoverTableViewCell.swift */; };
 		291F30A20B9AEA8931FF3E32 /* Pods_FirebaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F0689D22A995E41D8C2C56 /* Pods_FirebaseTests.framework */; };
-		2E16B841226611A500332ADC /* OrderSummaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E16B840226611A500332ADC /* OrderSummaryCollectionViewCell.swift */; };
 		2E23F197226E5DCA0037B9AA /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E23F196226E5DCA0037B9AA /* PaymentsViewController.swift */; };
+		2E23F19B226E88A70037B9AA /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E23F19A226E88A60037B9AA /* CardCollectionViewCell.swift */; };
 		2E409BEE2267C2AD00130CBA /* Appointments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E409BED2267C2AD00130CBA /* Appointments.swift */; };
 		2E409BF02267DF0E00130CBA /* Payments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E409BEF2267DF0E00130CBA /* Payments.storyboard */; };
+		2E49A49E226F6677002B230E /* WalletTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E49A49D226F6677002B230E /* WalletTableViewController.swift */; };
+		2E49A4A6226F89C6002B230E /* SummaryServicesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E49A4A5226F89C6002B230E /* SummaryServicesCollectionViewCell.swift */; };
+		2E49A4A7226FB385002B230E /* OrderSummaryAndPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E49A4A3226F872E002B230E /* OrderSummaryAndPaymentViewController.swift */; };
+		2E49A4A9226FB46C002B230E /* OrderSummaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E49A4A8226FB46C002B230E /* OrderSummaryCollectionViewCell.swift */; };
+		2E49A556226FEC7D002B230E /* CardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E49A555226FEC7D002B230E /* CardInfo.swift */; };
+		2E49A558226FEF99002B230E /* WalletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E49A557226FEF99002B230E /* WalletModel.swift */; };
 		2E5E74D9225FB6A8003D370F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5E74D7225FB6A3003D370F /* Service.swift */; };
 		2E7739BE22601267004C188A /* Entrance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7739BD22601267004C188A /* Entrance.storyboard */; };
 		2E90A61A2261124A0016462C /* BookService.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E90A6192261124A0016462C /* BookService.storyboard */; };
@@ -125,10 +131,16 @@
 		09DCD312225E97340090EE1F /* DiscoveryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryCollectionViewCell.swift; sourceTree = "<group>"; };
 		09DCD314225EA5C20090EE1F /* DiscoverTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewCell.swift; sourceTree = "<group>"; };
 		26FA858D08C6AC46AEBAE072 /* Pods-StylistTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylistTests.release.xcconfig"; path = "Target Support Files/Pods-StylistTests/Pods-StylistTests.release.xcconfig"; sourceTree = "<group>"; };
-		2E16B840226611A500332ADC /* OrderSummaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E23F196226E5DCA0037B9AA /* PaymentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
+		2E23F19A226E88A60037B9AA /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E409BED2267C2AD00130CBA /* Appointments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointments.swift; sourceTree = "<group>"; };
 		2E409BEF2267DF0E00130CBA /* Payments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payments.storyboard; sourceTree = "<group>"; };
+		2E49A49D226F6677002B230E /* WalletTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WalletTableViewController.swift; path = "Client Files/WalletTableViewController.swift"; sourceTree = "<group>"; };
+		2E49A4A3226F872E002B230E /* OrderSummaryAndPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryAndPaymentViewController.swift; sourceTree = "<group>"; };
+		2E49A4A5226F89C6002B230E /* SummaryServicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryServicesCollectionViewCell.swift; sourceTree = "<group>"; };
+		2E49A4A8226FB46C002B230E /* OrderSummaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryCollectionViewCell.swift; sourceTree = "<group>"; };
+		2E49A555226FEC7D002B230E /* CardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfo.swift; sourceTree = "<group>"; };
+		2E49A557226FEF99002B230E /* WalletModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletModel.swift; sourceTree = "<group>"; };
 		2E5E74D7225FB6A3003D370F /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		2E7739BD22601267004C188A /* Entrance.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Entrance.storyboard; sourceTree = "<group>"; };
 		2E90A6192261124A0016462C /* BookService.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BookService.storyboard; sourceTree = "<group>"; };
@@ -324,6 +336,7 @@
 		2EF103C32255A4540030FBFF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2E49A4A8226FB46C002B230E /* OrderSummaryCollectionViewCell.swift */,
 				2E90A61D22611A010016462C /* ServicesCollectionViewCell.swift */,
 				2E90A61F22611B4F0016462C /* AvalibilityCollectionViewCell.swift */,
 				D6B4BF6C225E384300F1E48C /* IBDesignableViews.swift */,
@@ -331,9 +344,10 @@
 				2E9DD7D32257E7FD00D74DD1 /* ServiceProvider.storyboard */,
 				2E9DD7D52257E80900D74DD1 /* User.storyboard */,
 				2E90A6192261124A0016462C /* BookService.storyboard */,
-				2E16B840226611A500332ADC /* OrderSummaryCollectionViewCell.swift */,
 				45864F50225D0449005FDBD5 /* ReviewAndRatings.storyboard */,
 				2E409BEF2267DF0E00130CBA /* Payments.storyboard */,
+				2E49A4A5226F89C6002B230E /* SummaryServicesCollectionViewCell.swift */,
+				2E23F19A226E88A60037B9AA /* CardCollectionViewCell.swift */,
 				2E7739BD22601267004C188A /* Entrance.storyboard */,
 				D6FE74E92261138600B4A49A /* FilterProviders.storyboard */,
 			);
@@ -345,6 +359,9 @@
 			children = (
 				2E90A61B226112620016462C /* BookingViewController.swift */,
 				2E23F196226E5DCA0037B9AA /* PaymentsViewController.swift */,
+				2E49A4A3226F872E002B230E /* OrderSummaryAndPaymentViewController.swift */,
+				2E49A555226FEC7D002B230E /* CardInfo.swift */,
+				2E49A49D226F6677002B230E /* WalletTableViewController.swift */,
 				2EBDDC1F225D2E9400583BC0 /* OnboardingTableViewController.swift */,
 				2EBDDC1B225D0A7800583BC0 /* BaseViewController.swift */,
 				2E9DD7D72257F69B00D74DD1 /* CreateViewController.swift */,
@@ -370,6 +387,7 @@
 		2EF103C92255A4AC0030FBFF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2E49A557226FEF99002B230E /* WalletModel.swift */,
 				2E409BED2267C2AD00130CBA /* Appointments.swift */,
 				2EF103C72255A4A30030FBFF /* ServiceProvider.swift */,
 				2E5E74D7225FB6A3003D370F /* Service.swift */,
@@ -667,22 +685,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E49A4A7226FB385002B230E /* OrderSummaryAndPaymentViewController.swift in Sources */,
 				45864F5A225FDD1D005FDBD5 /* ClientEditProfileController.swift in Sources */,
 				2EBDDBD8225B99B000583BC0 /* Date+Extension.swift in Sources */,
 				2EBDDBD4225B997B00583BC0 /* Alert+Extensions.swift in Sources */,
 				D6FE75182265118A00B4A49A /* ProfessionCell.swift in Sources */,
 				2E9DD7DA2257F6A800D74DD1 /* LoginViewController.swift in Sources */,
+				2E23F19B226E88A70037B9AA /* CardCollectionViewCell.swift in Sources */,
 				2EFC36472264E2E5001B54F8 /* ProviderServices.swift in Sources */,
 				09DCD30F225E7F7D0090EE1F /* ProviderDetailReviews.swift in Sources */,
 				2E9DD7D82257F69B00D74DD1 /* CreateViewController.swift in Sources */,
 				45864F53225D124A005FDBD5 /* RatingsAndReviewViewController.swift in Sources */,
 				2EBDDC20225D2E9400583BC0 /* OnboardingTableViewController.swift in Sources */,
+				2E49A4A6226F89C6002B230E /* SummaryServicesCollectionViewCell.swift in Sources */,
 				2EBDDBD6225B999400583BC0 /* String+Date.swift in Sources */,
 				2EF103C82255A4A30030FBFF /* ServiceProvider.swift in Sources */,
 				099B0C13226648F300474066 /* DiscoverCollectionViewCell.swift in Sources */,
+				2E49A4A9226FB46C002B230E /* OrderSummaryCollectionViewCell.swift in Sources */,
 				09DCD303225E4AB90090EE1F /* UIViewController+Extensions.swift in Sources */,
 				09DCD313225E97340090EE1F /* DiscoveryCollectionViewCell.swift in Sources */,
 				2E9DD7D02257C93E00D74DD1 /* DBService.swift in Sources */,
+				2E49A49E226F6677002B230E /* WalletTableViewController.swift in Sources */,
 				2E9DD7E82257FB2200D74DD1 /* ClientProfileController.swift in Sources */,
 				2EBDDBCE225B91AD00583BC0 /* StorageService.swift in Sources */,
 				2EBDDBD0225B91D600583BC0 /* AuthService.swift in Sources */,
@@ -703,13 +726,13 @@
 				D6B4BF6D225E384300F1E48C /* IBDesignableViews.swift in Sources */,
 				D6FE74EC22611A1B00B4A49A /* FilterProvidersController.swift in Sources */,
 				09A9D545225BDAF200DFB5E2 /* ServiceBioView.swift in Sources */,
-				2E16B841226611A500332ADC /* OrderSummaryCollectionViewCell.swift in Sources */,
 				2E23F197226E5DCA0037B9AA /* PaymentsViewController.swift in Sources */,
 				094DF88F225D2EB8001EA2FE /* UserDetailView.swift in Sources */,
 				09DCD315225EA5C20090EE1F /* DiscoverTableViewCell.swift in Sources */,
 				2E409BEE2267C2AD00130CBA /* Appointments.swift in Sources */,
 				095BF72D2264E68D00F416ED /* UserProfileTableViewCell.swift in Sources */,
 				09481797225F9ACC0026C066 /* BookingTableViewCell.swift in Sources */,
+				2E49A556226FEC7D002B230E /* CardInfo.swift in Sources */,
 				2E9DD7EC2257FC4100D74DD1 /* ClientSearchController.swift in Sources */,
 				2E9DD7E42257F9C000D74DD1 /* ServiceMessageViewController.swift in Sources */,
 				2E90A61E22611A010016462C /* ServicesCollectionViewCell.swift in Sources */,
@@ -722,6 +745,7 @@
 				2E9DD7EA2257FC0C00D74DD1 /* ClientBookingsController.swift in Sources */,
 				09A9D547225BE7A200DFB5E2 /* PortfolioView.swift in Sources */,
 				D6CD419A22664C6000F79DAA /* ServicesCell.swift in Sources */,
+				2E49A558226FEF99002B230E /* WalletModel.swift in Sources */,
 				09A9D543225BCFB200DFB5E2 /* ServiceProfileViewController.swift in Sources */,
 				094DF889225D2809001EA2FE /* ProviderDetailController.swift in Sources */,
 				2E9DD7DE2257F83900D74DD1 /* ServiceDetailViewController.swift in Sources */,

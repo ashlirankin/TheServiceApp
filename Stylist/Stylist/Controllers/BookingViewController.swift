@@ -64,6 +64,13 @@ class BookingViewController: UITableViewController {
     }
   }
   
+  var localPrices = [String](){
+    didSet{
+      
+      localAppointments["prices"] = localPrices
+    }
+  }
+  
   override func viewDidLoad() {
         super.viewDidLoad()
     setupCollectionViewDelegates()
@@ -92,7 +99,7 @@ class BookingViewController: UITableViewController {
 
 
   @IBAction func bookButtonPressed(_ sender: UIButton) {
-//
+
 //    guard let provider  = provider ,
 //      let currentUser = authService.getCurrentUser(),
 //    !localServices.isEmpty else {return}
@@ -100,12 +107,13 @@ class BookingViewController: UITableViewController {
 //    localAppointments["userId"] = currentUser.uid
 //    createBooking(collectionName: "bookedAppointments", providerId: provider.userId, information: localAppointments, userId: currentUser.uid)
 //   setupNotification()
- 
-    guard let paymentController = UIStoryboard(name: "Payments", bundle: nil).instantiateViewController(withIdentifier: "PaymentsViewController") as? PaymentsViewController else {return}
+
+    guard let paymentController = UIStoryboard(name: "Payments", bundle: nil).instantiateInitialViewController() as? OrderSummaryAndPaymentViewController,
+    let provider = provider  else {fatalError()}
     let navController = UINavigationController(rootViewController: paymentController)
     paymentController.modalPresentationStyle = .currentContext
     paymentController.modalTransitionStyle = .coverVertical
-    paymentController.amountDue = price
+    paymentController.providerId = provider.userId
     present(navController, animated: true, completion: nil)
   }
   
@@ -272,7 +280,7 @@ extension BookingViewController:UICollectionViewDataSource{
         priceCell.detailTextLabel?.text = "$\(price)"
       
       localServices.append(service.service)
-      
+      localPrices.append(String(service.price))
     case avalibilityCollectionView:
       guard let cell = avalibilityCollectionView.cellForItem(at: indexPath) as? AvalibilityCollectionViewCell else {
         print("no avalibility found")

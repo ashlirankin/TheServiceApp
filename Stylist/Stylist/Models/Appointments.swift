@@ -13,6 +13,7 @@ struct Appointments{
   let userId:String
   let services:[String]
   let appointmentTime:String
+  let prices:[String]
   
   
   init(dict:[String:Any]){
@@ -22,6 +23,6 @@ struct Appointments{
     self.userId = dict["userId"] as? String ?? "no user id found"
     self.services = dict["services"] as? [String] ?? [String]()
     self.appointmentTime = dict["appointmentTime"] as? String ?? "no appointment time found"
-    
+    self.prices = dict["prices"] as? [String] ?? [String]()
   }
 }
