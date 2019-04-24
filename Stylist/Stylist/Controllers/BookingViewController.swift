@@ -9,15 +9,6 @@
 import UIKit
 import UserNotifications
 
-enum CurrentaDate:String {
-  case Monday
-  case Tuesday
-  case Wednesday
-  case Thursday
-  case Friday
-}
-
-
 class BookingViewController: UITableViewController {
   @IBOutlet weak var avalibilityCollectionView: UICollectionView!
   @IBOutlet weak var servicesCollectionView: UICollectionView!
@@ -52,9 +43,7 @@ class BookingViewController: UITableViewController {
       tableView.reloadData()
     }
   }
-  
-  var currentDate:CurrentaDate = .Tuesday
-  
+
   lazy var price = servicesArray.map{$0.price}.reduce(0, +)
   let authService = AuthService()
   
@@ -78,7 +67,26 @@ class BookingViewController: UITableViewController {
     setupCollectionViewDelegates()
     setUpUi()
     }
+  
+  func returnAvalibility(avalibility:[Avalibility]) -> Avalibility? {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "EEEE"
+    let currentDate = dateFormatter.string(from: Date())
+    title = currentDate
+    let specificAvalibility = avalibility.first { (avalibility) -> Bool in
+      avalibility.currentDate == currentDate
+    }
     
+    return specificAvalibility
+  }
+  
+  func returnAppointmentTime(chosenTime:String) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
+    let currentDate = dateFormatter.string(from: Date())
+  
+    return "\(currentDate) \(chosenTime)"
+  }
     private func setupNotification() {
         let center = UNUserNotificationCenter.current()
         let content = UNMutableNotificationContent()
@@ -109,6 +117,7 @@ class BookingViewController: UITableViewController {
 //    localAppointments["userId"] = currentUser.uid
 //    createBooking(collectionName: "bookedAppointments", providerId: provider.userId, information: localAppointments, userId: currentUser.uid)
 //   setupNotification()
+//    sender.isEnabled = false
 
     guard let paymentController = UIStoryboard(name: "Payments", bundle: nil).instantiateInitialViewController() as? OrderSummaryAndPaymentViewController,
     let provider = provider  else {fatalError()}
@@ -215,11 +224,10 @@ extension BookingViewController:UICollectionViewDataSource{
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     switch collectionView {
     case avalibilityCollectionView:
-      if let day = providerAvalibility.first(where: { (avalibility) -> Bool in
-        avalibility.currentDate == self.currentDate.rawValue
-      }){
-        return day.avalibleHours.count
-      }
+     if let avalibility =  returnAvalibility(avalibility: providerAvalibility)
+     {
+      return avalibility.avalibleHours.count
+     }
       return 0
     case servicesCollectionView:
       return providerServices.count
@@ -236,11 +244,9 @@ extension BookingViewController:UICollectionViewDataSource{
     case avalibilityCollectionView:
       guard let cell = avalibilityCollectionView.dequeueReusableCell(withReuseIdentifier: "avalibilityCell", for: indexPath) as? AvalibilityCollectionViewCell else {fatalError("no avalibility cell found")}
       
-      let avalibleTime = providerAvalibility.first { (avalibility) -> Bool in
-        avalibility.currentDate == currentDate.rawValue
-      }
-      cell.timeButton.text = avalibleTime?.avalibleHours[indexPath.row]
-      title = avalibleTime?.currentDate
+   let avalibility = returnAvalibility(avalibility: providerAvalibility)
+      cell.timeButton.text = avalibility?.avalibleHours[indexPath.row]
+      
       cell.timeButton.tag = indexPath.row
       
       return cell
@@ -283,14 +289,13 @@ extension BookingViewController:UICollectionViewDataSource{
       
       localServices.append(service.service)
       localPrices.append(String(service.price))
+      
     case avalibilityCollectionView:
       guard let cell = avalibilityCollectionView.cellForItem(at: indexPath) as? AvalibilityCollectionViewCell else {
         print("no avalibility found")
         return
       }
-      let avalibleTime = providerAvalibility.first { (avalibility) -> Bool in
-        avalibility.currentDate == currentDate.rawValue
-      }
+      let avalibleTime = returnAvalibility(avalibility: providerAvalibility)
       cell.isUserInteractionEnabled = true
     
       guard let timeChosen = avalibleTime?.avalibleHours[indexPath.row] else {return}
@@ -302,8 +307,8 @@ extension BookingViewController:UICollectionViewDataSource{
       }else{
         cell.isHidden = true
       }
-   localAppointments["avalibility"] = timeChosen
-      print(timeChosen)
+   localAppointments["avalibility"] = returnAppointmentTime(chosenTime: timeChosen)
+     
       
       
     default:
