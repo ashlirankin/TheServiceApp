@@ -115,6 +115,7 @@ class BookingViewController: UITableViewController {
 //    createBooking(collectionName: "bookedAppointments", providerId: provider.userId, information: localAppointments, userId: currentUser.uid)
 //   setupNotification()
 //    sender.isEnabled = false
+//    dismiss(animated: true, completion: nil)
 
     guard let paymentController = UIStoryboard(name: "Payments", bundle: nil).instantiateInitialViewController() as? OrderSummaryAndPaymentViewController,
     let provider = provider  else {fatalError()}
@@ -304,7 +305,7 @@ extension BookingViewController:UICollectionViewDataSource{
       }else{
         cell.isHidden = true
       }
-   localAppointments["avalibility"] = returnAppointmentTime(chosenTime: timeChosen)
+   localAppointments["appointmentTime"] = returnAppointmentTime(chosenTime: timeChosen)
      
       
       
