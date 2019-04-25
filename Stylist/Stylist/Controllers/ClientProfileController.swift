@@ -79,12 +79,13 @@ class ClientProfileController: UIViewController {
     }
     
     private func showProviderTab() {
-        let storyboard = UIStoryboard(name: "ServiceProvider", bundle: nil)
-        let providertab = storyboard.instantiateViewController(withIdentifier: "ServiceTabBar")
-        providertab.modalTransitionStyle = .crossDissolve
-        providertab.modalPresentationStyle = .overFullScreen
-        self.present(providertab, animated: true)
-    }
+                let storyboard = UIStoryboard(name: "ServiceProvider", bundle: nil)
+                let providertab = storyboard.instantiateViewController(withIdentifier: "ServiceTabBar")
+                providertab.modalTransitionStyle = .crossDissolve
+                providertab.modalPresentationStyle = .overFullScreen
+                self.present(providertab, animated: true)
+        }
+    
     
     func getCardInforation(userId:String){
    DBService.firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(userId).collection("wallet")
