@@ -180,7 +180,6 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
   @IBAction func cancelButtonPressed(_ sender: UIButton) {
     servicesArray.remove(at: sender.tag)
     orderSummaryCollectionView.reloadData()
-    
   }
   
   private func createBooking(collectionName:String,providerId:String,information:[String:Any],userId:String){
@@ -192,7 +191,6 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
     }
   }
   private func updateBookingInfo(collectionName:String,information:[String:Any],docId:String){
-    
     DBService.firestoreDB.collection(collectionName).document(docId).updateData(information) { (error) in
       if let error = error {
         self.showAlert(title: "Error", message: "There was an error updating you information:\(error.localizedDescription)", actionTitle: "Try Again")
@@ -213,8 +211,6 @@ extension BookingViewController:UICollectionViewDelegateFlowLayout{
       return CGSize(width: view.frame.width, height: 100)
     }
   }
-  
-  
   }
 
 extension BookingViewController:UICollectionViewDataSource{
@@ -236,18 +232,13 @@ extension BookingViewController:UICollectionViewDataSource{
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    
     switch collectionView {
     case avalibilityCollectionView:
       guard let cell = avalibilityCollectionView.dequeueReusableCell(withReuseIdentifier: "avalibilityCell", for: indexPath) as? AvalibilityCollectionViewCell else {fatalError("no avalibility cell found")}
-      
    let avalibility = returnAvalibility(avalibility: providerAvalibility)
       cell.timeButton.text = avalibility?.avalibleHours[indexPath.row]
-      
       cell.timeButton.tag = indexPath.row
-      
       return cell
-      
     case servicesCollectionView:
       let aService = providerServices[indexPath.row]
       guard let cell = servicesCollectionView.dequeueReusableCell(withReuseIdentifier: "servicesCell", for: indexPath) as? ServicesCollectionViewCell else {fatalError("no service cell found")}

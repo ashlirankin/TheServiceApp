@@ -12,6 +12,7 @@ enum AppointmentStatus: String {
     case pending
     case inProgress
     case completed
+    case canceled
 }
 
 
@@ -22,7 +23,7 @@ struct Appointments{
     let appointmentTime:String
     let prices:[String]
     let status: String
-    
+    let documentId: String
    
     init(dict:[String:Any]){
         self.providerId = dict["providerId"] as? String ?? "no providerId found"
@@ -31,5 +32,6 @@ struct Appointments{
         self.appointmentTime = dict["appointmentTime"] as? String ?? "no appointment time found"
         self.prices = dict["prices"] as? [String] ?? [String]()
         self.status = dict["status"] as? String ?? "pending"
+        self.documentId = dict["documentId"] as? String ?? "no document id"
     }
 }
