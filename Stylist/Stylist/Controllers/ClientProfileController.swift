@@ -241,10 +241,10 @@ extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
 // MARK: Helper Functions
 extension ClientProfileController {
     private func getUpcomingAppointments() {
-        filterAppointments = appointments
+//        filterAppointments = appointments.filter {}
     }
     
     private func getPastAppointments() {
-        
+//        filterAppointments = appointments.filter {}
     }
 }
