@@ -12,7 +12,9 @@ class CardCollectionViewCell: UICollectionViewCell {
   
   lazy var cardImage:UIButton = {
     let Iv = UIButton()
+
     Iv.setImage(#imageLiteral(resourceName: "card.png"), for: .normal)
+
     return Iv
   }()
   

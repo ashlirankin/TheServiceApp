@@ -18,9 +18,9 @@ final class DBService {
         db.settings = settings
         return db
     }()
-  static public var generateDocumentId: String {
-    return firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document().documentID
-  }
+    static public var generateDocumentId: String {
+        return firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document().documentID
+    }
     static func CreateServiceProvider(serviceProvider:ServiceSideUser,completionHandler: @escaping (Error?) -> Void){
         firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).document(serviceProvider.userId).setData([ServiceSideUserCollectionKeys.firstName: serviceProvider.firstName
             ?? "" ,
@@ -151,14 +151,14 @@ final class DBService {
             .document(id)
             .collection("userFavorites")
             .document(documentID).setData(["userId" : prodider.userId,
-                                "createdAt" : Date.getISOTimestamp(),
-                                StylistsUserCollectionKeys.imageURL: prodider.imageURL ?? "",
-                                ServiceSideUserCollectionKeys.firstName: prodider.firstName
-                                    ?? "" ,
-                                ServiceSideUserCollectionKeys.lastName:prodider.lastName ?? "" ,
-                                ServiceSideUserCollectionKeys.bio: prodider.bio ?? "" ,
-                                "jobTitle": prodider.jobTitle,
-                                ServiceSideUserCollectionKeys.favoriteId : documentID
+                                           "createdAt" : Date.getISOTimestamp(),
+                                           StylistsUserCollectionKeys.imageURL: prodider.imageURL ?? "",
+                                           ServiceSideUserCollectionKeys.firstName: prodider.firstName
+                                            ?? "" ,
+                                           ServiceSideUserCollectionKeys.lastName:prodider.lastName ?? "" ,
+                                           ServiceSideUserCollectionKeys.bio: prodider.bio ?? "" ,
+                                           "jobTitle": prodider.jobTitle,
+                                           ServiceSideUserCollectionKeys.favoriteId : documentID
                 
             ]) { (error) in
                 if let error = error {
@@ -196,29 +196,29 @@ final class DBService {
                 }
         }
     }
-  
-  static func createUserWallet(userId:String,information:[String:Any],documentId:String,completionHandler: @escaping(Error?) -> Void) {
-    firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(userId).collection("wallet").document(documentId).setData(information) { (error) in
-      if let error = error {
-        completionHandler(error)
-      }
-    print("sucessfully added to your wallet")
-      
+    
+    static func createUserWallet(userId:String,information:[String:Any],documentId:String,completionHandler: @escaping(Error?) -> Void) {
+        firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(userId).collection("wallet").document(documentId).setData(information) { (error) in
+            if let error = error {
+                completionHandler(error)
+            }
+            print("sucessfully added to your wallet")
+            
+        }
     }
-  }
     
     static func getProviderServices(providerId: String, completion: @escaping (Error?, [ProviderServices]?) -> Void) {
         firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)   .document(providerId)
             .collection("services")
             .getDocuments { (snapshot, error) in
                 if let error = error {
-                     completion(error, nil)
+                    completion(error, nil)
                 } else {
                     completion(nil, snapshot?.documents.map{ ProviderServices.init(dict: $0.data()) })
                 }
         }
     }
-
+    
     static func getReviews(provider: ServiceSideUser, completionHandler: @escaping([Reviews]?, Error?) -> Void) {
         DBService.firestoreDB.collection("serviceProvider")
             .document(provider.userId)
@@ -230,6 +230,35 @@ final class DBService {
                     completionHandler(snapshot.documents.map{Reviews(dict: $0.data())},nil)
                 }
         }
+    }
+    
+    static func getAppointments(completionHandler: @escaping ([Appointments]?, Error?) -> Void) {
+        DBService.firestoreDB.collection("bookedAppointments")
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                    completionHandler(nil, error)
+                } else {
+                    let appointments = snapshot?.documents.map { Appointments(dict: $0.data()) }
+                    completionHandler(appointments, nil)
+                }
+        }
+    }
+    
+    static func getAppointmentImage(userID: String, completionHandler: @escaping (StylistsUser?, Error?) -> Void) {
+        DBService.firestoreDB.collection("stylistUser")
+        .document(userID)
+            .getDocument { (snapshot, error) in
+                if let error = error {
+                    completionHandler(nil, error)
+                } else if let spanshot = snapshot {
+                    let stylistsUser = StylistsUser(dict: spanshot.data()!)
+                    completionHandler(stylistsUser, nil)
+                }
+        }
+    }
+    
+    static func updateAppointment(status: String) {
+        
     }
 }
 

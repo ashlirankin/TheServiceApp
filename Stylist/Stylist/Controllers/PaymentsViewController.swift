@@ -14,7 +14,6 @@ class PaymentsViewController: UITableViewController {
   @IBOutlet weak var expirationDateTextfield: UITextField!
   @IBOutlet weak var nameTextfield: UITextField!
 
-  
   let authService = AuthService()
   var localPayment = [String:Any]()
   var amountDue = Int()
