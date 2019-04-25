@@ -66,11 +66,14 @@ class OrderSummaryAndPaymentViewController: UITableViewController {
   }
   @IBAction func editButtonPressed(_ sender: UIButton) {
     
-   guard let wallet = UIStoryboard(name: "Payments", bundle: nil).instantiateInitialViewController() as? PaymentsViewController else {
+   guard let wallet = UIStoryboard(name: "Payments", bundle: nil).instantiateViewController(withIdentifier: "WalletViewController") as? WalletTableViewController else {
       print("no payment view controller found")
       return
     }
-    present(wallet, animated: true, completion: nil)
+    let navController = UINavigationController(rootViewController: wallet)
+    wallet.modalTransitionStyle = .coverVertical
+    wallet.modalPresentationStyle = .currentContext
+    present(navController, animated: true, completion: nil)
     
   }
   
@@ -204,7 +207,6 @@ func getAppointmentInfo(serviceProviderId:String) {
     var cardArray = Array(cardNumber)
     
     cardArray.replaceSubrange(0...12, with: repeatElement("X", count: 12))
-    
     cardArray.insert("-", at: 4)
     cardArray.insert("-", at: 9)
     cardArray.insert("-", at: 14)
