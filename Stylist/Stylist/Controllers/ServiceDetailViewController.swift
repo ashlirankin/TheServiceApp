@@ -7,24 +7,38 @@
 //
 
 import UIKit
+import Cosmos
 
 class ServiceDetailViewController: UIViewController {
-
+    var appointment: Appointments!
+    var status: String?
+    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var userRating: CosmosView!
+    @IBOutlet weak var userFullname: UILabel!
+    @IBOutlet weak var appointmentStatus: UILabel!
+    @IBOutlet weak var userDistance: UILabel!
+    @IBOutlet weak var userAddress: UILabel!
+    @IBOutlet weak var AppointmentCreated: UILabel!
+    @IBOutlet weak var todaysDate: UILabel!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        updateDetailUI()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func  updateDetailUI() {
+        
     }
-    */
-
+    
+    @IBAction func confirmBookingPressed(_ sender: UIButton) {
+        
+        
+    }
+    
+    @IBAction func cancelBookingPressed(_ sender: UIButton) {
+    }
+    
+    
 }

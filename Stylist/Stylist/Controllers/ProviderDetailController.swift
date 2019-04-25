@@ -36,13 +36,13 @@ class ProviderDetailController: UITableViewController {
     }
     lazy var profileBio = ProviderBio(frame: CGRect(x: 0, y: 0, width: view.bounds.width , height: 642.5))
     lazy var portfolioView = PortfolioView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 642.5))
-    lazy var availabilityTimes = ProviderAvailability(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 642.5))
-    lazy var reviewsTable = ProviderDetailReviews(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 642.5))
-    lazy var featureViews = [profileBio, portfolioView, reviewsTable]
+//    lazy var reviewsTable = ProviderDetailReviews(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 642.5))
+    lazy var reviewCollectionView = ReviewCollectionView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 642.5))
+    lazy var featureViews = [profileBio, portfolioView, reviewCollectionView]
     var reviews = [Reviews]() {
         didSet {
             DispatchQueue.main.async {
-                self.reviewsTable.tableView.reloadData()
+              self.reviewCollectionView.ReviewCV.reloadData()
             }
         }
     }
@@ -54,7 +54,6 @@ class ProviderDetailController: UITableViewController {
         setupScrollviewController(scrollView: scrollView, views: featureViews)
         loadSVFeatures()
         setupProvider()
-        setupReviewsTableview()
         switch isFavorite {
         case true:
             self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-filled-50 (1)")
@@ -68,12 +67,6 @@ class ProviderDetailController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.navigationItem.rightBarButtonItem?.isEnabled = true
-    }
-    
-    private func setupReviewsTableview() {
-        reviewsTable.tableView.dataSource = self
-        reviewsTable.tableView.delegate = self
-        reviewsTable.tableView.register(UINib(nibName: "ReviewCell", bundle: nil), forCellReuseIdentifier: "ReviewCell")
     }
     
     func checkForDuplicates(id: String, provider: ServiceSideUser, completionHandler: @escaping(Error?, Bool) -> Void) {
@@ -172,10 +165,6 @@ class ProviderDetailController: UITableViewController {
                 self.reviews = reviews
             }
         }
-        reviewsTable.tableView.dataSource = self
-        reviewsTable.tableView.delegate = self
-        reviewsTable.tableView.register(UINib(nibName: "ReviewCell", bundle: nil), forCellReuseIdentifier: "ReviewCell")
-        reviewsTable.tableView.tableFooterView = UIView()
     }
     
     
@@ -196,6 +185,8 @@ class ProviderDetailController: UITableViewController {
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        reviewCollectionView.ReviewCV.delegate = self
+        reviewCollectionView.ReviewCV.dataSource = self
     }
     
     
@@ -213,6 +204,8 @@ extension ProviderDetailController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.collectionView {
             return buttons.count
+        } else if collectionView == reviewCollectionView.ReviewCV {
+            return reviews.count
         } else {
             switch provider.jobTitle {
             case "Barber":
@@ -232,6 +225,11 @@ extension ProviderDetailController: UICollectionViewDataSource {
             cell.buttonLabel.text = buttonLabel
             return cell
             
+        } else if collectionView == reviewCollectionView.ReviewCV {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionViewCell
+            let review = reviews[indexPath.row]
+            cell.reviewCollectionCellLabel.text = review.description
+            return cell
         } else {
             let portfolioCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PortfolioCell", for: indexPath) as! PortfolioCollectionViewCell
             switch provider.jobTitle {
@@ -251,6 +249,8 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.collectionView {
             return CGSize(width: 120, height: 40)
+        } else if collectionView == reviewCollectionView.ReviewCV {
+            return CGSize(width: 414, height: 60)
         } else {
             return CGSize(width: UIScreen.main.bounds.width / 2, height: 200)
         }
@@ -272,26 +272,4 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
         view.frame.origin.x = CGFloat(indexPath.row) * self.view.bounds.size.width
         
     }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView == reviewsTable.tableView {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath) as! ReviewCell
-            let review = reviews[indexPath.row]
-            cell.reviewLabel.text = review.description
-            cell.reviewLabel.textColor = .white
-            cell.backgroundColor = #colorLiteral(red: 0.1619916558, green: 0.224360168, blue: 0.3768204153, alpha: 1)
-            return cell
-        } else {
-            return super.tableView(tableView, cellForRowAt: indexPath)
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == reviewsTable.tableView {
-            return reviews.count
-        } else {
-            return 2
-        }
-    }
-    
 }
