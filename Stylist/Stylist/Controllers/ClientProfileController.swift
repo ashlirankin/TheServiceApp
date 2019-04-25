@@ -23,11 +23,24 @@ class ClientProfileController: UIViewController {
                             ServiceSideUser(userId: "", firstName: "tina", lastName: "Martinez", email: "", joinedDate: "", gender: "female", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "MUA", address: nil, city: "", state: "", lat: "", long: "", zip: "", favoriteId: nil, isAvailable: true),
                             ServiceSideUser(userId: "", firstName: "chris", lastName: "thompson", email: "", joinedDate: "", gender: "Male", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "Barber", address: nil, city: "", state: "", lat: "", long: "", zip: "", favoriteId: nil, isAvailable: true)
     ]
+    var appointments = [Appointments]() {
+        didSet {
+            getUpcomingAppointments()
+        }
+    }
+    var filterAppointments = [Appointments]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     let authService = AuthService()
     private var stylistUser: StylistsUser? {
         didSet {
             DispatchQueue.main.async {
                 self.updateUI()
+                self.getAllAppointments(id: self.stylistUser!.userId)
             }
         }
     }
@@ -98,12 +111,22 @@ class ClientProfileController: UIViewController {
         tableView.tableFooterView = UIView()
     }
     
+    private func getAllAppointments(id: String) {
+        DBService.getBookedAppointments(userId: id) { [weak self] (error, appointments) in
+            if let error = error {
+                self?.showAlert(title: "Error Fetching User Appointments", message: error.localizedDescription, actionTitle: "Ok")
+            } else if let appointments = appointments {
+                self?.appointments = appointments
+            }
+        }
+    }
+    
     // MARK: Actions
     @IBAction func toggleButtons(_ sender: CircularButton) {
         if sender == bookingsButton {
-            print("bookings pressed")
+            getUpcomingAppointments()
         } else  {
-            print("history pressed")
+            getPastAppointments()
         }
         
     }
@@ -212,4 +235,16 @@ extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
         return 80
     }
     
+}
+
+
+// MARK: Helper Functions
+extension ClientProfileController {
+    private func getUpcomingAppointments() {
+        filterAppointments = appointments
+    }
+    
+    private func getPastAppointments() {
+        
+    }
 }

@@ -231,6 +231,19 @@ final class DBService {
                 }
         }
     }
+    
+    static func getBookedAppointments(userId: String, completion: @escaping(Error?, [Appointments]?) -> Void) {
+        DBService.firestoreDB.collection("bookedAppointments")
+            .whereField("userId", isEqualTo: userId)
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                    print("Error getting booked appointments: " + error.localizedDescription)
+                    completion(error, nil)
+                } else if let snapshot = snapshot {
+                    completion(nil, snapshot.documents.map({Appointments(dict: $0.data())}))
+                }
+        }
+    }
 }
 
 
