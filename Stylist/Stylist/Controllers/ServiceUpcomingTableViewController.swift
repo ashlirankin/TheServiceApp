@@ -47,7 +47,7 @@ class ServiceUpcomingTableViewController: UITableViewController {
             return
         }
         DBService.firestoreDB.collection("bookedAppointments")
-            .whereField("providerId", isEqualTo: providerId).whereField("userId", isEqualTo: currentUser.uid).getDocuments { [weak self] (snapshot, error) in
+            .whereField("providerId", isEqualTo: currentUser.uid).getDocuments { [weak self] (snapshot, error) in
                 
                 if let error = error {
                     
@@ -58,6 +58,16 @@ class ServiceUpcomingTableViewController: UITableViewController {
                     self?.appointments = appointments
                 }
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let destination = segue.destination as? ServiceDetailViewController,
+            let cell = sender as? AppointmentCell,
+        let indexPath = tableView.indexPath(for: cell) else  {
+                return
+        }
+        let appointment = appointments[indexPath.row]
+        destination.appointment = appointment
     }
 
     private func setupTableview() {
@@ -82,15 +92,12 @@ class ServiceUpcomingTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OpenAppointments", for: indexPath) as! AppointmentCell
-//        let appointment = appointments[indexPath.row]
-//        DBService.getAppointmentImage(userID: appointment.userId) { (user, error) in
-//            if let error = error {
-//                print(error.localizedDescription)
-//            } else if let user = user {
-//                cell.AppointmentImage.kf.setImage(with: URL(string: user.imageURL ?? "no image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
-//            }
-//        }
-      
+        let appointment = appointments[indexPath.row]
+      cell.clientName.text = "Ashli"
+        cell.clientRatings.text = "5.0"
+        cell.clientRatings.rating = 5
+        cell.clientDistance.text = "0.2"
+         cell.appointmentTime.text = appointment.appointmentTime
         return cell
     }
     

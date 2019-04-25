@@ -257,8 +257,10 @@ final class DBService {
         }
     }
     
-    static func updateAppointment(status: String) {
-        
+    static func updateAppointment(appointmentID: String, status: String) {
+        DBService.firestoreDB.collection("bookedAppointments")
+        .document(appointmentID)
+        .updateData(["status" : status])
     }
 }
 

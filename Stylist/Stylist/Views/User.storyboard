@@ -701,7 +701,7 @@
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Fy4-UH-eFA">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="62.5"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" red="0.2666925879" green="0.34093691390000003" blue="0.56366989209999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xlt-Ag-2Oe">
                                                         <size key="itemSize" width="98" height="50"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -749,6 +749,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="Fy4-UH-eFA" secondAttribute="trailing" id="hMn-Yf-tFN"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.1569241187" green="0.5672338053" blue="0.58288388319999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="643" id="IEY-zt-fuP">
                                         <rect key="frame" x="0.0" y="63" width="414" height="643"/>
