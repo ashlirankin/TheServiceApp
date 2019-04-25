@@ -141,9 +141,9 @@ class FirebaseTests: XCTestCase {
   
   func testCreateAnAvalibility(){
     
-    let serviceProviderId = "wuqEsmjA1COFlz9BaFS86QWHBSl2"
-    let avalibleHours = ["8:00am","9:00am","11:00pm","12:00pm","4:00pm","6:00pm","8:00pm"]
-    let currentDate = "Friday"
+    let serviceProviderId = "73UOTCwvfmOGzVWsBHku9WI3U7T2"
+    let avalibleHours = ["8:00 AM","9:00 AM","11:00 PM","12:00 PM","4:00 PM ","6:00 PM","8:00 PM"]
+    let currentDate = "Thursday"
     let exp = expectation(description: "creating the hours that provider is avalible")
    
     DBService.firestoreDB.collection("serviceProvider")

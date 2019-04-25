@@ -60,7 +60,6 @@
 		2E9DD7DC2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7DB2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift */; };
 		2E9DD7DE2257F83900D74DD1 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7DD2257F83900D74DD1 /* ServiceDetailViewController.swift */; };
 		2E9DD7E22257F95800D74DD1 /* ServiceConfirmedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7E12257F95800D74DD1 /* ServiceConfirmedController.swift */; };
-		2E9DD7E42257F9C000D74DD1 /* ServiceMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7E32257F9C000D74DD1 /* ServiceMessageViewController.swift */; };
 		2E9DD7E82257FB2200D74DD1 /* ClientProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7E72257FB2200D74DD1 /* ClientProfileController.swift */; };
 		2E9DD7EA2257FC0C00D74DD1 /* ClientBookingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7E92257FC0C00D74DD1 /* ClientBookingsController.swift */; };
 		2E9DD7EC2257FC4100D74DD1 /* ClientSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */; };
@@ -165,7 +164,6 @@
 		2E9DD7DB2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceUpcomingTableViewController.swift; sourceTree = "<group>"; };
 		2E9DD7DD2257F83900D74DD1 /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
 		2E9DD7E12257F95800D74DD1 /* ServiceConfirmedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceConfirmedController.swift; sourceTree = "<group>"; };
-		2E9DD7E32257F9C000D74DD1 /* ServiceMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMessageViewController.swift; sourceTree = "<group>"; };
 		2E9DD7E72257FB2200D74DD1 /* ClientProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProfileController.swift; sourceTree = "<group>"; };
 		2E9DD7E92257FC0C00D74DD1 /* ClientBookingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientBookingsController.swift; sourceTree = "<group>"; };
 		2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSearchController.swift; sourceTree = "<group>"; };
@@ -368,10 +366,10 @@
 		2EF103C62255A48C0030FBFF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */,
 				2E90A61B226112620016462C /* BookingViewController.swift */,
 				2E23F196226E5DCA0037B9AA /* PaymentsViewController.swift */,
 				2E49A4A3226F872E002B230E /* OrderSummaryAndPaymentViewController.swift */,
-				2E49A555226FEC7D002B230E /* CardInfo.swift */,
 				2E49A49D226F6677002B230E /* WalletTableViewController.swift */,
 				2EBDDC1F225D2E9400583BC0 /* OnboardingTableViewController.swift */,
 				2EBDDC1B225D0A7800583BC0 /* BaseViewController.swift */,
@@ -380,10 +378,8 @@
 				2E9DD7DB2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift */,
 				2E9DD7DD2257F83900D74DD1 /* ServiceDetailViewController.swift */,
 				2E9DD7E12257F95800D74DD1 /* ServiceConfirmedController.swift */,
-				2E9DD7E32257F9C000D74DD1 /* ServiceMessageViewController.swift */,
 				2E9DD7E92257FC0C00D74DD1 /* ClientBookingsController.swift */,
 				2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */,
-				09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */,
 				45864F52225D124A005FDBD5 /* RatingsAndReviewViewController.swift */,
 				094DF888225D2809001EA2FE /* ProviderDetailController.swift */,
 				45864F59225FDD1D005FDBD5 /* ClientEditProfileController.swift */,
@@ -409,6 +405,7 @@
 				2EF103D02255A4E90030FBFF /* StylistCollectionKeys.swift */,
 				2EFC36462264E2E5001B54F8 /* ProviderServices.swift */,
 				2EF103D22255ABA10030FBFF /* Avalibility.swift */,
+				2E49A555226FEC7D002B230E /* CardInfo.swift */,
 				2EF103D42255AE060030FBFF /* Days.swift */,
 			);
 			path = Models;
@@ -750,7 +747,6 @@
 				09481797225F9ACC0026C066 /* BookingTableViewCell.swift in Sources */,
 				2E49A556226FEC7D002B230E /* CardInfo.swift in Sources */,
 				2E9DD7EC2257FC4100D74DD1 /* ClientSearchController.swift in Sources */,
-				2E9DD7E42257F9C000D74DD1 /* ServiceMessageViewController.swift in Sources */,
 				2E90A61E22611A010016462C /* ServicesCollectionViewCell.swift in Sources */,
 				2EF103D12255A4E90030FBFF /* StylistCollectionKeys.swift in Sources */,
 				2EF103D32255ABA10030FBFF /* Avalibility.swift in Sources */,
