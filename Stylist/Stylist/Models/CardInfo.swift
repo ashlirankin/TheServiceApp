@@ -6,7 +6,7 @@
 //  Copyright © 2019 Ashli Rankin. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 enum CardImages:String,CaseIterable {
   case MasterCard
@@ -18,3 +18,5 @@ enum CardImages:String,CaseIterable {
   case JBC
   
 }
+
+

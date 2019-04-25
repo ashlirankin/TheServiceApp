@@ -24,7 +24,6 @@ struct Appointments{
     let prices:[String]
     let status: String
     
-    
     init(dict:[String:Any]){
         self.providerId = dict["providerId"] as? String ?? "no providerId found"
         self.userId = dict["userId"] as? String ?? "no user id found"

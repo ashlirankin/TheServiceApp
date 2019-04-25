@@ -1,19 +1,18 @@
 //
-//  ServiceMessageViewController.swift
+//  ServiceProviderTabBar.swift
 //  Stylist
 //
-//  Created by Ashli Rankin on 4/5/19.
+//  Created by Oniel Rosario on 4/24/19.
 //  Copyright © 2019 Ashli Rankin. All rights reserved.
 //
 
 import UIKit
 
-class ServiceMessageViewController: UIViewController {
+class ServiceProviderTabBar: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        selectedIndex = 1
     }
     
 

@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		090374E72270B94100B77B66 /* ServiceProviderTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090374E62270B94100B77B66 /* ServiceProviderTabBar.swift */; };
+		090374E92270B9D300B77B66 /* UserTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090374E82270B9D300B77B66 /* UserTabBarController.swift */; };
+		090374EB2270CA0D00B77B66 /* AppointmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090374EA2270CA0D00B77B66 /* AppointmentCell.swift */; };
 		090EF6D4226FAA1C00AD19AA /* UserChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090EF6D3226FAA1C00AD19AA /* UserChoiceViewController.swift */; };
+		093A6E8F2272097D003A4E4F /* ReviewsCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 093A6E8E2272097D003A4E4F /* ReviewsCollectionView.xib */; };
+		093A6E9122720B66003A4E4F /* ReviewCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093A6E9022720B66003A4E4F /* ReviewCollectionView.swift */; };
+		093A6E9422720BFB003A4E4F /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093A6E9222720BFB003A4E4F /* CollectionViewCell.swift */; };
+		093A6E9522720BFB003A4E4F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 093A6E9322720BFB003A4E4F /* CollectionViewCell.xib */; };
 		09481797225F9ACC0026C066 /* BookingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09481796225F9ACC0026C066 /* BookingTableViewCell.swift */; };
 		094DF889225D2809001EA2FE /* ProviderDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094DF888225D2809001EA2FE /* ProviderDetailController.swift */; };
 		094DF88B225D2835001EA2FE /* UserDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 094DF88A225D2835001EA2FE /* UserDetailHeader.xib */; };
@@ -20,15 +27,11 @@
 		0995FD2E226F9777005434B3 /* ReviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0995FD2D226F9777005434B3 /* ReviewCell.xib */; };
 		099B0C13226648F300474066 /* DiscoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099B0C12226648F300474066 /* DiscoverCollectionViewCell.swift */; };
 		099B0C15226649CA00474066 /* DiscoverSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099B0C14226649CA00474066 /* DiscoverSecondViewController.swift */; };
-		09A9D541225BA90D00DFB5E2 /* ProfileHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09A9D540225BA90D00DFB5E2 /* ProfileHeader.xib */; };
 		09A9D543225BCFB200DFB5E2 /* ServiceProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */; };
-		09A9D545225BDAF200DFB5E2 /* ServiceBioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A9D544225BDAF200DFB5E2 /* ServiceBioView.swift */; };
 		09A9D547225BE7A200DFB5E2 /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A9D546225BE7A200DFB5E2 /* PortfolioView.swift */; };
 		09DCD303225E4AB90090EE1F /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD302225E4AB80090EE1F /* UIViewController+Extensions.swift */; };
 		09DCD305225E4F290090EE1F /* ProviderDetailBio.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09DCD304225E4F290090EE1F /* ProviderDetailBio.xib */; };
 		09DCD307225E50EA0090EE1F /* ProviderBio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD306225E50EA0090EE1F /* ProviderBio.swift */; };
-		09DCD309225E66C30090EE1F /* ProviderDetailAvailability.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09DCD308225E66C30090EE1F /* ProviderDetailAvailability.xib */; };
-		09DCD30B225E69860090EE1F /* ProviderAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD30A225E69860090EE1F /* ProviderAvailability.swift */; };
 		09DCD30D225E7E5D0090EE1F /* ProviderDetailReviews.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09DCD30C225E7E5D0090EE1F /* ProviderDetailReviews.xib */; };
 		09DCD30F225E7F7D0090EE1F /* ProviderDetailReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD30E225E7F7D0090EE1F /* ProviderDetailReviews.swift */; };
 		09DCD311225E91FA0090EE1F /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD310225E91FA0090EE1F /* DiscoverViewController.swift */; };
@@ -60,7 +63,6 @@
 		2E9DD7DC2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7DB2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift */; };
 		2E9DD7DE2257F83900D74DD1 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7DD2257F83900D74DD1 /* ServiceDetailViewController.swift */; };
 		2E9DD7E22257F95800D74DD1 /* ServiceConfirmedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7E12257F95800D74DD1 /* ServiceConfirmedController.swift */; };
-		2E9DD7E42257F9C000D74DD1 /* ServiceMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7E32257F9C000D74DD1 /* ServiceMessageViewController.swift */; };
 		2E9DD7E82257FB2200D74DD1 /* ClientProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7E72257FB2200D74DD1 /* ClientProfileController.swift */; };
 		2E9DD7EA2257FC0C00D74DD1 /* ClientBookingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7E92257FC0C00D74DD1 /* ClientBookingsController.swift */; };
 		2E9DD7EC2257FC4100D74DD1 /* ClientSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */; };
@@ -109,7 +111,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		090374E62270B94100B77B66 /* ServiceProviderTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderTabBar.swift; sourceTree = "<group>"; };
+		090374E82270B9D300B77B66 /* UserTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTabBarController.swift; sourceTree = "<group>"; };
+		090374EA2270CA0D00B77B66 /* AppointmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentCell.swift; sourceTree = "<group>"; };
 		090EF6D3226FAA1C00AD19AA /* UserChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChoiceViewController.swift; sourceTree = "<group>"; };
+		093A6E8E2272097D003A4E4F /* ReviewsCollectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewsCollectionView.xib; sourceTree = "<group>"; };
+		093A6E9022720B66003A4E4F /* ReviewCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionView.swift; sourceTree = "<group>"; };
+		093A6E9222720BFB003A4E4F /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		093A6E9322720BFB003A4E4F /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		09481796225F9ACC0026C066 /* BookingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTableViewCell.swift; sourceTree = "<group>"; };
 		09481798225FC6BE0026C066 /* Entrance.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Entrance.storyboard; sourceTree = "<group>"; };
 		094DF888225D2809001EA2FE /* ProviderDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderDetailController.swift; sourceTree = "<group>"; };
@@ -123,15 +132,11 @@
 		0995FD2D226F9777005434B3 /* ReviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewCell.xib; sourceTree = "<group>"; };
 		099B0C12226648F300474066 /* DiscoverCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCollectionViewCell.swift; sourceTree = "<group>"; };
 		099B0C14226649CA00474066 /* DiscoverSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverSecondViewController.swift; sourceTree = "<group>"; };
-		09A9D540225BA90D00DFB5E2 /* ProfileHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeader.xib; sourceTree = "<group>"; };
 		09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProfileViewController.swift; sourceTree = "<group>"; };
-		09A9D544225BDAF200DFB5E2 /* ServiceBioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceBioView.swift; sourceTree = "<group>"; };
 		09A9D546225BE7A200DFB5E2 /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
 		09DCD302225E4AB80090EE1F /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		09DCD304225E4F290090EE1F /* ProviderDetailBio.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProviderDetailBio.xib; sourceTree = "<group>"; };
 		09DCD306225E50EA0090EE1F /* ProviderBio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderBio.swift; sourceTree = "<group>"; };
-		09DCD308225E66C30090EE1F /* ProviderDetailAvailability.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProviderDetailAvailability.xib; sourceTree = "<group>"; };
-		09DCD30A225E69860090EE1F /* ProviderAvailability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderAvailability.swift; sourceTree = "<group>"; };
 		09DCD30C225E7E5D0090EE1F /* ProviderDetailReviews.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProviderDetailReviews.xib; sourceTree = "<group>"; };
 		09DCD30E225E7F7D0090EE1F /* ProviderDetailReviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderDetailReviews.swift; sourceTree = "<group>"; };
 		09DCD310225E91FA0090EE1F /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
@@ -165,7 +170,6 @@
 		2E9DD7DB2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceUpcomingTableViewController.swift; sourceTree = "<group>"; };
 		2E9DD7DD2257F83900D74DD1 /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
 		2E9DD7E12257F95800D74DD1 /* ServiceConfirmedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceConfirmedController.swift; sourceTree = "<group>"; };
-		2E9DD7E32257F9C000D74DD1 /* ServiceMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMessageViewController.swift; sourceTree = "<group>"; };
 		2E9DD7E72257FB2200D74DD1 /* ClientProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProfileController.swift; sourceTree = "<group>"; };
 		2E9DD7E92257FC0C00D74DD1 /* ClientBookingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientBookingsController.swift; sourceTree = "<group>"; };
 		2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSearchController.swift; sourceTree = "<group>"; };
@@ -244,6 +248,7 @@
 				095BF72C2264E68D00F416ED /* UserProfileTableViewCell.swift */,
 				099B0C12226648F300474066 /* DiscoverCollectionViewCell.swift */,
 				0995FD2B226F8E75005434B3 /* ReviewCell.swift */,
+				090374EA2270CA0D00B77B66 /* AppointmentCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -251,21 +256,21 @@
 		09A9D53F225BA8BB00DFB5E2 /* nibs */ = {
 			isa = PBXGroup;
 			children = (
-				09A9D540225BA90D00DFB5E2 /* ProfileHeader.xib */,
-				09A9D544225BDAF200DFB5E2 /* ServiceBioView.swift */,
 				09A9D546225BE7A200DFB5E2 /* PortfolioView.swift */,
 				094DF88A225D2835001EA2FE /* UserDetailHeader.xib */,
 				094DF88E225D2EB8001EA2FE /* UserDetailView.swift */,
 				09DCD304225E4F290090EE1F /* ProviderDetailBio.xib */,
 				09DCD306225E50EA0090EE1F /* ProviderBio.swift */,
-				09DCD308225E66C30090EE1F /* ProviderDetailAvailability.xib */,
-				09DCD30A225E69860090EE1F /* ProviderAvailability.swift */,
 				09DCD30C225E7E5D0090EE1F /* ProviderDetailReviews.xib */,
 				09DCD30E225E7F7D0090EE1F /* ProviderDetailReviews.swift */,
 				098E826A2260CE5C0023E41B /* PortfolioCell.xib */,
 				D6CD419922664C6000F79DAA /* ServicesCell.swift */,
 				D6CD419B22664C7300F79DAA /* ServicesCell.xib */,
 				0995FD2D226F9777005434B3 /* ReviewCell.xib */,
+				093A6E8E2272097D003A4E4F /* ReviewsCollectionView.xib */,
+				093A6E9022720B66003A4E4F /* ReviewCollectionView.swift */,
+				093A6E9222720BFB003A4E4F /* CollectionViewCell.swift */,
+				093A6E9322720BFB003A4E4F /* CollectionViewCell.xib */,
 			);
 			path = nibs;
 			sourceTree = "<group>";
@@ -368,10 +373,11 @@
 		2EF103C62255A48C0030FBFF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */,
 				2E90A61B226112620016462C /* BookingViewController.swift */,
+				090374E62270B94100B77B66 /* ServiceProviderTabBar.swift */,
 				2E23F196226E5DCA0037B9AA /* PaymentsViewController.swift */,
 				2E49A4A3226F872E002B230E /* OrderSummaryAndPaymentViewController.swift */,
-				2E49A555226FEC7D002B230E /* CardInfo.swift */,
 				2E49A49D226F6677002B230E /* WalletTableViewController.swift */,
 				2EBDDC1F225D2E9400583BC0 /* OnboardingTableViewController.swift */,
 				2EBDDC1B225D0A7800583BC0 /* BaseViewController.swift */,
@@ -380,10 +386,8 @@
 				2E9DD7DB2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift */,
 				2E9DD7DD2257F83900D74DD1 /* ServiceDetailViewController.swift */,
 				2E9DD7E12257F95800D74DD1 /* ServiceConfirmedController.swift */,
-				2E9DD7E32257F9C000D74DD1 /* ServiceMessageViewController.swift */,
 				2E9DD7E92257FC0C00D74DD1 /* ClientBookingsController.swift */,
 				2E9DD7EB2257FC4100D74DD1 /* ClientSearchController.swift */,
-				09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */,
 				45864F52225D124A005FDBD5 /* RatingsAndReviewViewController.swift */,
 				094DF888225D2809001EA2FE /* ProviderDetailController.swift */,
 				45864F59225FDD1D005FDBD5 /* ClientEditProfileController.swift */,
@@ -392,6 +396,7 @@
 				D6FE74EB22611A1B00B4A49A /* FilterProvidersController.swift */,
 				099B0C14226649CA00474066 /* DiscoverSecondViewController.swift */,
 				090EF6D3226FAA1C00AD19AA /* UserChoiceViewController.swift */,
+				090374E82270B9D300B77B66 /* UserTabBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -409,6 +414,7 @@
 				2EF103D02255A4E90030FBFF /* StylistCollectionKeys.swift */,
 				2EFC36462264E2E5001B54F8 /* ProviderServices.swift */,
 				2EF103D22255ABA10030FBFF /* Avalibility.swift */,
+				2E49A555226FEC7D002B230E /* CardInfo.swift */,
 				2EF103D42255AE060030FBFF /* Days.swift */,
 			);
 			path = Models;
@@ -528,7 +534,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E7739BE22601267004C188A /* Entrance.storyboard in Resources */,
-				09DCD309225E66C30090EE1F /* ProviderDetailAvailability.xib in Resources */,
 				2E409BF02267DF0E00130CBA /* Payments.storyboard in Resources */,
 				2E90A61A2261124A0016462C /* BookService.storyboard in Resources */,
 				094DF88B225D2835001EA2FE /* UserDetailHeader.xib in Resources */,
@@ -536,9 +541,10 @@
 				2EF103AE22553D5E0030FBFF /* GoogleService-Info.plist in Resources */,
 				098E826B2260CE5C0023E41B /* PortfolioCell.xib in Resources */,
 				09DCD305225E4F290090EE1F /* ProviderDetailBio.xib in Resources */,
-				09A9D541225BA90D00DFB5E2 /* ProfileHeader.xib in Resources */,
+				093A6E9522720BFB003A4E4F /* CollectionViewCell.xib in Resources */,
 				2EF103A32255314C0030FBFF /* Assets.xcassets in Resources */,
 				0995FD2E226F9777005434B3 /* ReviewCell.xib in Resources */,
+				093A6E8F2272097D003A4E4F /* ReviewsCollectionView.xib in Resources */,
 				09DCD30D225E7E5D0090EE1F /* ProviderDetailReviews.xib in Resources */,
 				D6CD419C22664C7300F79DAA /* ServicesCell.xib in Resources */,
 				2E9DD7D62257E80900D74DD1 /* User.storyboard in Resources */,
@@ -702,6 +708,7 @@
 				45864F5A225FDD1D005FDBD5 /* ClientEditProfileController.swift in Sources */,
 				0995FD2C226F8E75005434B3 /* ReviewCell.swift in Sources */,
 				2EBDDBD8225B99B000583BC0 /* Date+Extension.swift in Sources */,
+				093A6E9122720B66003A4E4F /* ReviewCollectionView.swift in Sources */,
 				2EBDDBD4225B997B00583BC0 /* Alert+Extensions.swift in Sources */,
 				D6FE75182265118A00B4A49A /* ProfessionCell.swift in Sources */,
 				2E9DD7DA2257F6A800D74DD1 /* LoginViewController.swift in Sources */,
@@ -710,6 +717,7 @@
 				09DCD30F225E7F7D0090EE1F /* ProviderDetailReviews.swift in Sources */,
 				2E9DD7D82257F69B00D74DD1 /* CreateViewController.swift in Sources */,
 				45864F53225D124A005FDBD5 /* RatingsAndReviewViewController.swift in Sources */,
+				090374E92270B9D300B77B66 /* UserTabBarController.swift in Sources */,
 				2EBDDC20225D2E9400583BC0 /* OnboardingTableViewController.swift in Sources */,
 				2E49A4A6226F89C6002B230E /* SummaryServicesCollectionViewCell.swift in Sources */,
 				2EBDDBD6225B999400583BC0 /* String+Date.swift in Sources */,
@@ -725,9 +733,9 @@
 				2EBDDBD0225B91D600583BC0 /* AuthService.swift in Sources */,
 				099B0C15226649CA00474066 /* DiscoverSecondViewController.swift in Sources */,
 				09DCD307225E50EA0090EE1F /* ProviderBio.swift in Sources */,
+				090374EB2270CA0D00B77B66 /* AppointmentCell.swift in Sources */,
 				2EF1039C2255314A0030FBFF /* AppDelegate.swift in Sources */,
 				2E90A61C226112620016462C /* BookingViewController.swift in Sources */,
-				09DCD30B225E69860090EE1F /* ProviderAvailability.swift in Sources */,
 				2E9DD7E22257F95800D74DD1 /* ServiceConfirmedController.swift in Sources */,
 				D6CD41A02267B25B00F79DAA /* UserDefaultsKeys.swift in Sources */,
 				09DCD311225E91FA0090EE1F /* DiscoverViewController.swift in Sources */,
@@ -741,7 +749,6 @@
 				094DF892225D492D001EA2FE /* ProviderDetailCustomCell.swift in Sources */,
 				D6B4BF6D225E384300F1E48C /* IBDesignableViews.swift in Sources */,
 				D6FE74EC22611A1B00B4A49A /* FilterProvidersController.swift in Sources */,
-				09A9D545225BDAF200DFB5E2 /* ServiceBioView.swift in Sources */,
 				2E23F197226E5DCA0037B9AA /* PaymentsViewController.swift in Sources */,
 				094DF88F225D2EB8001EA2FE /* UserDetailView.swift in Sources */,
 				09DCD315225EA5C20090EE1F /* DiscoverTableViewCell.swift in Sources */,
@@ -751,6 +758,8 @@
 				2E49A556226FEC7D002B230E /* CardInfo.swift in Sources */,
 				2E9DD7EC2257FC4100D74DD1 /* ClientSearchController.swift in Sources */,
 				2E9DD7E42257F9C000D74DD1 /* ServiceMessageViewController.swift in Sources */,
+				090374E72270B94100B77B66 /* ServiceProviderTabBar.swift in Sources */,
+				093A6E9422720BFB003A4E4F /* CollectionViewCell.swift in Sources */,
 				2E90A61E22611A010016462C /* ServicesCollectionViewCell.swift in Sources */,
 				2EF103D12255A4E90030FBFF /* StylistCollectionKeys.swift in Sources */,
 				2EF103D32255ABA10030FBFF /* Avalibility.swift in Sources */,
@@ -953,7 +962,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AVC7FB3M8N;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Stylist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -972,7 +981,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AVC7FB3M8N;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Stylist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

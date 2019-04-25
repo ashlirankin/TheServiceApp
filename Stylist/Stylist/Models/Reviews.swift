@@ -10,13 +10,13 @@ import Foundation
 struct Reviews {
   let reviewerId:String
   let reviewId: String
-  let description:String
+  let description:String?
   let createdDate:String
   let ratingId:String
   let value:Double
   let reviewStylist: String
 
-    init(reviewerId:String,description:String,createdDate:String,ratingId:String,value:Double, reviewId: String, reviewStylist: String){
+    init(reviewerId:String,description:String?,createdDate:String,ratingId:String,value:Double, reviewId: String, reviewStylist: String){
     self.reviewerId = reviewerId
     self.description = description
     self.createdDate = createdDate

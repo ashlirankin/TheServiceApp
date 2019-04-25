@@ -14,14 +14,11 @@ class BookingViewController: UITableViewController {
   @IBOutlet weak var servicesCollectionView: UICollectionView!
   @IBOutlet weak var orderSummaryCollectionView: UICollectionView!
   @IBOutlet weak var priceCell: UITableViewCell!
-
     let sectionsTitle = ["Services","Available times","Summary"]
   lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 300))
-
   private var providerServices = [ProviderServices](){
     didSet{
       servicesCollectionView.reloadData()
-    
     }
   }
   
@@ -118,6 +115,7 @@ class BookingViewController: UITableViewController {
 //    createBooking(collectionName: "bookedAppointments", providerId: provider.userId, information: localAppointments, userId: currentUser.uid)
 //   setupNotification()
 //    sender.isEnabled = false
+//    dismiss(animated: true, completion: nil)
 
     guard let paymentController = UIStoryboard(name: "Payments", bundle: nil).instantiateInitialViewController() as? OrderSummaryAndPaymentViewController,
     let provider = provider  else {fatalError()}
@@ -307,7 +305,7 @@ extension BookingViewController:UICollectionViewDataSource{
       }else{
         cell.isHidden = true
       }
-   localAppointments["avalibility"] = returnAppointmentTime(chosenTime: timeChosen)
+   localAppointments["appointmentTime"] = returnAppointmentTime(chosenTime: timeChosen)
      
       
       

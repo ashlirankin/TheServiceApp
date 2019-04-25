@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--User Tab Bar Controller-->
         <scene sceneID="Tay-gR-mJj">
             <objects>
-                <tabBarController storyboardIdentifier="UserTabBarController" id="wIc-MT-mpx" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="UserTabBarController" id="wIc-MT-mpx" customClass="UserTabBarController" customModule="Stylist" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gCk-DK-oFw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -341,7 +341,7 @@
         <scene sceneID="Kmh-8m-aR2">
             <objects>
                 <viewController storyboardIdentifier="ClientProfileVC" id="0U7-LY-BRK" customClass="ClientProfileController" customModule="Stylist" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="M6l-IS-WQp">
+                    <view key="view" tag="1" contentMode="scaleToFill" id="M6l-IS-WQp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -358,8 +358,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RVh-TF-xCO">
-                                <rect key="frame" x="344" y="44" width="50" height="50"/>
-                                <state key="normal" image="icons8-more"/>
+                                <rect key="frame" x="344" y="74" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="SQ1-Em-XoZ"/>
+                                    <constraint firstAttribute="height" constant="50" id="ohq-ZB-m9c"/>
+                                </constraints>
+                                <state key="normal" image="icons8-info-24"/>
                                 <connections>
                                     <action selector="moreOptionsButtonPressed:" destination="0U7-LY-BRK" eventType="touchUpInside" id="8Cu-Cz-ESZ"/>
                                 </connections>
@@ -459,6 +463,17 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ed3-Fl-MAq">
+                                <rect key="frame" x="20" y="74" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="4uV-Jl-htH"/>
+                                    <constraint firstAttribute="width" constant="50" id="VBI-fY-T1x"/>
+                                </constraints>
+                                <state key="normal" image="icons8-change-user-30"/>
+                                <connections>
+                                    <action selector="changeUserType:" destination="0U7-LY-BRK" eventType="touchUpInside" id="CkE-ZF-XtD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -470,18 +485,20 @@
                             <constraint firstItem="vHy-aH-Kpw" firstAttribute="width" secondItem="M6l-IS-WQp" secondAttribute="width" multiplier="0.3" id="CRf-Yt-ZMP"/>
                             <constraint firstItem="2iz-7O-EH4" firstAttribute="centerY" secondItem="9eB-As-Ea2" secondAttribute="centerY" id="KlG-kg-lWh"/>
                             <constraint firstItem="vHy-aH-Kpw" firstAttribute="centerY" secondItem="1bk-ey-hPF" secondAttribute="centerY" multiplier="0.45" id="L3h-7s-6AJ"/>
+                            <constraint firstItem="Ed3-Fl-MAq" firstAttribute="leading" secondItem="1bk-ey-hPF" secondAttribute="leading" constant="20" id="S1g-Bj-f6F"/>
                             <constraint firstItem="1bk-ey-hPF" firstAttribute="trailing" secondItem="2iz-7O-EH4" secondAttribute="trailing" constant="50" id="T1r-On-k4O"/>
                             <constraint firstItem="Iwa-Qa-61X" firstAttribute="centerX" secondItem="1bk-ey-hPF" secondAttribute="centerX" id="UGL-1q-omd"/>
                             <constraint firstItem="mFG-KA-OS0" firstAttribute="centerX" secondItem="1bk-ey-hPF" secondAttribute="centerX" id="Zbz-0F-fdq"/>
                             <constraint firstItem="wyw-CF-nUA" firstAttribute="top" secondItem="Iwa-Qa-61X" secondAttribute="bottom" constant="15" id="aSk-ww-Ean"/>
+                            <constraint firstItem="Ed3-Fl-MAq" firstAttribute="centerY" secondItem="RVh-TF-xCO" secondAttribute="centerY" id="gXY-SQ-OcH"/>
                             <constraint firstItem="CNw-ig-nyw" firstAttribute="leading" secondItem="1bk-ey-hPF" secondAttribute="leading" id="hag-hv-Tbl"/>
                             <constraint firstItem="vHy-aH-Kpw" firstAttribute="centerX" secondItem="1bk-ey-hPF" secondAttribute="centerX" id="mbB-hy-rdc"/>
                             <constraint firstItem="CNw-ig-nyw" firstAttribute="top" secondItem="9eB-As-Ea2" secondAttribute="bottom" constant="30" id="nHV-iq-2GW"/>
                             <constraint firstItem="CNw-ig-nyw" firstAttribute="bottom" secondItem="1bk-ey-hPF" secondAttribute="bottom" id="qTj-mh-Etq"/>
-                            <constraint firstItem="1bk-ey-hPF" firstAttribute="trailing" secondItem="RVh-TF-xCO" secondAttribute="trailing" constant="20" id="spk-cD-hZO"/>
-                            <constraint firstItem="RVh-TF-xCO" firstAttribute="top" secondItem="1bk-ey-hPF" secondAttribute="top" id="twl-8Z-FtS"/>
                             <constraint firstItem="wyw-CF-nUA" firstAttribute="centerX" secondItem="1bk-ey-hPF" secondAttribute="centerX" id="viP-tE-NK1"/>
                             <constraint firstItem="9eB-As-Ea2" firstAttribute="leading" secondItem="1bk-ey-hPF" secondAttribute="leading" constant="50" id="vj7-Le-wET"/>
+                            <constraint firstItem="RVh-TF-xCO" firstAttribute="trailing" secondItem="1bk-ey-hPF" secondAttribute="trailing" constant="-20" id="wH2-UW-vWe"/>
+                            <constraint firstItem="RVh-TF-xCO" firstAttribute="top" secondItem="1bk-ey-hPF" secondAttribute="top" constant="30" id="xKV-L9-V0M"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1bk-ey-hPF"/>
                     </view>
@@ -800,9 +817,10 @@
         <image name="goldenStar" width="3580" height="3402"/>
         <image name="icons8-barbershop-32" width="32" height="32"/>
         <image name="icons8-camera" width="50" height="50"/>
+        <image name="icons8-change-user-30" width="30" height="30"/>
         <image name="icons8-data-pending-50 (1)" width="50" height="50"/>
         <image name="icons8-filing-cabinet-50" width="50" height="50"/>
-        <image name="icons8-more" width="50" height="50"/>
+        <image name="icons8-info-24" width="24" height="24"/>
         <image name="icons8-resume-website-filled-24" width="24" height="24"/>
         <image name="icons8-slider-48" width="48" height="48"/>
         <image name="icons8-star-48" width="48" height="48"/>
