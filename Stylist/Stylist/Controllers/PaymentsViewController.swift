@@ -14,7 +14,6 @@ class PaymentsViewController: UIViewController {
   @IBOutlet weak var expirationDateTextfield: UITextField!
   @IBOutlet weak var nameTextfield: UITextField!
   @IBOutlet weak var confirmButton: UIButton!
-  
   let authService = AuthService()
   
   var amountDue = Int()

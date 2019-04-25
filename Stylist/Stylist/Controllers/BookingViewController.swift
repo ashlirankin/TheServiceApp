@@ -23,14 +23,11 @@ class BookingViewController: UITableViewController {
   @IBOutlet weak var servicesCollectionView: UICollectionView!
   @IBOutlet weak var orderSummaryCollectionView: UICollectionView!
   @IBOutlet weak var priceCell: UITableViewCell!
-
     let sectionsTitle = ["Services","Available times","Summary"]
   lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 300))
-
   private var providerServices = [ProviderServices](){
     didSet{
       servicesCollectionView.reloadData()
-    
     }
   }
   

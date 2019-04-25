@@ -18,6 +18,7 @@ class ClientProfileController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bookingsButton: CircularButton!
     @IBOutlet weak var historyButton: CircularButton!
+    var isSwitched = false
     let historyproviders = [ServiceSideUser(userId: "", firstName: "Joe", lastName: "Mack", email: "", joinedDate: "", gender: "Male", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "Barber", address: nil, city: "", state: "", lat: "", long: "", zip: "", favoriteId: nil, isAvailable: true),
                             ServiceSideUser(userId: "", firstName: "lisa", lastName: "lane", email: "", joinedDate: "", gender: "female", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "Hair Stylist", address: nil, city: "", state: "", lat: "", long: "", zip: "", favoriteId: nil, isAvailable: false),
                             ServiceSideUser(userId: "", firstName: "tina", lastName: "Martinez", email: "", joinedDate: "", gender: "female", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "MUA", address: nil, city: "", state: "", lat: "", long: "", zip: "", favoriteId: nil, isAvailable: true),
@@ -67,6 +68,22 @@ class ClientProfileController: UIViewController {
             print("history pressed")
         }
         
+    }
+    
+    
+    @IBAction func changeUserType(_ sender: UIButton) {
+        isSwitched = !isSwitched
+        if isSwitched {
+            showProviderTab()
+        }
+    }
+    
+    private func showProviderTab() {
+        let storyboard = UIStoryboard(name: "ServiceProvider", bundle: nil)
+        let providertab = storyboard.instantiateViewController(withIdentifier: "ServiceTabBar")
+        providertab.modalTransitionStyle = .crossDissolve
+        providertab.modalPresentationStyle = .overFullScreen
+        self.present(providertab, animated: true)
     }
     
     
@@ -134,15 +151,15 @@ class ClientProfileController: UIViewController {
             }, { [weak self] signOutAction in
                 self?.authService.signOut()
                 self?.presentLoginViewController()
-          },{ [weak self] walletAction in
-
-        guard let walletController = UIStoryboard(name: "Payments", bundle: nil).instantiateViewController(withIdentifier: "WalletViewController") as? WalletTableViewController else {fatalError("no wallet controller found")}
-        let walletNav = UINavigationController(rootViewController: walletController)
-         walletController.modalPresentationStyle = .overCurrentContext
-          walletController.modalTransitionStyle = .coverVertical
-         self?.present(walletNav, animated: true, completion: nil)
-            
-          }
+            },{ [weak self] walletAction in
+                
+                guard let walletController = UIStoryboard(name: "Payments", bundle: nil).instantiateViewController(withIdentifier: "WalletViewController") as? WalletTableViewController else {fatalError("no wallet controller found")}
+                let walletNav = UINavigationController(rootViewController: walletController)
+                walletController.modalPresentationStyle = .overCurrentContext
+                walletController.modalTransitionStyle = .coverVertical
+                self?.present(walletNav, animated: true, completion: nil)
+                
+            }
             ])
     }
     

@@ -19,7 +19,6 @@ struct Service {
   }
   
   init(dict: [String:Any]) {
-    
     self.jobTitle = dict[ServicesCollectionKeys.jobTitle] as? String ?? "no services found"
     self.services = dict[ServicesCollectionKeys.services] as? [String] ?? [String]()
   }
