@@ -19,11 +19,7 @@ class ClientProfileController: UIViewController {
     @IBOutlet weak var bookingsButton: CircularButton!
     @IBOutlet weak var historyButton: CircularButton!
     var isSwitched = false
-    let historyproviders = [ServiceSideUser(userId: "", firstName: "Joe", lastName: "Mack", email: "", joinedDate: "", gender: "Male", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "Barber", address: nil, city: "", state: "", lat: "", long: "", zip: "", favoriteId: nil, isAvailable: true),
-                            ServiceSideUser(userId: "", firstName: "lisa", lastName: "lane", email: "", joinedDate: "", gender: "female", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "Hair Stylist", address: nil, city: "", state: "", lat: "", long: "", zip: "", favoriteId: nil, isAvailable: false),
-                            ServiceSideUser(userId: "", firstName: "tina", lastName: "Martinez", email: "", joinedDate: "", gender: "female", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "MUA", address: nil, city: "", state: "", lat: "", long: "", zip: "", favoriteId: nil, isAvailable: true),
-                            ServiceSideUser(userId: "", firstName: "chris", lastName: "thompson", email: "", joinedDate: "", gender: "Male", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "Barber", address: nil, city: "", state: "", lat: "", long: "", zip: "", favoriteId: nil, isAvailable: true)
-    ]
+    let authService = AuthService()
     var appointments = [Appointments]() {
         didSet {
             getUpcomingAppointments()
@@ -31,12 +27,16 @@ class ClientProfileController: UIViewController {
     }
     var filterAppointments = [Appointments]() {
         didSet {
+            fetchProviders()
+        }
+    }
+    var filterProviders = [ServiceSideUser]() {
+        didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
     }
-    let authService = AuthService()
     private var stylistUser: StylistsUser? {
         didSet {
             DispatchQueue.main.async {
@@ -73,30 +73,10 @@ class ClientProfileController: UIViewController {
         }
     }
     
-
- 
-    @IBAction func changeUserType(_ sender: UIButton) {
-        isSwitched = !isSwitched
-        if isSwitched {
-            showProviderTab()
-        }
-    }
-
-    
-    private func showProviderTab() {
-                let storyboard = UIStoryboard(name: "ServiceProvider", bundle: nil)
-                let providertab = storyboard.instantiateViewController(withIdentifier: "ServiceTabBar")
-                providertab.modalTransitionStyle = .crossDissolve
-                providertab.modalPresentationStyle = .overFullScreen
-                self.present(providertab, animated: true)
-        }
-    
     
     func getCardInforation(userId:String){
-   DBService.firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(userId).collection("wallet")
-    
-
-  }
+        DBService.firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(userId).collection("wallet")
+    }
 
 
     private func updateUI() {
@@ -140,14 +120,51 @@ class ClientProfileController: UIViewController {
         }
     }
     
+    private func fetchProviders() {
+        var filterProviders = [ServiceSideUser]()
+        for appointment in filterAppointments {
+            let providerId = appointment.providerId
+            DBService.getProvider(providerId: providerId) { (error, provider) in
+                if let error = error {
+                    self.showAlert(title: "Fetch Providers Error", message: error.localizedDescription, actionTitle: "Ok")
+                } else if let provider = provider {
+                    filterProviders.append(provider)
+                    if filterProviders.count == self.filterAppointments.count {
+                        self.filterProviders = filterProviders
+                    }
+                }
+            }
+        }
+    }
+    
     // MARK: Actions
+    @IBAction func changeUserType(_ sender: UIButton) {
+        isSwitched = !isSwitched
+        if isSwitched {
+            showProviderTab()
+        }
+    }
+    private func showProviderTab() {
+        let storyboard = UIStoryboard(name: "ServiceProvider", bundle: nil)
+        let providertab = storyboard.instantiateViewController(withIdentifier: "ServiceTabBar")
+        providertab.modalTransitionStyle = .crossDissolve
+        providertab.modalPresentationStyle = .overFullScreen
+        dismiss(animated: true)
+        self.present(providertab, animated: true)
+    }
+    
     @IBAction func toggleButtons(_ sender: CircularButton) {
         if sender == bookingsButton {
             getUpcomingAppointments()
         } else  {
             getPastAppointments()
         }
-        
+    }
+    private func getUpcomingAppointments() {
+        filterAppointments = appointments.filter { $0.status == "pending" || $0.status == "inProgress" }
+    }
+    private func getPastAppointments() {
+        filterAppointments = appointments.filter { $0.status == "canceled" || $0.status == "completed" }
     }
     
     @IBAction func moreOptionsButtonPressed(_ sender: UIButton) {
@@ -235,35 +252,18 @@ extension ClientProfileController: MFMailComposeViewControllerDelegate {
 
 extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return historyproviders.count
+        return filterProviders.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! UserProfileTableViewCell
-        let provider = historyproviders[indexPath.row]
-        cell.providerName.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
-        cell.providerService.text = provider.jobTitle
-        cell.providerService.textColor = .white
-        cell.backgroundColor = #colorLiteral(red: 0.2462786138, green: 0.3436814547, blue: 0.5806058645, alpha: 1)
-        cell.providerName.textColor = .white
-        cell.providerService.textColor = .white
+        let appointment = filterAppointments[indexPath.row]
+        let provider = filterProviders[indexPath.row]
+        cell.configuredCell(provider: provider, appointment: appointment)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
-    }
-    
-}
-
-
-// MARK: Helper Functions
-extension ClientProfileController {
-    private func getUpcomingAppointments() {
-        filterAppointments = appointments.filter { $0.status == "pending" || $0.status == "inProgress" }
-    }
-    
-    private func getPastAppointments() {
-        filterAppointments = appointments.filter { $0.status == "canceled" || $0.status == "completed" }
     }
 }

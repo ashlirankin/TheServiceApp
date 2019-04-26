@@ -78,6 +78,18 @@ final class DBService {
         }
     }
     
+    static func getProvider(providerId: String, completion: @escaping(Error?, ServiceSideUser?) -> Void) {
+        DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
+            .document(providerId)
+            .getDocument { (snapshot, error) in
+                if let error = error {
+                    completion(error, nil)
+                } else if let snapshot = snapshot {
+                    let provider = ServiceSideUser(dict: snapshot.data()!)
+                    completion(nil, provider)
+                }
+        }
+    }
     
     static func postProviderRating(ratings: Ratings, completionHandler: @escaping (Error?) -> Void) {
         
@@ -207,6 +219,7 @@ final class DBService {
         }
     }
     
+    // MARKS: Provider Services
     static func getProviderServices(providerId: String, completion: @escaping (Error?, [ProviderServices]?) -> Void) {
         firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)   .document(providerId)
             .collection("services")
@@ -219,6 +232,7 @@ final class DBService {
         }
     }
     
+    // MARKS: Provider Services
     static func getReviews(provider: ServiceSideUser, completionHandler: @escaping([Reviews]?, Error?) -> Void) {
         DBService.firestoreDB.collection("serviceProvider")
             .document(provider.userId)
@@ -228,6 +242,19 @@ final class DBService {
                     completionHandler(nil, error)
                 } else if let snapshot = snapshot {
                     completionHandler(snapshot.documents.map{Reviews(dict: $0.data())},nil)
+                }
+        }
+    }
+    
+    static func getRatings(providerId: String, completion: @escaping(Error?, [Ratings]?) -> Void) {
+        DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
+            .document(providerId)
+            .collection(RatingsCollectionKeys.ratings)
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                    completion(error, nil)
+                } else if let snapshot = snapshot {
+                    completion(nil, snapshot.documents.map{ Ratings(dict: $0.data()) })
                 }
         }
     }
