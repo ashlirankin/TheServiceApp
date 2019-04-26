@@ -31,8 +31,7 @@ class CreateViewController: BaseViewController {
     }
    authService.createNewAccount(email: email, password: password)
   
-    presentOnboardingScreen()
-  
+   
   }
   
   @IBAction func segmentedControlPressed(_ sender: UISegmentedControl) {
@@ -66,6 +65,8 @@ extension CreateViewController:AuthServiceCreateNewAccountDelegate{
   
   func didCreateConsumerAcoount(_ authService: AuthService, consumer: StylistsUser) {
   showAlert(title: "Account Sucessfully  Created", message: "you sucessfully created your account", actionTitle: "Ok")
+    presentOnboardingScreen()
+    
   }
   
   
