@@ -757,7 +757,6 @@
 				09481797225F9ACC0026C066 /* BookingTableViewCell.swift in Sources */,
 				2E49A556226FEC7D002B230E /* CardInfo.swift in Sources */,
 				2E9DD7EC2257FC4100D74DD1 /* ClientSearchController.swift in Sources */,
-				2E9DD7E42257F9C000D74DD1 /* ServiceMessageViewController.swift in Sources */,
 				090374E72270B94100B77B66 /* ServiceProviderTabBar.swift in Sources */,
 				093A6E9422720BFB003A4E4F /* CollectionViewCell.swift in Sources */,
 				2E90A61E22611A010016462C /* ServicesCollectionViewCell.swift in Sources */,
