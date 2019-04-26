@@ -31,12 +31,9 @@ class LoginViewController: BaseViewController {
     
     authService.signInExistingAccount(email: email, password: password)
   
-    presentTabbarController()
   }
   
-  @IBAction func segmentedControlPressed(_ sender: UISegmentedControl) {
-    
-  }
+
   
   func presentTabbarController(){
    
@@ -53,8 +50,7 @@ extension LoginViewController:AuthServiceExistingAccountDelegate {
   }
   
   func didSignInToExistingAccount(_ authservice: AuthService, user: User) {
-
-   
+    presentTabbarController()
   }
   
   
