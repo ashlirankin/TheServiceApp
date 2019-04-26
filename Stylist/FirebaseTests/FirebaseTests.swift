@@ -9,6 +9,7 @@
 
 import XCTest
 @testable import Stylist
+
 import Firebase
 import FirebaseAuth
 
