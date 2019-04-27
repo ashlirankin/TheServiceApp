@@ -30,24 +30,22 @@ class CreateViewController: BaseViewController {
       return
     }
    authService.createNewAccount(email: email, password: password)
-  
-   
   }
   
   @IBAction func segmentedControlPressed(_ sender: UISegmentedControl) {
     
   }
   
-  private func presentOnboardingScreen(){
-     let onbordingScreen = UIStoryboard(name: "Entrance", bundle: nil).instantiateViewController(withIdentifier: "OnboardingTableViewController")
-    let navigationController = UINavigationController(rootViewController: onbordingScreen)
-    
-    navigationController.navigationBar.barTintColor = .clear
-    navigationController.navigationBar.setBackgroundImage(UIImage(), for:UIBarMetrics.default)
-    navigationController.navigationBar.isTranslucent = true
-    navigationController.navigationBar.shadowImage = UIImage()
-    self.present(navigationController, animated: true, completion: nil)
-  }
+    private func presentOnboardingScreen(){
+        let onbordingScreen = UIStoryboard(name: "Entrance", bundle: nil).instantiateViewController(withIdentifier: "OnboardingTableViewController") as! OnboardingTableViewController
+        let navigationController = UINavigationController(rootViewController: onbordingScreen)
+        
+        navigationController.navigationBar.barTintColor = .clear
+        navigationController.navigationBar.setBackgroundImage(UIImage(), for:UIBarMetrics.default)
+        navigationController.navigationBar.isTranslucent = true
+        navigationController.navigationBar.shadowImage = UIImage()
+        self.present(navigationController, animated: true, completion: nil)
+    }
 }
 extension CreateViewController:UITextFieldDelegate{
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -58,16 +56,14 @@ extension CreateViewController:UITextFieldDelegate{
   
 }
 extension CreateViewController:AuthServiceCreateNewAccountDelegate{
-  func didRecieveErrorCreatingAccount(_ authservice: AuthService, error: Error) {
-    showAlert(title: "Error", message: "There was an error creating your account", actionTitle: "Ok")
-  }
-  
-  
-  func didCreateConsumerAcoount(_ authService: AuthService, consumer: StylistsUser) {
-  showAlert(title: "Account Sucessfully  Created", message: "you sucessfully created your account", actionTitle: "Ok")
-    presentOnboardingScreen()
+    func didRecieveErrorCreatingAccount(_ authservice: AuthService, error: Error) {
+        showAlert(title: "Error", message: error.localizedDescription, actionTitle: "Ok")
+    }
     
-  }
-  
-  
+    func didCreateConsumerAcoount(_ authService: AuthService, consumer: StylistsUser) {
+//        showAlert(title: "Account Sucessfully  Created", message: "you sucessfully created your account", actionTitle: "Ok")
+        showAlert(title: "Account Successfully Created", message: "You sucessfully created your account", style: .alert) { (action) in
+            self.presentOnboardingScreen()
+        }
+    }
 }

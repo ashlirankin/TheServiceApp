@@ -32,12 +32,24 @@ final class DBService {
                                                                                                                             print("database user sucessfully created")
         }
     }
-    static func createConsumerDatabaseAccount(consumer:StylistsUser,completionHandle: @escaping (Error?) -> Void ){
+    static func createConsumerDatabaseAccount(consumer: StylistsUser,completionHandler: @escaping (Error?) -> Void ){
         
-        firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(consumer.userId).setData([StylistsUserCollectionKeys.userId : consumer.userId, StylistsUserCollectionKeys.firstName: consumer.firstName ?? ""
-            ,StylistsUserCollectionKeys.lastName:consumer.lastName ?? "" , StylistsUserCollectionKeys.address: consumer.address ?? "", StylistsUserCollectionKeys.email : consumer.email,StylistsUserCollectionKeys.gender: consumer.gender ?? "", StylistsUserCollectionKeys.imageURL: consumer.imageURL ?? "", StylistsUserCollectionKeys.joinedDate: Date.getISOTimestamp()]) { (error) in
-                if let error = error {
-                    print(" there was an error: \(error.localizedDescription)")
+        firestoreDB.collection(StylistsUserCollectionKeys.stylistUser)
+            .document(consumer.userId)
+            .setData([StylistsUserCollectionKeys.userId : consumer.userId, StylistsUserCollectionKeys.firstName: consumer.firstName ?? "",
+                StylistsUserCollectionKeys.lastName:consumer.lastName ?? "" ,
+                StylistsUserCollectionKeys.address: consumer.address ?? "",
+                StylistsUserCollectionKeys.email : consumer.email,
+                StylistsUserCollectionKeys.gender: consumer.gender ?? "",
+                StylistsUserCollectionKeys.imageURL: consumer.imageURL ?? "",
+                StylistsUserCollectionKeys.joinedDate: Date.getISOTimestamp(),
+                StylistsUserCollectionKeys.state : consumer.state ?? "",
+                StylistsUserCollectionKeys.street : consumer.street ?? "",
+            ]) { (error) in
+                    if let error = error {
+                        completionHandler(error)
+                    } else {
+                        completionHandler(nil)
                 }
         }
     }
