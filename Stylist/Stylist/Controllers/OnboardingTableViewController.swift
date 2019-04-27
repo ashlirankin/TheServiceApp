@@ -24,11 +24,11 @@ class OnboardingTableViewController: UITableViewController {
   
   
   override func viewDidLoad() {
-        super.viewDidLoad()
+    super.viewDidLoad()
     setDelegates()
     postButton = UIBarButtonItem(title: "Set Up", style: .plain, target: self, action: #selector(setupButtonPressed))
-   self.navigationItem.rightBarButtonItem = postButton
-    }
+    self.navigationItem.rightBarButtonItem = postButton
+  }
   
   override func viewDidLayoutSubviews() {
     profileImage.layer.cornerRadius = profileImage.frame.width/2
@@ -51,9 +51,7 @@ class OnboardingTableViewController: UITableViewController {
       print("no current user found")
       return
     }
-    let collectionName = "stylistUser"
-  updateUserInformation(collectionName: collectionName, userId: currentUser.uid)
-    
+    updateUserInformation(collectionName: StylistsUserCollectionKeys.stylistUser, userId: currentUser.uid)
   }
   
   func updateUserInformation(collectionName:String,userId:String){
@@ -66,18 +64,26 @@ class OnboardingTableViewController: UITableViewController {
         return
         
     }
-    DBService.firestoreDB.collection(collectionName).document(userId).setData([StylistsUserCollectionKeys.firstName:firstName,
-                                                                                  StylistsUserCollectionKeys.lastName:lastName,
-                                                                                  StylistsUserCollectionKeys.city:city,StylistsUserCollectionKeys.state:state,StylistsUserCollectionKeys.street:street]) { (error) in
-                                                                                    if let error = error {
-                                                                                      print("there was an error updating your information: \(error.localizedDescription)")
-                                                                                    }
+    DBService.firestoreDB.collection(collectionName)
+        .document(userId)
+        .updateData([StylistsUserCollectionKeys.firstName : firstName,
+                     StylistsUserCollectionKeys.lastName : lastName,
+                     StylistsUserCollectionKeys.city : city,
+                     StylistsUserCollectionKeys.street : street,
+                     StylistsUserCollectionKeys.state : state
+        ]) { (error) in
+            if let error = error {
+                self.showAlert(title: "Error Updating Info", message: error.localizedDescription, actionTitle: "Ok")
+            } else {
+                let storyboard = UIStoryboard(name: "User", bundle: nil)
+                let initialTab = storyboard.instantiateViewController(withIdentifier: "UserTabBarController")
+                self.present(initialTab, animated: true)
+            }
     }
   }
-  @IBAction func addProfileImagePressed(_ sender: UIButton) {
-   
-    print("add pressed")
     
+  @IBAction func addProfileImagePressed(_ sender: UIButton) {
+    print("add pressed")
   }
   
 }
