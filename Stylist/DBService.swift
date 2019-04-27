@@ -90,6 +90,18 @@ final class DBService {
         }
     }
     
+    static func getProvider(providerId: String, completion: @escaping(Error?, ServiceSideUser?) -> Void) {
+        DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
+            .document(providerId)
+            .getDocument { (snapshot, error) in
+                if let error = error {
+                    completion(error, nil)
+                } else if let snapshot = snapshot {
+                    let provider = ServiceSideUser(dict: snapshot.data()!)
+                    completion(nil, provider)
+                }
+        }
+    }
     
     static func postProviderRating(ratings: Ratings, completionHandler: @escaping (Error?) -> Void) {
         
@@ -219,6 +231,7 @@ final class DBService {
         }
     }
     
+    // MARKS: Provider Services
     static func getProviderServices(providerId: String, completion: @escaping (Error?, [ProviderServices]?) -> Void) {
         firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)   .document(providerId)
             .collection("services")
@@ -231,6 +244,7 @@ final class DBService {
         }
     }
     
+    // MARKS: Provider Services
     static func getReviews(provider: ServiceSideUser, completionHandler: @escaping([Reviews]?, Error?) -> Void) {
         DBService.firestoreDB.collection("serviceProvider")
             .document(provider.userId)
@@ -244,6 +258,32 @@ final class DBService {
         }
     }
     
+    static func getRatings(providerId: String, completion: @escaping(Error?, [Ratings]?) -> Void) {
+        DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
+            .document(providerId)
+            .collection(RatingsCollectionKeys.ratings)
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                    completion(error, nil)
+                } else if let snapshot = snapshot {
+                    completion(nil, snapshot.documents.map{ Ratings(dict: $0.data()) })
+                }
+        }
+    }
+    
+    static func getBookedAppointments(userId: String, completion: @escaping(Error?, [Appointments]?) -> Void) {
+        DBService.firestoreDB.collection("bookedAppointments")
+            .whereField("userId", isEqualTo: userId)
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                    print("Error getting booked appointments: " + error.localizedDescription)
+                    completion(error, nil)
+                } else if let snapshot = snapshot {
+                    completion(nil, snapshot.documents.map({Appointments(dict: $0.data())}))
+                }
+        }
+    }
+
     static func getAppointments(completionHandler: @escaping ([Appointments]?, Error?) -> Void) {
         DBService.firestoreDB.collection("bookedAppointments")
             .getDocuments { (snapshot, error) in
