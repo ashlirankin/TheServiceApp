@@ -29,6 +29,8 @@
 		099B0C15226649CA00474066 /* DiscoverSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099B0C14226649CA00474066 /* DiscoverSecondViewController.swift */; };
 		09A9D543225BCFB200DFB5E2 /* ServiceProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */; };
 		09A9D547225BE7A200DFB5E2 /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A9D546225BE7A200DFB5E2 /* PortfolioView.swift */; };
+		09D8C3E6227367FC009A8BA9 /* NoBookingScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09D8C3E5227367FC009A8BA9 /* NoBookingScreen.xib */; };
+		09D8C3E822736F4F009A8BA9 /* NoBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D8C3E722736F4F009A8BA9 /* NoBookingView.swift */; };
 		09DCD303225E4AB90090EE1F /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD302225E4AB80090EE1F /* UIViewController+Extensions.swift */; };
 		09DCD305225E4F290090EE1F /* ProviderDetailBio.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09DCD304225E4F290090EE1F /* ProviderDetailBio.xib */; };
 		09DCD307225E50EA0090EE1F /* ProviderBio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD306225E50EA0090EE1F /* ProviderBio.swift */; };
@@ -134,6 +136,8 @@
 		099B0C14226649CA00474066 /* DiscoverSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverSecondViewController.swift; sourceTree = "<group>"; };
 		09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProfileViewController.swift; sourceTree = "<group>"; };
 		09A9D546225BE7A200DFB5E2 /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
+		09D8C3E5227367FC009A8BA9 /* NoBookingScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoBookingScreen.xib; sourceTree = "<group>"; };
+		09D8C3E722736F4F009A8BA9 /* NoBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoBookingView.swift; sourceTree = "<group>"; };
 		09DCD302225E4AB80090EE1F /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		09DCD304225E4F290090EE1F /* ProviderDetailBio.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProviderDetailBio.xib; sourceTree = "<group>"; };
 		09DCD306225E50EA0090EE1F /* ProviderBio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderBio.swift; sourceTree = "<group>"; };
@@ -271,6 +275,8 @@
 				093A6E9022720B66003A4E4F /* ReviewCollectionView.swift */,
 				093A6E9222720BFB003A4E4F /* CollectionViewCell.swift */,
 				093A6E9322720BFB003A4E4F /* CollectionViewCell.xib */,
+				09D8C3E5227367FC009A8BA9 /* NoBookingScreen.xib */,
+				09D8C3E722736F4F009A8BA9 /* NoBookingView.swift */,
 			);
 			path = nibs;
 			sourceTree = "<group>";
@@ -539,6 +545,7 @@
 				094DF88B225D2835001EA2FE /* UserDetailHeader.xib in Resources */,
 				2EF103A62255314C0030FBFF /* LaunchScreen.storyboard in Resources */,
 				2EF103AE22553D5E0030FBFF /* GoogleService-Info.plist in Resources */,
+				09D8C3E6227367FC009A8BA9 /* NoBookingScreen.xib in Resources */,
 				098E826B2260CE5C0023E41B /* PortfolioCell.xib in Resources */,
 				09DCD305225E4F290090EE1F /* ProviderDetailBio.xib in Resources */,
 				093A6E9522720BFB003A4E4F /* CollectionViewCell.xib in Resources */,
@@ -736,6 +743,7 @@
 				090374EB2270CA0D00B77B66 /* AppointmentCell.swift in Sources */,
 				2EF1039C2255314A0030FBFF /* AppDelegate.swift in Sources */,
 				2E90A61C226112620016462C /* BookingViewController.swift in Sources */,
+				09D8C3E822736F4F009A8BA9 /* NoBookingView.swift in Sources */,
 				2E9DD7E22257F95800D74DD1 /* ServiceConfirmedController.swift in Sources */,
 				D6CD41A02267B25B00F79DAA /* UserDefaultsKeys.swift in Sources */,
 				09DCD311225E91FA0090EE1F /* DiscoverViewController.swift in Sources */,

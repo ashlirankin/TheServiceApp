@@ -52,6 +52,11 @@ class ServiceDetailViewController: UIViewController {
         
     }
     
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+         dismiss(animated: true)
+    }
+    
+    
     @IBAction func confirmBookingPressed(_ sender: UIButton) {
             DBService.updateAppointment(appointmentID: appointment.documentId, status: AppointmentStatus.inProgress.rawValue)
           dismiss(animated: true)
