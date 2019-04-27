@@ -47,7 +47,7 @@ class DiscoverViewController: UIViewController {
     }
     
     
-    func setupTableView() {
+    private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
