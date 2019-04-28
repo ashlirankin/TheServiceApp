@@ -245,6 +245,8 @@ extension ClientProfileController: MFMailComposeViewControllerDelegate {
             print("Saved")
         case .sent:
             self.showAlert(title: "Email Sent", message: nil, actionTitle: "Ok")
+        @unknown default:
+            fatalError()
         }
         controller.dismiss(animated: true)
     }
