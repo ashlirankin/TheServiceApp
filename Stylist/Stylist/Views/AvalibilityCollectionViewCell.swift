@@ -11,4 +11,14 @@ import UIKit
 class AvalibilityCollectionViewCell: UICollectionViewCell {
   @IBOutlet weak var timeButton: UILabel!
   
+  override var isSelected: Bool {
+    didSet{
+      if self.isSelected{
+        backgroundColor = .lightGray
+      }else{
+        backgroundColor = UIColor.init(hexString: "289195")
+      }
+    }
+  }
+  
 }

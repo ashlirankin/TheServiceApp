@@ -14,8 +14,11 @@ class BookingViewController: UITableViewController {
   @IBOutlet weak var servicesCollectionView: UICollectionView!
   @IBOutlet weak var orderSummaryCollectionView: UICollectionView!
   @IBOutlet weak var priceCell: UITableViewCell!
+  
+  @IBOutlet weak var bookAppointmentButton: UIButton!
+  
     let sectionsTitle = ["Services","Available times","Summary"]
-  lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 300))
+  lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 250))
   private var providerServices = [ProviderServices](){
     didSet{
       servicesCollectionView.reloadData()
@@ -105,18 +108,21 @@ class BookingViewController: UITableViewController {
   
 
 
-  @IBAction func bookButtonPressed(_ sender: UIButton) {
-
+  @IBAction func bookButtonPressed(_ sender: UIButton){
     guard let provider  = provider ,
       let currentUser = authService.getCurrentUser(),
     !localServices.isEmpty else {return}
+    let documentId = DBService.generateDocumentId
     localAppointments["providerId"] = provider.userId
     localAppointments["userId"] = currentUser.uid
-    createBooking(collectionName: "bookedAppointments", providerId: provider.userId, information: localAppointments, userId: currentUser.uid)
-   setupNotification()
-    sender.isEnabled = false
+    localAppointments["status"] = "pending"
+    localAppointments["documentId"] = documentId
+    createBooking(collectionName: "bookedAppointments", providerId: provider.userId, information: localAppointments, userId: currentUser.uid, documentId: documentId)
+    bookAppointmentButton.backgroundColor = .lightGray
+    bookAppointmentButton.isEnabled = false
+     setupNotification()
     dismiss(animated: true, completion: nil)
-
+//
 //    guard let paymentController = UIStoryboard(name: "Payments", bundle: nil).instantiateInitialViewController() as? OrderSummaryAndPaymentViewController,
 //    let provider = provider  else {fatalError()}
 //    let navController = UINavigationController(rootViewController: paymentController)
@@ -161,6 +167,7 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
     providerDetailHeader.bookingButton.isHidden = true
     providerDetailHeader.ratingsValue.isHidden = true
     providerDetailHeader.providerPhoto.kf.setImage(with: URL(string: provider?.imageURL ?? "no url found"),placeholder: #imageLiteral(resourceName: "placeholder.png"))
+    providerDetailHeader.providerFullname.text = "\(provider?.firstName ?? "no name found") \(provider?.lastName ?? "no name found")"
   }
   
   func setupCollectionViewDelegates(){
@@ -183,13 +190,13 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
     orderSummaryCollectionView.reloadData()
   }
   
-  private func createBooking(collectionName:String,providerId:String,information:[String:Any],userId:String){
-   
-    DBService.firestoreDB.collection(collectionName).addDocument(data: information) { (error) in
+  private func createBooking(collectionName:String,providerId:String,information:[String:Any],userId:String,documentId:String){
+   DBService.firestoreDB.collection(collectionName).document(documentId).setData(information) { (error) in
       if let error = error {
-        print("there was an error creating document:\(error.localizedDescription)")
+        print("error:\(error.localizedDescription)")
       }
     }
+
   }
   private func updateBookingInfo(collectionName:String,information:[String:Any],docId:String){
     DBService.firestoreDB.collection(collectionName).document(docId).updateData(information) { (error) in
@@ -281,10 +288,9 @@ extension BookingViewController:UICollectionViewDataSource{
       
       if cell.isSelected{
         cell.backgroundColor = .lightGray
-        cell.isUserInteractionEnabled = false
         
       }else{
-        cell.isHidden = true
+        cell.isUserInteractionEnabled = false
         
       }
       
@@ -294,18 +300,9 @@ extension BookingViewController:UICollectionViewDataSource{
         return
       }
       let avalibleTime = returnAvalibility(avalibility: providerAvalibility)
-      cell.isUserInteractionEnabled = true
-    
       guard let timeChosen = avalibleTime?.avalibleHours[indexPath.row] else {return}
      
-      if cell.isSelected {
-        cell.backgroundColor = .lightGray
-        cell.isUserInteractionEnabled = false
-        cell.isExclusiveTouch = true
-      }else {
-        cell.isHidden = true
-      
-      }
+     
    localAppointments["appointmentTime"] = returnAppointmentTime(chosenTime: timeChosen)
      
       
