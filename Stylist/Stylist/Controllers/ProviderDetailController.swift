@@ -103,9 +103,6 @@ class ProviderDetailController: UITableViewController {
             navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-filled-50 (1)")
             self.navigationItem.rightBarButtonItem?.isEnabled = false
         }
-        
-        
-        
     }
     
     @objc private func deleteFavorite() {

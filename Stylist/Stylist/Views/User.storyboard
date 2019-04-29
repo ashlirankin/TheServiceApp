@@ -415,49 +415,58 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="asa-ij-Mpu">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="asa-ij-Mpu" customClass="CircularImageView" customModule="Stylist" customModuleProvider="target">
                                                     <rect key="frame" x="10" y="17.5" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="asa-ij-Mpu" secondAttribute="height" multiplier="1:1" id="R0r-5Q-iCE"/>
                                                         <constraint firstAttribute="width" constant="60" id="lRi-dH-iut"/>
                                                     </constraints>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tl3-Iw-HxU" customClass="CosmosView" customModule="Cosmos">
-                                                    <rect key="frame" x="80" y="54.5" width="124" height="24"/>
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tl3-Iw-HxU" customClass="CosmosView" customModule="Cosmos">
+                                                    <rect key="frame" x="80" y="53.5" width="120" height="24"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="124" id="NAF-Q4-Zuz"/>
-                                                        <constraint firstAttribute="height" constant="24" id="Wcb-XO-cUd"/>
+                                                        <constraint firstAttribute="height" constant="24" id="8ax-hb-TXL"/>
+                                                        <constraint firstAttribute="width" constant="124" id="YT3-nV-AqD"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Provider" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Al-x5-CYA">
-                                                    <rect key="frame" x="80" y="23.5" width="64" height="21"/>
+                                                    <rect key="frame" x="80" y="17.5" width="64" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A88-ET-sNB">
-                                                    <rect key="frame" x="327" y="37" width="57" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profession" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A88-ET-sNB">
+                                                    <rect key="frame" x="313" y="56.5" width="81" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date &amp; Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzM-rB-CoG">
+                                                    <rect key="frame" x="299" y="17.5" width="95" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.41568627450000001" green="0.53725490200000003" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstItem="A88-ET-sNB" firstAttribute="centerY" secondItem="h8E-va-EBy" secondAttribute="centerY" id="6B6-DJ-Ym5"/>
                                                 <constraint firstItem="asa-ij-Mpu" firstAttribute="leading" secondItem="h8E-va-EBy" secondAttribute="leading" constant="10" id="Al1-O4-mcl"/>
-                                                <constraint firstItem="Tl3-Iw-HxU" firstAttribute="top" secondItem="4Al-x5-CYA" secondAttribute="bottom" constant="10" id="Hi3-mg-By1"/>
-                                                <constraint firstItem="Tl3-Iw-HxU" firstAttribute="centerY" secondItem="asa-ij-Mpu" secondAttribute="centerY" multiplier="1.4" id="IsM-yW-ESA"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="A88-ET-sNB" secondAttribute="trailing" constant="10" id="RYZ-do-oxF"/>
+                                                <constraint firstItem="mzM-rB-CoG" firstAttribute="trailing" secondItem="h8E-va-EBy" secondAttribute="trailingMargin" id="DQN-LC-rkR"/>
+                                                <constraint firstItem="Tl3-Iw-HxU" firstAttribute="bottom" secondItem="asa-ij-Mpu" secondAttribute="bottom" id="MDd-E1-OR4"/>
                                                 <constraint firstItem="asa-ij-Mpu" firstAttribute="centerY" secondItem="h8E-va-EBy" secondAttribute="centerY" id="SFQ-2O-Uwe"/>
-                                                <constraint firstItem="4Al-x5-CYA" firstAttribute="leading" secondItem="asa-ij-Mpu" secondAttribute="trailing" constant="10" id="fdZ-Pa-T6v"/>
-                                                <constraint firstItem="Tl3-Iw-HxU" firstAttribute="leading" secondItem="asa-ij-Mpu" secondAttribute="trailing" constant="10" id="ogW-2O-aYL"/>
+                                                <constraint firstItem="mzM-rB-CoG" firstAttribute="top" secondItem="asa-ij-Mpu" secondAttribute="top" id="iIR-GG-W7L"/>
+                                                <constraint firstItem="A88-ET-sNB" firstAttribute="trailing" secondItem="h8E-va-EBy" secondAttribute="trailingMargin" id="lOj-pm-ZLw"/>
+                                                <constraint firstItem="4Al-x5-CYA" firstAttribute="top" secondItem="asa-ij-Mpu" secondAttribute="top" id="puI-Oh-YD8"/>
+                                                <constraint firstItem="4Al-x5-CYA" firstAttribute="leading" secondItem="asa-ij-Mpu" secondAttribute="trailing" constant="10" id="vUi-CO-lyy"/>
+                                                <constraint firstItem="A88-ET-sNB" firstAttribute="bottom" secondItem="asa-ij-Mpu" secondAttribute="bottom" id="yln-DN-oNW"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="ProfileCellImage" destination="asa-ij-Mpu" id="TMj-GF-p3u"/>
-                                            <outlet property="bookingsRatings" destination="Tl3-Iw-HxU" id="Hv1-RZ-Kgc"/>
+                                            <outlet property="dateAndTimeLabel" destination="mzM-rB-CoG" id="onQ-Xp-1ho"/>
                                             <outlet property="providerName" destination="4Al-x5-CYA" id="yvu-XW-iic"/>
+                                            <outlet property="providerProfileImage" destination="asa-ij-Mpu" id="MHy-dO-VIr"/>
+                                            <outlet property="providerRating" destination="Tl3-Iw-HxU" id="Hv1-RZ-Kgc"/>
                                             <outlet property="providerService" destination="A88-ET-sNB" id="cqT-E8-KHl"/>
                                         </connections>
                                     </tableViewCell>
