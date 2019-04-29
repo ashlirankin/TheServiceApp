@@ -36,35 +36,6 @@ final class AuthService {
         self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
         return
       } else if let authDataResult = authDataResult {
-<<<<<<< HEAD
-
-        let authUser = authDataResult.user
-        guard let email = authUser.email else {
-          print("no email found")
-          return
-        }
-          let consumer = StylistsUser(userId: authUser.uid, firstName: nil, lastName: nil, email: email, gender: nil, address: nil, imageURL: nil, joinedDate: Date.getISOTimestamp(), street: nil, city: nil, state: nil, zip: nil)
-        
-        DBService.createConsumerDatabaseAccount(consumer: consumer, completionHandle: { (error) in
-          if let error = error {
-            print(error.localizedDescription)
-          }
-          
-          self.authserviceCreateNewAccountDelegate?.didCreateConsumerAcoount(self, consumer: consumer)
-        })
-        }
-        }
-=======
-        // update displayName for auth user
-//        let request = authDataResult.user.createProfileChangeRequest()
-//
-//        request.commitChanges(completion: { (error) in
-//          if let error = error {
-//            self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
-//            return
-//          }
-//        })
-        
         let newUser = StylistsUser(userId: authDataResult.user.uid,
                                    firstName: nil,
                                    lastName: nil,
@@ -84,9 +55,10 @@ final class AuthService {
                 self.authserviceCreateNewAccountDelegate?.didCreateConsumerAcoount(self, consumer: newUser)
             }
         })
-        
->>>>>>> 5e319b2a998477c79ce61077c27a5c1732fe72ad
+
       }
+    }
+  }
   public func signInExistingAccount(email: String, password: String) {
     Auth.auth().signIn(withEmail: email, password: password) { (authDataResult, error) in
       if let error = error {
