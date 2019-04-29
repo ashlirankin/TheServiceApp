@@ -180,7 +180,9 @@ class ProviderDetailController: UITableViewController {
     private func setupUI() {
         tableView.tableHeaderView = providerDetailHeader
         providerDetailHeader.bookingButton.addTarget(self, action: #selector(bookButtonPressed), for: .touchUpInside)
-//        providerDetailHeader.ratingsValue
+        providerDetailHeader.ratingsstars.didFinishTouchingCosmos = { captureRating in
+            
+        }
     }
     
     private func setupCollectionView() {
