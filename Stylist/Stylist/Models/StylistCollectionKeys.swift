@@ -90,3 +90,14 @@ struct ServicesCollectionKeys {
     static let serviceName = "serviceName"
     static let serviceId = "serviceId"
 }
+struct AppointmentCollectionKeys{
+  static let providerId = "providerId"
+  static let userId = "userId"
+  static let services = "services"
+  static let appointmentTime = "appointmentTime"
+  static let prices = "prices"
+  static let status = "status"
+  static let documentId = "documentId"
+  static let bookedAppointments = "bookedAppointments"
+  
+}

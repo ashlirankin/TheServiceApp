@@ -308,6 +308,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="avalibilityCollectionView" destination="vHE-2c-tFi" id="cZb-7V-Cy4"/>
+                        <outlet property="bookAppointmentButton" destination="NDQ-Ek-4VX" id="Zvr-aw-cQA"/>
                         <outlet property="orderSummaryCollectionView" destination="gs1-in-gJy" id="rMj-Jq-a0E"/>
                         <outlet property="priceCell" destination="UhW-Ve-Rhb" id="nec-uR-p6V"/>
                         <outlet property="servicesCollectionView" destination="gu7-ds-9Vh" id="w9b-yv-YxF"/>

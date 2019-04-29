@@ -55,7 +55,6 @@ class ClientProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = #colorLiteral(red: 0.2461647391, green: 0.3439296186, blue: 0.5816915631, alpha: 1)
-        authService.authserviceSignOutDelegate = self
         setupTableView()
         getUpcomingAppointments()
     }
@@ -77,6 +76,7 @@ class ClientProfileController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         fetchCurrentUser()
+              authService.authserviceSignOutDelegate = self
     }
     
     // MARK: Initial Setup
@@ -139,7 +139,7 @@ class ClientProfileController: UIViewController {
                 self?.showAlert(title: "Error Fetching User Appointments", message: error.localizedDescription, actionTitle: "Ok")
             } else if let appointments = appointments {
                 self?.appointments = appointments
-                if appointments.count < 0 {
+                if appointments.count < 1 {
                     self?.tableView.backgroundColor = .clear
                     self?.tableView.backgroundView?.addSubview(self!.noBookingView)
                 }
