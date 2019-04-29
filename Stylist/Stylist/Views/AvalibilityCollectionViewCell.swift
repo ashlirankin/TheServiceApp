@@ -21,4 +21,16 @@ class AvalibilityCollectionViewCell: UICollectionViewCell {
     }
   }
   
+  func disableOnExpiration(avalibleTimes:String){
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "h:mm a"
+    guard let currentTime = dateFormatter.date(from: dateFormatter.string(from: Date())),
+      let availableTime = dateFormatter.date(from: avalibleTimes) else {
+        return
+    }
+    if currentTime > availableTime {
+      backgroundColor = .lightGray
+      isUserInteractionEnabled = false
+    }
+  }
 }

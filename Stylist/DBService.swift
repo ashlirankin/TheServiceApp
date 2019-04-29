@@ -232,17 +232,7 @@ final class DBService {
     }
     
     // MARKS: Provider Services
-    static func getProviderServices(providerId: String, completion: @escaping (Error?, [ProviderServices]?) -> Void) {
-        firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)   .document(providerId)
-            .collection("services")
-            .getDocuments { (snapshot, error) in
-                if let error = error {
-                    completion(error, nil)
-                } else {
-                    completion(nil, snapshot?.documents.map{ ProviderServices.init(dict: $0.data()) })
-                }
-        }
-    }
+
     
     // MARKS: Provider Services
     static func getReviews(provider: ServiceSideUser, completionHandler: @escaping([Reviews]?, Error?) -> Void) {
@@ -314,6 +304,24 @@ final class DBService {
         .document(appointmentID)
         .updateData(["status" : status])
     }
+  
+static func getProviderServices(providerId:String,completion: @escaping (Error?,[ProviderServices]?) -> Void){
+    var serviceArray = [ProviderServices]()
+    
+DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).document(providerId).collection(ServicesCollectionKeys.subCollectionName).getDocuments { (snapshot, error) in
+      if let error = error {
+        completion(error,nil)
+      }
+      else if let snapshot = snapshot{
+        snapshot.documents.forEach{
+          let serviceData = ProviderServices(dict: $0.data())
+          serviceArray.append(serviceData)
+          completion(nil,serviceArray)
+        }
+      }
+    }
+
+  }
 }
 
 

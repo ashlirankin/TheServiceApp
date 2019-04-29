@@ -14,10 +14,9 @@ class BookingViewController: UITableViewController {
   @IBOutlet weak var servicesCollectionView: UICollectionView!
   @IBOutlet weak var orderSummaryCollectionView: UICollectionView!
   @IBOutlet weak var priceCell: UITableViewCell!
-  
   @IBOutlet weak var bookAppointmentButton: UIButton!
   
-    let sectionsTitle = ["Services","Available times","Summary"]
+  let sectionsTitle = ["Services","Available times","Summary"]
   lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 250))
   private var providerServices = [ProviderServices](){
     didSet{
@@ -113,13 +112,12 @@ class BookingViewController: UITableViewController {
       let currentUser = authService.getCurrentUser(),
     !localServices.isEmpty else {return}
     let documentId = DBService.generateDocumentId
-    localAppointments["providerId"] = provider.userId
-    localAppointments["userId"] = currentUser.uid
-    localAppointments["status"] = "pending"
-    localAppointments["documentId"] = documentId
-    createBooking(collectionName: "bookedAppointments", providerId: provider.userId, information: localAppointments, userId: currentUser.uid, documentId: documentId)
-    bookAppointmentButton.backgroundColor = .lightGray
-    bookAppointmentButton.isEnabled = false
+    localAppointments[AppointmentCollectionKeys.providerId] = provider.userId
+    localAppointments[AppointmentCollectionKeys.userId] = currentUser.uid
+    localAppointments[AppointmentCollectionKeys.status] = "pending"
+    localAppointments[AppointmentCollectionKeys.documentId] = documentId
+    
+    createBooking(collectionName: AppointmentCollectionKeys.bookedAppointments, providerId: provider.userId, information: localAppointments, userId: currentUser.uid, documentId: documentId)
      setupNotification()
     dismiss(animated: true, completion: nil)
 //
@@ -133,19 +131,16 @@ class BookingViewController: UITableViewController {
   }
   
   func getServices(serviceProviderId:String){
-
-DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).document(serviceProviderId).collection(ServicesCollectionKeys.subCollectionName).getDocuments { (snapshot, error) in
+    DBService.getProviderServices(providerId: serviceProviderId) { (error, services) in
       if let error = error {
-        print("there was an error line 46: \(error.localizedDescription)")
+         self.showAlert(title: "Error", message: "There was an error retrieving services:\(error.localizedDescription)", actionTitle:  "Ok")
       }
-      else if let snapshot = snapshot{
-        snapshot.documents.forEach{
-          let serviceData = ProviderServices(dict: $0.data())
-          self.providerServices.append(serviceData)
-        }
+      else if let services = services {
+        self.providerServices = services
       }
+     
     }
-  }
+}
   
   func getProviderAvalibility(providerId:String){
     DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).document(providerId).collection(AvalibilityCollectionKeys.avalibility).getDocuments { (snapshot, error) in
@@ -246,6 +241,7 @@ extension BookingViewController:UICollectionViewDataSource{
    let avalibility = returnAvalibility(avalibility: providerAvalibility)
       cell.timeButton.text = avalibility?.avalibleHours[indexPath.row]
       cell.timeButton.tag = indexPath.row
+      cell.disableOnExpiration(avalibleTimes: avalibility?.avalibleHours[indexPath.row] ?? "")
       return cell
     case servicesCollectionView:
       let aService = providerServices[indexPath.row]
@@ -295,18 +291,12 @@ extension BookingViewController:UICollectionViewDataSource{
       }
       
     case avalibilityCollectionView:
-      guard let cell = avalibilityCollectionView.cellForItem(at: indexPath) as? AvalibilityCollectionViewCell else {
-        print("no avalibility found")
-        return
-      }
+      
       let avalibleTime = returnAvalibility(avalibility: providerAvalibility)
       guard let timeChosen = avalibleTime?.avalibleHours[indexPath.row] else {return}
      
      
-   localAppointments["appointmentTime"] = returnAppointmentTime(chosenTime: timeChosen)
-     
-      
-      
+   localAppointments[AppointmentCollectionKeys.appointmentTime] = returnAppointmentTime(chosenTime: timeChosen)
     default:
     print("something")
     }
