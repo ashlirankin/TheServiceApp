@@ -140,14 +140,14 @@ class ProviderDetailController: UITableViewController {
         providerDetailHeader.providerFullname.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
         providerDetailHeader.providerPhoto.kf.setImage(with: URL(string: provider.imageURL ?? ""), placeholder: #imageLiteral(resourceName: "iconfinder_icon-person-add_211872.png"))
         profileBio.providerBioText.text = provider.bio
-        switch provider.jobTitle {
-        case "Barber":
-            providerDetailHeader.ratingsValue.text = "4.5"
-        case "Hair Stylist":
-            providerDetailHeader.ratingsValue.text = "5.0"
-        default:
-            providerDetailHeader.ratingsValue.text = "3.5"
-        }
+//        switch provider.jobTitle {
+//        case "Barber":
+//            providerDetailHeader.ratingsValue.text = "4.5"
+//        case "Hair Stylist":
+//            providerDetailHeader.ratingsValue.text = "5.0"
+//        default:
+//            providerDetailHeader.ratingsValue.text = "3.5"
+//        }
         setupProviderPortfolio()
         setupReviews()
     }
@@ -180,6 +180,7 @@ class ProviderDetailController: UITableViewController {
     private func setupUI() {
         tableView.tableHeaderView = providerDetailHeader
         providerDetailHeader.bookingButton.addTarget(self, action: #selector(bookButtonPressed), for: .touchUpInside)
+//        providerDetailHeader.ratingsValue
     }
     
     private func setupCollectionView() {

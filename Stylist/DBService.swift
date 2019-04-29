@@ -232,6 +232,19 @@ final class DBService {
         }
     }
     
+    static func getRatings(provider: ServiceSideUser, completionHandler: @escaping([Ratings]?, Error?) -> Void){
+        DBService.firestoreDB.collection("serviceProvider")
+        .document(provider.userId)
+        .collection("ratings")
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                    completionHandler(nil, error)
+                } else if let snapshot = snapshot {
+                    completionHandler(snapshot.documents.map{Ratings(dict: $0.data())}, nil)
+                }
+        }
+    }
+    
     static func getAppointments(completionHandler: @escaping ([Appointments]?, Error?) -> Void) {
         DBService.firestoreDB.collection("bookedAppointments")
             .getDocuments { (snapshot, error) in
