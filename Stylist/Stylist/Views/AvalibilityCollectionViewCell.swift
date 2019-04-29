@@ -10,5 +10,4 @@ import UIKit
 
 class AvalibilityCollectionViewCell: UICollectionViewCell {
   @IBOutlet weak var timeButton: UILabel!
-  
 }

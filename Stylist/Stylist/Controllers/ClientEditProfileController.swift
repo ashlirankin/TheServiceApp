@@ -114,6 +114,7 @@ extension ClientEditProfileController: UIImagePickerControllerDelegate, UINaviga
         let size = CGSize(width: 500, height: 500)
         let resizedImage = Toucan.Resize.resizeImage(originalImage, size: size)
         selectedImage = resizedImage
+        profileImageView.image = resizedImage
         dismiss(animated: true)
     }
 }

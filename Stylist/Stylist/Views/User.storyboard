@@ -530,21 +530,22 @@
                         <sections>
                             <tableViewSection id="unR-fT-Ybc">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="190" id="6nu-Lr-tVW">
-                                        <rect key="frame" x="0.0" y="35" width="414" height="190"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="217" id="6nu-Lr-tVW">
+                                        <rect key="frame" x="0.0" y="35" width="414" height="217"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6nu-Lr-tVW" id="smV-p6-Ly1">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="189.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="216.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="GuU-Q8-lUs" customClass="CircularImageView" customModule="Stylist" customModuleProvider="target">
-                                                    <rect key="frame" x="112.5" y="11" width="189.5" height="168"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="GuU-Q8-lUs" customClass="CircularImageView" customModule="Stylist" customModuleProvider="target">
+                                                    <rect key="frame" x="118" y="19.5" width="178" height="178"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="168" id="qoj-wg-X2j"/>
+                                                        <constraint firstAttribute="width" secondItem="GuU-Q8-lUs" secondAttribute="height" multiplier="1:1" id="ea2-ow-M5F"/>
+                                                        <constraint firstAttribute="height" constant="178" id="xMa-Vy-jUO"/>
                                                     </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DVO-XM-JwR">
-                                                    <rect key="frame" x="112.5" y="11" width="189.5" height="168"/>
+                                                    <rect key="frame" x="118" y="19.5" width="178" height="178"/>
                                                     <state key="normal" image="icons8-camera"/>
                                                     <connections>
                                                         <action selector="changeProfilePicButtonPressed:" destination="SEv-r5-cNM" eventType="touchUpInside" id="Bn5-c3-PNv"/>
@@ -552,18 +553,17 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="DVO-XM-JwR" firstAttribute="centerY" secondItem="GuU-Q8-lUs" secondAttribute="centerY" id="3w8-lF-5uP"/>
-                                                <constraint firstItem="GuU-Q8-lUs" firstAttribute="width" secondItem="smV-p6-Ly1" secondAttribute="height" multiplier="1:1" id="RjT-bV-cL8"/>
-                                                <constraint firstItem="DVO-XM-JwR" firstAttribute="height" secondItem="GuU-Q8-lUs" secondAttribute="height" id="hAn-2P-yPb"/>
-                                                <constraint firstItem="GuU-Q8-lUs" firstAttribute="centerX" secondItem="smV-p6-Ly1" secondAttribute="centerX" id="ia4-sP-KX4"/>
-                                                <constraint firstItem="DVO-XM-JwR" firstAttribute="width" secondItem="GuU-Q8-lUs" secondAttribute="width" id="j0f-nm-GQL"/>
-                                                <constraint firstItem="GuU-Q8-lUs" firstAttribute="centerY" secondItem="smV-p6-Ly1" secondAttribute="centerY" id="v1V-lh-MCZ"/>
-                                                <constraint firstItem="DVO-XM-JwR" firstAttribute="centerX" secondItem="GuU-Q8-lUs" secondAttribute="centerX" id="y4b-y2-PWQ"/>
+                                                <constraint firstItem="DVO-XM-JwR" firstAttribute="centerX" secondItem="GuU-Q8-lUs" secondAttribute="centerX" id="1b8-4m-Cnc"/>
+                                                <constraint firstItem="DVO-XM-JwR" firstAttribute="width" secondItem="GuU-Q8-lUs" secondAttribute="width" id="4ta-Pt-601"/>
+                                                <constraint firstItem="DVO-XM-JwR" firstAttribute="height" secondItem="GuU-Q8-lUs" secondAttribute="height" id="554-ct-vpM"/>
+                                                <constraint firstItem="GuU-Q8-lUs" firstAttribute="centerY" secondItem="smV-p6-Ly1" secondAttribute="centerY" id="6Rw-Fl-MTV"/>
+                                                <constraint firstItem="GuU-Q8-lUs" firstAttribute="centerX" secondItem="smV-p6-Ly1" secondAttribute="centerX" id="Z63-Zi-Nmr"/>
+                                                <constraint firstItem="DVO-XM-JwR" firstAttribute="centerY" secondItem="GuU-Q8-lUs" secondAttribute="centerY" id="dhu-JR-cKE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="65" id="uUQ-Q1-Ubm">
-                                        <rect key="frame" x="0.0" y="225" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="252" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uUQ-Q1-Ubm" id="rxb-eK-00s">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="64.5"/>
@@ -597,7 +597,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="65" id="NRC-eK-3l2">
-                                        <rect key="frame" x="0.0" y="290" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="317" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NRC-eK-3l2" id="aor-eV-F94">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="64.5"/>

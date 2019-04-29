@@ -12,7 +12,7 @@ import UIKit
 class CircularButton: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews()
-        imageView?.contentMode = .scaleAspectFit
+        imageView?.contentMode = .scaleAspectFill
         layer.cornerRadius = bounds.width / 2.0
         layer.borderColor = UIColor.lightGray.cgColor
         layer.borderWidth = 0.5
