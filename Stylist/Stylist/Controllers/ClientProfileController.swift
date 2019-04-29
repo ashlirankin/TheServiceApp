@@ -234,7 +234,7 @@ class ClientProfileController: UIViewController {
         guard let loginViewController = UIStoryboard(name: "Entrance", bundle: nil).instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController else {return}
         loginViewController.modalPresentationStyle = .fullScreen
         loginViewController.modalTransitionStyle = .coverVertical
-        window?.rootViewController = loginViewController
+        window?.rootViewController = UINavigationController(rootViewController: loginViewController)
         window?.makeKeyAndVisible()
     }
 }
@@ -245,7 +245,7 @@ extension ClientProfileController:AuthServiceSignOutDelegate{
     }
     
     func didSignOut(_ authservice: AuthService) {
-        showAlert(title: "Sucess", message: "Sucessfully signed out", actionTitle: "OK")
+        dismiss(animated: true, completion: nil)
     }
 }
 
