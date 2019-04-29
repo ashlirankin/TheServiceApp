@@ -35,16 +35,6 @@ final class AuthService {
         self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
         return
       } else if let authDataResult = authDataResult {
-        // update displayName for auth user
-//        let request = authDataResult.user.createProfileChangeRequest()
-//
-//        request.commitChanges(completion: { (error) in
-//          if let error = error {
-//            self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
-//            return
-//          }
-//        })
-        
         let newUser = StylistsUser(userId: authDataResult.user.uid,
                                    firstName: nil,
                                    lastName: nil,
