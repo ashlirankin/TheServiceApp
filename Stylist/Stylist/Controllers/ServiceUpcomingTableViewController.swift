@@ -10,6 +10,7 @@ import UIKit
 import Kingfisher
 
 class ServiceUpcomingTableViewController: UITableViewController {
+    let noBookingView = NoBookingView()
     var authservice = AuthService()
     var providerId = ""{
         didSet{
@@ -29,13 +30,17 @@ class ServiceUpcomingTableViewController: UITableViewController {
       setupTableview()
     }
     
-    private func   getAppointments() {
+    private func  getAppointments() {
         DBService.getAppointments { (appointments, error) in
             if let error = error {
                 print(error)
             } else if let appointments = appointments {
                 for appointment in appointments {
                 self.getAppointmentInfo(serviceProviderId: appointment.providerId)
+                    guard appointments.count > 0 else {
+                        self.view.addSubview(self.noBookingView)
+                        return
+                    }
                 }
             }
         }
@@ -93,11 +98,30 @@ class ServiceUpcomingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OpenAppointments", for: indexPath) as! AppointmentCell
         let appointment = appointments[indexPath.row]
-      cell.clientName.text = "Ashli"
-        cell.clientRatings.text = "5.0"
-        cell.clientRatings.rating = 5
-        cell.clientDistance.text = "0.2"
-         cell.appointmentTime.text = appointment.appointmentTime
+        DBService.getDatabaseUser(userID: appointment.userId) { (error, stylistUser) in
+            if let error = error {
+                print(error)
+            } else if let stylistUser = stylistUser {
+                cell.clientName.text = stylistUser.fullName
+                cell.clientRatings.text = "5.0"
+                cell.clientRatings.rating = 5
+                cell.clientDistance.text = stylistUser.city
+                cell.AppointmentImage.kf.setImage(with: URL(string: stylistUser.imageURL ?? "no image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
+            }
+        }
+ 
+        switch appointment.status {
+        case "canceled":
+            cell.clientServices.textColor = .red
+            cell.clientServices.text = appointment.status
+        case "inProgress":
+            cell.clientServices.textColor = .green
+            cell.clientServices.text = "confirmed"
+        default:
+            cell.clientServices.textColor = .orange
+            cell.clientServices.text = appointment.status
+        }
+        cell.appointmentTime.text = appointment.appointmentTime
         return cell
     }
     

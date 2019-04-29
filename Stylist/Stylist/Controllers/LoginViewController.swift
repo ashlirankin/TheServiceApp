@@ -46,7 +46,7 @@ class LoginViewController: BaseViewController {
 }
 extension LoginViewController:AuthServiceExistingAccountDelegate {
   func didRecieveErrorSigningToExistingAccount(_ authservice: AuthService, error: Error) {
-    showAlert(title: "Sign-In Error", message: "There was an error signing into you account", actionTitle: "TryAgain")
+    showAlert(title: "Sign-In Error", message: error.localizedDescription, actionTitle: "TryAgain")
   }
   
   func didSignInToExistingAccount(_ authservice: AuthService, user: User) {

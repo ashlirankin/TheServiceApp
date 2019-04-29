@@ -107,23 +107,23 @@ class BookingViewController: UITableViewController {
 
   @IBAction func bookButtonPressed(_ sender: UIButton) {
 
-//    guard let provider  = provider ,
-//      let currentUser = authService.getCurrentUser(),
-//    !localServices.isEmpty else {return}
-//    localAppointments["providerId"] = provider.userId
-//    localAppointments["userId"] = currentUser.uid
-//    createBooking(collectionName: "bookedAppointments", providerId: provider.userId, information: localAppointments, userId: currentUser.uid)
-//   setupNotification()
-//    sender.isEnabled = false
-//    dismiss(animated: true, completion: nil)
+    guard let provider  = provider ,
+      let currentUser = authService.getCurrentUser(),
+    !localServices.isEmpty else {return}
+    localAppointments["providerId"] = provider.userId
+    localAppointments["userId"] = currentUser.uid
+    createBooking(collectionName: "bookedAppointments", providerId: provider.userId, information: localAppointments, userId: currentUser.uid)
+   setupNotification()
+    sender.isEnabled = false
+    dismiss(animated: true, completion: nil)
 
-    guard let paymentController = UIStoryboard(name: "Payments", bundle: nil).instantiateInitialViewController() as? OrderSummaryAndPaymentViewController,
-    let provider = provider  else {fatalError()}
-    let navController = UINavigationController(rootViewController: paymentController)
-    paymentController.modalPresentationStyle = .currentContext
-    paymentController.modalTransitionStyle = .coverVertical
-    paymentController.providerId = provider.userId
-    present(navController, animated: true, completion: nil)
+//    guard let paymentController = UIStoryboard(name: "Payments", bundle: nil).instantiateInitialViewController() as? OrderSummaryAndPaymentViewController,
+//    let provider = provider  else {fatalError()}
+//    let navController = UINavigationController(rootViewController: paymentController)
+//    paymentController.modalPresentationStyle = .currentContext
+//    paymentController.modalTransitionStyle = .coverVertical
+//    paymentController.providerId = provider.userId
+//    present(navController, animated: true, completion: nil)
   }
   
   func getServices(serviceProviderId:String){

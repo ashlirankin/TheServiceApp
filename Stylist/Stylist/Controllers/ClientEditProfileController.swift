@@ -35,6 +35,7 @@ class ClientEditProfileController: UITableViewController {
         if let imageURL = stylistUser.imageURL {
             profileImageView.kf.indicatorType = .activity
             profileImageView.kf.setImage(with: URL(string: imageURL), placeholder: #imageLiteral(resourceName: "placeholder.png"))
+            selectedImage = profileImageView.image
         }
         firstNameTextField.text = stylistUser.firstName ?? ""
         lastNameTextField.text = stylistUser.lastName ?? ""
