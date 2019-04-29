@@ -8,10 +8,13 @@
 
 import UIKit
 import Kingfisher
+import FirebaseFirestore
+import UserNotifications
 
 class ServiceUpcomingTableViewController: UITableViewController {
     let noBookingView = NoBookingView()
     var authservice = AuthService()
+    var listener: ListenerRegistration!
     var providerId = ""{
         didSet{
             getAppointmentInfo(serviceProviderId: providerId)
@@ -28,9 +31,26 @@ class ServiceUpcomingTableViewController: UITableViewController {
         super.viewDidLoad()
         getAppointments()
       setupTableview()
+        updateAppointments()
     }
     
-    private func  getAppointments() {
+    func updateAppointments() {
+        guard let currentUser = authservice.getCurrentUser() else {
+            showAlert(title: "Error", message: "No provider signedIn", actionTitle: "TryAgain")
+            return
+        }
+       listener =  DBService.firestoreDB.collection("bookedAppointments")
+        .document(currentUser.uid)
+        .addSnapshotListener({ (snapshot, error) in
+            if let error = error {
+                print(error)
+            } else if snapshot != nil {
+            self.tableView.reloadData()
+            }
+        })
+    }
+    
+    private func getAppointments() {
         DBService.getAppointments { (appointments, error) in
             if let error = error {
                 print(error)
@@ -51,19 +71,18 @@ class ServiceUpcomingTableViewController: UITableViewController {
             showAlert(title: "Error", message: "No user signedIn", actionTitle: "TryAgain")
             return
         }
-        DBService.firestoreDB.collection("bookedAppointments")
-            .whereField("providerId", isEqualTo: currentUser.uid).getDocuments { [weak self] (snapshot, error) in
-                
-                if let error = error {
-                    
-                    self?.showAlert(title: "Error", message: "Could not retrieve appointments:\(error.localizedDescription)", actionTitle: "Try Again")
-                }
-                else if let snapshot = snapshot {
-                    let appointments =  snapshot.documents.map{Appointments(dict: $0.data()) }
-                    self?.appointments = appointments
-                }
+        listener = DBService.firestoreDB.collection("bookedAppointments")
+        .whereField("providerId", isEqualTo: currentUser.uid)
+            .addSnapshotListener { [weak self] (snapshot, error) in
+                                if let error = error {
+                                    self?.showAlert(title: "Error", message: "Could not retrieve appointments:\(error.localizedDescription)", actionTitle: "Try Again")
+                                }
+                                else if let snapshot = snapshot {
+                                    let appointments =  snapshot.documents.map{Appointments(dict: $0.data()) }
+                                    self?.appointments = appointments
+                                }
+                        }
         }
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let destination = segue.destination as? ServiceDetailViewController,
@@ -82,6 +101,27 @@ class ServiceUpcomingTableViewController: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
+    }
+    
+    private func setupNotification() {
+        guard let newAppointment = appointments.last else {
+            return
+        }
+        let center = UNUserNotificationCenter.current()
+        let content = UNMutableNotificationContent()
+        content.title = "New Appointment"
+        content.subtitle = "\(newAppointment.appointmentTime)"
+        content.sound = UNNotificationSound.default
+        content.threadIdentifier = "local-notifcations temp"
+        let date = Date(timeIntervalSinceNow: 2)
+        let dateComponent = Calendar.current.dateComponents([.year, .month,.day,.hour, .minute, .second, .second, .nanosecond], from: date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: false)
+        let request = UNNotificationRequest.init(identifier: "content", content: content, trigger: trigger)
+        center.add(request) { (error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
     }
     
     
@@ -109,17 +149,17 @@ class ServiceUpcomingTableViewController: UITableViewController {
                 cell.AppointmentImage.kf.setImage(with: URL(string: stylistUser.imageURL ?? "no image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
             }
         }
- 
+       cell.clientServices.text = appointment.status
         switch appointment.status {
         case "canceled":
             cell.clientServices.textColor = .red
-            cell.clientServices.text = appointment.status
         case "inProgress":
             cell.clientServices.textColor = .green
             cell.clientServices.text = "confirmed"
+        case "completed":
+            cell.clientServices.textColor = .gray
         default:
             cell.clientServices.textColor = .orange
-            cell.clientServices.text = appointment.status
         }
         cell.appointmentTime.text = appointment.appointmentTime
         return cell

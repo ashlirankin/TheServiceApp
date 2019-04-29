@@ -9,6 +9,8 @@ import UIKit
 import Kingfisher
 import Cosmos
 import MessageUI
+import FirebaseFirestore
+import UserNotifications
 
 class ClientProfileController: UIViewController {
     @IBOutlet weak var profileImageView: CircularImageView!
@@ -18,11 +20,15 @@ class ClientProfileController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bookingsButton: CircularButton!
     @IBOutlet weak var historyButton: CircularButton!
+    var listener: ListenerRegistration!
+    var statusListener: ListenerRegistration!
+    let noBookingView = ProfileNoBooking(frame: CGRect(x: 0, y: 0, width: 394, height: 284))
     var isSwitched = false
     let authService = AuthService()
     var appointments = [Appointments]() {
         didSet {
             getUpcomingAppointments()
+            notifyClient()
         }
     }
     var filterAppointments = [Appointments]() {
@@ -51,6 +57,21 @@ class ClientProfileController: UIViewController {
         self.view.backgroundColor = #colorLiteral(red: 0.2461647391, green: 0.3439296186, blue: 0.5816915631, alpha: 1)
         authService.authserviceSignOutDelegate = self
         setupTableView()
+        getUpcomingAppointments()
+    }
+    
+    func notifyClient() {
+        for status in AppointmentStatus.allCases {
+             statusListener = DBService.firestoreDB.collection("bookedAppointments")
+            .whereField("status", isEqualTo: status.rawValue)
+                .addSnapshotListener({ (snapshot, error) in
+                    if let error = error {
+                        print(error)
+                    } else if snapshot != nil {
+                         self.setupNotification()
+                    }
+                })
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,8 +127,10 @@ class ClientProfileController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.layer.cornerRadius = 10
-        tableView.backgroundColor = #colorLiteral(red: 0.2462786138, green: 0.3436814547, blue: 0.5806058645, alpha: 1)
+        tableView.backgroundColor = #colorLiteral(red: 0.1619916558, green: 0.224360168, blue: 0.3768204153, alpha: 1)
         tableView.tableFooterView = UIView()
+        tableView.layer.cornerRadius = 10
+        
     }
     
     private func getAllAppointments(id: String) {
@@ -116,6 +139,32 @@ class ClientProfileController: UIViewController {
                 self?.showAlert(title: "Error Fetching User Appointments", message: error.localizedDescription, actionTitle: "Ok")
             } else if let appointments = appointments {
                 self?.appointments = appointments
+                if appointments.count < 0 {
+                    self?.tableView.backgroundColor = .clear
+                    self?.tableView.backgroundView?.addSubview(self!.noBookingView)
+                }
+                
+            }
+        }
+    }
+    
+    private func setupNotification() {
+        guard let newAppointment = appointments.last else {
+            return
+        }
+        let center = UNUserNotificationCenter.current()
+        let content = UNMutableNotificationContent()
+        content.title = "New Appointment"
+        content.subtitle = "\(newAppointment.appointmentTime)"
+        content.sound = UNNotificationSound.default
+        content.threadIdentifier = "local-notifcations temp"
+        let date = Date(timeIntervalSinceNow: 2)
+        let dateComponent = Calendar.current.dateComponents([.year, .month,.day,.hour, .minute, .second, .second, .nanosecond], from: date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: false)
+        let request = UNNotificationRequest.init(identifier: "content", content: content, trigger: trigger)
+        center.add(request) { (error) in
+            if let error = error {
+                print(error.localizedDescription)
             }
         }
     }
@@ -162,9 +211,17 @@ class ClientProfileController: UIViewController {
     }
     private func getUpcomingAppointments() {
         filterAppointments = appointments.filter { $0.status == "pending" || $0.status == "inProgress" }
+        if filterAppointments.count == 0 {
+            self.tableView.backgroundColor = .clear
+            self.noBookingView.noBookingLabel.text = "No current appointments yet."
+            self.tableView.backgroundView = self.noBookingView
+        }
     }
     private func getPastAppointments() {
         filterAppointments = appointments.filter { $0.status == "canceled" || $0.status == "completed" }
+        self.tableView.backgroundColor = .clear
+        self.noBookingView.noBookingLabel.text = "No history appointments yet."
+        self.tableView.backgroundView = self.noBookingView
     }
     
     @IBAction func moreOptionsButtonPressed(_ sender: UIButton) {

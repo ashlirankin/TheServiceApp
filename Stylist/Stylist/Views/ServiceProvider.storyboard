@@ -221,6 +221,21 @@
                                     <action selector="backButtonPressed:" destination="ChO-Du-JE6" eventType="touchUpInside" id="8r5-NL-o3O"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pta-aB-iBL">
+                                <rect key="frame" x="107" y="711" width="200" height="55"/>
+                                <color key="backgroundColor" red="0.1569241187" green="0.5672338053" blue="0.58288388319999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="QH2-lR-tdP"/>
+                                    <constraint firstAttribute="height" constant="55" id="Sm7-hF-lDa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Complete">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="completeAppointment:" destination="ChO-Du-JE6" eventType="touchUpInside" id="isB-43-mpl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.174853128" green="0.2225734221" blue="0.3657343045" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
@@ -228,6 +243,7 @@
                             <constraint firstItem="5Fd-4f-86c" firstAttribute="centerX" secondItem="pzK-Ni-2Dx" secondAttribute="centerX" id="7Iz-fQ-EOT"/>
                             <constraint firstItem="1k6-SG-CDa" firstAttribute="centerY" secondItem="CZp-51-qL5" secondAttribute="centerY" id="9wH-M0-C1i"/>
                             <constraint firstItem="C2r-jy-9Cc" firstAttribute="top" secondItem="UO8-99-x5a" secondAttribute="bottom" constant="20" id="B3y-vA-ET8"/>
+                            <constraint firstItem="Pta-aB-iBL" firstAttribute="centerX" secondItem="agX-2z-KPs" secondAttribute="centerX" id="Dar-nM-QbD"/>
                             <constraint firstItem="1k6-SG-CDa" firstAttribute="height" secondItem="CZp-51-qL5" secondAttribute="height" id="DbR-kA-v5b"/>
                             <constraint firstItem="agX-2z-KPs" firstAttribute="trailing" secondItem="p1e-Af-Mat" secondAttribute="trailing" constant="11" id="Evz-cX-Muz"/>
                             <constraint firstItem="bAK-d1-YcM" firstAttribute="centerX" secondItem="C2r-jy-9Cc" secondAttribute="centerX" id="Fjo-gG-Ia5"/>
@@ -241,6 +257,7 @@
                             <constraint firstItem="h7F-Bc-R23" firstAttribute="leading" secondItem="agX-2z-KPs" secondAttribute="leading" constant="20" id="Siw-U9-dWY"/>
                             <constraint firstItem="lV8-S2-Mo1" firstAttribute="top" secondItem="agX-2z-KPs" secondAttribute="top" constant="100" id="Sm7-tI-sRi"/>
                             <constraint firstItem="agX-2z-KPs" firstAttribute="trailing" secondItem="FxH-vN-6mU" secondAttribute="trailing" constant="11" id="TVR-va-vvH"/>
+                            <constraint firstItem="Pta-aB-iBL" firstAttribute="top" secondItem="CZp-51-qL5" secondAttribute="bottom" constant="50" id="U0S-gJ-U4u"/>
                             <constraint firstItem="FxH-vN-6mU" firstAttribute="top" secondItem="bAK-d1-YcM" secondAttribute="bottom" constant="10" id="VBM-yl-v2R"/>
                             <constraint firstItem="agX-2z-KPs" firstAttribute="trailing" secondItem="pzK-Ni-2Dx" secondAttribute="trailing" constant="11" id="VHa-WH-Mzw"/>
                             <constraint firstItem="CZp-51-qL5" firstAttribute="centerX" secondItem="agX-2z-KPs" secondAttribute="centerX" multiplier="0.6" id="Veg-Lz-oKQ"/>
@@ -268,10 +285,18 @@
                             <constraint firstItem="5Fd-4f-86c" firstAttribute="leading" secondItem="agX-2z-KPs" secondAttribute="leading" constant="11" id="zqR-Kt-J0c"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="agX-2z-KPs"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
                         <outlet property="AppointmentCreated" destination="pzK-Ni-2Dx" id="yJb-Hf-RTq"/>
                         <outlet property="appointmentStatus" destination="FxH-vN-6mU" id="NUW-oq-YQN"/>
+                        <outlet property="cancelButton" destination="1k6-SG-CDa" id="Um6-J6-DkE"/>
+                        <outlet property="completeButton" destination="Pta-aB-iBL" id="yST-w0-ZHl"/>
+                        <outlet property="confirmButton" destination="CZp-51-qL5" id="lyO-Jr-86n"/>
                         <outlet property="todaysDate" destination="5Fd-4f-86c" id="xGM-Qf-AJl"/>
                         <outlet property="userAddress" destination="WXI-mP-883" id="Cdt-II-l0z"/>
                         <outlet property="userDistance" destination="p1e-Af-Mat" id="qaD-AJ-7U8"/>
