@@ -44,7 +44,7 @@ final class DBService {
                 StylistsUserCollectionKeys.imageURL: consumer.imageURL ?? "",
                 StylistsUserCollectionKeys.joinedDate: Date.getISOTimestamp(),
                 StylistsUserCollectionKeys.state : consumer.state ?? "",
-                StylistsUserCollectionKeys.street : consumer.street ?? "",
+                StylistsUserCollectionKeys.street : consumer.street ?? ""
             ]) { (error) in
                     if let error = error {
                         completionHandler(error)

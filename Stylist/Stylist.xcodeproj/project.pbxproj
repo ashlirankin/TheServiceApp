@@ -29,6 +29,8 @@
 		099B0C15226649CA00474066 /* DiscoverSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099B0C14226649CA00474066 /* DiscoverSecondViewController.swift */; };
 		09A9D543225BCFB200DFB5E2 /* ServiceProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */; };
 		09A9D547225BE7A200DFB5E2 /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A9D546225BE7A200DFB5E2 /* PortfolioView.swift */; };
+		09D82B55227744960097122A /* ProfileNoBooking.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09D82B54227744960097122A /* ProfileNoBooking.xib */; };
+		09D82B57227745B00097122A /* ProfileNoBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D82B56227745B00097122A /* ProfileNoBooking.swift */; };
 		09D8C3E6227367FC009A8BA9 /* NoBookingScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09D8C3E5227367FC009A8BA9 /* NoBookingScreen.xib */; };
 		09D8C3E822736F4F009A8BA9 /* NoBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D8C3E722736F4F009A8BA9 /* NoBookingView.swift */; };
 		09DCD303225E4AB90090EE1F /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD302225E4AB80090EE1F /* UIViewController+Extensions.swift */; };
@@ -133,6 +135,8 @@
 		099B0C14226649CA00474066 /* DiscoverSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverSecondViewController.swift; sourceTree = "<group>"; };
 		09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProfileViewController.swift; sourceTree = "<group>"; };
 		09A9D546225BE7A200DFB5E2 /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
+		09D82B54227744960097122A /* ProfileNoBooking.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileNoBooking.xib; sourceTree = "<group>"; };
+		09D82B56227745B00097122A /* ProfileNoBooking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNoBooking.swift; sourceTree = "<group>"; };
 		09D8C3E5227367FC009A8BA9 /* NoBookingScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoBookingScreen.xib; sourceTree = "<group>"; };
 		09D8C3E722736F4F009A8BA9 /* NoBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoBookingView.swift; sourceTree = "<group>"; };
 		09DCD302225E4AB80090EE1F /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -271,6 +275,8 @@
 				093A6E9322720BFB003A4E4F /* CollectionViewCell.xib */,
 				09D8C3E5227367FC009A8BA9 /* NoBookingScreen.xib */,
 				09D8C3E722736F4F009A8BA9 /* NoBookingView.swift */,
+				09D82B54227744960097122A /* ProfileNoBooking.xib */,
+				09D82B56227745B00097122A /* ProfileNoBooking.swift */,
 			);
 			path = nibs;
 			sourceTree = "<group>";
@@ -538,6 +544,7 @@
 				2EF103AE22553D5E0030FBFF /* GoogleService-Info.plist in Resources */,
 				09D8C3E6227367FC009A8BA9 /* NoBookingScreen.xib in Resources */,
 				098E826B2260CE5C0023E41B /* PortfolioCell.xib in Resources */,
+				09D82B55227744960097122A /* ProfileNoBooking.xib in Resources */,
 				09DCD305225E4F290090EE1F /* ProviderDetailBio.xib in Resources */,
 				093A6E9522720BFB003A4E4F /* CollectionViewCell.xib in Resources */,
 				2EF103A32255314C0030FBFF /* Assets.xcassets in Resources */,
@@ -741,6 +748,7 @@
 				D6CD419E22667B0800F79DAA /* UIColor+Extensions.swift in Sources */,
 				2EF103CD2255A4D20030FBFF /* Ratings.swift in Sources */,
 				090EF6D4226FAA1C00AD19AA /* UserChoiceViewController.swift in Sources */,
+				09D82B57227745B00097122A /* ProfileNoBooking.swift in Sources */,
 				098E826D2260CE8E0023E41B /* PortfolioCollectionViewCell.swift in Sources */,
 				D6006938226FB86200DBB38F /* Array+Extensions.swift in Sources */,
 				2E9DD7DC2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift in Sources */,

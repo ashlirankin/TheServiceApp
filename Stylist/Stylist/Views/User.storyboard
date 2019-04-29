@@ -405,14 +405,14 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CNw-ig-nyw">
-                                <rect key="frame" x="0.0" y="519" width="414" height="294"/>
+                                <rect key="frame" x="10" y="519" width="394" height="284"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileCell" rowHeight="95" id="3ih-fF-gfi" customClass="UserProfileTableViewCell" customModule="Stylist" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="95"/>
+                                        <rect key="frame" x="0.0" y="28" width="394" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3ih-fF-gfi" id="h8E-va-EBy">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="95"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="394" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="asa-ij-Mpu" customClass="CircularImageView" customModule="Stylist" customModuleProvider="target">
@@ -490,7 +490,7 @@
                             <constraint firstItem="Iwa-Qa-61X" firstAttribute="top" secondItem="vHy-aH-Kpw" secondAttribute="bottom" constant="20" id="2lD-b6-KHM"/>
                             <constraint firstItem="9eB-As-Ea2" firstAttribute="top" secondItem="mFG-KA-OS0" secondAttribute="bottom" constant="50" id="8jY-8j-gnZ"/>
                             <constraint firstItem="2iz-7O-EH4" firstAttribute="width" secondItem="2iz-7O-EH4" secondAttribute="height" multiplier="1:1" id="A8M-uq-QZl"/>
-                            <constraint firstItem="CNw-ig-nyw" firstAttribute="trailing" secondItem="1bk-ey-hPF" secondAttribute="trailing" id="BJE-L8-bq7"/>
+                            <constraint firstItem="CNw-ig-nyw" firstAttribute="trailing" secondItem="1bk-ey-hPF" secondAttribute="trailing" constant="-10" id="BJE-L8-bq7"/>
                             <constraint firstItem="vHy-aH-Kpw" firstAttribute="width" secondItem="M6l-IS-WQp" secondAttribute="width" multiplier="0.3" id="CRf-Yt-ZMP"/>
                             <constraint firstItem="2iz-7O-EH4" firstAttribute="centerY" secondItem="9eB-As-Ea2" secondAttribute="centerY" id="KlG-kg-lWh"/>
                             <constraint firstItem="vHy-aH-Kpw" firstAttribute="centerY" secondItem="1bk-ey-hPF" secondAttribute="centerY" multiplier="0.45" id="L3h-7s-6AJ"/>
@@ -500,10 +500,10 @@
                             <constraint firstItem="mFG-KA-OS0" firstAttribute="centerX" secondItem="1bk-ey-hPF" secondAttribute="centerX" id="Zbz-0F-fdq"/>
                             <constraint firstItem="wyw-CF-nUA" firstAttribute="top" secondItem="Iwa-Qa-61X" secondAttribute="bottom" constant="15" id="aSk-ww-Ean"/>
                             <constraint firstItem="Ed3-Fl-MAq" firstAttribute="centerY" secondItem="RVh-TF-xCO" secondAttribute="centerY" id="gXY-SQ-OcH"/>
-                            <constraint firstItem="CNw-ig-nyw" firstAttribute="leading" secondItem="1bk-ey-hPF" secondAttribute="leading" id="hag-hv-Tbl"/>
+                            <constraint firstItem="CNw-ig-nyw" firstAttribute="leading" secondItem="1bk-ey-hPF" secondAttribute="leading" constant="10" id="hag-hv-Tbl"/>
                             <constraint firstItem="vHy-aH-Kpw" firstAttribute="centerX" secondItem="1bk-ey-hPF" secondAttribute="centerX" id="mbB-hy-rdc"/>
                             <constraint firstItem="CNw-ig-nyw" firstAttribute="top" secondItem="9eB-As-Ea2" secondAttribute="bottom" constant="30" id="nHV-iq-2GW"/>
-                            <constraint firstItem="CNw-ig-nyw" firstAttribute="bottom" secondItem="1bk-ey-hPF" secondAttribute="bottom" id="qTj-mh-Etq"/>
+                            <constraint firstItem="CNw-ig-nyw" firstAttribute="bottom" secondItem="1bk-ey-hPF" secondAttribute="bottom" constant="-10" id="qTj-mh-Etq"/>
                             <constraint firstItem="wyw-CF-nUA" firstAttribute="centerX" secondItem="1bk-ey-hPF" secondAttribute="centerX" id="viP-tE-NK1"/>
                             <constraint firstItem="9eB-As-Ea2" firstAttribute="leading" secondItem="1bk-ey-hPF" secondAttribute="leading" constant="50" id="vj7-Le-wET"/>
                             <constraint firstItem="RVh-TF-xCO" firstAttribute="trailing" secondItem="1bk-ey-hPF" secondAttribute="trailing" constant="-20" id="wH2-UW-vWe"/>
@@ -539,21 +539,22 @@
                         <sections>
                             <tableViewSection id="unR-fT-Ybc">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="190" id="6nu-Lr-tVW">
-                                        <rect key="frame" x="0.0" y="35" width="414" height="190"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="217" id="6nu-Lr-tVW">
+                                        <rect key="frame" x="0.0" y="35" width="414" height="217"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6nu-Lr-tVW" id="smV-p6-Ly1">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="189.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="216.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="GuU-Q8-lUs" customClass="CircularImageView" customModule="Stylist" customModuleProvider="target">
-                                                    <rect key="frame" x="112.5" y="11" width="189.5" height="168"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="GuU-Q8-lUs" customClass="CircularImageView" customModule="Stylist" customModuleProvider="target">
+                                                    <rect key="frame" x="118" y="19.5" width="178" height="178"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="168" id="qoj-wg-X2j"/>
+                                                        <constraint firstAttribute="width" secondItem="GuU-Q8-lUs" secondAttribute="height" multiplier="1:1" id="ea2-ow-M5F"/>
+                                                        <constraint firstAttribute="height" constant="178" id="xMa-Vy-jUO"/>
                                                     </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DVO-XM-JwR">
-                                                    <rect key="frame" x="112.5" y="11" width="189.5" height="168"/>
+                                                    <rect key="frame" x="118" y="19.5" width="178" height="178"/>
                                                     <state key="normal" image="icons8-camera"/>
                                                     <connections>
                                                         <action selector="changeProfilePicButtonPressed:" destination="SEv-r5-cNM" eventType="touchUpInside" id="Bn5-c3-PNv"/>
@@ -561,18 +562,17 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="DVO-XM-JwR" firstAttribute="centerY" secondItem="GuU-Q8-lUs" secondAttribute="centerY" id="3w8-lF-5uP"/>
-                                                <constraint firstItem="GuU-Q8-lUs" firstAttribute="width" secondItem="smV-p6-Ly1" secondAttribute="height" multiplier="1:1" id="RjT-bV-cL8"/>
-                                                <constraint firstItem="DVO-XM-JwR" firstAttribute="height" secondItem="GuU-Q8-lUs" secondAttribute="height" id="hAn-2P-yPb"/>
-                                                <constraint firstItem="GuU-Q8-lUs" firstAttribute="centerX" secondItem="smV-p6-Ly1" secondAttribute="centerX" id="ia4-sP-KX4"/>
-                                                <constraint firstItem="DVO-XM-JwR" firstAttribute="width" secondItem="GuU-Q8-lUs" secondAttribute="width" id="j0f-nm-GQL"/>
-                                                <constraint firstItem="GuU-Q8-lUs" firstAttribute="centerY" secondItem="smV-p6-Ly1" secondAttribute="centerY" id="v1V-lh-MCZ"/>
-                                                <constraint firstItem="DVO-XM-JwR" firstAttribute="centerX" secondItem="GuU-Q8-lUs" secondAttribute="centerX" id="y4b-y2-PWQ"/>
+                                                <constraint firstItem="DVO-XM-JwR" firstAttribute="centerX" secondItem="GuU-Q8-lUs" secondAttribute="centerX" id="1b8-4m-Cnc"/>
+                                                <constraint firstItem="DVO-XM-JwR" firstAttribute="width" secondItem="GuU-Q8-lUs" secondAttribute="width" id="4ta-Pt-601"/>
+                                                <constraint firstItem="DVO-XM-JwR" firstAttribute="height" secondItem="GuU-Q8-lUs" secondAttribute="height" id="554-ct-vpM"/>
+                                                <constraint firstItem="GuU-Q8-lUs" firstAttribute="centerY" secondItem="smV-p6-Ly1" secondAttribute="centerY" id="6Rw-Fl-MTV"/>
+                                                <constraint firstItem="GuU-Q8-lUs" firstAttribute="centerX" secondItem="smV-p6-Ly1" secondAttribute="centerX" id="Z63-Zi-Nmr"/>
+                                                <constraint firstItem="DVO-XM-JwR" firstAttribute="centerY" secondItem="GuU-Q8-lUs" secondAttribute="centerY" id="dhu-JR-cKE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="65" id="uUQ-Q1-Ubm">
-                                        <rect key="frame" x="0.0" y="225" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="252" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uUQ-Q1-Ubm" id="rxb-eK-00s">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="64.5"/>
@@ -606,7 +606,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="65" id="NRC-eK-3l2">
-                                        <rect key="frame" x="0.0" y="290" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="317" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NRC-eK-3l2" id="aor-eV-F94">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="64.5"/>
