@@ -25,12 +25,12 @@ class ServiceProfileViewController: UIViewController {
         guard let currentUser = authservice.getCurrentUser() else  {
             return
         }
-        DBService.getDatabaseUser(userID: currentUser.uid) { (error, provider) in
-            if let error  = error {
-           print(error)
+        DBService.getProvider(providerId: currentUser.uid) { (error, provider) in
+            if let error = error {
+                print(error)
             } else if let provider = provider {
-                self.providerImage.kf.setImage(with: URL(string: provider.imageURL ?? "no image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
-                self.providerName.text = provider.fullName
+                self.providerImage.kf.setImage(with: URL(string: provider.imageURL ?? "no image found"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
+                self.providerName.text = "\(provider.firstName ?? "no name") \(provider.lastName ?? "no last name")"
             }
         }
     }

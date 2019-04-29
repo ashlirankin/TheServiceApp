@@ -22,12 +22,16 @@ class ServiceDetailViewController: UIViewController {
     @IBOutlet weak var userAddress: UILabel!
     @IBOutlet weak var AppointmentCreated: UILabel!
     @IBOutlet weak var todaysDate: UILabel!
-    
+    @IBOutlet weak var completeButton: UIButton!
+    @IBOutlet weak var confirmButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         getStylistUser()
         updateDetailUI()
+        
     }
     
     private func getStylistUser() {
@@ -47,8 +51,29 @@ class ServiceDetailViewController: UIViewController {
         }
     }
     
+    
     private func  updateDetailUI() {
-    getStylistUser()
+        switch appointment.status {
+        case "inProgress":
+            confirmButton.backgroundColor = .gray
+            confirmButton.setTitle("confirmed", for: .normal)
+            confirmButton.isEnabled = false
+            completeButton.isHidden = false
+        case "canceled":
+            cancelButton.backgroundColor = .gray
+            cancelButton.isEnabled = false
+            confirmButton.backgroundColor = .gray
+            confirmButton.isEnabled = false
+            completeButton.isHidden = true
+        case "completed":
+            cancelButton.isEnabled = false
+            confirmButton.isEnabled = false
+            completeButton.setTitle("completed", for: .normal)
+            completeButton.backgroundColor = .gray
+            completeButton.isHidden = false
+        default:
+            completeButton.isHidden = true
+        }
         
     }
     
@@ -60,11 +85,20 @@ class ServiceDetailViewController: UIViewController {
     @IBAction func confirmBookingPressed(_ sender: UIButton) {
             DBService.updateAppointment(appointmentID: appointment.documentId, status: AppointmentStatus.inProgress.rawValue)
           dismiss(animated: true)
+        updateDetailUI()
     }
     
     @IBAction func cancelBookingPressed(_ sender: UIButton) {
         DBService.updateAppointment(appointmentID: appointment.documentId, status: AppointmentStatus.canceled.rawValue)
         dismiss(animated: true)
+        updateDetailUI()
+    }
+    
+    
+    @IBAction func completeAppointment(_ sender: UIButton) {
+        DBService.updateAppointment(appointmentID: appointment.documentId, status: AppointmentStatus.completed.rawValue)
+        updateDetailUI()
+        
     }
     
     
