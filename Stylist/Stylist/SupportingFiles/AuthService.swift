@@ -19,6 +19,7 @@ protocol AuthServiceExistingAccountDelegate: AnyObject {
   func didRecieveErrorSigningToExistingAccount(_ authservice: AuthService, error: Error)
   func didSignInToExistingAccount(_ authservice: AuthService, user: User)
 }
+
 protocol AuthServiceSignOutDelegate: AnyObject {
   func didSignOutWithError(_ authservice: AuthService, error: Error)
   func didSignOut(_ authservice: AuthService)
@@ -35,33 +36,24 @@ final class AuthService {
         self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
         return
       } else if let authDataResult = authDataResult {
-        // update displayName for auth user
-        let request = authDataResult.user.createProfileChangeRequest()
 
-        request.commitChanges(completion: { (error) in
-          if let error = error {
-            self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
-            return
-          }
-        })
-        
         let authUser = authDataResult.user
         guard let email = authUser.email else {
           print("no email found")
           return
         }
-//          let consumer = StylistsUser(userId: authUser.uid, firstName: nil, lastName: nil, email: email, gender: nil, address: nil, imageURL: nil, joinedDate: Date.getISOTimestamp(),type: "consumer")
-//          DBService.createConsumerDatabaseAccount(consumer: "", completionHandle: { (error) in
-//            if let error = error {
-//              self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
-//            }
-//            self.authserviceCreateNewAccountDelegate?.didCreateConsumerAcoount(self, consumer: consumer)
-//          })
-//        }
-//        }
+          let consumer = StylistsUser(userId: authUser.uid, firstName: nil, lastName: nil, email: email, gender: nil, address: nil, imageURL: nil, joinedDate: Date.getISOTimestamp(), street: nil, city: nil, state: nil, zip: nil)
+        
+        DBService.createConsumerDatabaseAccount(consumer: consumer, completionHandle: { (error) in
+          if let error = error {
+            print(error.localizedDescription)
+          }
+          
+          self.authserviceCreateNewAccountDelegate?.didCreateConsumerAcoount(self, consumer: consumer)
+        })
+        }
+        }
       }
-    }
-  }
   public func signInExistingAccount(email: String, password: String) {
     Auth.auth().signIn(withEmail: email, password: password) { (authDataResult, error) in
       if let error = error {

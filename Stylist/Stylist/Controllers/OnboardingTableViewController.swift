@@ -14,7 +14,6 @@ class OnboardingTableViewController: UITableViewController {
   @IBOutlet weak var lastNameTextfield: UITextField!
   @IBOutlet weak var firstNameTextfield: UITextField!
   @IBOutlet weak var streetTextfield: UITextField!
-  @IBOutlet weak var genderControl: UISegmentedControl!
   @IBOutlet weak var cityTextfield: UITextField!
   @IBOutlet weak var zipcodeTextfield: UITextField!
   @IBOutlet weak var stateTextfield: UITextField!

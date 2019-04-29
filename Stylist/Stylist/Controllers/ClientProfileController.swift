@@ -36,7 +36,6 @@ class ClientProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = #colorLiteral(red: 0.2461647391, green: 0.3439296186, blue: 0.5816915631, alpha: 1)
-        authService.authserviceSignOutDelegate = self
         setupTableView()
         updateUI()
     }
@@ -44,6 +43,7 @@ class ClientProfileController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         fetchCurrentUser()
+              authService.authserviceSignOutDelegate = self
     }
     
     private func fetchCurrentUser() {

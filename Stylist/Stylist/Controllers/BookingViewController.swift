@@ -279,6 +279,15 @@ extension BookingViewController:UICollectionViewDataSource{
       localServices.append(service.service)
       localPrices.append(String(service.price))
       
+      if cell.isSelected{
+        cell.backgroundColor = .lightGray
+        cell.isUserInteractionEnabled = false
+        
+      }else{
+        cell.isHidden = true
+        
+      }
+      
     case avalibilityCollectionView:
       guard let cell = avalibilityCollectionView.cellForItem(at: indexPath) as? AvalibilityCollectionViewCell else {
         print("no avalibility found")
@@ -289,12 +298,13 @@ extension BookingViewController:UICollectionViewDataSource{
     
       guard let timeChosen = avalibleTime?.avalibleHours[indexPath.row] else {return}
      
-      if cell.isSelected{
+      if cell.isSelected {
         cell.backgroundColor = .lightGray
         cell.isUserInteractionEnabled = false
-        
-      }else{
+        cell.isExclusiveTouch = true
+      }else {
         cell.isHidden = true
+      
       }
    localAppointments["appointmentTime"] = returnAppointmentTime(chosenTime: timeChosen)
      
