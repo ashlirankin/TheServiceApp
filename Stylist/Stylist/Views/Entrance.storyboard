@@ -37,11 +37,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPH-9C-7F7">
-<<<<<<< HEAD
-                                <rect key="frame" x="82.5" y="290" width="210" height="25"/>
-=======
-                                <rect key="frame" x="37.5" y="287" width="300" height="25"/>
->>>>>>> 4ca2bd687cda3169766801fe726b7b9c8d440d46
+                               <rect key="frame" x="37.5" y="287" width="300" height="25"/>
                                 <color key="backgroundColor" red="0.33403472829999997" green="0.44645626760000001" blue="0.89813512559999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="3H1-HW-QK1"/>
@@ -55,18 +51,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y4W-jv-Ksh">
-<<<<<<< HEAD
-                                <rect key="frame" x="100" y="323" width="175" height="44"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="175" id="GHx-nu-gH3"/>
-=======
                                 <rect key="frame" x="66" y="322" width="243" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="243" id="VkI-ov-PXg"/>
                                     <constraint firstAttribute="height" constant="44" id="pok-ML-qUg"/>
->>>>>>> 4ca2bd687cda3169766801fe726b7b9c8d440d46
                                 </constraints>
                                 <state key="normal" title="Create">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -78,20 +67,6 @@
                         </subviews>
                         <color key="backgroundColor" red="0.67227002150000004" green="1" blue="0.60191029330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-<<<<<<< HEAD
-                            <constraint firstItem="dCe-D6-Q5A" firstAttribute="leading" secondItem="I1D-l0-8wB" secondAttribute="leadingMargin" id="AM6-yS-MCr"/>
-                            <constraint firstItem="7DL-Iy-fU5" firstAttribute="bottom" secondItem="y4W-jv-Ksh" secondAttribute="bottom" constant="300" id="FRl-18-FgE"/>
-                            <constraint firstItem="dCe-D6-Q5A" firstAttribute="trailing" secondItem="I1D-l0-8wB" secondAttribute="trailingMargin" id="Phu-pk-QHO"/>
-                            <constraint firstItem="7DL-Iy-fU5" firstAttribute="bottom" secondItem="kPH-9C-7F7" secondAttribute="bottom" constant="352" id="TAg-Du-ZAG"/>
-                            <constraint firstItem="y4W-jv-Ksh" firstAttribute="centerX" secondItem="kPH-9C-7F7" secondAttribute="centerX" id="UGQ-Xd-9i9"/>
-                            <constraint firstItem="dCe-D6-Q5A" firstAttribute="leading" secondItem="2oB-8Q-kik" secondAttribute="leading" id="hCf-Ie-hPu"/>
-                            <constraint firstItem="y4W-jv-Ksh" firstAttribute="leading" secondItem="7DL-Iy-fU5" secondAttribute="leading" constant="100" id="kZX-a5-TMl"/>
-                            <constraint firstItem="y4W-jv-Ksh" firstAttribute="top" secondItem="kPH-9C-7F7" secondAttribute="bottom" constant="8" symbolic="YES" id="lTT-6S-GG3"/>
-                            <constraint firstItem="dCe-D6-Q5A" firstAttribute="trailing" secondItem="2oB-8Q-kik" secondAttribute="trailing" id="nBo-xW-1tv"/>
-                            <constraint firstItem="y4W-jv-Ksh" firstAttribute="centerX" secondItem="I1D-l0-8wB" secondAttribute="centerX" id="pCT-6u-Ayk"/>
-                            <constraint firstItem="dCe-D6-Q5A" firstAttribute="top" secondItem="7DL-Iy-fU5" secondAttribute="top" constant="148" id="pjr-bt-K0j"/>
-                            <constraint firstItem="2oB-8Q-kik" firstAttribute="top" secondItem="dCe-D6-Q5A" secondAttribute="bottom" constant="26" id="r3o-hT-AP4"/>
-=======
                             <constraint firstItem="2oB-8Q-kik" firstAttribute="top" secondItem="dCe-D6-Q5A" secondAttribute="bottom" constant="10" id="1aA-UI-3n4"/>
                             <constraint firstItem="dCe-D6-Q5A" firstAttribute="centerY" secondItem="7DL-Iy-fU5" secondAttribute="centerY" multiplier="0.55" id="5LP-Hm-Beq"/>
                             <constraint firstItem="kPH-9C-7F7" firstAttribute="top" secondItem="2oB-8Q-kik" secondAttribute="bottom" constant="10" id="Bdu-GF-m9E"/>
@@ -102,7 +77,6 @@
                             <constraint firstItem="2oB-8Q-kik" firstAttribute="leading" secondItem="7DL-Iy-fU5" secondAttribute="leading" constant="16" id="OCU-79-1Y5"/>
                             <constraint firstItem="dCe-D6-Q5A" firstAttribute="leading" secondItem="7DL-Iy-fU5" secondAttribute="leading" constant="16" id="cQh-I1-ukd"/>
                             <constraint firstItem="kPH-9C-7F7" firstAttribute="centerX" secondItem="7DL-Iy-fU5" secondAttribute="centerX" id="ggM-9q-NNV"/>
->>>>>>> 4ca2bd687cda3169766801fe726b7b9c8d440d46
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7DL-Iy-fU5"/>
                     </view>
@@ -512,8 +486,6 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
-<<<<<<< HEAD
-=======
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="116" id="AaQ-dX-pmX">
                                         <rect key="frame" x="0.0" y="941" width="375" height="116"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -553,7 +525,6 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
->>>>>>> 4ca2bd687cda3169766801fe726b7b9c8d440d46
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -567,10 +538,7 @@
                     <connections>
                         <outlet property="cityTextfield" destination="Lxb-7K-bFr" id="o0x-wk-CAf"/>
                         <outlet property="firstNameTextfield" destination="mHA-EU-adw" id="hlx-Qh-TLj"/>
-<<<<<<< HEAD
-=======
                         <outlet property="genderControl" destination="O9R-H4-yI7" id="dey-QG-ZK1"/>
->>>>>>> 4ca2bd687cda3169766801fe726b7b9c8d440d46
                         <outlet property="lastNameTextfield" destination="CHh-BJ-MPb" id="i03-2V-hmc"/>
                         <outlet property="profileImageButton" destination="Caz-MC-QgA" id="Oiu-ze-IDY"/>
                         <outlet property="stateTextfield" destination="v4r-Qi-TXd" id="B2W-kL-rtk"/>

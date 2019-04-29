@@ -10,7 +10,6 @@ import UIKit
 
 class AvalibilityCollectionViewCell: UICollectionViewCell {
   @IBOutlet weak var timeButton: UILabel!
-<<<<<<< HEAD
   
   override var isSelected: Bool {
     didSet{
@@ -34,6 +33,4 @@ class AvalibilityCollectionViewCell: UICollectionViewCell {
       isUserInteractionEnabled = false
     }
   }
-=======
->>>>>>> 4ca2bd687cda3169766801fe726b7b9c8d440d46
 }

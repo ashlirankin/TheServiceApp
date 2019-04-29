@@ -10,42 +10,6 @@ import UIKit
 import Toucan
 
 class OnboardingTableViewController: UITableViewController {
-<<<<<<< HEAD
-
-  @IBOutlet weak var profileImage: UIButton!
-  @IBOutlet weak var lastNameTextfield: UITextField!
-  @IBOutlet weak var firstNameTextfield: UITextField!
-  @IBOutlet weak var streetTextfield: UITextField!
-  @IBOutlet weak var cityTextfield: UITextField!
-  @IBOutlet weak var zipcodeTextfield: UITextField!
-  @IBOutlet weak var stateTextfield: UITextField!
-  
-  var postButton: UIBarButtonItem!
-  let authService = AuthService()
-  
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    setDelegates()
-    postButton = UIBarButtonItem(title: "Set Up", style: .plain, target: self, action: #selector(setupButtonPressed))
-    self.navigationItem.rightBarButtonItem = postButton
-  }
-  
-  override func viewDidLayoutSubviews() {
-    profileImage.layer.cornerRadius = profileImage.frame.width/2
-    profileImage.layer.masksToBounds = true
-    profileImage.layer.borderWidth = 4
-  }
-  
-  private func setDelegates(){
-    lastNameTextfield.delegate = self
-    firstNameTextfield.delegate = self
-    streetTextfield.delegate = self
-    cityTextfield.delegate = self
-    stateTextfield.delegate = self
-    zipcodeTextfield.delegate = self
-=======
->>>>>>> 4ca2bd687cda3169766801fe726b7b9c8d440d46
     
     @IBOutlet weak var profileImageButton: CircularButton!
     @IBOutlet weak var lastNameTextfield: UITextField!
@@ -72,13 +36,8 @@ class OnboardingTableViewController: UITableViewController {
         postButton = UIBarButtonItem(title: "Set Up", style: .plain, target: self, action: #selector(setupButtonPressed))
         self.navigationItem.rightBarButtonItem = postButton
     }
-    
-//    override func viewDidLayoutSubviews() {
-//        profileImage.layer.cornerRadius = profileImage.frame.width/2
-//        profileImage.layer.masksToBounds = true
-//        profileImage.layer.borderWidth = 4
-//    }
-    
+  
+  
     private func setDelegates(){
         lastNameTextfield.delegate = self
         firstNameTextfield.delegate = self

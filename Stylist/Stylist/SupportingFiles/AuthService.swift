@@ -11,7 +11,7 @@ import FirebaseAuth
 
 protocol AuthServiceCreateNewAccountDelegate: AnyObject {
   func didRecieveErrorCreatingAccount(_ authservice: AuthService, error: Error)
-  func didCreateConsumerAcoount(_ authService: AuthService,consumer:StylistsUser)
+  func didCreateConsumerAccount(_ authService: AuthService,consumer:StylistsUser)
   
 }
 
@@ -52,7 +52,7 @@ final class AuthService {
             if let error = error {
                 self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
             } else {
-                self.authserviceCreateNewAccountDelegate?.didCreateConsumerAcoount(self, consumer: newUser)
+                self.authserviceCreateNewAccountDelegate?.didCreateConsumerAccount(self, consumer: newUser)
             }
         })
 

@@ -139,7 +139,7 @@ class ClientProfileController: UIViewController {
                 self?.showAlert(title: "Error Fetching User Appointments", message: error.localizedDescription, actionTitle: "Ok")
             } else if let appointments = appointments {
                 self?.appointments = appointments
-                if appointments.count < 0 {
+                if appointments.count < 1 {
                     self?.tableView.backgroundColor = .clear
                     self?.tableView.backgroundView?.addSubview(self!.noBookingView)
                 }
