@@ -5,13 +5,21 @@
 //  Created by Oniel Rosario on 4/9/19.
 //  Copyright © 2019 Ashli Rankin. All rights reserved.
 //
-
 import UIKit
 import Kingfisher
 import Firebase
 
+enum FavoriteButtonState: String {
+    case favorite
+    case unfavorite
+}
+
+
 
 class ProviderDetailController: UITableViewController {
+    var isFavorite: Bool!
+    var favoriteId: String?
+    
     let authservice = AuthService()
     @IBOutlet weak var scrollView: UIScrollView!
     lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 300))
@@ -28,9 +36,15 @@ class ProviderDetailController: UITableViewController {
     }
     lazy var profileBio = ProviderBio(frame: CGRect(x: 0, y: 0, width: view.bounds.width , height: 642.5))
     lazy var portfolioView = PortfolioView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 642.5))
-    lazy var availabilityTimes = ProviderAvailability(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 642.5))
-    lazy var reviewsTable = ProviderDetailReviews(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 642.5))
-    lazy var featureViews = [profileBio, portfolioView, reviewsTable]
+    lazy var reviewCollectionView = ReviewCollectionView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 642.5))
+    lazy var featureViews = [profileBio, portfolioView, reviewCollectionView]
+    var reviews = [Reviews]() {
+        didSet {
+            DispatchQueue.main.async {
+              self.reviewCollectionView.ReviewCV.reloadData()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +53,24 @@ class ProviderDetailController: UITableViewController {
         setupScrollviewController(scrollView: scrollView, views: featureViews)
         loadSVFeatures()
         setupProvider()
+      setFavoriteState()
+      
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.navigationItem.rightBarButtonItem?.isEnabled = true
+    }
+  
+  func setFavoriteState(){
+    switch isFavorite {
+    case true:
+      self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-filled-50 (1)")
+      self.navigationItem.rightBarButtonItem?.isEnabled = true
+    default:
+      self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-48")
+      self.navigationItem.rightBarButtonItem?.isEnabled = true
+    }
+  }
     
     func checkForDuplicates(id: String, provider: ServiceSideUser, completionHandler: @escaping(Error?, Bool) -> Void) {
         guard let currentUser = authservice.getCurrentUser() else  {
@@ -56,34 +87,54 @@ class ProviderDetailController: UITableViewController {
                     if snapshot.documents.count > 0 {
                         completionHandler(nil, true)
                     } else {
-                    completionHandler(nil, false)
+                        completionHandler(nil, false)
                     }
                 }
         }
     }
     
-    @IBAction func AddToFavorite(_ sender: UIBarButtonItem) {
+    @IBAction func FavoriteButtonPressed(_ sender: UIBarButtonItem) {
+        switch isFavorite {
+        case true:
+            deleteFavorite()
+            isFavorite = false
+            navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-48")
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+        default:
+            setToFavorites()
+            isFavorite = true
+            navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-filled-50 (1)")
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+        }
+    }
+    
+    @objc private func deleteFavorite() {
+        guard let currentUser = authservice.getCurrentUser(), let favoriteId = favoriteId else  {
+            return
+        }
+        DBService.removeFromFavorites(id: currentUser.uid, favoirteId: favoriteId, provider: self.provider) { (error, success) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if success {
+                self.showAlert(title: "", message: "unfavorited", actionTitle: "OK")
+            }
+        }
+    }
+    
+    @objc private func setToFavorites() {
         guard let currentUser = authservice.getCurrentUser() else  {
             return
         }
-        self.checkForDuplicates(id: currentUser.uid, provider: self.provider, completionHandler: { (error, success) in
+        let documentRef = DBService.generateDocumentId
+        DBService.addToFavorites(id: currentUser.uid, prodider: self.provider, documentID: documentRef) { (error) in
             if let error = error {
                 print(error)
-            } else if success {
-                self.showAlert(title: "", message: "\(self.provider.firstName ?? "") al ready favorited", actionTitle: "OK")
-            } else {
-                DBService.addToFavorites(id: currentUser.uid, prodider: self.provider) { (error) in
-                    if let error = error {
-                        print(error)
-                    } else {
-                        self.showAlert(title: "Success", message: "\(self.provider.firstName ?? "") is added to your favorites", actionTitle: "OK")
-                    }
-                }
+            } else  {
+                self.showAlert(title: "", message: "favorited", actionTitle: "OK")
             }
-            
-        })
+        }
+        
     }
-    
     
     private func setupProvider() {
         providerDetailHeader.providerFullname.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
@@ -98,11 +149,22 @@ class ProviderDetailController: UITableViewController {
             providerDetailHeader.ratingsValue.text = "3.5"
         }
         setupProviderPortfolio()
+        setupReviews()
     }
     
     private func setupProviderPortfolio() {
         portfolioView.portfolioCollectionView.delegate = self
         portfolioView.portfolioCollectionView.dataSource = self
+    }
+    
+    private func setupReviews() {
+        DBService.getReviews(provider: provider) { (reviews, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let reviews = reviews{
+                self.reviews = reviews
+            }
+        }
     }
     
     
@@ -123,6 +185,8 @@ class ProviderDetailController: UITableViewController {
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        reviewCollectionView.ReviewCV.delegate = self
+        reviewCollectionView.ReviewCV.dataSource = self
     }
     
     
@@ -140,6 +204,8 @@ extension ProviderDetailController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.collectionView {
             return buttons.count
+        } else if collectionView == reviewCollectionView.ReviewCV {
+            return reviews.count
         } else {
             switch provider.jobTitle {
             case "Barber":
@@ -159,6 +225,11 @@ extension ProviderDetailController: UICollectionViewDataSource {
             cell.buttonLabel.text = buttonLabel
             return cell
             
+        } else if collectionView == reviewCollectionView.ReviewCV {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionViewCell
+            let review = reviews[indexPath.row]
+            cell.reviewCollectionCellLabel.text = review.description
+            return cell
         } else {
             let portfolioCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PortfolioCell", for: indexPath) as! PortfolioCollectionViewCell
             switch provider.jobTitle {
@@ -178,6 +249,8 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.collectionView {
             return CGSize(width: 120, height: 40)
+        } else if collectionView == reviewCollectionView.ReviewCV {
+            return CGSize(width: 414, height: 60)
         } else {
             return CGSize(width: UIScreen.main.bounds.width / 2, height: 200)
         }
@@ -199,5 +272,4 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
         view.frame.origin.x = CGFloat(indexPath.row) * self.view.bounds.size.width
         
     }
-    
 }
