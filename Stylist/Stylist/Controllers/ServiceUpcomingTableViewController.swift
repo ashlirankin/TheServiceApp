@@ -98,7 +98,39 @@ class ServiceUpcomingTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         
     }
+  
+  func displayAppointmentInfo(appointmentId:String,cell:AppointmentCell){
     
+    DBService.getDatabaseUser(userID: appointmentId) { (error, stylistUser) in
+      if let error = error {
+        print(error)
+      } else if let stylistUser = stylistUser {
+        cell.clientName.text = stylistUser.fullName
+        cell.clientRatings.text = "5.0"
+        cell.clientRatings.rating = 5
+        cell.clientDistance.text = stylistUser.city
+        cell.AppointmentImage.kf.setImage(with: URL(string: stylistUser.imageURL ?? "no image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
+      }
+    }
+  }
+  
+  func configureAppointmentCell(appointment:Appointments,cell:AppointmentCell){
+    
+    cell.clientServices.text = appointment.status
+    switch appointment.status {
+    case "canceled":
+      cell.clientServices.textColor = .red
+    case "inProgress":
+      cell.clientServices.textColor = .green
+      cell.clientServices.text = "confirmed"
+    case "completed":
+      cell.clientServices.textColor = .gray
+    default:
+      cell.clientServices.textColor = .orange
+    }
+    cell.appointmentTime.text = appointment.appointmentTime
+   
+  }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -138,31 +170,9 @@ class ServiceUpcomingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OpenAppointments", for: indexPath) as! AppointmentCell
         let appointment = appointments[indexPath.row]
-        DBService.getDatabaseUser(userID: appointment.userId) { (error, stylistUser) in
-            if let error = error {
-                print(error)
-            } else if let stylistUser = stylistUser {
-                cell.clientName.text = stylistUser.fullName
-                cell.clientRatings.text = "5.0"
-                cell.clientRatings.rating = 5
-                cell.clientDistance.text = stylistUser.city
-                cell.AppointmentImage.kf.setImage(with: URL(string: stylistUser.imageURL ?? "no image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
-            }
-        }
-       cell.clientServices.text = appointment.status
-        switch appointment.status {
-        case "canceled":
-            cell.clientServices.textColor = .red
-        case "inProgress":
-            cell.clientServices.textColor = .green
-            cell.clientServices.text = "confirmed"
-        case "completed":
-            cell.clientServices.textColor = .gray
-        default:
-            cell.clientServices.textColor = .orange
-        }
-        cell.appointmentTime.text = appointment.appointmentTime
-        return cell
+      displayAppointmentInfo(appointmentId: appointment.userId, cell: cell)
+      configureAppointmentCell(appointment: appointment, cell: cell)
+      return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
