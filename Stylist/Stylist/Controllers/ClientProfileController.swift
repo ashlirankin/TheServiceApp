@@ -175,7 +175,7 @@ class ClientProfileController: UIViewController {
     private func fetchProviders() {
         var filterProviders = [ServiceSideUser]()
       guard let stylistUser = stylistUser else {return}
-        for appointment in filterAppointments {
+        for _ in filterAppointments {
           DBService.getProvider(consumer: stylistUser) { (error, provider) in
                 if let error = error {
                     self.showAlert(title: "Fetch Providers Error", message: error.localizedDescription, actionTitle: "Ok")
