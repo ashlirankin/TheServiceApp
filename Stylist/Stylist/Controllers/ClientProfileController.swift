@@ -94,12 +94,7 @@ class ClientProfileController: UIViewController {
         }
     }
     
-    
-    func getCardInforation(userId:String){
-        DBService.firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(userId).collection("wallet")
-    }
-
-
+  
     private func updateUI() {
         guard let user = stylistUser else { return }
         if let imageUrl = user.imageURL {
@@ -175,7 +170,7 @@ class ClientProfileController: UIViewController {
     private func fetchProviders() {
         var filterProviders = [ServiceSideUser]()
       guard let stylistUser = stylistUser else {return}
-        for _ in filterAppointments {
+       for _ in filterAppointments {
           DBService.getProvider(consumer: stylistUser) { (error, provider) in
                 if let error = error {
                     self.showAlert(title: "Fetch Providers Error", message: error.localizedDescription, actionTitle: "Ok")
@@ -186,7 +181,7 @@ class ClientProfileController: UIViewController {
                     }
                 }
             }
-        }
+     }
     }
     
     // MARK: Actions

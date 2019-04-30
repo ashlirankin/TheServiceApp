@@ -101,7 +101,7 @@ final class DBService {
                 return
               }
               guard let providerData = snapshot.data() else {return}
-              let provider = ServiceSideUser(dict:providerData )
+              let provider = ServiceSideUser(dict:providerData)
               completion(nil, provider)
             }
           })
@@ -278,8 +278,8 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
         }
     }
     
-    static func getBookedAppointments(userId: String, completion: @escaping(Error?, [Appointments]?) -> Void) {
-        DBService.firestoreDB.collection("bookedAppointments")
+  static func getBookedAppointments(userId: String, completion: @escaping(Error?, [Appointments]?) -> Void) {
+        DBService.firestoreDB.collection(AppointmentCollectionKeys.bookedAppointments)
             .whereField("userId", isEqualTo: userId)
             .getDocuments { (snapshot, error) in
                 if let error = error {
@@ -299,19 +299,6 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
                 } else {
                     let appointments = snapshot?.documents.map { Appointments(dict: $0.data()) }
                     completionHandler(appointments, nil)
-                }
-        }
-    }
-    
-    static func getAppointmentImage(userID: String, completionHandler: @escaping (StylistsUser?, Error?) -> Void) {
-        DBService.firestoreDB.collection("stylistUser")
-        .document(userID)
-            .getDocument { (snapshot, error) in
-                if let error = error {
-                    completionHandler(nil, error)
-                } else if let spanshot = snapshot {
-                    let stylistsUser = StylistsUser(dict: spanshot.data()!)
-                    completionHandler(stylistsUser, nil)
                 }
         }
     }
