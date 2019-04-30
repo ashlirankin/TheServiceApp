@@ -10,7 +10,6 @@ import UIKit
 
 class ProfessionCell: UICollectionViewCell {
     @IBOutlet weak var professionLabel: UILabel!
-    
     public func configureCell(profession: Profession) {
         professionLabel.text = profession.rawValue
         layer.cornerRadius = frame.height / 2

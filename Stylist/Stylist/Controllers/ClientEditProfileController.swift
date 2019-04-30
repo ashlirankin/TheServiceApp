@@ -14,7 +14,6 @@ class ClientEditProfileController: UITableViewController {
     @IBOutlet weak var profileImageView: CircularImageView!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
-    
     public var stylistUser: StylistsUser!
     
     
@@ -36,6 +35,7 @@ class ClientEditProfileController: UITableViewController {
         if let imageURL = stylistUser.imageURL {
             profileImageView.kf.indicatorType = .activity
             profileImageView.kf.setImage(with: URL(string: imageURL), placeholder: #imageLiteral(resourceName: "placeholder.png"))
+            selectedImage = profileImageView.image
         }
         firstNameTextField.text = stylistUser.firstName ?? ""
         lastNameTextField.text = stylistUser.lastName ?? ""
@@ -115,6 +115,7 @@ extension ClientEditProfileController: UIImagePickerControllerDelegate, UINaviga
         let size = CGSize(width: 500, height: 500)
         let resizedImage = Toucan.Resize.resizeImage(originalImage, size: size)
         selectedImage = resizedImage
+        profileImageView.image = resizedImage
         dismiss(animated: true)
     }
 }

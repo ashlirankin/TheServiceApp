@@ -11,11 +11,9 @@ import UserNotifications
 import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-
   var window: UIWindow?
  let authService = AuthService()
 //static var container = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
-
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     FirebaseApp.configure()
     window = UIWindow(frame: UIScreen.main.bounds)
@@ -27,16 +25,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     center.delegate = self
-    if let _ = authService.getCurrentUser(){
-        let storyboard = UIStoryboard(name: "User", bundle: nil)
-        let servicetab = storyboard.instantiateViewController(withIdentifier: "UserTabBarController")
-        window?.rootViewController = servicetab
-        
-    }else{
+    if let _ = authService.getCurrentUser() {
+            let storyboard = UIStoryboard(name: "User", bundle: nil)
+            let initialTab = storyboard.instantiateViewController(withIdentifier: "UserTabBarController")
+            window?.rootViewController = initialTab
+    } else{
         let storyboard = UIStoryboard(name: "Entrance", bundle: nil)
         let login = storyboard.instantiateViewController(withIdentifier: "LoginVC")
-        window?.rootViewController = login
-        
+        window?.rootViewController = UINavigationController(rootViewController: login)
     }
     window?.makeKeyAndVisible()
     return true
