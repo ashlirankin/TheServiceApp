@@ -21,9 +21,9 @@ extension UIViewController {
                         style: UIAlertController.Style,
                         handler: ((UIAlertAction) -> Void)?) {
     let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
-//    let okAction = UIAlertAction(title: "Cancel", style: .cancel)
-    let customAction = UIAlertAction(title: "Ok", style: .default, handler: handler)
-//    alertController.addAction(okAction)
+    let okAction = UIAlertAction(title: "Cancel", style: .cancel)
+    let customAction = UIAlertAction(title: "Submit", style: .default, handler: handler)
+    alertController.addAction(okAction)
     alertController.addAction(customAction)
     present(alertController, animated: true)
   }

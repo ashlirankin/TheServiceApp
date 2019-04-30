@@ -9,18 +9,24 @@
 import UIKit
 import UserNotifications
 
+enum CurrentaDate:String {
+  case Monday
+  case Tuesday
+  case Wednesday
+  case Thursday
+  case Friday
+}
 class BookingViewController: UITableViewController {
   @IBOutlet weak var avalibilityCollectionView: UICollectionView!
   @IBOutlet weak var servicesCollectionView: UICollectionView!
   @IBOutlet weak var orderSummaryCollectionView: UICollectionView!
   @IBOutlet weak var priceCell: UITableViewCell!
-  @IBOutlet weak var bookAppointmentButton: UIButton!
-  
-  let sectionsTitle = ["Services","Available times","Summary"]
-  lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 250))
+    let sectionsTitle = ["Services","Available times","Summary"]
+  lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 300))
   private var providerServices = [ProviderServices](){
     didSet{
       servicesCollectionView.reloadData()
+    
     }
   }
   
@@ -35,29 +41,24 @@ class BookingViewController: UITableViewController {
       getProviderAvalibility(providerId: provider?.userId ?? "no provider id found")
     }
   }
-
+  let docId  = DBService.generateDocumentId
+  
   var servicesArray = [ProviderServices](){
     didSet{
       orderSummaryCollectionView.reloadData()
       tableView.reloadData()
     }
   }
-
+  
+  var currentDate:CurrentaDate = .Tuesday
+  
   lazy var price = servicesArray.map{$0.price}.reduce(0, +)
   let authService = AuthService()
   
  lazy var localAppointments = [String:Any]()
- 
   var localServices = [String](){
     didSet{
       localAppointments["services"] = localServices
-    }
-  }
-  
-  var localPrices = [String](){
-    didSet{
-      
-      localAppointments["prices"] = localPrices
     }
   }
   
@@ -65,27 +66,9 @@ class BookingViewController: UITableViewController {
         super.viewDidLoad()
     setupCollectionViewDelegates()
     setUpUi()
-    }
-  
-  func returnAvalibility(avalibility:[Avalibility]) -> Avalibility? {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "EEEE"
-    let currentDate = dateFormatter.string(from: Date())
-    title = currentDate
-    let specificAvalibility = avalibility.first { (avalibility) -> Bool in
-      avalibility.currentDate == currentDate
+    
     }
     
-    return specificAvalibility
-  }
-  
-  func returnAppointmentTime(chosenTime:String) -> String {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
-    let currentDate = dateFormatter.string(from: Date())
-  
-    return "\(currentDate) \(chosenTime)"
-  }
     private func setupNotification() {
         let center = UNUserNotificationCenter.current()
         let content = UNMutableNotificationContent()
@@ -103,44 +86,32 @@ class BookingViewController: UITableViewController {
             }
         }
     }
-
-  
-
-
-  @IBAction func bookButtonPressed(_ sender: UIButton){
+    
+  @IBAction func bookButtonPressed(_ sender: UIButton) {
     guard let provider  = provider ,
       let currentUser = authService.getCurrentUser(),
     !localServices.isEmpty else {return}
-    let documentId = DBService.generateDocumentId
-    localAppointments[AppointmentCollectionKeys.providerId] = provider.userId
-    localAppointments[AppointmentCollectionKeys.userId] = currentUser.uid
-    localAppointments[AppointmentCollectionKeys.status] = "pending"
-    localAppointments[AppointmentCollectionKeys.documentId] = documentId
-    
-    createBooking(collectionName: AppointmentCollectionKeys.bookedAppointments, providerId: provider.userId, information: localAppointments, userId: currentUser.uid, documentId: documentId)
-     setupNotification()
-    dismiss(animated: true, completion: nil)
-//
-//    guard let paymentController = UIStoryboard(name: "Payments", bundle: nil).instantiateInitialViewController() as? OrderSummaryAndPaymentViewController,
-//    let provider = provider  else {fatalError()}
-//    let navController = UINavigationController(rootViewController: paymentController)
-//    paymentController.modalPresentationStyle = .currentContext
-//    paymentController.modalTransitionStyle = .coverVertical
-//    paymentController.providerId = provider.userId
-//    present(navController, animated: true, completion: nil)
+    localAppointments["providerId"] = provider.userId
+    localAppointments["userId"] = currentUser.uid
+    createBooking(collectionName: "bookedAppointments", providerId: provider.userId, information: localAppointments, userId: currentUser.uid)
+   setupNotification()
+ 
   }
   
   func getServices(serviceProviderId:String){
-    DBService.getProviderServices(providerId: serviceProviderId) { (error, services) in
+
+DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).document(serviceProviderId).collection(ServicesCollectionKeys.subCollectionName).getDocuments { (snapshot, error) in
       if let error = error {
-         self.showAlert(title: "Error", message: "There was an error retrieving services:\(error.localizedDescription)", actionTitle:  "Ok")
+        print("there was an error line 46: \(error.localizedDescription)")
       }
-      else if let services = services {
-        self.providerServices = services
+      else if let snapshot = snapshot{
+        snapshot.documents.forEach{
+          let serviceData = ProviderServices(dict: $0.data())
+          self.providerServices.append(serviceData)
+        }
       }
-     
     }
-}
+  }
   
   func getProviderAvalibility(providerId:String){
     DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).document(providerId).collection(AvalibilityCollectionKeys.avalibility).getDocuments { (snapshot, error) in
@@ -157,12 +128,10 @@ class BookingViewController: UITableViewController {
   }
   
   func setUpUi(){
-    
     tableView.tableHeaderView = providerDetailHeader
     providerDetailHeader.bookingButton.isHidden = true
     providerDetailHeader.ratingsValue.isHidden = true
     providerDetailHeader.providerPhoto.kf.setImage(with: URL(string: provider?.imageURL ?? "no url found"),placeholder: #imageLiteral(resourceName: "placeholder.png"))
-    providerDetailHeader.providerFullname.text = "\(provider?.firstName ?? "no name found") \(provider?.lastName ?? "no name found")"
   }
   
   func setupCollectionViewDelegates(){
@@ -178,22 +147,27 @@ class BookingViewController: UITableViewController {
    
   @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
     dismiss(animated: true)
+    
+    
   }
   
   @IBAction func cancelButtonPressed(_ sender: UIButton) {
+    
     servicesArray.remove(at: sender.tag)
     orderSummaryCollectionView.reloadData()
+    
   }
   
-  private func createBooking(collectionName:String,providerId:String,information:[String:Any],userId:String,documentId:String){
-   DBService.firestoreDB.collection(collectionName).document(documentId).setData(information) { (error) in
+  private func createBooking(collectionName:String,providerId:String,information:[String:Any],userId:String){
+   
+    DBService.firestoreDB.collection(collectionName).addDocument(data: information) { (error) in
       if let error = error {
-        print("error:\(error.localizedDescription)")
+        print("there was an error creating document:\(error.localizedDescription)")
       }
     }
-
   }
   private func updateBookingInfo(collectionName:String,information:[String:Any],docId:String){
+    
     DBService.firestoreDB.collection(collectionName).document(docId).updateData(information) { (error) in
       if let error = error {
         self.showAlert(title: "Error", message: "There was an error updating you information:\(error.localizedDescription)", actionTitle: "Try Again")
@@ -214,16 +188,19 @@ extension BookingViewController:UICollectionViewDelegateFlowLayout{
       return CGSize(width: view.frame.width, height: 100)
     }
   }
+  
+  
   }
 
 extension BookingViewController:UICollectionViewDataSource{
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     switch collectionView {
     case avalibilityCollectionView:
-     if let avalibility =  returnAvalibility(avalibility: providerAvalibility)
-     {
-      return avalibility.avalibleHours.count
-     }
+      if let day = providerAvalibility.first(where: { (avalibility) -> Bool in
+        avalibility.currentDate == self.currentDate.rawValue
+      }){
+        return day.avalibleHours.count
+      }
       return 0
     case servicesCollectionView:
       return providerServices.count
@@ -235,14 +212,22 @@ extension BookingViewController:UICollectionViewDataSource{
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
     switch collectionView {
     case avalibilityCollectionView:
       guard let cell = avalibilityCollectionView.dequeueReusableCell(withReuseIdentifier: "avalibilityCell", for: indexPath) as? AvalibilityCollectionViewCell else {fatalError("no avalibility cell found")}
-   let avalibility = returnAvalibility(avalibility: providerAvalibility)
-      cell.timeButton.text = avalibility?.avalibleHours[indexPath.row]
+      
+      let avalibleTime = providerAvalibility.first { (avalibility) -> Bool in
+        avalibility.currentDate == currentDate.rawValue
+      }
+      cell.timeButton.text = avalibleTime?.avalibleHours[indexPath.row]
+      
+      title = avalibleTime?.currentDate
+
       cell.timeButton.tag = indexPath.row
-      cell.disableOnExpiration(avalibleTimes: avalibility?.avalibleHours[indexPath.row] ?? "")
+      
       return cell
+      
     case servicesCollectionView:
       let aService = providerServices[indexPath.row]
       guard let cell = servicesCollectionView.dequeueReusableCell(withReuseIdentifier: "servicesCell", for: indexPath) as? ServicesCollectionViewCell else {fatalError("no service cell found")}
@@ -280,23 +265,30 @@ extension BookingViewController:UICollectionViewDataSource{
         priceCell.detailTextLabel?.text = "$\(price)"
       
       localServices.append(service.service)
-      localPrices.append(String(service.price))
-      
-      if cell.isSelected{
-        cell.backgroundColor = .lightGray
-        
-      }else{
-        cell.isUserInteractionEnabled = false
-        
-      }
       
     case avalibilityCollectionView:
-      
-      let avalibleTime = returnAvalibility(avalibility: providerAvalibility)
+      guard let cell = avalibilityCollectionView.cellForItem(at: indexPath) as? AvalibilityCollectionViewCell else {
+        print("no avalibility found")
+        return
+      }
+      let avalibleTime = providerAvalibility.first { (avalibility) -> Bool in
+        avalibility.currentDate == currentDate.rawValue
+      }
+      cell.isUserInteractionEnabled = true
+    
       guard let timeChosen = avalibleTime?.avalibleHours[indexPath.row] else {return}
      
-     
-   localAppointments[AppointmentCollectionKeys.appointmentTime] = returnAppointmentTime(chosenTime: timeChosen)
+      if cell.isSelected{
+        cell.backgroundColor = .lightGray
+        cell.isUserInteractionEnabled = false
+        
+      }else{
+        cell.isHidden = true
+      }
+   localAppointments["avalibility"] = timeChosen
+      print(timeChosen)
+      
+      
     default:
     print("something")
     }
