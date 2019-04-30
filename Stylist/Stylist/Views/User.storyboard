@@ -90,7 +90,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goldenStar" translatesAutoresizingMaskIntoConstraints="NO" id="Jvm-Kj-KVS">
-                                                    <rect key="frame" x="326" y="97" width="36.000000000000909" height="36"/>
+                                                    <rect key="frame" x="326" y="97" width="36" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="36" id="3Tg-8m-Xf6"/>
                                                         <constraint firstAttribute="height" constant="36" id="wXU-jz-SGb"/>
@@ -474,7 +474,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="appointmentStatusButton" destination="epM-Cx-YvJ" id="AlM-1l-jDr"/>
+                                            <outlet property="appointmentStatusButton" destination="epM-Cx-YvJ" id="bZp-V1-y7F"/>
                                             <outlet property="dateAndTimeLabel" destination="mzM-rB-CoG" id="onQ-Xp-1ho"/>
                                             <outlet property="providerName" destination="4Al-x5-CYA" id="yvu-XW-iic"/>
                                             <outlet property="providerProfileImage" destination="asa-ij-Mpu" id="MHy-dO-VIr"/>

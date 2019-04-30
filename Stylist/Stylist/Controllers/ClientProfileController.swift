@@ -61,13 +61,13 @@ class ClientProfileController: UIViewController {
     
     func notifyClient() {
         for status in AppointmentStatus.allCases {
-             statusListener = DBService.firestoreDB.collection("bookedAppointments")
-            .whereField("status", isEqualTo: status.rawValue)
+            statusListener = DBService.firestoreDB.collection("bookedAppointments")
+                .whereField("status", isEqualTo: status.rawValue)
                 .addSnapshotListener({ (snapshot, error) in
                     if let error = error {
                         print(error)
                     } else if snapshot != nil {
-                         self.setupNotification()
+                        self.setupNotification()
                     }
                 })
         }
@@ -76,7 +76,7 @@ class ClientProfileController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         fetchCurrentUser()
-              authService.authserviceSignOutDelegate = self
+        authService.authserviceSignOutDelegate = self
     }
     
     // MARK: Initial Setup
@@ -94,7 +94,7 @@ class ClientProfileController: UIViewController {
         }
     }
     
-  
+    
     private func updateUI() {
         guard let user = stylistUser else { return }
         if let imageUrl = user.imageURL {
@@ -135,12 +135,12 @@ class ClientProfileController: UIViewController {
             } else if let appointments = appointments {
                 self?.appointments = appointments
                 if appointments.count < 1 {
-                  guard let backgroundView = self?.noBookingView else {return}
+                    guard let backgroundView = self?.noBookingView else {return}
                     self?.tableView.backgroundColor = .clear
-                  self?.tableView.backgroundView = backgroundView
+                    self?.tableView.backgroundView = backgroundView
                 }else{
-                  self?.tableView.backgroundView?.isHidden = true
-              }
+                    self?.tableView.backgroundView?.isHidden = true
+                }
                 
             }
         }
@@ -169,9 +169,8 @@ class ClientProfileController: UIViewController {
     
     private func fetchProviders() {
         var filterProviders = [ServiceSideUser]()
-      guard let stylistUser = stylistUser else {return}
-       for _ in filterAppointments {
-          DBService.getProvider(consumer: stylistUser) { (error, provider) in
+        for appointment in filterAppointments {
+            DBService.getProviderFromAppointment(appointment: appointment) { (error, provider) in
                 if let error = error {
                     self.showAlert(title: "Fetch Providers Error", message: error.localizedDescription, actionTitle: "Ok")
                 } else if let provider = provider {
@@ -181,7 +180,7 @@ class ClientProfileController: UIViewController {
                     }
                 }
             }
-     }
+        }
     }
     
     // MARK: Actions
@@ -193,10 +192,10 @@ class ClientProfileController: UIViewController {
     }
     private func showProviderTab() {
         let storyboard = UIStoryboard(name: "ServiceProvider", bundle: nil)
-      guard let providerTab = storyboard.instantiateViewController(withIdentifier: "ServiceTabBar") as? ServiceProviderTabBar else {return}
-      providerTab.modalTransitionStyle = .crossDissolve
-      providerTab.modalPresentationStyle = .overFullScreen
-      self.present(providerTab, animated: true)
+        guard let providerTab = storyboard.instantiateViewController(withIdentifier: "ServiceTabBar") as? ServiceProviderTabBar else {return}
+        providerTab.modalTransitionStyle = .crossDissolve
+        providerTab.modalPresentationStyle = .overFullScreen
+        self.present(providerTab, animated: true)
     }
     
     @IBAction func toggleButtons(_ sender: CircularButton) {
@@ -213,8 +212,8 @@ class ClientProfileController: UIViewController {
             noBookingView.noBookingLabel.text = "No current appointments yet."
             tableView.backgroundView = noBookingView
         }else{
-          tableView.backgroundView?.isHidden = true
-      }
+            tableView.backgroundView?.isHidden = true
+        }
     }
     private func getPastAppointments() {
         filterAppointments = appointments.filter { $0.status == "canceled" || $0.status == "completed" }
@@ -322,6 +321,6 @@ extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 110
     }
 }
