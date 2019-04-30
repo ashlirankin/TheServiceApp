@@ -107,6 +107,19 @@ final class DBService {
           })
       
     }
+    
+    static func getProviderFromAppointment(appointment: Appointments, completion: @escaping(Error?, ServiceSideUser?) -> Void) {
+        DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
+            .document(appointment.providerId).addSnapshotListener { (snapshot, error) in
+                if let error = error {
+                    completion(error, nil)
+                } else if let snapshot = snapshot {
+                    guard let data = snapshot.data() else { return }
+                    completion(nil, ServiceSideUser(dict: data))
+                }
+        }
+    }
+    
   static func setupProviderCredentials(user:StylistsUser){
     let providerInfo:[String:Any] = [ServiceSideUserCollectionKeys.userId:user.userId,
                         ServiceSideUserCollectionKeys.firstName: user.firstName ?? "no first name found",

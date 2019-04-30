@@ -90,7 +90,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goldenStar" translatesAutoresizingMaskIntoConstraints="NO" id="Jvm-Kj-KVS">
-                                                    <rect key="frame" x="326" y="97" width="36.000000000000909" height="36"/>
+                                                    <rect key="frame" x="326" y="97" width="36" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="36" id="3Tg-8m-Xf6"/>
                                                         <constraint firstAttribute="height" constant="36" id="wXU-jz-SGb"/>
@@ -408,71 +408,73 @@
                                 <rect key="frame" x="8" y="382" width="398" height="423"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileCell" rowHeight="105" id="3ih-fF-gfi" customClass="UserProfileTableViewCell" customModule="Stylist" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="398" height="105"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileCell" rowHeight="110" id="3ih-fF-gfi" customClass="UserProfileTableViewCell" customModule="Stylist" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="398" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3ih-fF-gfi" id="h8E-va-EBy">
-                                            <rect key="frame" x="0.0" y="0.0" width="398" height="105"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="398" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="asa-ij-Mpu" customClass="CircularImageView" customModule="Stylist" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="11" width="83" height="83"/>
+                                                    <rect key="frame" x="20" y="11" width="88" height="88"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="83" id="8gQ-5U-e30"/>
-                                                        <constraint firstAttribute="width" constant="83" id="VJT-9a-mEe"/>
-                                                        <constraint firstAttribute="width" secondItem="asa-ij-Mpu" secondAttribute="height" multiplier="1:1" id="yg5-tK-fq0"/>
+                                                        <constraint firstAttribute="width" secondItem="asa-ij-Mpu" secondAttribute="height" multiplier="1:1" id="zhw-nn-BAI"/>
                                                     </constraints>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tl3-Iw-HxU" customClass="CosmosView" customModule="Cosmos">
-                                                    <rect key="frame" x="111" y="74" width="120" height="20"/>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tl3-Iw-HxU" customClass="CosmosView" customModule="Cosmos">
+                                                    <rect key="frame" x="116" y="78" width="120" height="21"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="FYy-PJ-PH7"/>
-                                                        <constraint firstAttribute="width" constant="120" id="RlX-87-ZgQ"/>
+                                                        <constraint firstAttribute="height" constant="15" id="Dh4-Lm-gLw"/>
+                                                        <constraint firstAttribute="width" constant="120" id="DoH-f4-Ydk"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Provider" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Al-x5-CYA">
-                                                    <rect key="frame" x="111" y="11" width="64" height="21"/>
+                                                    <rect key="frame" x="116" y="11" width="64" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profession" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A88-ET-sNB">
-                                                    <rect key="frame" x="297" y="73" width="81" height="21"/>
+                                                    <rect key="frame" x="297" y="78" width="81" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date &amp; Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzM-rB-CoG">
-                                                    <rect key="frame" x="283" y="10" width="95" height="21"/>
+                                                    <rect key="frame" x="283" y="11" width="95" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q4Z-f4-Oc4">
-                                                    <rect key="frame" x="355" y="42" width="0.0" height="0.0"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epM-Cx-YvJ">
+                                                    <rect key="frame" x="348" y="40" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="Qre-jU-yCO"/>
+                                                        <constraint firstAttribute="height" constant="30" id="sdX-zY-NmX"/>
+                                                    </constraints>
+                                                    <state key="normal" image="green_circle"/>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.41568627450000001" green="0.53725490200000003" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstItem="A88-ET-sNB" firstAttribute="trailing" secondItem="h8E-va-EBy" secondAttribute="trailingMargin" id="69E-UF-s6Z"/>
-                                                <constraint firstItem="A88-ET-sNB" firstAttribute="bottom" secondItem="h8E-va-EBy" secondAttribute="bottomMargin" id="Akg-Dv-GtV"/>
-                                                <constraint firstItem="asa-ij-Mpu" firstAttribute="top" secondItem="h8E-va-EBy" secondAttribute="topMargin" id="Ccr-LU-x6l"/>
-                                                <constraint firstItem="4Al-x5-CYA" firstAttribute="top" secondItem="h8E-va-EBy" secondAttribute="topMargin" id="DQE-b7-Vjg"/>
-                                                <constraint firstItem="mzM-rB-CoG" firstAttribute="top" secondItem="h8E-va-EBy" secondAttribute="top" constant="10" id="HFq-Gc-Ym8"/>
-                                                <constraint firstItem="asa-ij-Mpu" firstAttribute="bottom" secondItem="h8E-va-EBy" secondAttribute="bottomMargin" id="LlN-Sj-3Ik"/>
-                                                <constraint firstItem="asa-ij-Mpu" firstAttribute="leading" secondItem="h8E-va-EBy" secondAttribute="leadingMargin" id="bW1-ZE-aav"/>
-                                                <constraint firstItem="4Al-x5-CYA" firstAttribute="leading" secondItem="asa-ij-Mpu" secondAttribute="trailing" constant="8" id="eir-cD-8dP"/>
-                                                <constraint firstItem="Tl3-Iw-HxU" firstAttribute="leading" secondItem="asa-ij-Mpu" secondAttribute="trailing" constant="8" id="gZq-bu-5De"/>
-                                                <constraint firstAttribute="trailing" secondItem="mzM-rB-CoG" secondAttribute="trailing" constant="20" id="mJ8-MB-AdR"/>
-                                                <constraint firstItem="Tl3-Iw-HxU" firstAttribute="bottom" secondItem="h8E-va-EBy" secondAttribute="bottomMargin" id="o11-bw-29C"/>
+                                                <constraint firstItem="Tl3-Iw-HxU" firstAttribute="leading" secondItem="asa-ij-Mpu" secondAttribute="trailing" constant="8" id="4Oe-tG-7W8"/>
+                                                <constraint firstItem="Tl3-Iw-HxU" firstAttribute="bottom" secondItem="h8E-va-EBy" secondAttribute="bottomMargin" id="5ak-BC-eSd"/>
+                                                <constraint firstItem="epM-Cx-YvJ" firstAttribute="centerY" secondItem="h8E-va-EBy" secondAttribute="centerY" id="AZA-RK-Xkh"/>
+                                                <constraint firstItem="4Al-x5-CYA" firstAttribute="leading" secondItem="asa-ij-Mpu" secondAttribute="trailing" constant="8" id="Flb-he-cI8"/>
+                                                <constraint firstItem="asa-ij-Mpu" firstAttribute="top" secondItem="h8E-va-EBy" secondAttribute="topMargin" id="HAn-D4-lTd"/>
+                                                <constraint firstItem="mzM-rB-CoG" firstAttribute="trailing" secondItem="h8E-va-EBy" secondAttribute="trailingMargin" id="NeM-aK-QJk"/>
+                                                <constraint firstItem="mzM-rB-CoG" firstAttribute="top" secondItem="h8E-va-EBy" secondAttribute="topMargin" id="OCG-gB-peY"/>
+                                                <constraint firstItem="asa-ij-Mpu" firstAttribute="leading" secondItem="h8E-va-EBy" secondAttribute="leadingMargin" id="aQU-G9-aCg"/>
+                                                <constraint firstItem="asa-ij-Mpu" firstAttribute="bottom" secondItem="h8E-va-EBy" secondAttribute="bottomMargin" id="dNF-5H-vU7"/>
+                                                <constraint firstItem="epM-Cx-YvJ" firstAttribute="trailing" secondItem="h8E-va-EBy" secondAttribute="trailingMargin" id="ewY-Kv-VrZ"/>
+                                                <constraint firstItem="4Al-x5-CYA" firstAttribute="top" secondItem="h8E-va-EBy" secondAttribute="topMargin" id="hGg-o8-h6a"/>
+                                                <constraint firstItem="A88-ET-sNB" firstAttribute="bottom" secondItem="h8E-va-EBy" secondAttribute="bottomMargin" id="mMf-Up-tQz"/>
+                                                <constraint firstItem="A88-ET-sNB" firstAttribute="trailing" secondItem="h8E-va-EBy" secondAttribute="trailingMargin" id="uAD-1h-4B2"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="appointmentStatusButton" destination="epM-Cx-YvJ" id="bZp-V1-y7F"/>
                                             <outlet property="dateAndTimeLabel" destination="mzM-rB-CoG" id="onQ-Xp-1ho"/>
                                             <outlet property="providerName" destination="4Al-x5-CYA" id="yvu-XW-iic"/>
                                             <outlet property="providerProfileImage" destination="asa-ij-Mpu" id="MHy-dO-VIr"/>
@@ -835,6 +837,7 @@
     <resources>
         <image name="filter" width="25" height="25"/>
         <image name="goldenStar" width="3580" height="3402"/>
+        <image name="green_circle" width="256" height="256"/>
         <image name="icons8-barbershop-32" width="32" height="32"/>
         <image name="icons8-camera" width="50" height="50"/>
         <image name="icons8-change-user-30" width="30" height="30"/>
