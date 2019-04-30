@@ -140,9 +140,12 @@ class ClientProfileController: UIViewController {
             } else if let appointments = appointments {
                 self?.appointments = appointments
                 if appointments.count < 1 {
+                  guard let backgroundView = self?.noBookingView else {return}
                     self?.tableView.backgroundColor = .clear
-                    self?.tableView.backgroundView?.addSubview(self!.noBookingView)
-                }
+                  self?.tableView.backgroundView = backgroundView
+                }else{
+                  self?.tableView.backgroundView?.isHidden = true
+              }
                 
             }
         }
@@ -212,16 +215,18 @@ class ClientProfileController: UIViewController {
     private func getUpcomingAppointments() {
         filterAppointments = appointments.filter { $0.status == "pending" || $0.status == "inProgress" }
         if filterAppointments.count == 0 {
-            self.tableView.backgroundColor = .clear
-            self.noBookingView.noBookingLabel.text = "No current appointments yet."
-            self.tableView.backgroundView = self.noBookingView
-        }
+            tableView.backgroundColor = .clear
+            noBookingView.noBookingLabel.text = "No current appointments yet."
+            tableView.backgroundView = noBookingView
+        }else{
+          tableView.backgroundView?.isHidden = true
+      }
     }
     private func getPastAppointments() {
         filterAppointments = appointments.filter { $0.status == "canceled" || $0.status == "completed" }
-        self.tableView.backgroundColor = .clear
-        self.noBookingView.noBookingLabel.text = "No history appointments yet."
-        self.tableView.backgroundView = self.noBookingView
+        tableView.backgroundColor = .clear
+        noBookingView.noBookingLabel.text = "No history appointments yet."
+        tableView.backgroundView = self.noBookingView
     }
     
     @IBAction func moreOptionsButtonPressed(_ sender: UIButton) {
