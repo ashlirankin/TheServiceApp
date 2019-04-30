@@ -156,7 +156,7 @@ class ClientProfileController: UIViewController {
         content.subtitle = "\(newAppointment.appointmentTime)"
         content.sound = UNNotificationSound.default
         content.threadIdentifier = "local-notifcations temp"
-        let date = Date(timeIntervalSinceNow: 2)
+        let date = Date(timeIntervalSinceNow: 10)
         let dateComponent = Calendar.current.dateComponents([.year, .month,.day,.hour, .minute, .second, .second, .nanosecond], from: date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: false)
         let request = UNNotificationRequest.init(identifier: "content", content: content, trigger: trigger)
@@ -317,6 +317,7 @@ extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! UserProfileTableViewCell
         let appointment = filterAppointments[indexPath.row]
         let provider = filterProviders[indexPath.row]
+      print(provider)
         cell.configuredCell(provider: provider, appointment: appointment)
         return cell
     }
