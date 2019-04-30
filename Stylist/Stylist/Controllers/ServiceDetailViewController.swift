@@ -25,7 +25,7 @@ class ServiceDetailViewController: UIViewController {
     @IBOutlet weak var completeButton: UIButton!
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
-    
+    var ratingsStar = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +62,7 @@ class ServiceDetailViewController: UIViewController {
         case "canceled":
             cancelButton.backgroundColor = .gray
             cancelButton.isEnabled = false
+            cancelButton.setTitle("canceled", for: .normal)
             confirmButton.backgroundColor = .gray
             confirmButton.isEnabled = false
             completeButton.isHidden = true
@@ -71,6 +72,7 @@ class ServiceDetailViewController: UIViewController {
             completeButton.setTitle("completed", for: .normal)
             completeButton.backgroundColor = .gray
             completeButton.isHidden = false
+            completeButton.isEnabled = false
         default:
             completeButton.isHidden = true
         }
@@ -98,6 +100,7 @@ class ServiceDetailViewController: UIViewController {
     @IBAction func completeAppointment(_ sender: UIButton) {
         DBService.updateAppointment(appointmentID: appointment.documentId, status: AppointmentStatus.completed.rawValue)
         updateDetailUI()
+        
         
     }
     

@@ -189,6 +189,13 @@ class ProviderDetailController: UITableViewController {
     
     
     @objc func bookButtonPressed(){
+        guard let currentUser = authservice.getCurrentUser() else {
+            return
+        }
+        if currentUser.uid == provider.userId {
+            self.showAlert(title: "error", message: "You can't book yourself!", actionTitle: "OK")
+            return
+        }
         guard let bookingController = UIStoryboard(name: "BookService", bundle: nil).instantiateViewController(withIdentifier: "BookingController") as? BookingViewController else {return}
         guard let provider = provider else {return}
         bookingController.provider = provider
