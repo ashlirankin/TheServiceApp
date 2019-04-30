@@ -174,9 +174,8 @@ class ClientProfileController: UIViewController {
     
     private func fetchProviders() {
         var filterProviders = [ServiceSideUser]()
-      guard let stylistUser = stylistUser else {return}
         for appointment in filterAppointments {
-          DBService.getProvider(consumer: stylistUser) { (error, provider) in
+            DBService.getProviderFromAppointment(appointment: appointment) { (error, provider) in
                 if let error = error {
                     self.showAlert(title: "Fetch Providers Error", message: error.localizedDescription, actionTitle: "Ok")
                 } else if let provider = provider {
@@ -325,8 +324,8 @@ extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
         cell.configuredCell(provider: provider, appointment: appointment)
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 110
     }
 }

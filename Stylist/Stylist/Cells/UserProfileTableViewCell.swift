@@ -16,13 +16,15 @@ class UserProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var dateAndTimeLabel: UILabel!
     @IBOutlet weak var providerName: UILabel!
     @IBOutlet weak var providerService: UILabel!
+    @IBOutlet weak var appointmentStatusButton: UIButton!
     
     public func configuredCell(provider: ServiceSideUser, appointment: Appointments) {
+        setAppointmentTime(appointment: appointment)
+        setAppointmentStatusUI(appointment: appointment)
         setupProviderRating(providerId: provider.userId)
         backgroundColor = #colorLiteral(red: 0.2462786138, green: 0.3436814547, blue: 0.5806058645, alpha: 1)
         providerName.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
         providerService.text = provider.jobTitle
-        dateAndTimeLabel.text = appointment.appointmentTime
         if let imageURL = provider.imageURL {
             providerProfileImage.kf.indicatorType = .activity
             providerProfileImage.kf.setImage(with: URL(string: imageURL), placeholder: #imageLiteral(resourceName: "placeholder.png"))
@@ -38,11 +40,42 @@ class UserProfileTableViewCell: UITableViewCell {
                 self.providerRating.rating = 0
             } else if let ratings = ratings {
                 var sum: Double = 0
-                for rating in ratings {
-                    sum += rating.value
+                if ratings.count > 0 {
+                    for rating in ratings {
+                        sum += rating.value
+                    }
+                    self.providerRating.rating = sum / Double(ratings.count)
+                } else {
+                    self.providerRating.rating = 0
                 }
-                self.providerRating.rating = sum
             }
         }
     }
+    
+    private func setAppointmentStatusUI(appointment: Appointments) {
+        switch  appointment.status {
+        case "pending":
+            appointmentStatusButton.setImage(UIImage(named: "orange_circle"), for: .normal)
+        case "inProgress":
+            appointmentStatusButton.setImage(UIImage(named: "green_circle"), for: .normal)
+        case "completed":
+            appointmentStatusButton.setImage(UIImage(named: "red_circle"), for: .normal)
+        case "canceled":
+            appointmentStatusButton.setImage(UIImage(named: "red_circle"), for: .normal)
+        default:
+            appointmentStatusButton.isHidden = true
+        }
+    }
+    
+    private func setAppointmentTime(appointment: Appointments) {
+        let dateFormatter = DateFormatter()
+        let date = dateFormatter.date(from: appointment.appointmentTime)
+        dateFormatter.dateFormat = "h:mm a"
+        if let date = date {
+            dateAndTimeLabel.text = dateFormatter.string(from: date)
+        } else {
+            dateAndTimeLabel.text = "No Date"
+        }
+    }
 }
+
