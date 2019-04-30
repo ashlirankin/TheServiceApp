@@ -11,8 +11,8 @@ def stylist_pods
   pod 'Toucan'
   pod 'Kingfisher'
   pod 'Cosmos'
- pod 'Braintree'
-
+  pod 'Stripe'
+  pod 'Charts'
 end
 
 target 'Stylist' do

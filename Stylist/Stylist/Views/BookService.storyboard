@@ -61,7 +61,7 @@
                                                                     </label>
                                                                 </subviews>
                                                             </view>
-                                                            <color key="backgroundColor" red="0.15686274509803921" green="0.56862745098039214" blue="0.58431372549019611" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <color key="backgroundColor" red="0.1569241187" green="0.5672338053" blue="0.58288388319999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <constraints>
                                                                 <constraint firstItem="9sq-AR-h16" firstAttribute="centerX" secondItem="HwU-oB-NjK" secondAttribute="centerX" id="8sK-MF-bDv"/>
                                                                 <constraint firstItem="HwU-oB-NjK" firstAttribute="centerX" secondItem="iYN-ip-acM" secondAttribute="centerX" id="EkE-R4-Gg3"/>
@@ -308,7 +308,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="avalibilityCollectionView" destination="vHE-2c-tFi" id="cZb-7V-Cy4"/>
-                        <outlet property="bookAppointmentButton" destination="NDQ-Ek-4VX" id="Zvr-aw-cQA"/>
                         <outlet property="orderSummaryCollectionView" destination="gs1-in-gJy" id="rMj-Jq-a0E"/>
                         <outlet property="priceCell" destination="UhW-Ve-Rhb" id="nec-uR-p6V"/>
                         <outlet property="servicesCollectionView" destination="gu7-ds-9Vh" id="w9b-yv-YxF"/>

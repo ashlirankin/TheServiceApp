@@ -10,7 +10,7 @@ import UIKit
 
 enum Profession: String, CaseIterable {
     case barber = "Barber"
-    case hairStylist = "Hair Stylist"
+    case hairdresser = "Hairdresser"
     case makeup = "Makeup Artist"
     
     static func fetchAllProfessions() -> [Profession] {
@@ -22,9 +22,9 @@ enum Profession: String, CaseIterable {
     }
 }
 enum Gender: String, CaseIterable {
-    case male = "male"
-    case female = "female"
-    case other = "other"
+    case male = "Male"
+    case female = "Female"
+    case other = "Other"
     
     static func fetchAllGenders() -> [Gender] {
         var genders = [Gender]()
@@ -34,8 +34,12 @@ enum Gender: String, CaseIterable {
         return genders
     }
 }
+enum PriceRange: String {
+    case low = "Low"
+    case high = "Hight"
+}
 
-// TODO: Collapsable Cell & Divide services by profession
+
 class FilterProvidersController: UITableViewController {
     
     @IBOutlet weak var professionCollectionView: UICollectionView!
@@ -74,17 +78,17 @@ class FilterProvidersController: UITableViewController {
     }
     
     private func setupAvailableNowButtonUI() {
-        availableNow ? availableNowButton.buttonSelectedUI() : availableNowButton.buttonDeselectedUI()
+        availableNow ? buttonSelectedUI(button: availableNowButton) : buttonDeselectedUI(button: availableNowButton)
     }
     private func setupGenderButtonsUI() {
         for gender in genderFilter {
             switch gender.key {
             case Gender.male.rawValue:
-                maleGenderButton.buttonSelectedUI()
+                buttonSelectedUI(button: maleGenderButton)
             case Gender.female.rawValue:
-                femaleGenderButton.buttonSelectedUI()
+                buttonSelectedUI(button: femaleGenderButton)
             case Gender.other.rawValue:
-                otherGenderButton.buttonSelectedUI()
+                buttonSelectedUI(button: otherGenderButton)
             default:
                 break
             }
@@ -112,8 +116,7 @@ class FilterProvidersController: UITableViewController {
             } else if let professionServices = professionServices {
                 self.allServices = professionServices.map { $0.services }
                         .flatMap{ $0 }
-                        .filter{ $0 != "Other" }
-                        .removingDuplicates()
+                        .filter{ $0 != "Other"}
             }
         }
     }
@@ -122,10 +125,10 @@ class FilterProvidersController: UITableViewController {
     @IBAction func availableNowButtonPressed(_ sender: RoundedTextButton) {
         if availableNow {
             availableNow = false
-            sender.buttonDeselectedUI()
+            buttonDeselectedUI(button: sender)
         } else {
             availableNow = true
-            sender.buttonSelectedUI()
+            buttonSelectedUI(button: sender)
         }
         print(availableNow)
     }
@@ -134,15 +137,25 @@ class FilterProvidersController: UITableViewController {
         let selectedGender = allGenders[sender.tag]
         if let _ = genderFilter[selectedGender.rawValue] {
             genderFilter[selectedGender.rawValue] = nil
-            sender.buttonDeselectedUI()
+            buttonDeselectedUI(button: sender)
         } else {
             genderFilter[selectedGender.rawValue] = selectedGender.rawValue
-            sender.buttonSelectedUI()
+            buttonSelectedUI(button: sender)
         }
         print(genderFilter)
     }
     
-
+    private func buttonSelectedUI(button: RoundedTextButton) {
+        button.backgroundColor = .darkGray
+        button.layer.shadowColor = UIColor.red.cgColor
+        button.setTitleColor(.white, for: .normal)
+    }
+    private func buttonDeselectedUI(button: RoundedTextButton) {
+        button.backgroundColor = .white
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.setTitleColor(.black, for: .normal)
+    }
+    
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
