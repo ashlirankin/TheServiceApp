@@ -90,19 +90,36 @@ final class DBService {
         }
     }
     
-    static func getProvider(providerId: String, completion: @escaping(Error?, ServiceSideUser?) -> Void) {
+    static func getProvider(consumer: StylistsUser, completion: @escaping(Error?, ServiceSideUser?) -> Void) {
         DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
-            .document(providerId)
-            .getDocument { (snapshot, error) in
-                if let error = error {
-                    completion(error, nil)
-                } else if let snapshot = snapshot {
-                    let provider = ServiceSideUser(dict: snapshot.data()!)
-                    completion(nil, provider)
-                }
-        }
+          .document(consumer.userId).addSnapshotListener({ (snapshot, error) in
+            if let error = error  {
+              completion(error, nil)
+            }else if let snapshot = snapshot {
+              guard snapshot.data() != nil else{
+                setupProviderCredentials(user: consumer)
+                return
+              }
+              guard let providerData = snapshot.data() else {return}
+              let provider = ServiceSideUser(dict:providerData )
+              completion(nil, provider)
+            }
+          })
+      
     }
+  static func setupProviderCredentials(user:StylistsUser){
+    let providerInfo:[String:Any] = [ServiceSideUserCollectionKeys.userId:user.userId,
+                        ServiceSideUserCollectionKeys.firstName: user.firstName ?? "no first name found",
+                        ServiceSideUserCollectionKeys.lastName:user.lastName ?? "no last name found",
+                        ServiceSideUserCollectionKeys.imageURL:user.imageURL ?? "no image url found"]
+DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).document(user.userId).setData(providerInfo, completion: { (error) in
+      if let error = error {
+        print("there was an error: \(error.localizedDescription)")
+      }
+      return
+    })
     
+  }
     static func postProviderRating(ratings: Ratings, completionHandler: @escaping (Error?) -> Void) {
         
         let rateId = firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
