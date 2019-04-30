@@ -7,10 +7,6 @@
 //
 
 import UIKit
-// Appointment Details
-// Taxes
-// Payment button
-
 class WalletTableViewController: UITableViewController {
 
   @IBOutlet weak var cardHolderName: UITextField!

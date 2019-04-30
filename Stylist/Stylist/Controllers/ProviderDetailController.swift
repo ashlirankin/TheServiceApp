@@ -103,9 +103,6 @@ class ProviderDetailController: UITableViewController {
             navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-filled-50 (1)")
             self.navigationItem.rightBarButtonItem?.isEnabled = false
         }
-        
-        
-        
     }
     
     @objc private func deleteFavorite() {
@@ -140,14 +137,16 @@ class ProviderDetailController: UITableViewController {
         providerDetailHeader.providerFullname.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
         providerDetailHeader.providerPhoto.kf.setImage(with: URL(string: provider.imageURL ?? ""), placeholder: #imageLiteral(resourceName: "iconfinder_icon-person-add_211872.png"))
         profileBio.providerBioText.text = provider.bio
-        switch provider.jobTitle {
-        case "Barber":
-            providerDetailHeader.ratingsValue.text = "4.5"
-        case "Hair Stylist":
-            providerDetailHeader.ratingsValue.text = "5.0"
-        default:
-            providerDetailHeader.ratingsValue.text = "3.5"
-        }
+//        switch provider.jobTitle {
+//        case "Barber":
+//            providerDetailHeader.ratingsValue.text = "4.5"
+//        case "Hair Stylist":
+//            providerDetailHeader.ratingsValue.text = "5.0"
+//        default:
+//            providerDetailHeader.ratingsValue.text = "3.5"
+//        }
+        
+   //     providerDetailHeader
         setupProviderPortfolio()
         setupReviews()
     }

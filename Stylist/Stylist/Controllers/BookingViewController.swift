@@ -14,8 +14,10 @@ class BookingViewController: UITableViewController {
   @IBOutlet weak var servicesCollectionView: UICollectionView!
   @IBOutlet weak var orderSummaryCollectionView: UICollectionView!
   @IBOutlet weak var priceCell: UITableViewCell!
-    let sectionsTitle = ["Services","Available times","Summary"]
-  lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 300))
+  @IBOutlet weak var bookAppointmentButton: UIButton!
+  
+  let sectionsTitle = ["Services","Available times","Summary"]
+  lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 250))
   private var providerServices = [ProviderServices](){
     didSet{
       servicesCollectionView.reloadData()
@@ -105,41 +107,40 @@ class BookingViewController: UITableViewController {
   
 
 
-  @IBAction func bookButtonPressed(_ sender: UIButton) {
-
-//    guard let provider  = provider ,
-//      let currentUser = authService.getCurrentUser(),
-//    !localServices.isEmpty else {return}
-//    localAppointments["providerId"] = provider.userId
-//    localAppointments["userId"] = currentUser.uid
-//    createBooking(collectionName: "bookedAppointments", providerId: provider.userId, information: localAppointments, userId: currentUser.uid)
-//   setupNotification()
-//    sender.isEnabled = false
-//    dismiss(animated: true, completion: nil)
-
-    guard let paymentController = UIStoryboard(name: "Payments", bundle: nil).instantiateInitialViewController() as? OrderSummaryAndPaymentViewController,
-    let provider = provider  else {fatalError()}
-    let navController = UINavigationController(rootViewController: paymentController)
-    paymentController.modalPresentationStyle = .currentContext
-    paymentController.modalTransitionStyle = .coverVertical
-    paymentController.providerId = provider.userId
-    present(navController, animated: true, completion: nil)
+  @IBAction func bookButtonPressed(_ sender: UIButton){
+    guard let provider  = provider ,
+      let currentUser = authService.getCurrentUser(),
+    !localServices.isEmpty else {return}
+    let documentId = DBService.generateDocumentId
+    localAppointments[AppointmentCollectionKeys.providerId] = provider.userId
+    localAppointments[AppointmentCollectionKeys.userId] = currentUser.uid
+    localAppointments[AppointmentCollectionKeys.status] = "pending"
+    localAppointments[AppointmentCollectionKeys.documentId] = documentId
+    
+    createBooking(collectionName: AppointmentCollectionKeys.bookedAppointments, providerId: provider.userId, information: localAppointments, userId: currentUser.uid, documentId: documentId)
+     setupNotification()
+    dismiss(animated: true, completion: nil)
+//
+//    guard let paymentController = UIStoryboard(name: "Payments", bundle: nil).instantiateInitialViewController() as? OrderSummaryAndPaymentViewController,
+//    let provider = provider  else {fatalError()}
+//    let navController = UINavigationController(rootViewController: paymentController)
+//    paymentController.modalPresentationStyle = .currentContext
+//    paymentController.modalTransitionStyle = .coverVertical
+//    paymentController.providerId = provider.userId
+//    present(navController, animated: true, completion: nil)
   }
   
   func getServices(serviceProviderId:String){
-
-DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).document(serviceProviderId).collection(ServicesCollectionKeys.subCollectionName).getDocuments { (snapshot, error) in
+    DBService.getProviderServices(providerId: serviceProviderId) { (error, services) in
       if let error = error {
-        print("there was an error line 46: \(error.localizedDescription)")
+         self.showAlert(title: "Error", message: "There was an error retrieving services:\(error.localizedDescription)", actionTitle:  "Ok")
       }
-      else if let snapshot = snapshot{
-        snapshot.documents.forEach{
-          let serviceData = ProviderServices(dict: $0.data())
-          self.providerServices.append(serviceData)
-        }
+      else if let services = services {
+        self.providerServices = services
       }
+     
     }
-  }
+}
   
   func getProviderAvalibility(providerId:String){
     DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).document(providerId).collection(AvalibilityCollectionKeys.avalibility).getDocuments { (snapshot, error) in
@@ -161,6 +162,7 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
     providerDetailHeader.bookingButton.isHidden = true
     providerDetailHeader.ratingsValue.isHidden = true
     providerDetailHeader.providerPhoto.kf.setImage(with: URL(string: provider?.imageURL ?? "no url found"),placeholder: #imageLiteral(resourceName: "placeholder.png"))
+    providerDetailHeader.providerFullname.text = "\(provider?.firstName ?? "no name found") \(provider?.lastName ?? "no name found")"
   }
   
   func setupCollectionViewDelegates(){
@@ -183,13 +185,13 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
     orderSummaryCollectionView.reloadData()
   }
   
-  private func createBooking(collectionName:String,providerId:String,information:[String:Any],userId:String){
-   
-    DBService.firestoreDB.collection(collectionName).addDocument(data: information) { (error) in
+  private func createBooking(collectionName:String,providerId:String,information:[String:Any],userId:String,documentId:String){
+   DBService.firestoreDB.collection(collectionName).document(documentId).setData(information) { (error) in
       if let error = error {
-        print("there was an error creating document:\(error.localizedDescription)")
+        print("error:\(error.localizedDescription)")
       }
     }
+
   }
   private func updateBookingInfo(collectionName:String,information:[String:Any],docId:String){
     DBService.firestoreDB.collection(collectionName).document(docId).updateData(information) { (error) in
@@ -239,6 +241,7 @@ extension BookingViewController:UICollectionViewDataSource{
    let avalibility = returnAvalibility(avalibility: providerAvalibility)
       cell.timeButton.text = avalibility?.avalibleHours[indexPath.row]
       cell.timeButton.tag = indexPath.row
+      cell.disableOnExpiration(avalibleTimes: avalibility?.avalibleHours[indexPath.row] ?? "")
       return cell
     case servicesCollectionView:
       let aService = providerServices[indexPath.row]
@@ -279,27 +282,21 @@ extension BookingViewController:UICollectionViewDataSource{
       localServices.append(service.service)
       localPrices.append(String(service.price))
       
-    case avalibilityCollectionView:
-      guard let cell = avalibilityCollectionView.cellForItem(at: indexPath) as? AvalibilityCollectionViewCell else {
-        print("no avalibility found")
-        return
-      }
-      let avalibleTime = returnAvalibility(avalibility: providerAvalibility)
-      cell.isUserInteractionEnabled = true
-    
-      guard let timeChosen = avalibleTime?.avalibleHours[indexPath.row] else {return}
-     
       if cell.isSelected{
         cell.backgroundColor = .lightGray
-        cell.isUserInteractionEnabled = false
         
       }else{
-        cell.isHidden = true
+        cell.isUserInteractionEnabled = false
+        
       }
-   localAppointments["appointmentTime"] = returnAppointmentTime(chosenTime: timeChosen)
+      
+    case avalibilityCollectionView:
+      
+      let avalibleTime = returnAvalibility(avalibility: providerAvalibility)
+      guard let timeChosen = avalibleTime?.avalibleHours[indexPath.row] else {return}
      
-      
-      
+     
+   localAppointments[AppointmentCollectionKeys.appointmentTime] = returnAppointmentTime(chosenTime: timeChosen)
     default:
     print("something")
     }

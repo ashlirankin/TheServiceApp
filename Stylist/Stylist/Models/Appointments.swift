@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum AppointmentStatus: String {
+enum AppointmentStatus: String, CaseIterable {
     case pending
     case inProgress
     case completed

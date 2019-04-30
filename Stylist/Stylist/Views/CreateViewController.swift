@@ -9,37 +9,32 @@
 import UIKit
 
 class CreateViewController: BaseViewController {
-
   @IBOutlet weak var emailTextfield: UITextField!
   @IBOutlet weak var passwordTextfield: UITextField!
-  @IBOutlet weak var accountTypeControl: UISegmentedControl!
-  
- 
   let authService = AuthService()
   
   override func viewDidLoad() {
         super.viewDidLoad()
-    authService.authserviceCreateNewAccountDelegate = self
-
-    }
-    
-  @IBAction func createProfilePressed(_ sender: UIButton) {
-    guard let email = emailTextfield.text,
-    let password =  passwordTextfield.text else {
-      showAlert(title: "Field Required", message: "you must enter your email and password", actionTitle: "Ok")
-      return
-    }
-   authService.createNewAccount(email: email, password: password)
-  
-   
+   authService.authserviceCreateNewAccountDelegate = self
+    emailTextfield.delegate = self
+    passwordTextfield.delegate = self
   }
-  
-  @IBAction func segmentedControlPressed(_ sender: UISegmentedControl) {
     
-  }
+    @IBAction func backToLoginButtonPressed(_ sender: UIButton) {
+        navigationController?.popViewController(animated: true)
+    }
+  
+    @IBAction func createProfilePressed(_ sender: UIButton) {
+        guard let email = emailTextfield.text,
+            let password =  passwordTextfield.text else {
+                showAlert(title: "Field Required", message: "you must enter your email and password", actionTitle: "Ok")
+                return
+        }
+        authService.createNewAccount(email: email, password: password)
+    }
   
   private func presentOnboardingScreen(){
-     let onbordingScreen = UIStoryboard(name: "Entrance", bundle: nil).instantiateViewController(withIdentifier: "OnboardingTableViewController")
+    let onbordingScreen = UIStoryboard(name: "Entrance", bundle: nil).instantiateViewController(withIdentifier: "OnboardingTableViewController") as! OnboardingTableViewController
     let navigationController = UINavigationController(rootViewController: onbordingScreen)
     
     navigationController.navigationBar.barTintColor = .clear
@@ -48,26 +43,25 @@ class CreateViewController: BaseViewController {
     navigationController.navigationBar.shadowImage = UIImage()
     self.present(navigationController, animated: true, completion: nil)
   }
-}
+  
+  }
+
 extension CreateViewController:UITextFieldDelegate{
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     return true
     
   }
-  
-  
 }
+
 extension CreateViewController:AuthServiceCreateNewAccountDelegate{
   func didRecieveErrorCreatingAccount(_ authservice: AuthService, error: Error) {
-    showAlert(title: "Error", message: "There was an error creating your account", actionTitle: "Ok")
+       showAlert(title: "Error", message: error.localizedDescription, actionTitle: "Ok")
   }
   
-  
-  func didCreateConsumerAcoount(_ authService: AuthService, consumer: StylistsUser) {
-  showAlert(title: "Account Sucessfully  Created", message: "you sucessfully created your account", actionTitle: "Ok")
-    presentOnboardingScreen()
-    
+  func didCreateConsumerAccount(_ authService: AuthService, consumer: StylistsUser) {
+    showAlert(title: "Account Successfully Created", message: "You sucessfully created your account", style: .alert) { (action) in
+      self.presentOnboardingScreen()
+    }
   }
-  
-  
 }
+

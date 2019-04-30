@@ -11,7 +11,6 @@ import UIKit
 class OrderSummaryCollectionViewCell: UICollectionViewCell {
   
   @IBOutlet weak var cancelButton: UIButton!
-  
   @IBOutlet weak var orderLabel: UILabel!
   @IBOutlet weak var priceLabel: UILabel!
 }

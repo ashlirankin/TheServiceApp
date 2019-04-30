@@ -32,8 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     } else{
         let storyboard = UIStoryboard(name: "Entrance", bundle: nil)
         let login = storyboard.instantiateViewController(withIdentifier: "LoginVC")
-        window?.rootViewController = login
-        
+        window?.rootViewController = UINavigationController(rootViewController: login)
     }
     window?.makeKeyAndVisible()
     return true

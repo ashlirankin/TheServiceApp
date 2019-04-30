@@ -9,6 +9,8 @@ import UIKit
 import Kingfisher
 import Cosmos
 import MessageUI
+import FirebaseFirestore
+import UserNotifications
 
 class ClientProfileController: UIViewController {
     @IBOutlet weak var profileImageView: CircularImageView!
@@ -18,17 +20,34 @@ class ClientProfileController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bookingsButton: CircularButton!
     @IBOutlet weak var historyButton: CircularButton!
+    var listener: ListenerRegistration!
+    var statusListener: ListenerRegistration!
+    let noBookingView = ProfileNoBooking(frame: CGRect(x: 0, y: 0, width: 394, height: 284))
     var isSwitched = false
-    let historyproviders = [ServiceSideUser(userId: "", firstName: "Joe", lastName: "Mack", email: "", joinedDate: "", gender: "Male", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "Barber", address: nil, city: "", state: "", lat: "", long: "", zip: "", favoriteId: nil, isAvailable: true),
-                            ServiceSideUser(userId: "", firstName: "lisa", lastName: "lane", email: "", joinedDate: "", gender: "female", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "Hair Stylist", address: nil, city: "", state: "", lat: "", long: "", zip: "", favoriteId: nil, isAvailable: false),
-                            ServiceSideUser(userId: "", firstName: "tina", lastName: "Martinez", email: "", joinedDate: "", gender: "female", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "MUA", address: nil, city: "", state: "", lat: "", long: "", zip: "", favoriteId: nil, isAvailable: true),
-                            ServiceSideUser(userId: "", firstName: "chris", lastName: "thompson", email: "", joinedDate: "", gender: "Male", isCertified: true, imageURL: nil, bio: nil, licenseNumber: nil, licenseExpiryDate: nil, type: "Barber", address: nil, city: "", state: "", lat: "", long: "", zip: "", favoriteId: nil, isAvailable: true)
-    ]
     let authService = AuthService()
+    var appointments = [Appointments]() {
+        didSet {
+            getUpcomingAppointments()
+            notifyClient()
+        }
+    }
+    var filterAppointments = [Appointments]() {
+        didSet {
+            fetchProviders()
+        }
+    }
+    var filterProviders = [ServiceSideUser]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     private var stylistUser: StylistsUser? {
         didSet {
             DispatchQueue.main.async {
                 self.updateUI()
+                self.getAllAppointments(id: self.stylistUser!.userId)
             }
         }
     }
@@ -36,16 +55,31 @@ class ClientProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = #colorLiteral(red: 0.2461647391, green: 0.3439296186, blue: 0.5816915631, alpha: 1)
-        authService.authserviceSignOutDelegate = self
         setupTableView()
-        updateUI()
+        getUpcomingAppointments()
+    }
+    
+    func notifyClient() {
+        for status in AppointmentStatus.allCases {
+             statusListener = DBService.firestoreDB.collection("bookedAppointments")
+            .whereField("status", isEqualTo: status.rawValue)
+                .addSnapshotListener({ (snapshot, error) in
+                    if let error = error {
+                        print(error)
+                    } else if snapshot != nil {
+                         self.setupNotification()
+                    }
+                })
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         fetchCurrentUser()
+              authService.authserviceSignOutDelegate = self
     }
     
+    // MARK: Initial Setup
     private func fetchCurrentUser() {
         guard let currentUser = AuthService().getCurrentUser() else {
             showAlert(title: "No User Login", message: nil, actionTitle: "Ok")
@@ -61,38 +95,11 @@ class ClientProfileController: UIViewController {
     }
     
     
-    @IBAction func toggleButtons(_ sender: CircularButton) {
-        if sender == bookingsButton {
-            print("bookings pressed")
-        } else  {
-            print("history pressed")
-        }
-        
-    }
-    
- 
-    @IBAction func changeUserType(_ sender: UIButton) {
-        isSwitched = !isSwitched
-        if isSwitched {
-            showProviderTab()
-        }
-    }
-    
-    private func showProviderTab() {
-                let storyboard = UIStoryboard(name: "ServiceProvider", bundle: nil)
-                let providertab = storyboard.instantiateViewController(withIdentifier: "ServiceTabBar")
-                providertab.modalTransitionStyle = .crossDissolve
-                providertab.modalPresentationStyle = .overFullScreen
-                self.present(providertab, animated: true)
-        }
-    
-    
     func getCardInforation(userId:String){
-   DBService.firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(userId).collection("wallet")
-    
+        DBService.firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(userId).collection("wallet")
+    }
 
-  }
-   
+
     private func updateUI() {
         guard let user = stylistUser else { return }
         if let imageUrl = user.imageURL {
@@ -103,8 +110,13 @@ class ClientProfileController: UIViewController {
         clientFullNameLabel.textColor = .white
         clientEmail.textColor = .white
         clientEmail.text = user.email
-        // TODO: Set rating here also (Incomplete)
         setStylistUserRating()
+    }
+    
+    private func setStylistUserRating() {
+        userRatingView.settings.updateOnTouch = false
+        userRatingView.settings.fillMode = .precise
+        userRatingView.rating = 5
     }
     
     private func setupTableView() {
@@ -115,15 +127,106 @@ class ClientProfileController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.layer.cornerRadius = 10
-        tableView.backgroundColor = #colorLiteral(red: 0.2462786138, green: 0.3436814547, blue: 0.5806058645, alpha: 1)
+        tableView.backgroundColor = #colorLiteral(red: 0.1619916558, green: 0.224360168, blue: 0.3768204153, alpha: 1)
         tableView.tableFooterView = UIView()
+        tableView.layer.cornerRadius = 10
+        
     }
     
+    private func getAllAppointments(id: String) {
+        DBService.getBookedAppointments(userId: id) { [weak self] (error, appointments) in
+            if let error = error {
+                self?.showAlert(title: "Error Fetching User Appointments", message: error.localizedDescription, actionTitle: "Ok")
+            } else if let appointments = appointments {
+                self?.appointments = appointments
+                if appointments.count < 1 {
+                  guard let backgroundView = self?.noBookingView else {return}
+                    self?.tableView.backgroundColor = .clear
+                  self?.tableView.backgroundView = backgroundView
+                }else{
+                  self?.tableView.backgroundView?.isHidden = true
+              }
+                
+            }
+        }
+    }
     
-    private func setStylistUserRating() {
-        userRatingView.settings.updateOnTouch = false
-        userRatingView.settings.fillMode = .precise
-        userRatingView.rating = 5
+    private func setupNotification() {
+        guard let newAppointment = appointments.last else {
+            return
+        }
+        let center = UNUserNotificationCenter.current()
+        let content = UNMutableNotificationContent()
+        content.title = "New Appointment"
+        content.subtitle = "\(newAppointment.appointmentTime)"
+        content.sound = UNNotificationSound.default
+        content.threadIdentifier = "local-notifcations temp"
+        let date = Date(timeIntervalSinceNow: 2)
+        let dateComponent = Calendar.current.dateComponents([.year, .month,.day,.hour, .minute, .second, .second, .nanosecond], from: date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: false)
+        let request = UNNotificationRequest.init(identifier: "content", content: content, trigger: trigger)
+        center.add(request) { (error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func fetchProviders() {
+        var filterProviders = [ServiceSideUser]()
+        for appointment in filterAppointments {
+            let providerId = appointment.providerId
+            DBService.getProvider(providerId: providerId) { (error, provider) in
+                if let error = error {
+                    self.showAlert(title: "Fetch Providers Error", message: error.localizedDescription, actionTitle: "Ok")
+                } else if let provider = provider {
+                    filterProviders.append(provider)
+                    if filterProviders.count == self.filterAppointments.count {
+                        self.filterProviders = filterProviders
+                    }
+                }
+            }
+        }
+    }
+    
+    // MARK: Actions
+    @IBAction func changeUserType(_ sender: UIButton) {
+        isSwitched = !isSwitched
+        if isSwitched {
+            showProviderTab()
+        }
+    }
+    private func showProviderTab() {
+        let storyboard = UIStoryboard(name: "ServiceProvider", bundle: nil)
+        let providertab = storyboard.instantiateViewController(withIdentifier: "ServiceTabBar")
+        providertab.modalTransitionStyle = .crossDissolve
+        providertab.modalPresentationStyle = .overFullScreen
+        dismiss(animated: true)
+        self.present(providertab, animated: true)
+    }
+    
+    @IBAction func toggleButtons(_ sender: CircularButton) {
+        if sender == bookingsButton {
+            getUpcomingAppointments()
+        } else  {
+            getPastAppointments()
+        }
+    }
+    private func getUpcomingAppointments() {
+        filterAppointments = appointments.filter { $0.status == "pending" || $0.status == "inProgress" }
+        if filterAppointments.count == 0 {
+            tableView.backgroundColor = .clear
+            noBookingView.noBookingLabel.text = "No current appointments yet."
+            tableView.backgroundView = noBookingView
+        }else{
+          tableView.backgroundView?.isHidden = true
+      }
+    }
+    private func getPastAppointments() {
+        filterAppointments = appointments.filter { $0.status == "canceled" || $0.status == "completed" }
+        tableView.backgroundColor = .clear
+        noBookingView.noBookingLabel.text = "No history appointments yet."
+        tableView.backgroundView = self.noBookingView
     }
     
     @IBAction func moreOptionsButtonPressed(_ sender: UIButton) {
@@ -174,7 +277,7 @@ class ClientProfileController: UIViewController {
         guard let loginViewController = UIStoryboard(name: "Entrance", bundle: nil).instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController else {return}
         loginViewController.modalPresentationStyle = .fullScreen
         loginViewController.modalTransitionStyle = .coverVertical
-        window?.rootViewController = loginViewController
+        window?.rootViewController = UINavigationController(rootViewController: loginViewController)
         window?.makeKeyAndVisible()
     }
 }
@@ -185,7 +288,7 @@ extension ClientProfileController:AuthServiceSignOutDelegate{
     }
     
     func didSignOut(_ authservice: AuthService) {
-        showAlert(title: "Sucess", message: "Sucessfully signed out", actionTitle: "OK")
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -204,6 +307,8 @@ extension ClientProfileController: MFMailComposeViewControllerDelegate {
             print("Saved")
         case .sent:
             self.showAlert(title: "Email Sent", message: nil, actionTitle: "Ok")
+        @unknown default:
+            fatalError()
         }
         controller.dismiss(animated: true)
     }
@@ -211,24 +316,18 @@ extension ClientProfileController: MFMailComposeViewControllerDelegate {
 
 extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return historyproviders.count
+        return filterProviders.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! UserProfileTableViewCell
-        let provider = historyproviders[indexPath.row]
-        cell.providerName.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
-        cell.providerService.text = provider.jobTitle
-        cell.providerService.textColor = .white
-        cell.backgroundColor = #colorLiteral(red: 0.2462786138, green: 0.3436814547, blue: 0.5806058645, alpha: 1)
-        cell.providerName.textColor = .white
-        cell.providerService.textColor = .white
+        let appointment = filterAppointments[indexPath.row]
+        let provider = filterProviders[indexPath.row]
+        cell.configuredCell(provider: provider, appointment: appointment)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
-    
-    
 }
