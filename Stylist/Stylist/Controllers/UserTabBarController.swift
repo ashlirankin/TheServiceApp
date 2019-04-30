@@ -11,6 +11,6 @@ import UIKit
 class UserTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
-selectedIndex = 1
+      selectedIndex = 1
     }
 }

@@ -112,7 +112,6 @@ class ServiceUpcomingTableViewController: UITableViewController {
         cell.AppointmentImage.kf.setImage(with: URL(string: stylistUser.imageURL ?? "no image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
       }
     }
-    
   }
   
   func configureAppointmentCell(appointment:Appointments,cell:AppointmentCell){
