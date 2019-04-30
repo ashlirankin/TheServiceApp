@@ -12,7 +12,7 @@ import UIKit
 class CircularButton: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews()
-        imageView?.contentMode = .scaleAspectFill
+        imageView?.contentMode = .scaleAspectFit
         layer.cornerRadius = bounds.width / 2.0
         layer.borderColor = UIColor.lightGray.cgColor
         layer.borderWidth = 0.5
@@ -52,20 +52,7 @@ class RoundedTextButton: UIButton {
         layer.shadowOpacity = 0.5
         layer.shadowOffset = CGSize(width: 0, height: 0)
     }
-    
-    func buttonSelectedUI() {
-        backgroundColor = .darkGray
-        layer.shadowColor = UIColor.red.cgColor
-        setTitleColor(.white, for: .normal)
-    }
-    
-    func buttonDeselectedUI() {
-        backgroundColor = .white
-        layer.shadowColor = UIColor.black.cgColor
-        setTitleColor(.black, for: .normal)
-    }
 }
-
 
 @IBDesignable
 class CircularImageView: UIImageView {

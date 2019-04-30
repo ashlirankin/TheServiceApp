@@ -20,6 +20,10 @@ class DiscoverViewController: UIViewController {
             }
         }
     }
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -43,7 +47,7 @@ class DiscoverViewController: UIViewController {
     }
     
     
-    private func setupTableView() {
+    func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
