@@ -94,12 +94,7 @@ class ClientProfileController: UIViewController {
         }
     }
     
-    
-    func getCardInforation(userId:String){
-        DBService.firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(userId).collection("wallet")
-    }
-
-
+  
     private func updateUI() {
         guard let user = stylistUser else { return }
         if let imageUrl = user.imageURL {
@@ -174,9 +169,9 @@ class ClientProfileController: UIViewController {
     
     private func fetchProviders() {
         var filterProviders = [ServiceSideUser]()
-        for appointment in filterAppointments {
-            let providerId = appointment.providerId
-            DBService.getProvider(providerId: providerId) { (error, provider) in
+      guard let stylistUser = stylistUser else {return}
+       for _ in filterAppointments {
+          DBService.getProvider(consumer: stylistUser) { (error, provider) in
                 if let error = error {
                     self.showAlert(title: "Fetch Providers Error", message: error.localizedDescription, actionTitle: "Ok")
                 } else if let provider = provider {
@@ -186,7 +181,7 @@ class ClientProfileController: UIViewController {
                     }
                 }
             }
-        }
+     }
     }
     
     // MARK: Actions
@@ -198,11 +193,10 @@ class ClientProfileController: UIViewController {
     }
     private func showProviderTab() {
         let storyboard = UIStoryboard(name: "ServiceProvider", bundle: nil)
-        let providertab = storyboard.instantiateViewController(withIdentifier: "ServiceTabBar")
-        providertab.modalTransitionStyle = .crossDissolve
-        providertab.modalPresentationStyle = .overFullScreen
-        dismiss(animated: true)
-        self.present(providertab, animated: true)
+      guard let providerTab = storyboard.instantiateViewController(withIdentifier: "ServiceTabBar") as? ServiceProviderTabBar else {return}
+      providerTab.modalTransitionStyle = .crossDissolve
+      providerTab.modalPresentationStyle = .overFullScreen
+      self.present(providerTab, animated: true)
     }
     
     @IBAction func toggleButtons(_ sender: CircularButton) {
@@ -328,6 +322,6 @@ extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 100
     }
 }
