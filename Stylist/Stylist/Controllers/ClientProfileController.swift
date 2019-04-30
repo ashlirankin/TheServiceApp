@@ -174,9 +174,9 @@ class ClientProfileController: UIViewController {
     
     private func fetchProviders() {
         var filterProviders = [ServiceSideUser]()
+      guard let stylistUser = stylistUser else {return}
         for appointment in filterAppointments {
-            let providerId = appointment.providerId
-            DBService.getProvider(providerId: providerId) { (error, provider) in
+          DBService.getProvider(consumer: stylistUser) { (error, provider) in
                 if let error = error {
                     self.showAlert(title: "Fetch Providers Error", message: error.localizedDescription, actionTitle: "Ok")
                 } else if let provider = provider {
@@ -198,11 +198,10 @@ class ClientProfileController: UIViewController {
     }
     private func showProviderTab() {
         let storyboard = UIStoryboard(name: "ServiceProvider", bundle: nil)
-        let providertab = storyboard.instantiateViewController(withIdentifier: "ServiceTabBar")
-        providertab.modalTransitionStyle = .crossDissolve
-        providertab.modalPresentationStyle = .overFullScreen
-        dismiss(animated: true)
-        self.present(providertab, animated: true)
+      guard let providerTab = storyboard.instantiateViewController(withIdentifier: "ServiceTabBar") as? ServiceProviderTabBar else {return}
+      providerTab.modalTransitionStyle = .crossDissolve
+      providerTab.modalPresentationStyle = .overFullScreen
+      self.present(providerTab, animated: true)
     }
     
     @IBAction func toggleButtons(_ sender: CircularButton) {
