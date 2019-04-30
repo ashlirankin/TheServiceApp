@@ -18,7 +18,7 @@ class UserProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var providerService: UILabel!
     
     public func configuredCell(provider: ServiceSideUser, appointment: Appointments) {
-        setupProviderRating(providerId: provider.userId)
+//        setupProviderRating(providerId: provider.userId)
         backgroundColor = #colorLiteral(red: 0.2462786138, green: 0.3436814547, blue: 0.5806058645, alpha: 1)
         providerName.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
         providerService.text = provider.jobTitle
@@ -29,20 +29,21 @@ class UserProfileTableViewCell: UITableViewCell {
         }
     }
     
-    private func setupProviderRating(providerId: String) {
-        providerRating.settings.updateOnTouch = false
-        providerRating.settings.fillMode = .half
-        DBService.getReviews(provider: providerId) { (error, ratings) in
-            if let error = error {
-                print("Get Ratings Error: \(error.localizedDescription)")
-                self.providerRating.rating = 0
-            } else if let ratings = ratings {
-                var sum: Double = 0
-                for rating in ratings {
-                    sum += rating.value
-                }
-                self.providerRating.rating = sum
-            }
-        }
-    }
+//    private func setupProviderRating(providerId: ServiceSideUser) {
+//        providerRating.settings.updateOnTouch = false
+//        providerRating.settings.fillMode = .half
+//        DBService.getReviews(provider: providerId) { (error, ratings) in
+//            if let error = error {
+//                print("Get Ratings Error: \(error.localizedDescription)")
+//                self.providerRating.rating = 0
+//            } else if let ratings = ratings {
+//                var sum: Double = 0
+//                for rating in ratings {
+//                    sum += rating.value
+//                }
+//                self.providerRating.rating = sum
+//            }
+//        }
+//    }
+//}
 }
