@@ -62,13 +62,13 @@ class ClientProfileController: UIViewController {
     
     func notifyClient() {
         for status in AppointmentStatus.allCases {
-             statusListener = DBService.firestoreDB.collection("bookedAppointments")
-            .whereField("status", isEqualTo: status.rawValue)
+            statusListener = DBService.firestoreDB.collection("bookedAppointments")
+                .whereField("status", isEqualTo: status.rawValue)
                 .addSnapshotListener({ (snapshot, error) in
                     if let error = error {
                         print(error)
                     } else if snapshot != nil {
-                         self.setupNotification()
+                        self.setupNotification()
                     }
                 })
         }
@@ -77,7 +77,7 @@ class ClientProfileController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         fetchCurrentUser()
-              authService.authserviceSignOutDelegate = self
+        authService.authserviceSignOutDelegate = self
     }
     
     // MARK: Initial Setup
@@ -96,11 +96,6 @@ class ClientProfileController: UIViewController {
     }
     
     
-    func getCardInforation(userId:String){
-        DBService.firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(userId).collection("wallet")
-    }
-
-
     private func updateUI() {
         guard let user = stylistUser else { return }
         if let imageUrl = user.imageURL {
@@ -141,12 +136,12 @@ class ClientProfileController: UIViewController {
             } else if let appointments = appointments {
                 self?.appointments = appointments
                 if appointments.count < 1 {
-                  guard let backgroundView = self?.noBookingView else {return}
+                    guard let backgroundView = self?.noBookingView else {return}
                     self?.tableView.backgroundColor = .clear
-                  self?.tableView.backgroundView = backgroundView
+                    self?.tableView.backgroundView = backgroundView
                 }else{
-                  self?.tableView.backgroundView?.isHidden = true
-              }
+                    self?.tableView.backgroundView?.isHidden = true
+                }
                 
             }
         }
@@ -162,7 +157,7 @@ class ClientProfileController: UIViewController {
         content.subtitle = "\(newAppointment.appointmentTime)"
         content.sound = UNNotificationSound.default
         content.threadIdentifier = "local-notifcations temp"
-        let date = Date(timeIntervalSinceNow: 2)
+        let date = Date(timeIntervalSinceNow: 10)
         let dateComponent = Calendar.current.dateComponents([.year, .month,.day,.hour, .minute, .second, .second, .nanosecond], from: date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: false)
         let request = UNNotificationRequest.init(identifier: "content", content: content, trigger: trigger)
@@ -175,9 +170,8 @@ class ClientProfileController: UIViewController {
     
     private func fetchProviders() {
         var filterProviders = [ServiceSideUser]()
-      guard let stylistUser = stylistUser else {return}
         for appointment in filterAppointments {
-          DBService.getProvider(consumer: stylistUser) { (error, provider) in
+            DBService.getProviderFromAppointment(appointment: appointment) { (error, provider) in
                 if let error = error {
                     self.showAlert(title: "Fetch Providers Error", message: error.localizedDescription, actionTitle: "Ok")
                 } else if let provider = provider {
@@ -199,11 +193,10 @@ class ClientProfileController: UIViewController {
     }
     private func showProviderTab() {
         let storyboard = UIStoryboard(name: "ServiceProvider", bundle: nil)
-      guard let providerTab = storyboard.instantiateViewController(withIdentifier: "ServiceTabBar") as? ServiceProviderTabBar else {return}
-      providerTab.modalTransitionStyle = .crossDissolve
-      providerTab.modalPresentationStyle = .overFullScreen
-     navigationController?.tabBarController?.viewControllers = nil
-      present(providerTab, animated: true)
+        guard let providerTab = storyboard.instantiateViewController(withIdentifier: "ServiceTabBar") as? ServiceProviderTabBar else {return}
+        providerTab.modalTransitionStyle = .crossDissolve
+        providerTab.modalPresentationStyle = .overFullScreen
+        self.present(providerTab, animated: true)
     }
     
     @IBAction func toggleButtons(_ sender: CircularButton) {
@@ -222,8 +215,8 @@ class ClientProfileController: UIViewController {
             noBookingView.noBookingLabel.text = "No current appointments yet."
             tableView.backgroundView = noBookingView
         }else{
-          tableView.backgroundView?.isHidden = true
-      }
+            tableView.backgroundView?.isHidden = true
+        }
     }
     private func getPastAppointments() {
         filterAppointments = appointments.filter { $0.status == "canceled" || $0.status == "completed" }
@@ -331,11 +324,12 @@ extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! UserProfileTableViewCell
         let appointment = filterAppointments[indexPath.row]
         let provider = filterProviders[indexPath.row]
+      print(provider)
         cell.configuredCell(provider: provider, appointment: appointment)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 110
     }
 }

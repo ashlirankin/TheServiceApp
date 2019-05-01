@@ -226,11 +226,7 @@ We arrived at Laguna Hotel yesterday, hotel is the wrong word more like Laguna N
     }
     
     
-    func testGetFairRide() {
-        
-        
-        
-    }
+  
   }
 
   

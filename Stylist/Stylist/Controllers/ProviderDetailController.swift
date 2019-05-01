@@ -36,7 +36,6 @@ class ProviderDetailController: UITableViewController {
     }
     lazy var profileBio = ProviderBio(frame: CGRect(x: 0, y: 0, width: view.bounds.width , height: 642.5))
     lazy var portfolioView = PortfolioView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 642.5))
-//    lazy var reviewsTable = ProviderDetailReviews(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 642.5))
     lazy var reviewCollectionView = ReviewCollectionView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 642.5))
     lazy var featureViews = [profileBio, portfolioView, reviewCollectionView]
     var reviews = [Reviews]() {
@@ -54,20 +53,24 @@ class ProviderDetailController: UITableViewController {
         setupScrollviewController(scrollView: scrollView, views: featureViews)
         loadSVFeatures()
         setupProvider()
-        switch isFavorite {
-        case true:
-            self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-filled-50 (1)")
-            self.navigationItem.rightBarButtonItem?.isEnabled = true
-        default:
-            self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-48")
-            self.navigationItem.rightBarButtonItem?.isEnabled = true
-        }
+      setFavoriteState()
+      
     }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.navigationItem.rightBarButtonItem?.isEnabled = true
     }
+  
+  func setFavoriteState(){
+    switch isFavorite {
+    case true:
+      self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-filled-50 (1)")
+      self.navigationItem.rightBarButtonItem?.isEnabled = true
+    default:
+      self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-48")
+      self.navigationItem.rightBarButtonItem?.isEnabled = true
+    }
+  }
     
     func checkForDuplicates(id: String, provider: ServiceSideUser, completionHandler: @escaping(Error?, Bool) -> Void) {
         guard let currentUser = authservice.getCurrentUser() else  {
