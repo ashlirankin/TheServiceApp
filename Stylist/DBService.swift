@@ -271,7 +271,10 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
                 if let error = error {
                     completionHandler(nil, error)
                 } else if let snapshot = snapshot {
-                    completionHandler(snapshot.documents.map{Reviews(dict: $0.data())},nil)
+                     let reviewData = snapshot.documents.map{
+                  Reviews(dict: $0.data())
+                  }
+                   completionHandler(reviewData,nil)
                 }
         }
     }
