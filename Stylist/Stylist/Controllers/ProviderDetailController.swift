@@ -147,7 +147,9 @@ class ProviderDetailController: UITableViewController {
         }
         setupProviderPortfolio()
         setupReviews()
+        
     }
+    
     
     private func setupProviderPortfolio() {
         portfolioView.portfolioCollectionView.delegate = self

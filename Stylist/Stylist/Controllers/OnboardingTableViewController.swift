@@ -36,13 +36,8 @@ class OnboardingTableViewController: UITableViewController {
         postButton = UIBarButtonItem(title: "Set Up", style: .plain, target: self, action: #selector(setupButtonPressed))
         self.navigationItem.rightBarButtonItem = postButton
     }
-    
-//    override func viewDidLayoutSubviews() {
-//        profileImage.layer.cornerRadius = profileImage.frame.width/2
-//        profileImage.layer.masksToBounds = true
-//        profileImage.layer.borderWidth = 4
-//    }
-    
+  
+  
     private func setDelegates(){
         lastNameTextfield.delegate = self
         firstNameTextfield.delegate = self

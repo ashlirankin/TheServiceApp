@@ -34,6 +34,7 @@ class ClientProfileController: UIViewController {
     var filterAppointments = [Appointments]() {
         didSet {
             fetchProviders()
+            self.tableView.reloadData()
         }
     }
     var filterProviders = [ServiceSideUser]() {
@@ -55,7 +56,6 @@ class ClientProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = #colorLiteral(red: 0.2461647391, green: 0.3439296186, blue: 0.5816915631, alpha: 1)
-        authService.authserviceSignOutDelegate = self
         setupTableView()
         getUpcomingAppointments()
     }
@@ -77,6 +77,7 @@ class ClientProfileController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         fetchCurrentUser()
+              authService.authserviceSignOutDelegate = self
     }
     
     // MARK: Initial Setup
@@ -140,9 +141,12 @@ class ClientProfileController: UIViewController {
             } else if let appointments = appointments {
                 self?.appointments = appointments
                 if appointments.count < 1 {
+                  guard let backgroundView = self?.noBookingView else {return}
                     self?.tableView.backgroundColor = .clear
-                    self?.tableView.backgroundView?.addSubview(self!.noBookingView)
-                }
+                  self?.tableView.backgroundView = backgroundView
+                }else{
+                  self?.tableView.backgroundView?.isHidden = true
+              }
                 
             }
         }
@@ -171,9 +175,9 @@ class ClientProfileController: UIViewController {
     
     private func fetchProviders() {
         var filterProviders = [ServiceSideUser]()
+      guard let stylistUser = stylistUser else {return}
         for appointment in filterAppointments {
-            let providerId = appointment.providerId
-            DBService.getProvider(providerId: providerId) { (error, provider) in
+          DBService.getProvider(consumer: stylistUser) { (error, provider) in
                 if let error = error {
                     self.showAlert(title: "Fetch Providers Error", message: error.localizedDescription, actionTitle: "Ok")
                 } else if let provider = provider {
@@ -195,33 +199,42 @@ class ClientProfileController: UIViewController {
     }
     private func showProviderTab() {
         let storyboard = UIStoryboard(name: "ServiceProvider", bundle: nil)
-        let providertab = storyboard.instantiateViewController(withIdentifier: "ServiceTabBar")
-        providertab.modalTransitionStyle = .crossDissolve
-        providertab.modalPresentationStyle = .overFullScreen
-        dismiss(animated: true)
-        self.present(providertab, animated: true)
+      guard let providerTab = storyboard.instantiateViewController(withIdentifier: "ServiceTabBar") as? ServiceProviderTabBar else {return}
+      providerTab.modalTransitionStyle = .crossDissolve
+      providerTab.modalPresentationStyle = .overFullScreen
+     navigationController?.tabBarController?.viewControllers = nil
+      present(providerTab, animated: true)
     }
     
     @IBAction func toggleButtons(_ sender: CircularButton) {
         if sender == bookingsButton {
             getUpcomingAppointments()
-        } else  {
+//            self.tableView.reloadData()
+        } else if sender == historyButton  {
             getPastAppointments()
+//            self.tableView.reloadData()
         }
     }
     private func getUpcomingAppointments() {
         filterAppointments = appointments.filter { $0.status == "pending" || $0.status == "inProgress" }
         if filterAppointments.count == 0 {
-            self.tableView.backgroundColor = .clear
-            self.noBookingView.noBookingLabel.text = "No current appointments yet."
-            self.tableView.backgroundView = self.noBookingView
-        }
+            tableView.backgroundColor = .clear
+            noBookingView.noBookingLabel.text = "No current appointments yet."
+            tableView.backgroundView = noBookingView
+        }else{
+          tableView.backgroundView?.isHidden = true
+      }
     }
     private func getPastAppointments() {
         filterAppointments = appointments.filter { $0.status == "canceled" || $0.status == "completed" }
-        self.tableView.backgroundColor = .clear
-        self.noBookingView.noBookingLabel.text = "No history appointments yet."
-        self.tableView.backgroundView = self.noBookingView
+        if filterAppointments.count == 0 {
+            tableView.backgroundColor = .clear
+            noBookingView.noBookingLabel.text = "No history appointments yet."
+            tableView.backgroundView = noBookingView
+        } else  {
+            tableView.backgroundView?.isHidden = true
+        }
+       
     }
     
     @IBAction func moreOptionsButtonPressed(_ sender: UIButton) {

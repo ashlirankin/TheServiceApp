@@ -16,6 +16,7 @@ class ServiceDetailViewController: UIViewController {
     var stylistUser: StylistsUser!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userRating: CosmosView!
+    @IBOutlet weak var appointmentServices: UILabel!
     @IBOutlet weak var userFullname: UILabel!
     @IBOutlet weak var appointmentStatus: UILabel!
     @IBOutlet weak var userDistance: UILabel!
@@ -29,7 +30,7 @@ class ServiceDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         getStylistUser()
+        getStylistUser()
         updateDetailUI()
         
     }
@@ -39,13 +40,16 @@ class ServiceDetailViewController: UIViewController {
             if let error = error {
                 print(error)
             } else if let stylistUser = stylistUser {
-               self.userRating.rating = 5
+                self.userRating.rating = 5
                 self.userFullname.text = stylistUser.fullName
                 self.appointmentStatus.text = self.appointment.status
                 self.userDistance.text = "0.2"
                 self.userAddress.text = stylistUser.address ?? "no address"
                 self.AppointmentCreated.text = self.appointment.appointmentTime
                 self.userImage.kf.setImage(with: URL(string: stylistUser.imageURL ?? "no image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
+                for service in self.appointment.services {
+                    self.appointmentServices.text = service
+                }
                 
             }
         }
@@ -55,11 +59,13 @@ class ServiceDetailViewController: UIViewController {
     private func  updateDetailUI() {
         switch appointment.status {
         case "inProgress":
+            appointmentStatus.textColor = .green
             confirmButton.backgroundColor = .gray
             confirmButton.setTitle("confirmed", for: .normal)
             confirmButton.isEnabled = false
             completeButton.isHidden = false
         case "canceled":
+            appointmentStatus.textColor = .red
             cancelButton.backgroundColor = .gray
             cancelButton.isEnabled = false
             cancelButton.setTitle("canceled", for: .normal)
@@ -67,8 +73,11 @@ class ServiceDetailViewController: UIViewController {
             confirmButton.isEnabled = false
             completeButton.isHidden = true
         case "completed":
+            appointmentStatus.textColor = .gray
             cancelButton.isEnabled = false
+            cancelButton.backgroundColor = .gray
             confirmButton.isEnabled = false
+            confirmButton.backgroundColor = .gray
             completeButton.setTitle("completed", for: .normal)
             completeButton.backgroundColor = .gray
             completeButton.isHidden = false
@@ -80,13 +89,13 @@ class ServiceDetailViewController: UIViewController {
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
-         dismiss(animated: true)
+        dismiss(animated: true)
     }
     
     
     @IBAction func confirmBookingPressed(_ sender: UIButton) {
-            DBService.updateAppointment(appointmentID: appointment.documentId, status: AppointmentStatus.inProgress.rawValue)
-          dismiss(animated: true)
+        DBService.updateAppointment(appointmentID: appointment.documentId, status: AppointmentStatus.inProgress.rawValue)
+        dismiss(animated: true)
         updateDetailUI()
     }
     
@@ -100,8 +109,6 @@ class ServiceDetailViewController: UIViewController {
     @IBAction func completeAppointment(_ sender: UIButton) {
         DBService.updateAppointment(appointmentID: appointment.documentId, status: AppointmentStatus.completed.rawValue)
         updateDetailUI()
-        
-        
     }
     
     

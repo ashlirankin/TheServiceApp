@@ -12,20 +12,26 @@ import Firebase
 class ServiceProfileViewController: UIViewController {
     @IBOutlet weak var providerImage: CircularImageView!
     @IBOutlet weak var providerName: UILabel!
+  var stylistUser: StylistsUser?{
+    didSet{
+      updateUI()
+    }
+  }
+  
     var isSwitched = true
     let authservice = AuthService()
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUI()
+      getUser()
 
     }
     
     
     private func  updateUI() {
-        guard let currentUser = authservice.getCurrentUser() else  {
+        guard let currentUser = stylistUser else  {
             return
         }
-        DBService.getProvider(providerId: currentUser.uid) { (error, provider) in
+      DBService.getProvider(consumer:currentUser) { (error, provider) in
             if let error = error {
                 print(error)
             } else if let provider = provider {
@@ -34,7 +40,18 @@ class ServiceProfileViewController: UIViewController {
             }
         }
     }
-    
+  
+  func getUser(){
+    guard let currentUser = authservice.getCurrentUser() else {return}
+    DBService.getDatabaseUser(userID: currentUser.uid) { [weak self] (error, user) in
+      if let error = error {
+        self?.showAlert(title: "Error", message: "There was an error getting the user:\(error.localizedDescription) ", actionTitle: "Try Aagain")
+        
+      } else if let user = user {
+        self?.stylistUser = user
+      }
+    }
+  }
     
     @IBAction func switchprofileButton(_ sender: UIButton) {
         isSwitched = !isSwitched

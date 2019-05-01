@@ -308,6 +308,7 @@
                     </view>
                     <connections>
                         <outlet property="AppointmentCreated" destination="pzK-Ni-2Dx" id="yJb-Hf-RTq"/>
+                        <outlet property="appointmentServices" destination="bAK-d1-YcM" id="703-Em-OxB"/>
                         <outlet property="appointmentStatus" destination="FxH-vN-6mU" id="NUW-oq-YQN"/>
                         <outlet property="cancelButton" destination="1k6-SG-CDa" id="Um6-J6-DkE"/>
                         <outlet property="completeButton" destination="Pta-aB-iBL" id="yST-w0-ZHl"/>
