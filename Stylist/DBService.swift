@@ -261,9 +261,7 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
         }
     }
     
-    // MARKS: Provider Services
 
-    
     // MARKS: Provider Services
     static func getReviews(provider: ServiceSideUser, completionHandler: @escaping([Reviews]?, Error?) -> Void) {
         DBService.firestoreDB.collection("serviceProvider")
@@ -278,18 +276,6 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
         }
     }
     
-    static func getRatings(providerId: String, completion: @escaping(Error?, [Ratings]?) -> Void) {
-        DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
-            .document(providerId)
-            .collection(RatingsCollectionKeys.ratings)
-            .getDocuments { (snapshot, error) in
-                if let error = error {
-                    completion(error, nil)
-                } else if let snapshot = snapshot {
-                    completion(nil, snapshot.documents.map{ Ratings(dict: $0.data()) })
-                }
-        }
-    }
     
   static func getBookedAppointments(userId: String, completion: @escaping(Error?, [Appointments]?) -> Void) {
         DBService.firestoreDB.collection(AppointmentCollectionKeys.bookedAppointments)
