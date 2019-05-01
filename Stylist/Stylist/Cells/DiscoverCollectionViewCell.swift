@@ -17,18 +17,16 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var goldStar: UIImageView!
     
     public func configureCell(provider: ServiceSideUser, favorites: [ServiceSideUser]) {
+        setRating(provider: provider)
         providerFullname.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
         providerJobTitle.text = provider.jobTitle
         collectionViewImage.kf.setImage(with: URL(string: provider.imageURL ?? ""), placeholder:#imageLiteral(resourceName: "placeholder.png") )
         switch provider.jobTitle {
         case "Barber":
-            providerRating.text = "4.5 / 5"
             providerDistance.text = "2.9 Mi."
         case "Hair Stylist":
-            providerRating.text = "5.0 / 5"
             providerDistance.text = "5.0 Mi."
         default:
-            providerRating.text = "3.5 / 5"
             providerDistance.text = "3.25 Mi."
         }
         for favorite in favorites {
@@ -37,6 +35,23 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
                 break
             } else {
                 goldStar.isHidden = true
+            }
+        }
+    }
+    private func setRating(provider: ServiceSideUser){
+        DBService.getReviews(provider: provider) { (reviews, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let reviews = reviews {
+                let allRatingValues =   reviews.map{$0.value}
+                guard !allRatingValues.isEmpty else {
+                    self.providerRating.text = "No Ratings"
+                    return
+                }
+                let total = allRatingValues.reduce(0, +)
+                let avg = Int(total) / allRatingValues.count
+                print(avg)
+                self.providerRating.text = "\(avg)⭐️🍚"
             }
         }
     }
