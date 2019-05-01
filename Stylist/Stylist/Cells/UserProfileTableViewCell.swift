@@ -34,6 +34,7 @@ class UserProfileTableViewCell: UITableViewCell {
     private func setupProviderRating(provider: ServiceSideUser) {
         providerRating.settings.updateOnTouch = false
         providerRating.settings.fillMode = .half
+
         DBService.getReviews(provider: provider) { (reviews, error) in
             if let error = error {
                 print("Get Ratings Error: \(error.localizedDescription)")
