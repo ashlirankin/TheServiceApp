@@ -149,15 +149,15 @@ class ProviderDetailController: UITableViewController {
                 
                 self.allRatingValues = ratingValues
                 guard !self.allRatingValues.isEmpty else {
-                    self.providerDetailHeader.ratingsValue.text = "No Ratings"
-                    self.providerDetailHeader.ratingsstars.rating = 0.00
+                    self.providerDetailHeader.ratingsValue.text = "5.0"
+                    self.providerDetailHeader.ratingsstars.rating = 5.0
                     return
                 }
                 let total = self.allRatingValues.reduce(0, +)
                 let avg = Int(total) / self.allRatingValues.count
                 self.providerDetailHeader.ratingsValue.text = "\(avg)"
                 self.providerDetailHeader.ratingsstars.rating = Double(avg)
-                print(avg)
+            
             }
         }
         setupProviderPortfolio()
