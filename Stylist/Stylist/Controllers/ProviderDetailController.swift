@@ -24,6 +24,7 @@ class ProviderDetailController: UITableViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 300))
     var provider: ServiceSideUser!
+    var allRatingValues = [Double]()
     let sectionInset = UIEdgeInsets(top: -200.0,
                                     left: 20.0,
                                     bottom: 400.0,
@@ -41,7 +42,7 @@ class ProviderDetailController: UITableViewController {
     var reviews = [Reviews]() {
         didSet {
             DispatchQueue.main.async {
-              self.reviewCollectionView.ReviewCV.reloadData()
+                self.reviewCollectionView.ReviewCV.reloadData()
             }
         }
     }
@@ -53,24 +54,24 @@ class ProviderDetailController: UITableViewController {
         setupScrollviewController(scrollView: scrollView, views: featureViews)
         loadSVFeatures()
         setupProvider()
-      setFavoriteState()
-      
+        setFavoriteState()
+        
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.navigationItem.rightBarButtonItem?.isEnabled = true
     }
-  
-  func setFavoriteState(){
-    switch isFavorite {
-    case true:
-      self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-filled-50 (1)")
-      self.navigationItem.rightBarButtonItem?.isEnabled = true
-    default:
-      self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-48")
-      self.navigationItem.rightBarButtonItem?.isEnabled = true
+    
+    func setFavoriteState(){
+        switch isFavorite {
+        case true:
+            self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-filled-50 (1)")
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+        default:
+            self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-48")
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+        }
     }
-  }
     
     func checkForDuplicates(id: String, provider: ServiceSideUser, completionHandler: @escaping(Error?, Bool) -> Void) {
         guard let currentUser = authservice.getCurrentUser() else  {
@@ -140,13 +141,24 @@ class ProviderDetailController: UITableViewController {
         providerDetailHeader.providerFullname.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
         providerDetailHeader.providerPhoto.kf.setImage(with: URL(string: provider.imageURL ?? ""), placeholder: #imageLiteral(resourceName: "iconfinder_icon-person-add_211872.png"))
         profileBio.providerBioText.text = provider.bio
-        switch provider.jobTitle {
-        case "Barber":
-            providerDetailHeader.ratingsValue.text = "4.5"
-        case "Hair Stylist":
-            providerDetailHeader.ratingsValue.text = "5.0"
-        default:
-            providerDetailHeader.ratingsValue.text = "3.5"
+        DBService.getReviews(provider: provider) { (reviews, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let reviews = reviews {
+                let ratingValues =   reviews.map{$0.value}
+                
+                self.allRatingValues = ratingValues
+                guard !self.allRatingValues.isEmpty else {
+                    self.providerDetailHeader.ratingsValue.text = "No Ratings"
+                    self.providerDetailHeader.ratingsstars.rating = 0.00
+                    return
+                }
+                let total = self.allRatingValues.reduce(0, +)
+                let avg = Int(total) / self.allRatingValues.count
+                self.providerDetailHeader.ratingsValue.text = "\(avg)"
+                self.providerDetailHeader.ratingsstars.rating = Double(avg)
+                print(avg)
+            }
         }
         setupProviderPortfolio()
         setupReviews()
