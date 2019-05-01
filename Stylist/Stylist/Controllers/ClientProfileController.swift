@@ -34,7 +34,6 @@ class ClientProfileController: UIViewController {
     var filterAppointments = [Appointments]() {
         didSet {
             fetchProviders()
-            self.tableView.reloadData()
         }
     }
     var filterProviders = [ServiceSideUser]() {
@@ -57,7 +56,7 @@ class ClientProfileController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = #colorLiteral(red: 0.2461647391, green: 0.3439296186, blue: 0.5816915631, alpha: 1)
         setupTableView()
-        getUpcomingAppointments()
+      getUpcomingAppointments()
     }
     
     func notifyClient() {
@@ -202,10 +201,8 @@ class ClientProfileController: UIViewController {
     @IBAction func toggleButtons(_ sender: CircularButton) {
         if sender == bookingsButton {
             getUpcomingAppointments()
-//            self.tableView.reloadData()
-        } else if sender == historyButton  {
+        } else  {
             getPastAppointments()
-//            self.tableView.reloadData()
         }
     }
     private func getUpcomingAppointments() {
@@ -220,14 +217,15 @@ class ClientProfileController: UIViewController {
     }
     private func getPastAppointments() {
         filterAppointments = appointments.filter { $0.status == "canceled" || $0.status == "completed" }
-        if filterAppointments.count == 0 {
+        if filterAppointments.count < 1 {
+            tableView.reloadData()
             tableView.backgroundColor = .clear
             noBookingView.noBookingLabel.text = "No history appointments yet."
+            tableView.backgroundView?.isHidden = false
             tableView.backgroundView = noBookingView
         } else  {
             tableView.backgroundView?.isHidden = true
         }
-       
     }
     
     @IBAction func moreOptionsButtonPressed(_ sender: UIButton) {
@@ -317,7 +315,7 @@ extension ClientProfileController: MFMailComposeViewControllerDelegate {
 
 extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filterProviders.count
+        return filterAppointments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -108,6 +108,7 @@ class ServiceDetailViewController: UIViewController {
     
     @IBAction func completeAppointment(_ sender: UIButton) {
         DBService.updateAppointment(appointmentID: appointment.documentId, status: AppointmentStatus.completed.rawValue)
+        dismiss(animated: true)
         updateDetailUI()
     }
     
