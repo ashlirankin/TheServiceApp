@@ -43,7 +43,11 @@ class BookingViewController: UITableViewController {
     }
   }
 
-  lazy var price = servicesArray.map{$0.price}.reduce(0, +)
+   var price:Int {
+    get {
+       return servicesArray.map{$0.price}.reduce(0, +)
+    }
+  }
   let authService = AuthService()
   
  lazy var localAppointments = [String:Any]()
@@ -56,7 +60,6 @@ class BookingViewController: UITableViewController {
   
   var localPrices = [String](){
     didSet{
-      
       localAppointments["prices"] = localPrices
     }
   }
@@ -181,7 +184,14 @@ class BookingViewController: UITableViewController {
   }
   
   @IBAction func cancelButtonPressed(_ sender: UIButton) {
+    var reducedPrice: Int {
+      get {
+        return price - servicesArray[sender.tag].price
+      }
+    }
+    priceCell.detailTextLabel?.text = "$\(reducedPrice)"
     servicesArray.remove(at: sender.tag)
+    
     orderSummaryCollectionView.reloadData()
   }
   
