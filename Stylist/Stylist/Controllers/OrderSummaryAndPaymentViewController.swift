@@ -18,6 +18,9 @@ class OrderSummaryAndPaymentViewController: UITableViewController {
   @IBOutlet weak var cardNumberCell: UITableViewCell!
   @IBOutlet weak var priceCell: UITableViewCell!
   
+  @IBOutlet var tipButtons: [UIButton]!
+  
+  @IBOutlet weak var enterTipTextfield: UITextField!
   
   var userRating = Double()
   let ratingSettings = CosmosSettings()
@@ -53,7 +56,11 @@ class OrderSummaryAndPaymentViewController: UITableViewController {
       getCardInformation()
       setUpNavBar()
     }
-
+  @IBAction func tipButtonPressed(_ sender: UIButton) {
+    
+    print(sender.currentTitle)
+  }
+  
   func setUpNavBar(){
     
     navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(backButtonPressed))
