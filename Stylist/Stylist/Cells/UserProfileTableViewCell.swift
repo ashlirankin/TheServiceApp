@@ -21,7 +21,7 @@ class UserProfileTableViewCell: UITableViewCell {
     public func configuredCell(provider: ServiceSideUser, appointment: Appointments) {
         setAppointmentTime(appointment: appointment)
         setAppointmentStatusUI(appointment: appointment)
-        setupProviderRating(providerId: provider.userId)
+        setupProviderRating(provider: provider)
         backgroundColor = #colorLiteral(red: 0.2462786138, green: 0.3436814547, blue: 0.5806058645, alpha: 1)
         providerName.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
         providerService.text = provider.jobTitle
@@ -31,20 +31,19 @@ class UserProfileTableViewCell: UITableViewCell {
         }
     }
     
-    private func setupProviderRating(providerId: String) {
+    private func setupProviderRating(provider: ServiceSideUser) {
         providerRating.settings.updateOnTouch = false
         providerRating.settings.fillMode = .half
-        DBService.getRatings(providerId: providerId) { (error, ratings) in
+
+        DBService.getReviews(provider: provider) { (reviews, error) in
             if let error = error {
                 print("Get Ratings Error: \(error.localizedDescription)")
                 self.providerRating.rating = 0
-            } else if let ratings = ratings {
-                var sum: Double = 0
-                if ratings.count > 0 {
-                    for rating in ratings {
-                        sum += rating.value
-                    }
-                    self.providerRating.rating = sum / Double(ratings.count)
+            } else if let reviews = reviews {
+                let allRatings = reviews.map{ $0.value }
+                if allRatings.count > 0 {
+                    let averageRating = allRatings.reduce(0, +) / Double(allRatings.count)
+                    self.providerRating.rating = averageRating
                 } else {
                     self.providerRating.rating = 0
                 }
@@ -59,22 +58,30 @@ class UserProfileTableViewCell: UITableViewCell {
         case "inProgress":
             appointmentStatusButton.setImage(UIImage(named: "green_circle"), for: .normal)
         case "completed":
-            appointmentStatusButton.setImage(UIImage(named: "red_circle"), for: .normal)
+            appointmentStatusButton.setImage(UIImage(named: "check_circle"), for: .normal)
         case "canceled":
-            appointmentStatusButton.setImage(UIImage(named: "red_circle"), for: .normal)
+            appointmentStatusButton.setImage(UIImage(named: "cancel_circle"), for: .normal)
         default:
             appointmentStatusButton.isHidden = true
         }
     }
     
     private func setAppointmentTime(appointment: Appointments) {
-        let dateFormatter = DateFormatter()
-        let date = dateFormatter.date(from: appointment.appointmentTime)
-        dateFormatter.dateFormat = "h:mm a"
-        if let date = date {
-            dateAndTimeLabel.text = dateFormatter.string(from: date)
-        } else {
+        let convertToDateFormatter = DateFormatter()
+        convertToDateFormatter.dateFormat = "EEEE, MMM d, yyyy h:mm a"
+        let date = convertToDateFormatter.date(from: appointment.appointmentTime)
+        guard let safeDate = date else {
             dateAndTimeLabel.text = "No Date"
+            return
+        }
+        if appointment.status == "completed" || appointment.status == "canceled" {
+            let pastDateFormatter = DateFormatter()
+            pastDateFormatter.dateFormat = "MMM d, yyyy"
+            dateAndTimeLabel.text = pastDateFormatter.string(from: safeDate)
+        } else {
+            let upcomingDateFormatter = DateFormatter()
+            upcomingDateFormatter.dateFormat = "h:mm a"
+            dateAndTimeLabel.text = upcomingDateFormatter.string(from: safeDate)
         }
     }
 }
