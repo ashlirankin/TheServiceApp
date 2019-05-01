@@ -176,10 +176,6 @@ class BookingViewController: UITableViewController {
     orderSummaryCollectionView.delegate = self
     orderSummaryCollectionView.dataSource = self
   }
-  
-  func returnCellToNormal(cell:ServicesCell){
-    
-  }
    
   @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
     dismiss(animated: true)
@@ -189,6 +185,7 @@ class BookingViewController: UITableViewController {
     var reducedPrice: Int {
       get {
         return price - servicesArray[sender.tag].price
+        
       }
     }
     priceCell.detailTextLabel?.text = "$\(reducedPrice)"
