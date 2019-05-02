@@ -111,28 +111,28 @@ class BookingViewController: UITableViewController {
 
 
   @IBAction func bookButtonPressed(_ sender: UIButton){
-//    guard let provider  = provider ,
-//      let currentUser = authService.getCurrentUser(),
-//    !localServices.isEmpty else {return}
-//    let documentId = DBService.generateDocumentId
-//    localAppointments[AppointmentCollectionKeys.providerId] = provider.userId
-//    localAppointments[AppointmentCollectionKeys.userId] = currentUser.uid
-//    localAppointments[AppointmentCollectionKeys.status] = "pending"
-//    localAppointments[AppointmentCollectionKeys.documentId] = documentId
-//
-//    createBooking(collectionName: AppointmentCollectionKeys.bookedAppointments, providerId: provider.userId, information: localAppointments, userId: currentUser.uid, documentId: documentId)
-//     setupNotification()
-//    dismiss(animated: true, completion: nil)
+    guard let provider  = provider ,
+      let currentUser = authService.getCurrentUser(),
+    !localServices.isEmpty else {return}
+    let documentId = DBService.generateDocumentId
+    localAppointments[AppointmentCollectionKeys.providerId] = provider.userId
+    localAppointments[AppointmentCollectionKeys.userId] = currentUser.uid
+    localAppointments[AppointmentCollectionKeys.status] = "pending"
+    localAppointments[AppointmentCollectionKeys.documentId] = documentId
 
-    guard let paymentController = UIStoryboard(name: "Payments", bundle: nil).instantiateInitialViewController() as? OrderSummaryAndPaymentViewController,
-    let provider = provider  else {fatalError()}
-    let navController = UINavigationController(rootViewController: paymentController)
-    paymentController.modalPresentationStyle = .currentContext
-    paymentController.modalTransitionStyle = .coverVertical
-    paymentController.providerId = provider.userId
-    present(navController, animated: true, completion: nil)
+    createBooking(collectionName: AppointmentCollectionKeys.bookedAppointments, providerId: provider.userId, information: localAppointments, userId: currentUser.uid, documentId: documentId)
+     setupNotification()
+    dismiss(animated: true, completion: nil)
+
+//    guard let paymentController = UIStoryboard(name: "Payments", bundle: nil).instantiateInitialViewController() as? OrderSummaryAndPaymentViewController,
+//    let provider = provider  else {fatalError()}
+//    let navController = UINavigationController(rootViewController: paymentController)
+//    paymentController.modalPresentationStyle = .currentContext
+//    paymentController.modalTransitionStyle = .coverVertical
+//    paymentController.providerId = provider.userId
+//    present(navController, animated: true, completion: nil)
   }
-  
+
   func getServices(serviceProviderId:String){
     DBService.getProviderServices(providerId: serviceProviderId) { (error, services) in
       if let error = error {
@@ -141,7 +141,7 @@ class BookingViewController: UITableViewController {
       else if let services = services {
         self.providerServices = services
       }
-     
+
     }
 }
   
