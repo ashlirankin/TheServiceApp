@@ -31,6 +31,7 @@ class ServiceDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getStylistUser()
+        todaysDate.isHidden = true
     }
     
     private func getStylistUser() {
@@ -38,7 +39,7 @@ class ServiceDetailViewController: UIViewController {
             setupProviderRating(provider: provider)
             userFullname.text = provider.fullName
             appointmentStatus.text = appointment.status
-            userDistance.text = "0.2"
+            userDistance.text = "0.2 Miles Away"
             userAddress.text =  "85B Allen St, New York, NY 10002"
             AppointmentCreated.text = appointment.appointmentTime
             userImage.kf.setImage(with: URL(string: provider.imageURL ?? "No Image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
@@ -56,7 +57,7 @@ class ServiceDetailViewController: UIViewController {
                     self.userRating.rating = 5
                     self.userFullname.text = stylistUser.fullName
                     self.appointmentStatus.text = self.appointment.status
-                    self.userDistance.text = "0.2"
+                    self.userDistance.text = "0.2 Miles Away"
                     self.userAddress.text = stylistUser.address ?? "85B Allen St, New York, NY 10002"
                     self.AppointmentCreated.text = self.appointment.appointmentTime
                     self.userImage.kf.setImage(with: URL(string: stylistUser.imageURL ?? "No Image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))

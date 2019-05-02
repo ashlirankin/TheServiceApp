@@ -12,6 +12,11 @@ import MessageUI
 import FirebaseFirestore
 import UserNotifications
 
+private enum tableviewStatus: String {
+    case upcoming = "upcoming"
+    case history = "history"
+}
+
 class ClientProfileController: UIViewController {
     @IBOutlet weak var profileImageView: CircularImageView!
     @IBOutlet weak var clientFullNameLabel: UILabel!
@@ -20,11 +25,13 @@ class ClientProfileController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bookingsButton: CircularButton!
     @IBOutlet weak var historyButton: CircularButton!
+    private var tableviewStatus: tableviewStatus = .upcoming
     var listener: ListenerRegistration!
     var statusListener: ListenerRegistration!
     let noBookingView = ProfileNoBooking(frame: CGRect(x: 0, y: 0, width: 394, height: 284))
     var isSwitched = false
     let authService = AuthService()
+    var timer: Timer?
     var appointments = [Appointments]() {
         didSet {
             getUpcomingAppointments()
@@ -54,15 +61,16 @@ class ClientProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = #colorLiteral(red: 0.2461647391, green: 0.3439296186, blue: 0.5816915631, alpha: 1)
-        setupTableView()
-      getUpcomingAppointments()
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
         fetchCurrentUser()
         authService.authserviceSignOutDelegate = self
+        setupTableView()
+        getUpcomingAppointments()
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(reloadAppointments), userInfo: nil, repeats: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        timer?.invalidate()
     }
     
     // MARK: Initial Setup
@@ -193,7 +201,7 @@ class ClientProfileController: UIViewController {
     }
     
     @IBAction func moreOptionsButtonPressed(_ sender: UIButton) {
-        let actionTitles = ["Edit Profile", "Support", "Sign Out","Wallet"]
+        let actionTitles = ["Edit Profile", "Support", "Sign Out", "Wallet"]
         
         showActionSheet(title: "Menu", message: nil, actionTitles: actionTitles, handlers: [ { [weak self] editProfileAction in
             let storyBoard = UIStoryboard(name: "User", bundle: nil)
@@ -235,7 +243,7 @@ class ClientProfileController: UIViewController {
             ])
     }
     
-    private func presentLoginViewController(){
+    private func presentLoginViewController() {
         let window = (UIApplication.shared.delegate  as! AppDelegate).window
         guard let loginViewController = UIStoryboard(name: "Entrance", bundle: nil).instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController else {return}
         loginViewController.modalPresentationStyle = .fullScreen
@@ -243,13 +251,19 @@ class ClientProfileController: UIViewController {
         window?.rootViewController = UINavigationController(rootViewController: loginViewController)
         window?.makeKeyAndVisible()
     }
+    
+    // MARK: Timer
+    @objc private func reloadAppointments() {
+        guard let user = stylistUser else { return }
+        getAllAppointments(id: user.userId)
+    }
 }
 
 extension ClientProfileController:AuthServiceSignOutDelegate{
     func didSignOutWithError(_ authservice: AuthService, error: Error) {
         showAlert(title: "Unable to SignOut", message: "There was an error signing you out:\(error.localizedDescription)", actionTitle: "Try Again")
     }
-    
+
     func didSignOut(_ authservice: AuthService) {
         dismiss(animated: true, completion: nil)
     }
