@@ -65,7 +65,7 @@ class ServiceUpcomingTableViewController: UITableViewController {
                     }
                     return false
                 })
-               dump(sortedAppointments)
+//               dump(sortedAppointments)
                 for appointment in sortedAppointments {
                 self.getAppointmentInfo(serviceProviderId: appointment.providerId)
                     
