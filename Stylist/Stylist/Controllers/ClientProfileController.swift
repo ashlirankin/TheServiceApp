@@ -28,7 +28,6 @@ class ClientProfileController: UIViewController {
     var appointments = [Appointments]() {
         didSet {
             getUpcomingAppointments()
-            notifyClient()
         }
     }
     var filterAppointments = [Appointments]() {
@@ -56,22 +55,9 @@ class ClientProfileController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = #colorLiteral(red: 0.2461647391, green: 0.3439296186, blue: 0.5816915631, alpha: 1)
         setupTableView()
-        getUpcomingAppointments()
+      getUpcomingAppointments()
     }
     
-    func notifyClient() {
-        for status in AppointmentStatus.allCases {
-            statusListener = DBService.firestoreDB.collection("bookedAppointments")
-                .whereField("status", isEqualTo: status.rawValue)
-                .addSnapshotListener({ (snapshot, error) in
-                    if let error = error {
-                        print(error)
-                    } else if snapshot != nil {
-                        self.setupNotification()
-                    }
-                })
-        }
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -145,28 +131,7 @@ class ClientProfileController: UIViewController {
             }
         }
     }
-    
-    private func setupNotification() {
-        guard let newAppointment = appointments.last else {
-            return
-        }
-        let center = UNUserNotificationCenter.current()
-        let content = UNMutableNotificationContent()
-        content.title = "New Appointment"
-        content.subtitle = "\(newAppointment.appointmentTime)"
-        content.sound = UNNotificationSound.default
-        content.threadIdentifier = "local-notifcations temp"
-        let date = Date(timeIntervalSinceNow: 10)
-        let dateComponent = Calendar.current.dateComponents([.year, .month,.day,.hour, .minute, .second, .second, .nanosecond], from: date)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: false)
-        let request = UNNotificationRequest.init(identifier: "content", content: content, trigger: trigger)
-        center.add(request) { (error) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
+
     private func fetchProviders() {
         var filterProviders = [ServiceSideUser]()
         for appointment in filterAppointments {
@@ -217,9 +182,15 @@ class ClientProfileController: UIViewController {
     }
     private func getPastAppointments() {
         filterAppointments = appointments.filter { $0.status == "canceled" || $0.status == "completed" }
-        tableView.backgroundColor = .clear
-        noBookingView.noBookingLabel.text = "No history appointments yet."
-        tableView.backgroundView = self.noBookingView
+        if filterAppointments.count < 1 {
+            tableView.reloadData()
+            tableView.backgroundColor = .clear
+            noBookingView.noBookingLabel.text = "No history appointments yet."
+            tableView.backgroundView?.isHidden = false
+            tableView.backgroundView = noBookingView
+        } else  {
+            tableView.backgroundView?.isHidden = true
+        }
     }
     
     @IBAction func moreOptionsButtonPressed(_ sender: UIButton) {
@@ -309,7 +280,7 @@ extension ClientProfileController: MFMailComposeViewControllerDelegate {
 
 extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filterProviders.count
+        return filterAppointments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
