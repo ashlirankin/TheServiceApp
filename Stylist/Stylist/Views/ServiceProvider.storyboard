@@ -59,7 +59,7 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n4A-Ug-baz" customClass="CosmosView" customModule="Cosmos">
+                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n4A-Ug-baz" customClass="CosmosView" customModule="Cosmos">
                                             <rect key="frame" x="264" y="108.5" width="120" height="20"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <userDefinedRuntimeAttributes>
@@ -196,6 +196,11 @@
                                 <state key="normal" title="Confirm">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="confirmBookingPressed:" destination="ChO-Du-JE6" eventType="touchUpInside" id="MfB-SZ-Gwo"/>
                                 </connections>
@@ -206,6 +211,11 @@
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="cancelBookingPressed:" destination="ChO-Du-JE6" eventType="touchUpInside" id="ioP-qI-eb5"/>
                                 </connections>
@@ -232,6 +242,11 @@
                                 <state key="normal" title="Complete">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="completeAppointment:" destination="ChO-Du-JE6" eventType="touchUpInside" id="isB-43-mpl"/>
                                 </connections>
@@ -293,6 +308,7 @@
                     </view>
                     <connections>
                         <outlet property="AppointmentCreated" destination="pzK-Ni-2Dx" id="yJb-Hf-RTq"/>
+                        <outlet property="appointmentServices" destination="bAK-d1-YcM" id="703-Em-OxB"/>
                         <outlet property="appointmentStatus" destination="FxH-vN-6mU" id="NUW-oq-YQN"/>
                         <outlet property="cancelButton" destination="1k6-SG-CDa" id="Um6-J6-DkE"/>
                         <outlet property="completeButton" destination="Pta-aB-iBL" id="yST-w0-ZHl"/>

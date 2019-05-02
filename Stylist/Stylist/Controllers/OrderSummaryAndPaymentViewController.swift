@@ -160,7 +160,6 @@ class OrderSummaryAndPaymentViewController: UITableViewController {
                                     "value" : userRating]
     sendPaymentInfoToDatabase(userId: currentUser.uid, information: localInformation, documentId: documentId)
     createUserReview(providerId: providerId, information: localReviews, userId: currentUser.uid)
-    
   }
   
   
