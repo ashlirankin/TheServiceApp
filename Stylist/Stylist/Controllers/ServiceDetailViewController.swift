@@ -31,7 +31,6 @@ class ServiceDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getStylistUser()
-        updateDetailUI()
     }
     
     private func getStylistUser() {
@@ -43,10 +42,13 @@ class ServiceDetailViewController: UIViewController {
             userAddress.text =  "85B Allen St, New York, NY 10002"
             AppointmentCreated.text = appointment.appointmentTime
             userImage.kf.setImage(with: URL(string: provider.imageURL ?? "No Image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
+            completeButton.isHidden = true
+            confirmButton.isHidden = true
             for service in appointment.services {
                 appointmentServices.text = service
             }
         } else {
+            updateDetailUI()
             DBService.getDatabaseUser(userID: appointment.userId) { (error, stylistUser) in
                 if let error = error {
                     print(error)
