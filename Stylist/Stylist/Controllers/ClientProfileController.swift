@@ -12,6 +12,11 @@ import MessageUI
 import FirebaseFirestore
 import UserNotifications
 
+private enum tableviewStatus: String {
+    case upcoming = "upcoming"
+    case history = "history"
+}
+
 class ClientProfileController: UIViewController {
     @IBOutlet weak var profileImageView: CircularImageView!
     @IBOutlet weak var clientFullNameLabel: UILabel!
@@ -25,9 +30,12 @@ class ClientProfileController: UIViewController {
     let noBookingView = ProfileNoBooking(frame: CGRect(x: 0, y: 0, width: 394, height: 284))
     var isSwitched = false
     let authService = AuthService()
+    var timer: Timer?
+    private var tableviewStatus: tableviewStatus = .upcoming
     var appointments = [Appointments]() {
         didSet {
-            getUpcomingAppointments()
+            tableviewStatus == .upcoming ? getUpcomingAppointments() : getPastAppointments()
+            DBService.cancelPastBookedAppointments(appointments: appointments)
         }
     }
     var filterAppointments = [Appointments]() {
@@ -54,15 +62,18 @@ class ClientProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = #colorLiteral(red: 0.2461647391, green: 0.3439296186, blue: 0.5816915631, alpha: 1)
+        authService.authserviceSignOutDelegate = self
         setupTableView()
-      getUpcomingAppointments()
+        getUpcomingAppointments()
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(reloadAppointments), userInfo: nil, repeats: true)
     }
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         fetchCurrentUser()
-        authService.authserviceSignOutDelegate = self
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        timer?.invalidate()
     }
     
     // MARK: Initial Setup
@@ -92,7 +103,6 @@ class ClientProfileController: UIViewController {
         clientEmail.text = user.email
         setStylistUserRating()
     }
-    
     private func setStylistUserRating() {
         userRatingView.settings.updateOnTouch = false
         userRatingView.settings.fillMode = .precise
@@ -110,7 +120,11 @@ class ClientProfileController: UIViewController {
         tableView.backgroundColor = #colorLiteral(red: 0.1619916558, green: 0.224360168, blue: 0.3768204153, alpha: 1)
         tableView.tableFooterView = UIView()
         tableView.layer.cornerRadius = 10
-        
+        setupTableviewBackground()
+    }
+    private func setupTableviewBackground() {
+        tableView.backgroundColor = .clear
+        tableView.backgroundView = noBookingView
     }
     
     private func getAllAppointments(id: String) {
@@ -119,20 +133,13 @@ class ClientProfileController: UIViewController {
                 self?.showAlert(title: "Error Fetching User Appointments", message: error.localizedDescription, actionTitle: "Ok")
             } else if let appointments = appointments {
                 self?.appointments = appointments
-                if appointments.count < 1 {
-                    guard let backgroundView = self?.noBookingView else {return}
-                    self?.tableView.backgroundColor = .clear
-                    self?.tableView.backgroundView = backgroundView
-                }else{
-                    self?.tableView.backgroundView?.isHidden = true
-                }
-                
             }
         }
     }
 
     private func fetchProviders() {
         var filterProviders = [ServiceSideUser]()
+        if filterAppointments.count == 0 { self.filterProviders = filterProviders }
         for appointment in filterAppointments {
             DBService.getProviderFromAppointment(appointment: appointment) { (error, provider) in
                 if let error = error {
@@ -163,37 +170,30 @@ class ClientProfileController: UIViewController {
     }
     
     @IBAction func toggleButtons(_ sender: CircularButton) {
-        if sender == bookingsButton {
-            getUpcomingAppointments()
-        } else  {
-            getPastAppointments()
-        }
+        tableviewStatus = sender == bookingsButton ? .upcoming : .history
+        reloadAppointments()
     }
     private func getUpcomingAppointments() {
         filterAppointments = appointments.filter { $0.status == "pending" || $0.status == "inProgress" }
         if filterAppointments.count == 0 {
-            tableView.backgroundColor = .clear
             noBookingView.noBookingLabel.text = "No current appointments yet."
-            tableView.backgroundView = noBookingView
-        }else{
+            tableView.backgroundView?.isHidden = false
+        } else {
             tableView.backgroundView?.isHidden = true
         }
     }
     private func getPastAppointments() {
         filterAppointments = appointments.filter { $0.status == "canceled" || $0.status == "completed" }
-        if filterAppointments.count < 1 {
-            tableView.reloadData()
-            tableView.backgroundColor = .clear
+        if filterAppointments.count == 0 {
             noBookingView.noBookingLabel.text = "No history appointments yet."
             tableView.backgroundView?.isHidden = false
-            tableView.backgroundView = noBookingView
-        } else  {
+        } else {
             tableView.backgroundView?.isHidden = true
         }
     }
     
     @IBAction func moreOptionsButtonPressed(_ sender: UIButton) {
-        let actionTitles = ["Edit Profile", "Support", "Sign Out","Wallet"]
+        let actionTitles = ["Edit Profile", "Support", "Sign Out", "Wallet"]
         
         showActionSheet(title: "Menu", message: nil, actionTitles: actionTitles, handlers: [ { [weak self] editProfileAction in
             let storyBoard = UIStoryboard(name: "User", bundle: nil)
@@ -235,7 +235,7 @@ class ClientProfileController: UIViewController {
             ])
     }
     
-    private func presentLoginViewController(){
+    private func presentLoginViewController() {
         let window = (UIApplication.shared.delegate  as! AppDelegate).window
         guard let loginViewController = UIStoryboard(name: "Entrance", bundle: nil).instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController else {return}
         loginViewController.modalPresentationStyle = .fullScreen
@@ -243,13 +243,19 @@ class ClientProfileController: UIViewController {
         window?.rootViewController = UINavigationController(rootViewController: loginViewController)
         window?.makeKeyAndVisible()
     }
+    
+    // MARK: Timer
+    @objc private func reloadAppointments() {
+        guard let user = stylistUser else { return }
+        getAllAppointments(id: user.userId)
+    }
 }
 
 extension ClientProfileController:AuthServiceSignOutDelegate{
     func didSignOutWithError(_ authservice: AuthService, error: Error) {
         showAlert(title: "Unable to SignOut", message: "There was an error signing you out:\(error.localizedDescription)", actionTitle: "Try Again")
     }
-    
+
     func didSignOut(_ authservice: AuthService) {
         dismiss(animated: true, completion: nil)
     }
