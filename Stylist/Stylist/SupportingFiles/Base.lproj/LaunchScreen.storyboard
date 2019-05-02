@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchscreenimage" highlighted="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z8M-ke-SDL">
-                                <rect key="frame" x="0.0" y="44" width="414" height="269"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StylistLaunchLogo" highlighted="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z8M-ke-SDL">
+                                <rect key="frame" x="0.0" y="44" width="414" height="896"/>
                                 <color key="backgroundColor" red="0.39662368481967536" green="0.54976882002274219" blue="0.93491844825333148" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                         </subviews>
@@ -27,7 +27,7 @@
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="z8M-ke-SDL" secondAttribute="trailing" id="0yd-TZ-b0V"/>
                             <constraint firstItem="z8M-ke-SDL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="EuU-zU-JkM"/>
-                            <constraint firstItem="z8M-ke-SDL" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.3" id="RPy-E2-Le8"/>
+                            <constraint firstItem="z8M-ke-SDL" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" id="RPy-E2-Le8"/>
                             <constraint firstItem="z8M-ke-SDL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="utG-bz-rN0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -39,6 +39,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launchscreenimage" width="100" height="100"/>
+        <image name="StylistLaunchLogo" width="2000" height="2000"/>
     </resources>
 </document>
