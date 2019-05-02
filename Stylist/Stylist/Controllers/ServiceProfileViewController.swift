@@ -45,7 +45,7 @@ class ServiceProfileViewController: UIViewController {
       if let error = error {
         self?.showAlert(title: "Error", message: "There was an error getting the user:\(error.localizedDescription) ", actionTitle: "Try Aagain")
         
-      }else if let user = user {
+      } else if let user = user {
         self?.stylistUser = user
       }
     }

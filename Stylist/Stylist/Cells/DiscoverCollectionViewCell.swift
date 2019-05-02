@@ -15,7 +15,7 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var providerRating: UILabel!
     @IBOutlet weak var providerDistance: UILabel!
     @IBOutlet weak var goldStar: UIImageView!
-    
+ 
     public func configureCell(provider: ServiceSideUser, favorites: [ServiceSideUser]) {
         setRating(provider: provider)
         providerFullname.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
@@ -43,15 +43,14 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
             if let error = error {
                 print(error.localizedDescription)
             } else if let reviews = reviews {
-                let allRatingValues =   reviews.map{$0.value}
+                let allRatingValues = reviews.map{$0.value}
                 guard !allRatingValues.isEmpty else {
-                    self.providerRating.text = "No Ratings"
+                    self.providerRating.text = "5.0⭐️"
                     return
                 }
                 let total = allRatingValues.reduce(0, +)
-                let avg = Double(total) / Double(allRatingValues.count)
-                print(avg)
-                self.providerRating.text = "\(avg)⭐️🍚"
+                let avg = String(format: "%.1f", Double(total) / Double(allRatingValues.count))
+                self.providerRating.text = "\(avg)⭐️"
             }
         }
     }

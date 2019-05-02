@@ -19,7 +19,6 @@ class ProviderDetailReviews: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
-
     }
     
     func commonInit() {

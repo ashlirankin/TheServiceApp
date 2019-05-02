@@ -697,6 +697,56 @@
             </objects>
             <point key="canvasLocation" x="2021.7391304347827" y="-854.46428571428567"/>
         </scene>
+        <!--Portfolio Detail View Controller-->
+        <scene sceneID="bWX-xm-p7s">
+            <objects>
+                <viewController storyboardIdentifier="PortfolioDetailVC" id="cg9-yQ-Tik" customClass="PortfolioDetailViewController" customModule="Stylist" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Jp-8g-1Aj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PHh-cm-uBQ">
+                                <rect key="frame" x="0.0" y="5" width="414" height="896"/>
+                            </imageView>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzL-37-66A">
+                                <rect key="frame" x="36" y="71" width="100" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6vb-eY-ATR"/>
+                                    <constraint firstAttribute="width" constant="100" id="Qiv-HI-pVp"/>
+                                </constraints>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="cg9-yQ-Tik" eventType="touchUpInside" id="bkz-Fl-rr1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PHh-cm-uBQ" firstAttribute="width" secondItem="3Jp-8g-1Aj" secondAttribute="width" id="7Cc-eH-FQX"/>
+                            <constraint firstItem="PHh-cm-uBQ" firstAttribute="height" secondItem="3Jp-8g-1Aj" secondAttribute="height" id="HfM-QI-Z6W"/>
+                            <constraint firstItem="PHh-cm-uBQ" firstAttribute="centerX" secondItem="DuW-Qw-q3g" secondAttribute="centerX" id="RjG-Ti-7Pc"/>
+                            <constraint firstItem="PHh-cm-uBQ" firstAttribute="centerY" secondItem="DuW-Qw-q3g" secondAttribute="centerY" id="Sw9-v7-lN5"/>
+                            <constraint firstItem="tzL-37-66A" firstAttribute="leading" secondItem="DuW-Qw-q3g" secondAttribute="leading" constant="36" id="gIe-q0-riH"/>
+                            <constraint firstItem="tzL-37-66A" firstAttribute="top" secondItem="DuW-Qw-q3g" secondAttribute="top" constant="27" id="gWx-ev-fqJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DuW-Qw-q3g"/>
+                    </view>
+                    <connections>
+                        <outlet property="portfolioImage" destination="PHh-cm-uBQ" id="L7W-49-Pof"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UCy-ms-A89" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3079.7101449275365" y="-846.42857142857144"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="bfQ-GM-g17">
             <objects>
