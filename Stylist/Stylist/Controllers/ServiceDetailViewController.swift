@@ -13,7 +13,7 @@ import Kingfisher
 class ServiceDetailViewController: UIViewController {
     var appointment: Appointments!
     var status: String?
-    var stylistUser: StylistsUser!
+    var provider: ServiceSideUser?
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userRating: CosmosView!
     @IBOutlet weak var appointmentServices: UILabel!
@@ -26,37 +26,68 @@ class ServiceDetailViewController: UIViewController {
     @IBOutlet weak var completeButton: UIButton!
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
+
     var ratingsStar = 0.0
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         getStylistUser()
         updateDetailUI()
-        
     }
     
     private func getStylistUser() {
-        DBService.getDatabaseUser(userID: appointment.userId) { (error, stylistUser) in
-            if let error = error {
-                print(error)
-            } else if let stylistUser = stylistUser {
-                self.userRating.rating = 5
-                self.userFullname.text = stylistUser.fullName
-                self.appointmentStatus.text = self.appointment.status
-                self.userDistance.text = "0.2"
-                self.userAddress.text = stylistUser.address ?? "no address"
-                self.AppointmentCreated.text = self.appointment.appointmentTime
-                self.userImage.kf.setImage(with: URL(string: stylistUser.imageURL ?? "no image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
-                for service in self.appointment.services {
-                    self.appointmentServices.text = service
+        if let provider = provider {
+            setupProviderRating(provider: provider)
+            userFullname.text = provider.fullName
+            appointmentStatus.text = appointment.status
+            userDistance.text = "0.2"
+            userAddress.text =  "85B Allen St, New York, NY 10002"
+            AppointmentCreated.text = appointment.appointmentTime
+            userImage.kf.setImage(with: URL(string: provider.imageURL ?? "No Image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
+            for service in appointment.services {
+                appointmentServices.text = service
+            }
+        } else {
+            DBService.getDatabaseUser(userID: appointment.userId) { (error, stylistUser) in
+                if let error = error {
+                    print(error)
+                } else if let stylistUser = stylistUser {
+                    self.userRating.rating = 5
+                    self.userFullname.text = stylistUser.fullName
+                    self.appointmentStatus.text = self.appointment.status
+                    self.userDistance.text = "0.2"
+                    self.userAddress.text = stylistUser.address ?? "85B Allen St, New York, NY 10002"
+                    self.AppointmentCreated.text = self.appointment.appointmentTime
+                    self.userImage.kf.setImage(with: URL(string: stylistUser.imageURL ?? "No Image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
+                    for service in self.appointment.services {
+                        self.appointmentServices.text = service
+                    }
                 }
-                
+            }
+        }
+    }
+    
+    private func setupProviderRating(provider: ServiceSideUser) {
+        userRating.settings.updateOnTouch = false
+        userRating.settings.fillMode = .half
+        DBService.getReviews(provider: provider) { (reviews, error) in
+            if let error = error {
+                print("Get Ratings Error: \(error.localizedDescription)")
+                self.userRating.rating = 0
+            } else if let reviews = reviews {
+                let allRatings = reviews.map{ $0.value }
+                if allRatings.count > 0 {
+                    let averageRating = allRatings.reduce(0, +) / Double(allRatings.count)
+                    self.userRating.rating = averageRating
+                } else {
+                    self.userRating.rating = 0
+                }
             }
         }
     }
     
     
     private func  updateDetailUI() {
+        userRating.settings.updateOnTouch = false
         switch appointment.status {
         case "inProgress":
             appointmentStatus.textColor = .green
