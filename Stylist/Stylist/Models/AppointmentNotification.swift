@@ -44,14 +44,16 @@ class AppointmentNotification {
                         if let error = error {
                             print(error)
                         } else if snapshot != nil {
-                            self.setupNotification()
+                            self.setupNotification(status: status)
                         }
                     })
             }
         }
     
-    private func setupNotification() {
-            guard let newAppointment = appointments.last else {
+    private func setupNotification(status: AppointmentStatus) {
+        switch status {
+        case .pending:
+            guard let newAppointment = appointments.first else {
                 return
             }
             let center = UNUserNotificationCenter.current()
@@ -69,7 +71,59 @@ class AppointmentNotification {
                     print(error.localizedDescription)
                 }
             }
+        case .inProgress:
+            let center = UNUserNotificationCenter.current()
+            let content = UNMutableNotificationContent()
+            content.title = "Your Appointment has been confirmed"
+            content.subtitle = "your provider is on the way"
+            content.sound = UNNotificationSound.default
+            content.threadIdentifier = "local-notifcations temp"
+            let date = Date(timeIntervalSinceNow: 5)
+            let dateComponent = Calendar.current.dateComponents([.year, .month,.day,.hour, .minute, .second, .second, .nanosecond], from: date)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: false)
+            let request = UNNotificationRequest.init(identifier: "content", content: content, trigger: trigger)
+            center.add(request) { (error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+        case .canceled:
+            guard let newAppointment = appointments.last else {
+                return
+            }
+            let center = UNUserNotificationCenter.current()
+            let content = UNMutableNotificationContent()
+            content.title = "Your Appointment has been canceled"
+            content.subtitle = "\(newAppointment.appointmentTime)"
+            content.sound = UNNotificationSound.default
+            content.threadIdentifier = "local-notifcations temp"
+            let date = Date(timeIntervalSinceNow: 5)
+            let dateComponent = Calendar.current.dateComponents([.year, .month,.day,.hour, .minute, .second, .second, .nanosecond], from: date)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: false)
+            let request = UNNotificationRequest.init(identifier: "content", content: content, trigger: trigger)
+            center.add(request) { (error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+        case .completed:
+            let center = UNUserNotificationCenter.current()
+            let content = UNMutableNotificationContent()
+            content.title = "Appointment Completed"
+            content.subtitle = "please rate your service!"
+            content.sound = UNNotificationSound.default
+            content.threadIdentifier = "local-notifcations temp"
+            let date = Date(timeIntervalSinceNow: 5)
+            let dateComponent = Calendar.current.dateComponents([.year, .month,.day,.hour, .minute, .second, .second, .nanosecond], from: date)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: false)
+            let request = UNNotificationRequest.init(identifier: "content", content: content, trigger: trigger)
+            center.add(request) { (error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
         }
+    }
 }
 
 
