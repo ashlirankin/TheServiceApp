@@ -53,7 +53,7 @@ class AppointmentNotification {
     private func setupNotification(status: AppointmentStatus) {
         switch status {
         case .pending:
-            guard let newAppointment = appointments.last else {
+            guard let newAppointment = appointments.first else {
                 return
             }
             let center = UNUserNotificationCenter.current()
@@ -123,9 +123,7 @@ class AppointmentNotification {
                 }
             }
         }
-        
     }
-        
 }
 
 
