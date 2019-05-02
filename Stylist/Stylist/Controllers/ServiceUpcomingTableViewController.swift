@@ -55,8 +55,20 @@ class ServiceUpcomingTableViewController: UITableViewController {
             if let error = error {
                 print(error)
             } else if let appointments = appointments {
-                for appointment in appointments {
+              let sortedAppointments = appointments.sorted(by: { (date1, date2) -> Bool in
+                    let convertToDateFormatter = DateFormatter()
+                    convertToDateFormatter.dateFormat = "EEEE, MMM d, yyyy h:mm a"
+                    if let dateA = convertToDateFormatter.date(from: date1.appointmentTime) {
+                        if let dateB = convertToDateFormatter.date(from: date2.appointmentTime) {
+                             return dateA < dateB
+                        }
+                    }
+                    return false
+                })
+//               dump(sortedAppointments)
+                for appointment in sortedAppointments {
                 self.getAppointmentInfo(serviceProviderId: appointment.providerId)
+                    
                     guard appointments.count > 0 else {
                         self.view.addSubview(self.noBookingView)
                         return
@@ -79,7 +91,17 @@ class ServiceUpcomingTableViewController: UITableViewController {
                                 }
                                 else if let snapshot = snapshot {
                                     let appointments =  snapshot.documents.map{Appointments(dict: $0.data()) }
-                                    self?.appointments = appointments
+                                    let sortedAppointments = appointments.sorted(by: { (date1, date2) -> Bool in
+                                        let convertToDateFormatter = DateFormatter()
+                                        convertToDateFormatter.dateFormat = "EEEE, MMM d, yyyy h:mm a"
+                                        if let dateA = convertToDateFormatter.date(from: date1.appointmentTime) {
+                                            if let dateB = convertToDateFormatter.date(from: date2.appointmentTime) {
+                                                return dateA > dateB
+                                            }
+                                        }
+                                        return false
+                                    })
+                                    self?.appointments = sortedAppointments
                                 }
                         }
         }
