@@ -13,7 +13,8 @@ import Kingfisher
 class ServiceDetailViewController: UIViewController {
     var appointment: Appointments!
     var status: String?
-    var stylistUser: StylistsUser!
+    var provider: ServiceSideUser?
+    var providerId: String?
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userRating: CosmosView!
     @IBOutlet weak var userFullname: UILabel!
@@ -26,33 +27,38 @@ class ServiceDetailViewController: UIViewController {
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
          getStylistUser()
         updateDetailUI()
-        
     }
     
     private func getStylistUser() {
-        DBService.getDatabaseUser(userID: appointment.userId) { (error, stylistUser) in
-            if let error = error {
-                print(error)
-            } else if let stylistUser = stylistUser {
-               self.userRating.rating = 5
-                self.userFullname.text = stylistUser.fullName
-                self.appointmentStatus.text = self.appointment.status
-                self.userDistance.text = "0.2"
-                self.userAddress.text = stylistUser.address ?? "no address"
-                self.AppointmentCreated.text = self.appointment.appointmentTime
-                self.userImage.kf.setImage(with: URL(string: stylistUser.imageURL ?? "no image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
-                
+        if let provider = provider {
+//            userRating.rating = 5
+            userFullname.text = provider.fullName
+            appointmentStatus.text = appointment.status
+            userDistance.text = "0.2"
+        } else {
+            DBService.getDatabaseUser(userID: appointment.userId) { (error, stylistUser) in
+                if let error = error {
+                    print(error)
+                } else if let stylistUser = stylistUser {
+                    self.userRating.rating = 5
+                    self.userFullname.text = stylistUser.fullName
+                    self.appointmentStatus.text = self.appointment.status
+                    self.userDistance.text = "0.2"
+                    self.userAddress.text = stylistUser.address ?? "N/A"
+                    self.AppointmentCreated.text = self.appointment.appointmentTime
+                    self.userImage.kf.setImage(with: URL(string: stylistUser.imageURL ?? "No Image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
+                }
             }
         }
     }
     
     
     private func  updateDetailUI() {
+        userRating.settings.updateOnTouch = false
         switch appointment.status {
         case "inProgress":
             confirmButton.backgroundColor = .gray

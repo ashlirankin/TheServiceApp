@@ -28,10 +28,8 @@ class ServiceProfileViewController: UIViewController {
     
     
     private func  updateUI() {
-        guard let currentUser = stylistUser else  {
-            return
-        }
-      DBService.getProvider(consumer:currentUser) { (error, provider) in
+        guard let currentUser = stylistUser else  { return }
+        DBService.getProvider(consumer:currentUser) { (error, provider) in
             if let error = error {
                 print(error)
             } else if let provider = provider {

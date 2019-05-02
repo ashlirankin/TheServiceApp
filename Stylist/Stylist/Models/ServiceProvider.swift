@@ -28,6 +28,9 @@ struct ServiceSideUser{
   let zip:String?
    let favoriteId: String?
   let isAvailable: Bool
+    public var fullName: String {
+        return ((firstName ?? "") + " " + (lastName ?? "")).trimmingCharacters(in: .whitespacesAndNewlines)
+    }
     init(userId:String,firstName:String?,lastName:String?,email:String,joinedDate:String,gender:String?,isCertified:Bool,imageURL:String?,bio:String?,licenseNumber:String?,licenseExpiryDate:String?,type:String,address:String?,city:String,state:String,lat:String,long:String,zip:String, favoriteId: String?, isAvailable:Bool) {
     self.userId = userId
     self.firstName = firstName
