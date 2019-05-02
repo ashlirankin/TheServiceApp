@@ -80,7 +80,6 @@ class ClientProfileController: UIViewController {
         }
     }
     
-    
     private func updateUI() {
         guard let user = stylistUser else { return }
         if let imageUrl = user.imageURL {
@@ -287,12 +286,30 @@ extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! UserProfileTableViewCell
         let appointment = filterAppointments[indexPath.row]
         let provider = filterProviders[indexPath.row]
-      print(provider)
         cell.configuredCell(provider: provider, appointment: appointment)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "ServiceProvider", bundle: nil)
+        guard let destinationVC = storyboard.instantiateViewController(withIdentifier:
+            "ServiceDetailVC") as? ServiceDetailViewController else { return }
+        destinationVC.modalTransitionStyle = .crossDissolve
+        destinationVC.modalPresentationStyle = .overFullScreen
+        let appointment = filterAppointments[indexPath.row]
+        destinationVC.appointment = appointment
+        destinationVC.status = appointment.status
+        DBService.getProviderFromAppointment(appointment: appointment) { (error, provider) in
+            if let error = error {
+                self.showAlert(title: "Error Fetching Provider", message: error.localizedDescription, actionTitle: "Ok")
+            } else if let provider = provider {
+                destinationVC.provider = provider
+                self.present(destinationVC, animated: true)
+            }
+        }
     }
 }

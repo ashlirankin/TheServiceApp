@@ -49,7 +49,7 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
                     return
                 }
                 let total = allRatingValues.reduce(0, +)
-                let avg = Double(total) / Double(allRatingValues.count)
+                let avg = String(format: "%.1f", Double(total) / Double(allRatingValues.count))
                 self.providerRating.text = "\(avg)⭐️"
             }
         }
