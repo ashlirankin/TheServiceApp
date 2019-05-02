@@ -25,16 +25,17 @@ class ClientProfileController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bookingsButton: CircularButton!
     @IBOutlet weak var historyButton: CircularButton!
-    private var tableviewStatus: tableviewStatus = .upcoming
     var listener: ListenerRegistration!
     var statusListener: ListenerRegistration!
     let noBookingView = ProfileNoBooking(frame: CGRect(x: 0, y: 0, width: 394, height: 284))
     var isSwitched = false
     let authService = AuthService()
     var timer: Timer?
+    private var tableviewStatus: tableviewStatus = .upcoming
     var appointments = [Appointments]() {
         didSet {
-            getUpcomingAppointments()
+            tableviewStatus == .upcoming ? getUpcomingAppointments() : getPastAppointments()
+            DBService.cancelPastBookedAppointments(appointments: appointments)
         }
     }
     var filterAppointments = [Appointments]() {
@@ -61,13 +62,15 @@ class ClientProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = #colorLiteral(red: 0.2461647391, green: 0.3439296186, blue: 0.5816915631, alpha: 1)
-        fetchCurrentUser()
         authService.authserviceSignOutDelegate = self
         setupTableView()
         getUpcomingAppointments()
         timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(reloadAppointments), userInfo: nil, repeats: true)
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        fetchCurrentUser()
+    }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         timer?.invalidate()
@@ -100,7 +103,6 @@ class ClientProfileController: UIViewController {
         clientEmail.text = user.email
         setStylistUserRating()
     }
-    
     private func setStylistUserRating() {
         userRatingView.settings.updateOnTouch = false
         userRatingView.settings.fillMode = .precise
@@ -118,7 +120,11 @@ class ClientProfileController: UIViewController {
         tableView.backgroundColor = #colorLiteral(red: 0.1619916558, green: 0.224360168, blue: 0.3768204153, alpha: 1)
         tableView.tableFooterView = UIView()
         tableView.layer.cornerRadius = 10
-        
+        setupTableviewBackground()
+    }
+    private func setupTableviewBackground() {
+        tableView.backgroundColor = .clear
+        tableView.backgroundView = noBookingView
     }
     
     private func getAllAppointments(id: String) {
@@ -127,20 +133,13 @@ class ClientProfileController: UIViewController {
                 self?.showAlert(title: "Error Fetching User Appointments", message: error.localizedDescription, actionTitle: "Ok")
             } else if let appointments = appointments {
                 self?.appointments = appointments
-                if appointments.count < 1 {
-                    guard let backgroundView = self?.noBookingView else {return}
-                    self?.tableView.backgroundColor = .clear
-                    self?.tableView.backgroundView = backgroundView
-                }else{
-                    self?.tableView.backgroundView?.isHidden = true
-                }
-                
             }
         }
     }
 
     private func fetchProviders() {
         var filterProviders = [ServiceSideUser]()
+        if filterAppointments.count == 0 { self.filterProviders = filterProviders }
         for appointment in filterAppointments {
             DBService.getProviderFromAppointment(appointment: appointment) { (error, provider) in
                 if let error = error {
@@ -171,31 +170,24 @@ class ClientProfileController: UIViewController {
     }
     
     @IBAction func toggleButtons(_ sender: CircularButton) {
-        if sender == bookingsButton {
-            getUpcomingAppointments()
-        } else  {
-            getPastAppointments()
-        }
+        tableviewStatus = sender == bookingsButton ? .upcoming : .history
+        reloadAppointments()
     }
     private func getUpcomingAppointments() {
         filterAppointments = appointments.filter { $0.status == "pending" || $0.status == "inProgress" }
         if filterAppointments.count == 0 {
-            tableView.backgroundColor = .clear
             noBookingView.noBookingLabel.text = "No current appointments yet."
-            tableView.backgroundView = noBookingView
-        }else{
+            tableView.backgroundView?.isHidden = false
+        } else {
             tableView.backgroundView?.isHidden = true
         }
     }
     private func getPastAppointments() {
         filterAppointments = appointments.filter { $0.status == "canceled" || $0.status == "completed" }
-        if filterAppointments.count < 1 {
-            tableView.reloadData()
-            tableView.backgroundColor = .clear
+        if filterAppointments.count == 0 {
             noBookingView.noBookingLabel.text = "No history appointments yet."
             tableView.backgroundView?.isHidden = false
-            tableView.backgroundView = noBookingView
-        } else  {
+        } else {
             tableView.backgroundView?.isHidden = true
         }
     }
