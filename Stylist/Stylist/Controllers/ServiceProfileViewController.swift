@@ -28,10 +28,8 @@ class ServiceProfileViewController: UIViewController {
     
     
     private func  updateUI() {
-        guard let currentUser = stylistUser else  {
-            return
-        }
-      DBService.getProvider(consumer:currentUser) { (error, provider) in
+        guard let currentUser = stylistUser else  { return }
+        DBService.getProvider(consumer:currentUser) { (error, provider) in
             if let error = error {
                 print(error)
             } else if let provider = provider {
@@ -47,7 +45,7 @@ class ServiceProfileViewController: UIViewController {
       if let error = error {
         self?.showAlert(title: "Error", message: "There was an error getting the user:\(error.localizedDescription) ", actionTitle: "Try Aagain")
         
-      }else if let user = user {
+      } else if let user = user {
         self?.stylistUser = user
       }
     }

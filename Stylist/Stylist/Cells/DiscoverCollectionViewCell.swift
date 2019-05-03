@@ -20,6 +20,7 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
         setRating(provider: provider)
         providerFullname.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
         providerJobTitle.text = provider.jobTitle
+        collectionViewImage.layer.cornerRadius = 10
         collectionViewImage.kf.setImage(with: URL(string: provider.imageURL ?? ""), placeholder:#imageLiteral(resourceName: "placeholder.png") )
         switch provider.jobTitle {
         case "Barber":
@@ -49,7 +50,7 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
                     return
                 }
                 let total = allRatingValues.reduce(0, +)
-                let avg = Double(total) / Double(allRatingValues.count)
+                let avg = String(format: "%.1f", Double(total) / Double(allRatingValues.count))
                 self.providerRating.text = "\(avg)⭐️"
             }
         }
