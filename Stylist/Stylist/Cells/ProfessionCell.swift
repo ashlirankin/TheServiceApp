@@ -14,10 +14,6 @@ class ProfessionCell: UICollectionViewCell {
         professionLabel.text = profession.rawValue
         layer.cornerRadius = frame.height / 2
         layer.borderWidth = 1
-//        layer.shadowColor = UIColor.darkGray.cgColor
-//        layer.shadowRadius = 6
-//        layer.shadowOpacity = 0.5
-//        layer.shadowOffset = CGSize(width: 0, height: 0)
         clipsToBounds = true
         layer.masksToBounds = true
     }

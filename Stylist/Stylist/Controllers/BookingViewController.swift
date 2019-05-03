@@ -120,6 +120,7 @@ class BookingViewController: UITableViewController {
     localAppointments[AppointmentCollectionKeys.status] = "pending"
     localAppointments[AppointmentCollectionKeys.documentId] = documentId
 
+
     createBooking(collectionName: AppointmentCollectionKeys.bookedAppointments, providerId: provider.userId, information: localAppointments, userId: currentUser.uid, documentId: documentId)
      setupNotification()
     dismiss(animated: true, completion: nil)
