@@ -305,6 +305,18 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
         }
     }
     
+    static func cancelPastBookedAppointments(appointments: [Appointments]) {
+        for appointment in appointments {
+            let appointmentTimeFormatter = DateFormatter()
+            appointmentTimeFormatter.dateFormat = "EEEE, MMM d, yyyy h:mm a"
+            guard let appointmentDate = appointmentTimeFormatter.date(from: appointment.appointmentTime) else { return }
+            let currentDate = Date()
+            if currentDate > appointmentDate {
+                updateAppointment(appointmentID: appointment.documentId, status: "canceled")
+            }
+        }
+    }
+    
     static func updateAppointment(appointmentID: String, status: String) {
         DBService.firestoreDB.collection("bookedAppointments")
         .document(appointmentID)
