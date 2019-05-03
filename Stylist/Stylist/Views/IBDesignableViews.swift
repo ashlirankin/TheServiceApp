@@ -56,6 +56,7 @@ class RoundedTextButton: UIButton {
     func buttonSelectedUI() {
         backgroundColor = .darkGray
         layer.shadowColor = UIColor.red.cgColor
+        tintColor = .clear
         setTitleColor(.white, for: .normal)
     }
     

@@ -18,9 +18,9 @@ class OrderSummaryAndPaymentViewController: UITableViewController {
   @IBOutlet weak var cardNumberCell: UITableViewCell!
   @IBOutlet weak var priceCell: UITableViewCell!
   
-  @IBOutlet var tipButtons: [UIButton]!
+  @IBOutlet var tipButtons: [RoundedTextButton]!
   
-  @IBOutlet weak var enterTipTextfield: UITextField!
+ 
   
   var userRating = Double()
   let ratingSettings = CosmosSettings()
@@ -51,16 +51,23 @@ class OrderSummaryAndPaymentViewController: UITableViewController {
   override func viewDidLoad(){
         super.viewDidLoad()
       servicesCollectionView.dataSource = self
-    
       setUpCosmosView()
       getCardInformation()
       setUpNavBar()
+   
     }
-  @IBAction func tipButtonPressed(_ sender: UIButton) {
-    
+
+  @IBAction func tipButtonPressed(_ sender: RoundedTextButton) {
+    if sender.isSelected {
+      sender.buttonSelectedUI()
+      sender.isSelected = false
+    }else{
+      sender.buttonDeselectedUI()
+      sender.isSelected = true
+    }
     guard let title = sender.currentTitle else {return}
     switch title {
-    case "10.0%":
+    case "10%":
       let copyArray = priceArray
       let total = copyArray.reduce(0,+)
       let tip = 0.10
@@ -68,14 +75,14 @@ class OrderSummaryAndPaymentViewController: UITableViewController {
       let grandTotal = something + Double(total)
       priceCell.detailTextLabel?.text = "$\(grandTotal)"
       
-    case "15.0%":
+    case "15%":
       let copyArray = priceArray
       let total = copyArray.reduce(0,+)
       let tip = 0.15
       let something = Double(total) * tip
       let grandTotal = something + Double(total)
       priceCell.detailTextLabel?.text = "$\(grandTotal)"
-    case "25.0%":
+    case "25%":
       let copyArray = priceArray
       let total = copyArray.reduce(0,+)
       let tip = 0.20

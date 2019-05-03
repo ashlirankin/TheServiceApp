@@ -252,7 +252,7 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
     }
     
     static func createUserWallet(userId:String,information:[String:Any],documentId:String,completionHandler: @escaping(Error?) -> Void) {
-        firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(userId).collection("wallet").document(documentId).setData(information) { (error) in
+    firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(userId).collection("wallet").document(documentId).setData(information) { (error) in
             if let error = error {
                 completionHandler(error)
             }
@@ -291,6 +291,7 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
                     completion(nil, snapshot.documents.map({Appointments(dict: $0.data())}))
                 }
         }
+  
     }
 
     static func getAppointments(completionHandler: @escaping ([Appointments]?, Error?) -> Void) {
