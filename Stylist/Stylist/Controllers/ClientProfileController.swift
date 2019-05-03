@@ -70,6 +70,7 @@ class ClientProfileController: UIViewController {
         super.viewWillAppear(true)
         timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(reloadAppointments), userInfo: nil, repeats: true)
         fetchCurrentUser()
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(reloadAppointments), userInfo: nil, repeats: true)
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
