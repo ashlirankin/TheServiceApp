@@ -84,13 +84,13 @@ class ClientProfileController: UIViewController {
         authService.authserviceSignOutDelegate = self
         setupTableView()
         getUpcomingAppointments()
-        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(reloadAppointments), userInfo: nil, repeats: true)
     }
     
   
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(reloadAppointments), userInfo: nil, repeats: true)
         fetchCurrentUser()
     }
     override func viewWillDisappear(_ animated: Bool) {
