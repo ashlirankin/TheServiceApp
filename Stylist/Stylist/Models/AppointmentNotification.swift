@@ -24,7 +24,7 @@ class AppointmentNotification {
                 print(error)
             } else if let appointments = appointments {
                 guard appointments.count > 0 else  {
-                    return 
+                    return
                 }
                 self.appointments = appointments
             }
@@ -46,7 +46,10 @@ class AppointmentNotification {
                     .addSnapshotListener({ (snapshot, error) in
                         if let error = error {
                             print(error)
-                        } else if snapshot != nil {
+                        } else if let snapshot = snapshot {
+                            guard snapshot.documents.count > 0 else  {
+                                return
+                            }
                             self.setupNotification(status: status)
                         }
                     })
