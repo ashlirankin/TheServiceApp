@@ -25,6 +25,7 @@ class ClientProfileController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bookingsButton: CircularButton!
     @IBOutlet weak var historyButton: CircularButton!
+    @IBOutlet weak var switchButton: UIButton!
     var listener: ListenerRegistration!
     var statusListener: ListenerRegistration!
     let noBookingView = ProfileNoBooking(frame: CGRect(x: 0, y: 0, width: 394, height: 284))
@@ -50,11 +51,29 @@ class ClientProfileController: UIViewController {
             }
         }
     }
+    var checkForProvider = [ServiceSideUser]()
     private var stylistUser: StylistsUser? {
         didSet {
             DispatchQueue.main.async {
                 self.updateUI()
                 self.getAllAppointments(id: self.stylistUser!.userId)
+                DBService.getProviders(completionHandler: { (providers, error) in
+                    guard let currentuser = self.authService.getCurrentUser() else {
+                        return
+                    }
+                    if let error = error {
+                        print(error)
+                    } else if let providers = providers {
+                       self.checkForProvider = providers.filter({ (provider) -> Bool in
+                        return provider.userId == currentuser.uid
+                        })
+                    }
+                    if self.checkForProvider.isEmpty {
+                        self.switchButton.isHidden = true
+                    } else  {
+                        self.switchButton.isHidden = false
+                    }
+                })
             }
         }
     }
@@ -67,6 +86,9 @@ class ClientProfileController: UIViewController {
         getUpcomingAppointments()
         timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(reloadAppointments), userInfo: nil, repeats: true)
     }
+    
+  
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         fetchCurrentUser()

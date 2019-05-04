@@ -49,6 +49,7 @@ class ProviderDetailController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      
         setupUI()
         setupCollectionView()
         setupScrollviewController(scrollView: scrollView, views: featureViews)
@@ -57,6 +58,9 @@ class ProviderDetailController: UITableViewController {
         setFavoriteState()
         
     }
+    
+    
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.navigationItem.rightBarButtonItem?.isEnabled = true
