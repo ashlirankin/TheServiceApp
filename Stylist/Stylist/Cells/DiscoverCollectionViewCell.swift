@@ -46,12 +46,12 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
             } else if let reviews = reviews {
                 let allRatingValues = reviews.map{$0.value}
                 guard !allRatingValues.isEmpty else {
-                    self.providerRating.text = "5.0⭐️"
+                    self.providerRating.text = "5.0"
                     return
                 }
                 let total = allRatingValues.reduce(0, +)
                 let avg = String(format: "%.1f", Double(total) / Double(allRatingValues.count))
-                self.providerRating.text = "\(avg)⭐️"
+                self.providerRating.text = "\(avg)"
             }
         }
     }

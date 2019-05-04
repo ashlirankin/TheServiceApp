@@ -215,7 +215,7 @@ class ClientProfileController: UIViewController {
     }
     
     @IBAction func moreOptionsButtonPressed(_ sender: UIButton) {
-        let actionTitles = ["Edit Profile", "Support", "Sign Out", "Wallet"]
+        let actionTitles = ["Edit Profile", "Support", "Sign Out", "Wallet", "Join Stylists Providers"]
         
         showActionSheet(title: "Menu", message: nil, actionTitles: actionTitles, handlers: [ { [weak self] editProfileAction in
             let storyBoard = UIStoryboard(name: "User", bundle: nil)
@@ -253,6 +253,8 @@ class ClientProfileController: UIViewController {
                 walletController.modalTransitionStyle = .coverVertical
                 self?.present(walletNav, animated: true, completion: nil)
                 
+            },{ [weak self] becomeProvider in
+                print("provider sign up sheet")
             }
             ])
     }
