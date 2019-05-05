@@ -57,6 +57,9 @@ class ProviderDetailController: UITableViewController {
         setFavoriteState()
         
     }
+    
+    
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.navigationItem.rightBarButtonItem?.isEnabled = true
@@ -209,7 +212,7 @@ class ProviderDetailController: UITableViewController {
             return
         }
         if currentUser.uid == provider.userId {
-            self.showAlert(title: "error", message: "You can't book yourself!", actionTitle: "OK")
+            self.showAlert(title: nil, message: "You can't book yourself!", actionTitle: "OK")
             return
         }
         guard let bookingController = UIStoryboard(name: "BookService", bundle: nil).instantiateViewController(withIdentifier: "BookingController") as? BookingViewController else {return}
