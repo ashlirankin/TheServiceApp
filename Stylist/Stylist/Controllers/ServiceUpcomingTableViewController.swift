@@ -55,6 +55,10 @@ class ServiceUpcomingTableViewController: UITableViewController {
             if let error = error {
                 print(error)
             } else if let appointments = appointments {
+                guard appointments.count > 0 else {
+                    self.view.addSubview(self.noBookingView)
+                    return
+                }
               let sortedAppointments = appointments.sorted(by: { (date1, date2) -> Bool in
                     let convertToDateFormatter = DateFormatter()
                     convertToDateFormatter.dateFormat = "EEEE, MMM d, yyyy h:mm a"
@@ -65,14 +69,8 @@ class ServiceUpcomingTableViewController: UITableViewController {
                     }
                     return false
                 })
-//               dump(sortedAppointments)
                 for appointment in sortedAppointments {
                 self.getAppointmentInfo(serviceProviderId: appointment.providerId)
-                    
-                    guard appointments.count > 0 else {
-                        self.view.addSubview(self.noBookingView)
-                        return
-                    }
                 }
             }
         }

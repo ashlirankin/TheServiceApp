@@ -32,6 +32,11 @@ class ServiceDetailViewController: UIViewController {
         super.viewDidLoad()
         getStylistUser()
         todaysDate.isHidden = true
+        if let status = self.status {
+            if status == "completed" {
+                self.cancelButton.isHidden = true
+            }
+        }
     }
     
     private func getStylistUser() {
@@ -56,7 +61,12 @@ class ServiceDetailViewController: UIViewController {
                 } else if let stylistUser = stylistUser {
                     self.userRating.rating = 5
                     self.userFullname.text = stylistUser.fullName
-                    self.appointmentStatus.text = self.appointment.status
+                    switch self.appointment.status {
+                    case "inProgress":
+                        self.appointmentStatus.text = "In progress"
+                    default:
+                         self.appointmentStatus.text = self.appointment.status
+                    }
                     self.userDistance.text = "0.2 Miles Away"
                     self.userAddress.text = stylistUser.address ?? "85B Allen St, New York, NY 10002"
                     self.AppointmentCreated.text = self.appointment.appointmentTime
@@ -64,10 +74,11 @@ class ServiceDetailViewController: UIViewController {
                     for service in self.appointment.services {
                         self.appointmentServices.text = service
                     }
+                    }
                 }
             }
         }
-    }
+    
     
     private func setupProviderRating(provider: ServiceSideUser) {
         userRating.settings.updateOnTouch = false

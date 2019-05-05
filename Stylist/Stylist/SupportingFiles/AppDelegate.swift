@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         window?.rootViewController = UINavigationController(rootViewController: login)
     }
     window?.makeKeyAndVisible()
+    self.window?.tintColor = #colorLiteral(red: 0.1619916558, green: 0.224360168, blue: 0.3768204153, alpha: 1)
     AppointmentNotification.shared
     return true
   }
