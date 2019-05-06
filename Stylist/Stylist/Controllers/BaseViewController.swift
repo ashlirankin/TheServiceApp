@@ -13,9 +13,9 @@ class BaseViewController: UIViewController {
   let gradient = CAGradientLayer()
   var gradientSet = [[CGColor]]()
   var currentGradient = 0
-  let color1 = #colorLiteral(red: 0.07409804314, green: 0.09361185879, blue: 1, alpha: 1).cgColor
-  let color2 = #colorLiteral(red: 1, green: 0.9649639726, blue: 0, alpha: 1).cgColor
-  let color3 = #colorLiteral(red: 0.2073303163, green: 0.06281155348, blue: 1, alpha: 1).cgColor
+  let color1 = #colorLiteral(red: 0.1528116562, green: 0.3392507715, blue: 1, alpha: 1).cgColor
+  let color2 = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1).cgColor
+  let color3 = #colorLiteral(red: 0.3056506849, green: 0.8034205004, blue: 0.5805864726, alpha: 1).cgColor
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +26,9 @@ class BaseViewController: UIViewController {
   func createGradientView(){
     
     
-    gradientSet.append([color1,color2])
-    gradientSet.append([color2,color3])
-    gradientSet.append([color3,color1])
+    gradientSet.append([color1, color3])
+//    gradientSet.append([color2,color3])
+//    gradientSet.append([color3,color1])
     
     gradient.startPoint = CGPoint(x: 0, y: 0)
     gradient.frame = self.view.bounds
