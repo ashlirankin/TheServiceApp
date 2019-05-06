@@ -216,9 +216,9 @@ class ClientProfileController: UIViewController {
     }
     
     @IBAction func moreOptionsButtonPressed(_ sender: UIButton) {
-        let actionTitles = ["Edit Profile", "Support", "Sign Out", "Wallet", "Join Stylists Providers"]
+        let actionTitles = ["Edit Profile", "Support", "Sign Out", "Join Stylists Providers"]
         
-        showActionSheet(title: "Menu", message: nil, actionTitles: actionTitles, handlers: [ { [weak self] editProfileAction in
+      showActionSheet(title: "Menu:\(ApplicationInfo.getVersionBuildNumber())", message: nil, actionTitles: actionTitles, handlers: [ { [weak self] editProfileAction in
             let storyBoard = UIStoryboard(name: "User", bundle: nil)
             guard let destinationVC = storyBoard.instantiateViewController(withIdentifier: "EditProfileVC") as? ClientEditProfileController else {
                 fatalError("EditProfileVC is nil")
@@ -246,14 +246,6 @@ class ClientProfileController: UIViewController {
             }, { [weak self] signOutAction in
                 self?.authService.signOut()
                 self?.presentLoginViewController()
-            },{ [weak self] walletAction in
-                
-                guard let walletController = UIStoryboard(name: "Payments", bundle: nil).instantiateViewController(withIdentifier: "WalletViewController") as? WalletTableViewController else {fatalError("no wallet controller found")}
-                let walletNav = UINavigationController(rootViewController: walletController)
-                walletController.modalPresentationStyle = .overCurrentContext
-                walletController.modalTransitionStyle = .coverVertical
-                self?.present(walletNav, animated: true, completion: nil)
-                
             },{ [weak self] becomeProvider in
                 print("provider sign up sheet")
             }
