@@ -346,6 +346,7 @@
 		2EF103C02255A4030030FBFF /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				2E07D947228084720078C65F /* ApplicationInfo.swift */,
 				2E9DD7CF2257C93E00D74DD1 /* DBService.swift */,
 				2EBDDBCD225B91AD00583BC0 /* StorageService.swift */,
 				2EBDDBCF225B91D600583BC0 /* AuthService.swift */,
@@ -393,7 +394,6 @@
 				2E23F196226E5DCA0037B9AA /* PaymentsViewController.swift */,
 				2E49A4A3226F872E002B230E /* OrderSummaryAndPaymentViewController.swift */,
 				2E49A49D226F6677002B230E /* WalletTableViewController.swift */,
-				2E07D947228084720078C65F /* ApplicationInfo.swift */,
 				2EBDDC1F225D2E9400583BC0 /* OnboardingTableViewController.swift */,
 				2EBDDC1B225D0A7800583BC0 /* BaseViewController.swift */,
 				2E9DD7D72257F69B00D74DD1 /* CreateViewController.swift */,
