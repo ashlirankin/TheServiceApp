@@ -33,7 +33,7 @@ class LoginViewController: BaseViewController {
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         guard let email = emailTextField.text,
             let password = passwordTextfield.text else {
-                showAlert(title: "All fields required", message: "you must enter your username and password", actionTitle: "OK")
+                showAlert(title: "All fields required", message: "Please enter your email and password", actionTitle: "OK")
                 return}
         authService.signInExistingAccount(email: email, password: password)
     }

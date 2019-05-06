@@ -43,7 +43,7 @@
                                     <constraint firstAttribute="height" constant="25" id="3H1-HW-QK1"/>
                                     <constraint firstAttribute="width" constant="300" id="tim-Lg-dy7"/>
                                 </constraints>
-                                <state key="normal" title="Already have an account login ">
+                                <state key="normal" title=" Log in to Stylists">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -125,7 +125,7 @@
                                     <constraint firstAttribute="height" constant="25" id="h8L-xw-Qdf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Dont have an account?, Create one here">
+                                <state key="normal" title="Create Account">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -162,7 +162,7 @@
                                     <constraint firstAttribute="width" constant="243" id="P6p-9U-5qY"/>
                                     <constraint firstAttribute="height" constant="44" id="gYk-vo-t0c"/>
                                 </constraints>
-                                <state key="normal" title="Login">
+                                <state key="normal" title="Log In">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
