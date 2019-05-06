@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dCe-D6-Q5A">
-                                <rect key="frame" x="16" y="179" width="343" height="44"/>
+                                <rect key="frame" x="16" y="215.5" width="343" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="uRJ-gb-vY0"/>
                                 </constraints>
@@ -28,7 +28,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2oB-8Q-kik">
-                                <rect key="frame" x="16" y="233" width="343" height="44"/>
+                                <rect key="frame" x="16" y="269.5" width="343" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="6ca-7A-OsZ"/>
                                 </constraints>
@@ -37,8 +37,8 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPH-9C-7F7">
-                                <rect key="frame" x="37.5" y="287" width="300" height="25"/>
-                                <color key="backgroundColor" red="0.33403472829999997" green="0.44645626760000001" blue="0.89813512559999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <rect key="frame" x="37.5" y="323.5" width="300" height="25"/>
+                                <color key="backgroundColor" red="0.174853128" green="0.2225734221" blue="0.3657343045" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="3H1-HW-QK1"/>
                                     <constraint firstAttribute="width" constant="300" id="tim-Lg-dy7"/>
@@ -46,29 +46,41 @@
                                 <state key="normal" title="Already have an account login ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="backToLoginButtonPressed:" destination="G5D-wN-w8a" eventType="touchUpInside" id="9bP-lE-5dH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y4W-jv-Ksh">
-                                <rect key="frame" x="66" y="322" width="243" height="44"/>
+                                <rect key="frame" x="66" y="358.5" width="243" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="243" id="VkI-ov-PXg"/>
                                     <constraint firstAttribute="height" constant="44" id="pok-ML-qUg"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Create">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="createProfilePressed:" destination="G5D-wN-w8a" eventType="touchUpInside" id="Hoz-ss-bdl"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.67227002150000004" green="1" blue="0.60191029330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="2oB-8Q-kik" firstAttribute="top" secondItem="dCe-D6-Q5A" secondAttribute="bottom" constant="10" id="1aA-UI-3n4"/>
-                            <constraint firstItem="dCe-D6-Q5A" firstAttribute="centerY" secondItem="7DL-Iy-fU5" secondAttribute="centerY" multiplier="0.55" id="5LP-Hm-Beq"/>
+                            <constraint firstItem="dCe-D6-Q5A" firstAttribute="centerY" secondItem="7DL-Iy-fU5" secondAttribute="centerY" multiplier="0.65" id="5LP-Hm-Beq"/>
                             <constraint firstItem="kPH-9C-7F7" firstAttribute="top" secondItem="2oB-8Q-kik" secondAttribute="bottom" constant="10" id="Bdu-GF-m9E"/>
                             <constraint firstItem="y4W-jv-Ksh" firstAttribute="centerX" secondItem="7DL-Iy-fU5" secondAttribute="centerX" id="DMj-aw-jZs"/>
                             <constraint firstItem="y4W-jv-Ksh" firstAttribute="top" secondItem="kPH-9C-7F7" secondAttribute="bottom" constant="10" id="GW2-Av-yFb"/>
@@ -79,6 +91,9 @@
                             <constraint firstItem="kPH-9C-7F7" firstAttribute="centerX" secondItem="7DL-Iy-fU5" secondAttribute="centerX" id="ggM-9q-NNV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7DL-Iy-fU5"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="XZG-jX-TMd" appends="YES" id="928-Nj-kZa"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="emailTextfield" destination="dCe-D6-Q5A" id="HnI-vB-6yR"/>
@@ -86,6 +101,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kIC-EF-poG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="XZG-jX-TMd">
+                    <connections>
+                        <action selector="keyboardHandling:" destination="G5D-wN-w8a" id="6EM-Tk-usQ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2120.8000000000002" y="76.911544227886068"/>
         </scene>
@@ -163,6 +183,7 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="61j-eX-gf6" firstAttribute="top" secondItem="Usb-K7-cR7" secondAttribute="bottom" constant="10" id="2Yd-4P-PKj"/>
                             <constraint firstItem="ffD-qU-g76" firstAttribute="trailing" secondItem="qup-Rv-0k5" secondAttribute="trailing" constant="16" id="4dL-yv-mc0"/>
@@ -178,6 +199,9 @@
                             <constraint firstItem="61j-eX-gf6" firstAttribute="centerX" secondItem="ffD-qU-g76" secondAttribute="centerX" id="ywm-8g-L4u"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ffD-qU-g76"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="qpN-BU-6VV" appends="YES" id="od4-fq-ARA"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="JgI-Xv-4bG"/>
                     <connections>
@@ -186,6 +210,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EDL-Yn-5QD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="qpN-BU-6VV">
+                    <connections>
+                        <action selector="keyboardHandleTap:" destination="G3v-lj-Uig" id="b7o-Z8-Jos"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1300" y="76.911544227886068"/>
         </scene>

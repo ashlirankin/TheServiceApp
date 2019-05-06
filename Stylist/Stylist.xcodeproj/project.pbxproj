@@ -159,7 +159,7 @@
 		2E409BEF2267DF0E00130CBA /* Payments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payments.storyboard; sourceTree = "<group>"; };
 		2E49A49D226F6677002B230E /* WalletTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WalletTableViewController.swift; path = "Client Files/WalletTableViewController.swift"; sourceTree = "<group>"; };
 		2E49A4A3226F872E002B230E /* OrderSummaryAndPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryAndPaymentViewController.swift; sourceTree = "<group>"; };
-		2E49A4A5226F89C6002B230E /* SummaryServicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryServicesCollectionViewCell.swift; sourceTree = "<group>"; };
+		2E49A4A5226F89C6002B230E /* SummaryServicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SummaryServicesCollectionViewCell.swift; path = ../Views/SummaryServicesCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E49A4A8226FB46C002B230E /* OrderSummaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E49A555226FEC7D002B230E /* CardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfo.swift; sourceTree = "<group>"; };
 		2E49A557226FEF99002B230E /* WalletModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletModel.swift; sourceTree = "<group>"; };
@@ -375,7 +375,6 @@
 				2E90A6192261124A0016462C /* BookService.storyboard */,
 				45864F50225D0449005FDBD5 /* ReviewAndRatings.storyboard */,
 				2E409BEF2267DF0E00130CBA /* Payments.storyboard */,
-				2E49A4A5226F89C6002B230E /* SummaryServicesCollectionViewCell.swift */,
 				2E23F19A226E88A60037B9AA /* CardCollectionViewCell.swift */,
 				2E7739BD22601267004C188A /* Entrance.storyboard */,
 				D6FE74E92261138600B4A49A /* FilterProviders.storyboard */,
@@ -408,6 +407,7 @@
 				090EF6D3226FAA1C00AD19AA /* UserChoiceViewController.swift */,
 				090374E82270B9D300B77B66 /* UserTabBarController.swift */,
 				09397588227A085B0015E6FC /* PortfolioDetailViewController.swift */,
+				2E49A4A5226F89C6002B230E /* SummaryServicesCollectionViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
