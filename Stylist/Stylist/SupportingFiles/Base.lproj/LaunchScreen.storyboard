@@ -18,16 +18,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StylistLaunchLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Qtt-IS-6sD">
-                                <rect key="frame" x="87" y="294" width="240" height="255"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StylistLogo" translatesAutoresizingMaskIntoConstraints="NO" id="nEx-U2-MX4">
+                                <rect key="frame" x="87" y="149" width="240" height="540"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Qtt-IS-6sD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="250" id="75B-4I-zXW"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Qtt-IS-6sD" secondAttribute="bottom" constant="313" id="cHP-2Y-DpI"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Qtt-IS-6sD" secondAttribute="trailing" constant="87" id="noW-e8-72x"/>
-                            <constraint firstItem="Qtt-IS-6sD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="qol-GG-9n1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nEx-U2-MX4" secondAttribute="bottom" constant="173" id="4ij-aa-URf"/>
+                            <constraint firstItem="nEx-U2-MX4" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="CKX-zn-0NT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nEx-U2-MX4" secondAttribute="trailing" constant="87" id="Edo-Vh-74g"/>
+                            <constraint firstItem="nEx-U2-MX4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="Zts-hX-xcV"/>
+                            <constraint firstItem="nEx-U2-MX4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="105" id="s5L-3s-ELU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -38,6 +39,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="StylistLaunchLogo" width="2000" height="2000"/>
+        <image name="StylistLogo" width="1500" height="1500"/>
     </resources>
 </document>

@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
  let authService = AuthService()
 //static var container = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    Thread.sleep(forTimeInterval: 1.5)
+    Thread.sleep(forTimeInterval: 1.0)
     FirebaseApp.configure()
     window = UIWindow(frame: UIScreen.main.bounds)
     let center = UNUserNotificationCenter.current()
