@@ -196,6 +196,11 @@
                                 <state key="normal" title="Confirm">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="confirmBookingPressed:" destination="ChO-Du-JE6" eventType="touchUpInside" id="MfB-SZ-Gwo"/>
                                 </connections>
@@ -206,6 +211,11 @@
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="cancelBookingPressed:" destination="ChO-Du-JE6" eventType="touchUpInside" id="ioP-qI-eb5"/>
                                 </connections>
@@ -232,6 +242,11 @@
                                 <state key="normal" title="Complete">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="completeAppointment:" destination="ChO-Du-JE6" eventType="touchUpInside" id="isB-43-mpl"/>
                                 </connections>
@@ -293,6 +308,7 @@
                     </view>
                     <connections>
                         <outlet property="AppointmentCreated" destination="pzK-Ni-2Dx" id="yJb-Hf-RTq"/>
+                        <outlet property="appointmentServices" destination="bAK-d1-YcM" id="703-Em-OxB"/>
                         <outlet property="appointmentStatus" destination="FxH-vN-6mU" id="NUW-oq-YQN"/>
                         <outlet property="cancelButton" destination="1k6-SG-CDa" id="Um6-J6-DkE"/>
                         <outlet property="completeButton" destination="Pta-aB-iBL" id="yST-w0-ZHl"/>
@@ -396,7 +412,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Mgl-Eh-kSr" customClass="CircularImageView" customModule="Stylist" customModuleProvider="target">
-                                <rect key="frame" x="194" y="94" width="150" height="150"/>
+                                <rect key="frame" x="132" y="94" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Mgl-Eh-kSr" secondAttribute="height" multiplier="1:1" id="A9M-wt-AJG"/>
                                     <constraint firstAttribute="width" constant="150" id="SQj-7J-Eae"/>
@@ -408,15 +424,93 @@
                                 <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zUU-BA-f0Y">
+                                <rect key="frame" x="50" y="410.5" width="113" height="113"/>
+                                <color key="backgroundColor" red="0.2666925879" green="0.34093691390000003" blue="0.56366989209999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="113" id="9mS-7y-D80"/>
+                                    <constraint firstAttribute="height" constant="113" id="Vow-Z8-ujX"/>
+                                </constraints>
+                                <state key="normal" image="icons8-photo-gallery-filled-50 (1)"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZe-ZS-fXG">
+                                <rect key="frame" x="251" y="410.5" width="113" height="113"/>
+                                <color key="backgroundColor" red="0.2666925879" green="0.34093691390000003" blue="0.56366989209999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" image="icons8-resume-48"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wyW-Ek-PVN">
+                                <rect key="frame" x="251" y="588.5" width="113" height="113"/>
+                                <color key="backgroundColor" red="0.2666925879" green="0.34093691390000003" blue="0.56366989209999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" image="icons8-schedule-50"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQK-hs-oTj">
+                                <rect key="frame" x="50" y="588.5" width="113" height="113"/>
+                                <color key="backgroundColor" red="0.2666925879" green="0.34093691390000003" blue="0.56366989209999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" image="icons8-compose-50"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total earnings: $45" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LT7-ni-CI2">
+                                <rect key="frame" x="53" y="328.5" width="308" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ratings : 5.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KsM-Dd-nYF">
+                                <rect key="frame" x="53" y="359.5" width="308" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.174853128" green="0.2225734221" blue="0.3657343045" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="Mgl-Eh-kSr" firstAttribute="centerX" secondItem="l0n-rs-UQf" secondAttribute="centerX" multiplier="1.3" id="1rx-dC-5cZ"/>
+                            <constraint firstItem="LT7-ni-CI2" firstAttribute="leading" secondItem="l0n-rs-UQf" secondAttribute="leading" constant="53" id="0CR-u7-Gad"/>
+                            <constraint firstItem="wyW-Ek-PVN" firstAttribute="top" secondItem="VZe-ZS-fXG" secondAttribute="bottom" constant="65" id="1eh-iS-Iu1"/>
+                            <constraint firstItem="Mgl-Eh-kSr" firstAttribute="centerX" secondItem="l0n-rs-UQf" secondAttribute="centerX" id="1rx-dC-5cZ"/>
+                            <constraint firstItem="wyW-Ek-PVN" firstAttribute="height" secondItem="VZe-ZS-fXG" secondAttribute="height" id="9fb-yc-iig"/>
+                            <constraint firstItem="l0n-rs-UQf" firstAttribute="trailing" secondItem="LT7-ni-CI2" secondAttribute="trailing" constant="53" id="Bel-rs-DJP"/>
+                            <constraint firstItem="KsM-Dd-nYF" firstAttribute="top" secondItem="LT7-ni-CI2" secondAttribute="bottom" constant="10" id="EsW-wB-ETN"/>
+                            <constraint firstItem="KsM-Dd-nYF" firstAttribute="width" secondItem="LT7-ni-CI2" secondAttribute="width" id="GhQ-PF-827"/>
+                            <constraint firstItem="LT7-ni-CI2" firstAttribute="centerX" secondItem="Qca-be-40z" secondAttribute="centerX" id="JVa-kt-L27"/>
+                            <constraint firstItem="VZe-ZS-fXG" firstAttribute="centerY" secondItem="zUU-BA-f0Y" secondAttribute="centerY" id="K7n-wq-9rh"/>
+                            <constraint firstItem="zUU-BA-f0Y" firstAttribute="leading" secondItem="l0n-rs-UQf" secondAttribute="leading" constant="50" id="M0n-uW-DYt"/>
                             <constraint firstItem="xxV-Zn-aCs" firstAttribute="top" secondItem="l0n-rs-UQf" secondAttribute="top" constant="30" id="MWp-9C-KKS"/>
+                            <constraint firstItem="wyW-Ek-PVN" firstAttribute="centerX" secondItem="VZe-ZS-fXG" secondAttribute="centerX" id="NfS-hk-hj8"/>
                             <constraint firstItem="xxV-Zn-aCs" firstAttribute="leading" secondItem="l0n-rs-UQf" secondAttribute="leading" constant="20" id="OZn-Ma-rbS"/>
                             <constraint firstItem="Mgl-Eh-kSr" firstAttribute="top" secondItem="l0n-rs-UQf" secondAttribute="top" constant="50" id="QlH-on-Rzq"/>
+                            <constraint firstItem="KsM-Dd-nYF" firstAttribute="height" secondItem="LT7-ni-CI2" secondAttribute="height" id="X79-6A-E1P"/>
+                            <constraint firstItem="dQK-hs-oTj" firstAttribute="centerY" secondItem="wyW-Ek-PVN" secondAttribute="centerY" id="YBz-NF-BOK"/>
+                            <constraint firstItem="VZe-ZS-fXG" firstAttribute="height" secondItem="zUU-BA-f0Y" secondAttribute="height" id="cje-gh-a0B"/>
+                            <constraint firstItem="KsM-Dd-nYF" firstAttribute="centerX" secondItem="LT7-ni-CI2" secondAttribute="centerX" id="cqk-Uf-HAG"/>
+                            <constraint firstItem="LT7-ni-CI2" firstAttribute="top" secondItem="Qca-be-40z" secondAttribute="bottom" constant="10" id="dqK-ya-kV9"/>
+                            <constraint firstItem="l0n-rs-UQf" firstAttribute="trailing" secondItem="VZe-ZS-fXG" secondAttribute="trailing" constant="50" id="hdY-wX-5dP"/>
+                            <constraint firstItem="VZe-ZS-fXG" firstAttribute="width" secondItem="zUU-BA-f0Y" secondAttribute="width" id="jl4-qi-DQH"/>
                             <constraint firstItem="Qca-be-40z" firstAttribute="top" secondItem="Mgl-Eh-kSr" secondAttribute="bottom" constant="30" id="lqh-OJ-ubS"/>
+                            <constraint firstItem="dQK-hs-oTj" firstAttribute="height" secondItem="wyW-Ek-PVN" secondAttribute="height" id="n24-KU-WuF"/>
+                            <constraint firstItem="dQK-hs-oTj" firstAttribute="centerX" secondItem="zUU-BA-f0Y" secondAttribute="centerX" id="sNd-Nh-V7Z"/>
+                            <constraint firstItem="zUU-BA-f0Y" firstAttribute="top" secondItem="KsM-Dd-nYF" secondAttribute="bottom" constant="30" id="sig-XC-tOw"/>
+                            <constraint firstItem="wyW-Ek-PVN" firstAttribute="width" secondItem="VZe-ZS-fXG" secondAttribute="width" id="tUc-tr-wzZ"/>
                             <constraint firstItem="Qca-be-40z" firstAttribute="centerX" secondItem="l0n-rs-UQf" secondAttribute="centerX" id="vWc-hC-bGs"/>
+                            <constraint firstItem="dQK-hs-oTj" firstAttribute="width" secondItem="wyW-Ek-PVN" secondAttribute="width" id="xJ8-FV-MoX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="l0n-rs-UQf"/>
                     </view>
@@ -490,8 +584,12 @@
     <resources>
         <image name="icons8-barbershop-32" width="32" height="32"/>
         <image name="icons8-change-user-30" width="30" height="30"/>
+        <image name="icons8-compose-50" width="50" height="50"/>
         <image name="icons8-go-back-50" width="50" height="50"/>
+        <image name="icons8-photo-gallery-filled-50 (1)" width="50" height="50"/>
+        <image name="icons8-resume-48" width="48" height="48"/>
         <image name="icons8-resume-website-filled-24" width="24" height="24"/>
+        <image name="icons8-schedule-50" width="50" height="50"/>
         <image name="placeholder" width="512" height="512"/>
     </resources>
 </document>

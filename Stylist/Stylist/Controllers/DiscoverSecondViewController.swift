@@ -92,8 +92,6 @@ class DiscoverSecondViewController: UIViewController {
             serviceProviders = serviceProviders.filter { professionFilter[$0.jobTitle] != nil }
         }
         filterTasksComplete += 3
-        
-        
         var tempAllProvidersServices = [[ProviderServices]]()
         var allProvidersServicesLeftAfterFilteringPrice = [[ProviderServices]]() {
             didSet {

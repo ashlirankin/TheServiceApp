@@ -19,8 +19,8 @@ enum FavoriteButtonState: String {
 class ProviderDetailController: UITableViewController {
     var isFavorite: Bool!
     var favoriteId: String?
-    
     let authservice = AuthService()
+    
     @IBOutlet weak var scrollView: UIScrollView!
     lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 300))
     var provider: ServiceSideUser!
@@ -57,6 +57,9 @@ class ProviderDetailController: UITableViewController {
         setFavoriteState()
         
     }
+    
+    
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.navigationItem.rightBarButtonItem?.isEnabled = true
@@ -157,12 +160,13 @@ class ProviderDetailController: UITableViewController {
                 let avg = Int(total) / self.allRatingValues.count
                 self.providerDetailHeader.ratingsValue.text = "\(avg)"
                 self.providerDetailHeader.ratingsstars.rating = Double(avg)
-            
+                
             }
         }
         setupProviderPortfolio()
         setupReviews()
     }
+    
     
     private func setupProviderPortfolio() {
         portfolioView.portfolioCollectionView.delegate = self
@@ -204,6 +208,13 @@ class ProviderDetailController: UITableViewController {
     
     
     @objc func bookButtonPressed(){
+        guard let currentUser = authservice.getCurrentUser() else {
+            return
+        }
+        if currentUser.uid == provider.userId {
+            self.showAlert(title: nil, message: "You can't book yourself!", actionTitle: "OK")
+            return
+        }
         guard let bookingController = UIStoryboard(name: "BookService", bundle: nil).instantiateViewController(withIdentifier: "BookingController") as? BookingViewController else {return}
         guard let provider = provider else {return}
         bookingController.provider = provider
@@ -240,10 +251,12 @@ extension ProviderDetailController: UICollectionViewDataSource {
         } else if collectionView == reviewCollectionView.ReviewCV {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionViewCell
             let review = reviews[indexPath.row]
+            
             cell.reviewCollectionCellLabel.text = review.description
             return cell
         } else {
             let portfolioCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PortfolioCell", for: indexPath) as! PortfolioCollectionViewCell
+            portfolioCell.protoflioImage.isUserInteractionEnabled = true
             switch provider.jobTitle {
             case "Barber":
                 portfolioCell.protoflioImage.image = UIImage(named: "barber\(indexPath.row)")
@@ -276,12 +289,23 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
         }
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let view = featureViews[indexPath.row]
-        scrollView.scrollRectToVisible(view.frame, animated: true)
-        view.frame.size.width = self.view.bounds.width
-        view.frame.origin.x = CGFloat(indexPath.row) * self.view.bounds.size.width
+        if collectionView == portfolioView.portfolioCollectionView {
+            let portfolioCell = collectionView.cellForItem(at: indexPath) as! PortfolioCollectionViewCell
+            guard let image = portfolioCell.protoflioImage.image else  {
+                return
+            }
+            let storyboard = UIStoryboard.init(name: "User", bundle: nil)
+            let portfolioVC = storyboard.instantiateViewController(withIdentifier: "PortfolioDetailVC") as! PortfolioDetailViewController
+            portfolioVC.detailImage = image
+            self.present(portfolioVC, animated: true, completion: nil)
+        } else {
+            print("im here")
+            let view = featureViews[indexPath.row]
+            scrollView.scrollRectToVisible(view.frame, animated: true)
+            view.frame.size.width = self.view.bounds.width
+            view.frame.origin.x = CGFloat(indexPath.row) * self.view.bounds.size.width
+        }
         
     }
 }

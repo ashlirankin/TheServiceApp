@@ -24,6 +24,7 @@ class ProviderBio: UIView {
     
     func  commonInit() {
         Bundle.main.loadNibNamed("ProviderDetailBio", owner: self, options: nil)
+        providerBioText.isEditable = false
         addSubview(contentView)
         contentView.frame = bounds
     }

@@ -17,6 +17,7 @@ class PortfolioView: UIView {
         layout.scrollDirection = .vertical
         cv.register(PortfolioCollectionViewCell.self, forCellWithReuseIdentifier: "PortfolioCell")
         cv.isScrollEnabled = true
+        cv.allowsSelection = true
         cv.backgroundColor = #colorLiteral(red: 0.1619916558, green: 0.224360168, blue: 0.3768204153, alpha: 1)
         layout.scrollDirection = .horizontal
         return cv

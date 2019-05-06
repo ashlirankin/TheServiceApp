@@ -18,9 +18,9 @@ class OrderSummaryAndPaymentViewController: UITableViewController {
   @IBOutlet weak var cardNumberCell: UITableViewCell!
   @IBOutlet weak var priceCell: UITableViewCell!
   
-  @IBOutlet var tipButtons: [UIButton]!
+  @IBOutlet var tipButtons: [RoundedTextButton]!
   
-  @IBOutlet weak var enterTipTextfield: UITextField!
+ 
   
   var userRating = Double()
   let ratingSettings = CosmosSettings()
@@ -51,14 +51,76 @@ class OrderSummaryAndPaymentViewController: UITableViewController {
   override func viewDidLoad(){
         super.viewDidLoad()
       servicesCollectionView.dataSource = self
-    
       setUpCosmosView()
       getCardInformation()
       setUpNavBar()
+   
     }
-  @IBAction func tipButtonPressed(_ sender: UIButton) {
-    
-    print(sender.currentTitle)
+
+  @IBAction func tipButtonPressed(_ sender: RoundedTextButton) {
+    if sender.isSelected {
+      sender.buttonSelectedUI()
+      sender.isSelected = false
+    }else{
+      sender.buttonDeselectedUI()
+      sender.isSelected = true
+    }
+    guard let title = sender.currentTitle else {return}
+    switch title {
+    case "10%":
+      let copyArray = priceArray
+      let total = copyArray.reduce(0,+)
+      let tip = 0.10
+      let something = Double(total) * tip
+      let grandTotal = something + Double(total)
+      priceCell.detailTextLabel?.text = "$\(grandTotal)"
+      
+    case "15%":
+      let copyArray = priceArray
+      let total = copyArray.reduce(0,+)
+      let tip = 0.15
+      let something = Double(total) * tip
+      let grandTotal = something + Double(total)
+      priceCell.detailTextLabel?.text = "$\(grandTotal)"
+    case "25%":
+      let copyArray = priceArray
+      let total = copyArray.reduce(0,+)
+      let tip = 0.20
+      let something = Double(total) * tip
+      let grandTotal = something + Double(total)
+      priceCell.detailTextLabel?.text = "$\(grandTotal)"
+    case "Custom":
+    let alertController = UIAlertController(title: "Tip", message: "Add Custom Tip", preferredStyle: .alert)
+    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+    let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self] (alert) in
+      if let textEntered = alertController.textFields?.first?.text {
+        guard let convertedTip = Double(textEntered) else {
+          if sender.tag == 0 {
+            sender.backgroundColor = .red
+          }
+          return
+        }
+       
+        guard let copyArray = self?.priceArray else {return}
+        let total = copyArray.reduce(0,+)
+        let tip = convertedTip
+        let something = Double(total) + tip
+        let grandTotal = something
+        self?.priceCell.detailTextLabel?.text = "$\(grandTotal)"
+        
+      }
+    }
+    alertController.addTextField { (textfield) in
+      textfield.placeholder = "Enter custom tip"
+      textfield.textAlignment = .center
+      
+    }
+    alertController.addAction(cancelAction)
+    alertController.addAction(submitAction )
+      self.present(alertController, animated: true)
+    default:
+      print("default")
+    }
   }
   
   func setUpNavBar(){
@@ -105,7 +167,6 @@ class OrderSummaryAndPaymentViewController: UITableViewController {
                                     "value" : userRating]
     sendPaymentInfoToDatabase(userId: currentUser.uid, information: localInformation, documentId: documentId)
     createUserReview(providerId: providerId, information: localReviews, userId: currentUser.uid)
-    
   }
   
   

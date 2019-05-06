@@ -21,7 +21,14 @@ class LoginViewController: BaseViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
         authService.authserviceExistingAccountDelegate = self
         createGradientView()
+        
     }
+    
+    @IBAction func keyboardHandleTap(_ sender: UITapGestureRecognizer) {
+      emailTextField.resignFirstResponder()
+        passwordTextfield.resignFirstResponder()
+    }
+    
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         guard let email = emailTextField.text,

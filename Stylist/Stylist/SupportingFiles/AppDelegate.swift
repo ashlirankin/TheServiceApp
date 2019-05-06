@@ -9,6 +9,8 @@
 import UIKit
 import UserNotifications
 import Firebase
+import FirebaseFirestore
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
   var window: UIWindow?
@@ -35,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         window?.rootViewController = UINavigationController(rootViewController: login)
     }
     window?.makeKeyAndVisible()
+    self.window?.tintColor = #colorLiteral(red: 0.1619916558, green: 0.224360168, blue: 0.3768204153, alpha: 1)
+    AppointmentNotification.shared
     return true
   }
     
@@ -50,6 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
   func applicationDidEnterBackground(_ application: UIApplication) {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    AppointmentNotification.shared
+    
   }
 
   func applicationWillEnterForeground(_ application: UIApplication) {

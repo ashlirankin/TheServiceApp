@@ -252,7 +252,7 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
     }
     
     static func createUserWallet(userId:String,information:[String:Any],documentId:String,completionHandler: @escaping(Error?) -> Void) {
-        firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(userId).collection("wallet").document(documentId).setData(information) { (error) in
+    firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(userId).collection("wallet").document(documentId).setData(information) { (error) in
             if let error = error {
                 completionHandler(error)
             }
@@ -291,6 +291,7 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
                     completion(nil, snapshot.documents.map({Appointments(dict: $0.data())}))
                 }
         }
+  
     }
 
     static func getAppointments(completionHandler: @escaping ([Appointments]?, Error?) -> Void) {
@@ -302,6 +303,18 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
                     let appointments = snapshot?.documents.map { Appointments(dict: $0.data()) }
                     completionHandler(appointments, nil)
                 }
+        }
+    }
+    
+    static func cancelPastBookedAppointments(appointments: [Appointments]) {
+        for appointment in appointments {
+            let appointmentTimeFormatter = DateFormatter()
+            appointmentTimeFormatter.dateFormat = "EEEE, MMM d, yyyy h:mm a"
+            guard let appointmentDate = appointmentTimeFormatter.date(from: appointment.appointmentTime) else { return }
+            let currentDate = Date()
+            if currentDate > appointmentDate {
+                updateAppointment(appointmentID: appointment.documentId, status: "canceled")
+            }
         }
     }
     

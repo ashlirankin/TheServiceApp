@@ -11,10 +11,12 @@
 		090374E92270B9D300B77B66 /* UserTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090374E82270B9D300B77B66 /* UserTabBarController.swift */; };
 		090374EB2270CA0D00B77B66 /* AppointmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090374EA2270CA0D00B77B66 /* AppointmentCell.swift */; };
 		090EF6D4226FAA1C00AD19AA /* UserChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090EF6D3226FAA1C00AD19AA /* UserChoiceViewController.swift */; };
+		09397589227A085C0015E6FC /* PortfolioDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09397588227A085B0015E6FC /* PortfolioDetailViewController.swift */; };
 		093A6E8F2272097D003A4E4F /* ReviewsCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 093A6E8E2272097D003A4E4F /* ReviewsCollectionView.xib */; };
 		093A6E9122720B66003A4E4F /* ReviewCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093A6E9022720B66003A4E4F /* ReviewCollectionView.swift */; };
 		093A6E9422720BFB003A4E4F /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093A6E9222720BFB003A4E4F /* CollectionViewCell.swift */; };
 		093A6E9522720BFB003A4E4F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 093A6E9322720BFB003A4E4F /* CollectionViewCell.xib */; };
+		093FA84D227A51EA00E06EEF /* AppointmentNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093FA84C227A51EA00E06EEF /* AppointmentNotification.swift */; };
 		09481797225F9ACC0026C066 /* BookingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09481796225F9ACC0026C066 /* BookingTableViewCell.swift */; };
 		094DF889225D2809001EA2FE /* ProviderDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094DF888225D2809001EA2FE /* ProviderDetailController.swift */; };
 		094DF88B225D2835001EA2FE /* UserDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 094DF88A225D2835001EA2FE /* UserDetailHeader.xib */; };
@@ -42,6 +44,7 @@
 		09DCD313225E97340090EE1F /* DiscoveryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD312225E97340090EE1F /* DiscoveryCollectionViewCell.swift */; };
 		09DCD315225EA5C20090EE1F /* DiscoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD314225EA5C20090EE1F /* DiscoverTableViewCell.swift */; };
 		291F30A20B9AEA8931FF3E32 /* Pods_FirebaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F0689D22A995E41D8C2C56 /* Pods_FirebaseTests.framework */; };
+		2E07D948228084720078C65F /* ApplicationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E07D947228084720078C65F /* ApplicationInfo.swift */; };
 		2E23F197226E5DCA0037B9AA /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E23F196226E5DCA0037B9AA /* PaymentsViewController.swift */; };
 		2E23F19B226E88A70037B9AA /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E23F19A226E88A60037B9AA /* CardCollectionViewCell.swift */; };
 		2E409BEE2267C2AD00130CBA /* Appointments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E409BED2267C2AD00130CBA /* Appointments.swift */; };
@@ -74,6 +77,7 @@
 		2EBDDBD8225B99B000583BC0 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBDDBD7225B99B000583BC0 /* Date+Extension.swift */; };
 		2EBDDC1C225D0A7800583BC0 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBDDC1B225D0A7800583BC0 /* BaseViewController.swift */; };
 		2EBDDC20225D2E9400583BC0 /* OnboardingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBDDC1F225D2E9400583BC0 /* OnboardingTableViewController.swift */; };
+		2EECBA88227A29F80039C7C9 /* ButtonExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EECBA87227A29F80039C7C9 /* ButtonExt.swift */; };
 		2EF1039C2255314A0030FBFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF1039B2255314A0030FBFF /* AppDelegate.swift */; };
 		2EF103A32255314C0030FBFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF103A22255314C0030FBFF /* Assets.xcassets */; };
 		2EF103A62255314C0030FBFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EF103A42255314C0030FBFF /* LaunchScreen.storyboard */; };
@@ -116,10 +120,12 @@
 		090374E82270B9D300B77B66 /* UserTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTabBarController.swift; sourceTree = "<group>"; };
 		090374EA2270CA0D00B77B66 /* AppointmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentCell.swift; sourceTree = "<group>"; };
 		090EF6D3226FAA1C00AD19AA /* UserChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChoiceViewController.swift; sourceTree = "<group>"; };
+		09397588227A085B0015E6FC /* PortfolioDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioDetailViewController.swift; sourceTree = "<group>"; };
 		093A6E8E2272097D003A4E4F /* ReviewsCollectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewsCollectionView.xib; sourceTree = "<group>"; };
 		093A6E9022720B66003A4E4F /* ReviewCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionView.swift; sourceTree = "<group>"; };
 		093A6E9222720BFB003A4E4F /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		093A6E9322720BFB003A4E4F /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
+		093FA84C227A51EA00E06EEF /* AppointmentNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentNotification.swift; sourceTree = "<group>"; };
 		09481796225F9ACC0026C066 /* BookingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTableViewCell.swift; sourceTree = "<group>"; };
 		09481798225FC6BE0026C066 /* Entrance.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Entrance.storyboard; sourceTree = "<group>"; };
 		094DF888225D2809001EA2FE /* ProviderDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderDetailController.swift; sourceTree = "<group>"; };
@@ -148,13 +154,14 @@
 		09DCD312225E97340090EE1F /* DiscoveryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryCollectionViewCell.swift; sourceTree = "<group>"; };
 		09DCD314225EA5C20090EE1F /* DiscoverTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewCell.swift; sourceTree = "<group>"; };
 		26FA858D08C6AC46AEBAE072 /* Pods-StylistTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylistTests.release.xcconfig"; path = "Target Support Files/Pods-StylistTests/Pods-StylistTests.release.xcconfig"; sourceTree = "<group>"; };
+		2E07D947228084720078C65F /* ApplicationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationInfo.swift; sourceTree = "<group>"; };
 		2E23F196226E5DCA0037B9AA /* PaymentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
 		2E23F19A226E88A60037B9AA /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E409BED2267C2AD00130CBA /* Appointments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointments.swift; sourceTree = "<group>"; };
 		2E409BEF2267DF0E00130CBA /* Payments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payments.storyboard; sourceTree = "<group>"; };
 		2E49A49D226F6677002B230E /* WalletTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WalletTableViewController.swift; path = "Client Files/WalletTableViewController.swift"; sourceTree = "<group>"; };
 		2E49A4A3226F872E002B230E /* OrderSummaryAndPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryAndPaymentViewController.swift; sourceTree = "<group>"; };
-		2E49A4A5226F89C6002B230E /* SummaryServicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryServicesCollectionViewCell.swift; sourceTree = "<group>"; };
+		2E49A4A5226F89C6002B230E /* SummaryServicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SummaryServicesCollectionViewCell.swift; path = ../Views/SummaryServicesCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E49A4A8226FB46C002B230E /* OrderSummaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E49A555226FEC7D002B230E /* CardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfo.swift; sourceTree = "<group>"; };
 		2E49A557226FEF99002B230E /* WalletModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletModel.swift; sourceTree = "<group>"; };
@@ -182,6 +189,7 @@
 		2EBDDBD7225B99B000583BC0 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		2EBDDC1B225D0A7800583BC0 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		2EBDDC1F225D2E9400583BC0 /* OnboardingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTableViewController.swift; sourceTree = "<group>"; };
+		2EECBA87227A29F80039C7C9 /* ButtonExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExt.swift; sourceTree = "<group>"; };
 		2EF103982255314A0030FBFF /* Stylist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stylist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EF1039B2255314A0030FBFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EF103A22255314C0030FBFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -358,6 +366,7 @@
 		2EF103C32255A4540030FBFF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2EECBA87227A29F80039C7C9 /* ButtonExt.swift */,
 				2E49A4A8226FB46C002B230E /* OrderSummaryCollectionViewCell.swift */,
 				2E90A61D22611A010016462C /* ServicesCollectionViewCell.swift */,
 				2E90A61F22611B4F0016462C /* AvalibilityCollectionViewCell.swift */,
@@ -368,7 +377,6 @@
 				2E90A6192261124A0016462C /* BookService.storyboard */,
 				45864F50225D0449005FDBD5 /* ReviewAndRatings.storyboard */,
 				2E409BEF2267DF0E00130CBA /* Payments.storyboard */,
-				2E49A4A5226F89C6002B230E /* SummaryServicesCollectionViewCell.swift */,
 				2E23F19A226E88A60037B9AA /* CardCollectionViewCell.swift */,
 				2E7739BD22601267004C188A /* Entrance.storyboard */,
 				D6FE74E92261138600B4A49A /* FilterProviders.storyboard */,
@@ -385,6 +393,7 @@
 				2E23F196226E5DCA0037B9AA /* PaymentsViewController.swift */,
 				2E49A4A3226F872E002B230E /* OrderSummaryAndPaymentViewController.swift */,
 				2E49A49D226F6677002B230E /* WalletTableViewController.swift */,
+				2E07D947228084720078C65F /* ApplicationInfo.swift */,
 				2EBDDC1F225D2E9400583BC0 /* OnboardingTableViewController.swift */,
 				2EBDDC1B225D0A7800583BC0 /* BaseViewController.swift */,
 				2E9DD7D72257F69B00D74DD1 /* CreateViewController.swift */,
@@ -400,6 +409,8 @@
 				099B0C14226649CA00474066 /* DiscoverSecondViewController.swift */,
 				090EF6D3226FAA1C00AD19AA /* UserChoiceViewController.swift */,
 				090374E82270B9D300B77B66 /* UserTabBarController.swift */,
+				09397588227A085B0015E6FC /* PortfolioDetailViewController.swift */,
+				2E49A4A5226F89C6002B230E /* SummaryServicesCollectionViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -419,6 +430,7 @@
 				2EF103D22255ABA10030FBFF /* Avalibility.swift */,
 				2E49A555226FEC7D002B230E /* CardInfo.swift */,
 				2EF103D42255AE060030FBFF /* Days.swift */,
+				093FA84C227A51EA00E06EEF /* AppointmentNotification.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -714,9 +726,11 @@
 				0995FD2C226F8E75005434B3 /* ReviewCell.swift in Sources */,
 				2EBDDBD8225B99B000583BC0 /* Date+Extension.swift in Sources */,
 				093A6E9122720B66003A4E4F /* ReviewCollectionView.swift in Sources */,
+				2EECBA88227A29F80039C7C9 /* ButtonExt.swift in Sources */,
 				2EBDDBD4225B997B00583BC0 /* Alert+Extensions.swift in Sources */,
 				D6FE75182265118A00B4A49A /* ProfessionCell.swift in Sources */,
 				2E9DD7DA2257F6A800D74DD1 /* LoginViewController.swift in Sources */,
+				2E07D948228084720078C65F /* ApplicationInfo.swift in Sources */,
 				2E23F19B226E88A70037B9AA /* CardCollectionViewCell.swift in Sources */,
 				2EFC36472264E2E5001B54F8 /* ProviderServices.swift in Sources */,
 				09DCD30F225E7F7D0090EE1F /* ProviderDetailReviews.swift in Sources */,
@@ -730,6 +744,7 @@
 				099B0C13226648F300474066 /* DiscoverCollectionViewCell.swift in Sources */,
 				2E49A4A9226FB46C002B230E /* OrderSummaryCollectionViewCell.swift in Sources */,
 				09DCD303225E4AB90090EE1F /* UIViewController+Extensions.swift in Sources */,
+				093FA84D227A51EA00E06EEF /* AppointmentNotification.swift in Sources */,
 				09DCD313225E97340090EE1F /* DiscoveryCollectionViewCell.swift in Sources */,
 				2E9DD7D02257C93E00D74DD1 /* DBService.swift in Sources */,
 				2E49A49E226F6677002B230E /* WalletTableViewController.swift in Sources */,
@@ -753,6 +768,7 @@
 				D6006938226FB86200DBB38F /* Array+Extensions.swift in Sources */,
 				2E9DD7DC2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift in Sources */,
 				094DF892225D492D001EA2FE /* ProviderDetailCustomCell.swift in Sources */,
+				09397589227A085C0015E6FC /* PortfolioDetailViewController.swift in Sources */,
 				D6B4BF6D225E384300F1E48C /* IBDesignableViews.swift in Sources */,
 				D6FE74EC22611A1B00B4A49A /* FilterProvidersController.swift in Sources */,
 				2E23F197226E5DCA0037B9AA /* PaymentsViewController.swift in Sources */,

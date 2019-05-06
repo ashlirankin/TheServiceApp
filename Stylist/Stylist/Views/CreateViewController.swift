@@ -23,7 +23,13 @@ class CreateViewController: BaseViewController {
     @IBAction func backToLoginButtonPressed(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
-  
+    
+    
+    @IBAction func keyboardHandling(_ sender: UITapGestureRecognizer) {
+        emailTextfield.resignFirstResponder()
+        passwordTextfield.resignFirstResponder()
+    }
+    
     @IBAction func createProfilePressed(_ sender: UIButton) {
         guard let email = emailTextfield.text,
             let password =  passwordTextfield.text else {

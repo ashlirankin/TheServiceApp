@@ -20,7 +20,6 @@ struct ServiceSideUser{
   let licenseNumber:String?
   let licenseExpiryDate:String?
   let jobTitle:String
-  let address:String?
   let city:String?
   let state:String?
   let lat:String?
@@ -28,7 +27,10 @@ struct ServiceSideUser{
   let zip:String?
    let favoriteId: String?
   let isAvailable: Bool
-    init(userId:String,firstName:String?,lastName:String?,email:String,joinedDate:String,gender:String?,isCertified:Bool,imageURL:String?,bio:String?,licenseNumber:String?,licenseExpiryDate:String?,type:String,address:String?,city:String,state:String,lat:String,long:String,zip:String, favoriteId: String?, isAvailable:Bool) {
+    public var fullName: String {
+        return ((firstName ?? "") + " " + (lastName ?? "")).trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    init(userId:String,firstName:String?,lastName:String?,email:String,joinedDate:String,gender:String?,isCertified:Bool,imageURL:String?,bio:String?,licenseNumber:String?,licenseExpiryDate:String?,type:String,city:String,state:String,lat:String,long:String,zip:String, favoriteId: String?, isAvailable:Bool) {
     self.userId = userId
     self.firstName = firstName
     self.lastName = lastName
@@ -41,7 +43,6 @@ struct ServiceSideUser{
     self.licenseNumber = licenseNumber
     self.licenseExpiryDate = licenseExpiryDate
     self.jobTitle = type
-    self.address = address
     self.city = city
     self.state = state
     self.lat = lat
@@ -63,7 +64,6 @@ struct ServiceSideUser{
     self.licenseNumber = dict[ServiceSideUserCollectionKeys.licenseNumber] as? String ?? "no license number found"
     self.licenseExpiryDate = dict[ServiceSideUserCollectionKeys.licenseExpiryDate] as? String ?? "no expiry date found"
     self.jobTitle = dict[ServiceSideUserCollectionKeys.jobTitle] as? String ?? "no type"
-    self.address = dict[ServiceSideUserCollectionKeys.address] as? String ?? "no address found"
     self.city = dict[ServiceSideUserCollectionKeys.city] as? String ?? "no city found"
     self.lat = dict[ServiceSideUserCollectionKeys.lat] as? String ?? "no lat found"
     self.long = dict[ServiceSideUserCollectionKeys.long] as? String ?? "no long found"

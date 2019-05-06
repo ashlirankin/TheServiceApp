@@ -402,13 +402,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="73.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5e7-0O-Ll2">
-                                                    <rect key="frame" x="15" y="25" width="43" height="36"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5e7-0O-Ll2" customClass="RoundedTextButton" customModule="Stylist" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="18.5" width="61" height="36.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="43" id="gjj-zs-1JW"/>
+                                                        <constraint firstAttribute="width" constant="61" id="52p-Ck-gue"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <state key="normal" title="1.0%">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" title="10%">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
@@ -416,35 +417,14 @@
                                                         <action selector="tipButtonPressed:" destination="voD-Vb-MHo" eventType="touchUpInside" id="EeW-je-yMr"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JZx-KI-t36">
-                                                    <rect key="frame" x="86" y="28" width="46" height="30"/>
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8H2-2j-NsG" customClass="RoundedTextButton" customModule="Stylist" customModuleProvider="target">
+                                                    <rect key="frame" x="223" y="18.5" width="61" height="36.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="46" id="BFh-o1-abK"/>
-                                                        <constraint firstAttribute="height" constant="30" id="m7o-My-fh5"/>
+                                                        <constraint firstAttribute="width" constant="61" id="wSQ-Oe-rMD"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <state key="normal" title="3.0%">
-                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="tipButtonPressed:" destination="voD-Vb-MHo" eventType="touchUpInside" id="NgB-hv-um2"/>
-                                                    </connections>
-                                                </button>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="auo-es-gxW">
-                                                    <rect key="frame" x="241" y="28" width="153" height="30"/>
-                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8H2-2j-NsG">
-                                                    <rect key="frame" x="173" y="25" width="46" height="36"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="46" id="0T9-9P-aZs"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <state key="normal" title="5.0%">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" title="25%">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
@@ -452,17 +432,48 @@
                                                         <action selector="tipButtonPressed:" destination="voD-Vb-MHo" eventType="touchUpInside" id="VvZ-bm-s1B"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pPy-b2-e2B" customClass="RoundedTextButton" customModule="Stylist" customModuleProvider="target">
+                                                    <rect key="frame" x="323" y="18.5" width="71" height="36.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" title="Custom">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="tipButtonPressed:" destination="voD-Vb-MHo" eventType="touchUpInside" id="eMA-4Y-ejs"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JZx-KI-t36" customClass="RoundedTextButton" customModule="Stylist" customModuleProvider="target">
+                                                    <rect key="frame" x="113" y="18.5" width="61" height="36.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="61" id="P2e-mR-1pK"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" title="15%">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="tipButtonPressed:" destination="voD-Vb-MHo" eventType="touchUpInside" id="NgB-hv-um2"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="JZx-KI-t36" firstAttribute="top" secondItem="auo-es-gxW" secondAttribute="top" id="3Wp-OG-gKH"/>
-                                                <constraint firstItem="5e7-0O-Ll2" firstAttribute="leading" secondItem="DH6-el-Vp6" secondAttribute="leadingMargin" constant="-5" id="3p8-KL-COZ"/>
-                                                <constraint firstItem="JZx-KI-t36" firstAttribute="leading" secondItem="5e7-0O-Ll2" secondAttribute="trailing" constant="28" id="L6O-Nn-nnJ"/>
-                                                <constraint firstItem="JZx-KI-t36" firstAttribute="baseline" secondItem="8H2-2j-NsG" secondAttribute="baseline" id="PiI-3A-tZR"/>
-                                                <constraint firstItem="auo-es-gxW" firstAttribute="leading" secondItem="8H2-2j-NsG" secondAttribute="trailing" constant="22" id="VrQ-A7-JPb"/>
-                                                <constraint firstItem="5e7-0O-Ll2" firstAttribute="top" secondItem="DH6-el-Vp6" secondAttribute="topMargin" constant="14" id="dQS-uq-dbu"/>
-                                                <constraint firstItem="auo-es-gxW" firstAttribute="trailing" secondItem="DH6-el-Vp6" secondAttribute="trailingMargin" id="f4s-ho-ROC"/>
-                                                <constraint firstItem="5e7-0O-Ll2" firstAttribute="baseline" secondItem="JZx-KI-t36" secondAttribute="baseline" id="qKb-Wz-hMI"/>
-                                                <constraint firstItem="8H2-2j-NsG" firstAttribute="leading" secondItem="JZx-KI-t36" secondAttribute="trailing" constant="41" id="why-7Z-3xh"/>
+                                                <constraint firstItem="8H2-2j-NsG" firstAttribute="top" secondItem="pPy-b2-e2B" secondAttribute="top" id="3M6-IW-6aU"/>
+                                                <constraint firstItem="JZx-KI-t36" firstAttribute="top" secondItem="8H2-2j-NsG" secondAttribute="top" id="86n-fK-EYb"/>
+                                                <constraint firstItem="8H2-2j-NsG" firstAttribute="baseline" secondItem="pPy-b2-e2B" secondAttribute="firstBaseline" id="8Pj-e7-jIV"/>
+                                                <constraint firstItem="JZx-KI-t36" firstAttribute="baseline" secondItem="8H2-2j-NsG" secondAttribute="firstBaseline" id="HNL-Z1-Bh0"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="5e7-0O-Ll2" secondAttribute="bottom" constant="8" id="JQj-Qs-UrC"/>
+                                                <constraint firstItem="pPy-b2-e2B" firstAttribute="leading" secondItem="8H2-2j-NsG" secondAttribute="trailing" constant="39" id="NYl-py-kO6"/>
+                                                <constraint firstItem="5e7-0O-Ll2" firstAttribute="leading" secondItem="DH6-el-Vp6" secondAttribute="leadingMargin" id="SdS-dB-FPL"/>
+                                                <constraint firstItem="5e7-0O-Ll2" firstAttribute="baseline" secondItem="JZx-KI-t36" secondAttribute="firstBaseline" id="X5J-Ye-Zu9"/>
+                                                <constraint firstItem="JZx-KI-t36" firstAttribute="leading" secondItem="5e7-0O-Ll2" secondAttribute="trailing" constant="32" id="YP3-Nh-W4S"/>
+                                                <constraint firstItem="5e7-0O-Ll2" firstAttribute="top" secondItem="JZx-KI-t36" secondAttribute="top" id="gYb-9j-xla"/>
+                                                <constraint firstItem="pPy-b2-e2B" firstAttribute="trailing" secondItem="DH6-el-Vp6" secondAttribute="trailingMargin" id="iUX-r4-s5x"/>
+                                                <constraint firstItem="8H2-2j-NsG" firstAttribute="leading" secondItem="JZx-KI-t36" secondAttribute="trailing" constant="49" id="oCW-S3-aVS"/>
+                                                <constraint firstItem="5e7-0O-Ll2" firstAttribute="centerY" secondItem="DH6-el-Vp6" secondAttribute="centerY" id="pGh-ai-qCV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -617,7 +628,6 @@
                         <outlet property="CardImage" destination="kqa-Kq-GA9" id="GCl-sp-A7F"/>
                         <outlet property="cardNumberCell" destination="vQ7-cU-OfL" id="E9y-jn-3u2"/>
                         <outlet property="confirmPayment" destination="yU7-Gq-Ceq" id="Xkj-Et-rJV"/>
-                        <outlet property="enterTipTextfield" destination="auo-es-gxW" id="a7S-nz-wCT"/>
                         <outlet property="priceCell" destination="nDT-qC-qvG" id="OoV-ur-6M1"/>
                         <outlet property="ratingView" destination="dQM-UX-fCj" id="8xb-x2-iNO"/>
                         <outlet property="reviewTextview" destination="j6u-Ip-hfb" id="vAV-k0-0dv"/>
