@@ -41,7 +41,6 @@ final class AuthService {
                                    lastName: nil,
                                    email: authDataResult.user.email!,
                                    gender: nil,
-                                   address: nil,
                                    imageURL: nil,
                                    joinedDate: Date.getISOTimestamp(),
                                    street: nil,

@@ -45,6 +45,7 @@
 		09DCD315225EA5C20090EE1F /* DiscoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD314225EA5C20090EE1F /* DiscoverTableViewCell.swift */; };
 		291F30A20B9AEA8931FF3E32 /* Pods_FirebaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F0689D22A995E41D8C2C56 /* Pods_FirebaseTests.framework */; };
 		2E07D948228084720078C65F /* ApplicationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E07D947228084720078C65F /* ApplicationInfo.swift */; };
+		2E07D94A228097340078C65F /* PortfolioImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E07D949228097340078C65F /* PortfolioImages.swift */; };
 		2E23F197226E5DCA0037B9AA /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E23F196226E5DCA0037B9AA /* PaymentsViewController.swift */; };
 		2E23F19B226E88A70037B9AA /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E23F19A226E88A60037B9AA /* CardCollectionViewCell.swift */; };
 		2E409BEE2267C2AD00130CBA /* Appointments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E409BED2267C2AD00130CBA /* Appointments.swift */; };
@@ -155,6 +156,7 @@
 		09DCD314225EA5C20090EE1F /* DiscoverTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewCell.swift; sourceTree = "<group>"; };
 		26FA858D08C6AC46AEBAE072 /* Pods-StylistTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylistTests.release.xcconfig"; path = "Target Support Files/Pods-StylistTests/Pods-StylistTests.release.xcconfig"; sourceTree = "<group>"; };
 		2E07D947228084720078C65F /* ApplicationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationInfo.swift; sourceTree = "<group>"; };
+		2E07D949228097340078C65F /* PortfolioImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioImages.swift; sourceTree = "<group>"; };
 		2E23F196226E5DCA0037B9AA /* PaymentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
 		2E23F19A226E88A60037B9AA /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E409BED2267C2AD00130CBA /* Appointments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointments.swift; sourceTree = "<group>"; };
@@ -423,6 +425,7 @@
 				2EF103C72255A4A30030FBFF /* ServiceProvider.swift */,
 				2E5E74D7225FB6A3003D370F /* Service.swift */,
 				2EF103CA2255A4C00030FBFF /* StylistsUsers.swift */,
+				2E07D949228097340078C65F /* PortfolioImages.swift */,
 				2EF103CC2255A4D20030FBFF /* Ratings.swift */,
 				2EF103CE2255A4DB0030FBFF /* Reviews.swift */,
 				2EF103D02255A4E90030FBFF /* StylistCollectionKeys.swift */,
@@ -751,6 +754,7 @@
 				2E9DD7E82257FB2200D74DD1 /* ClientProfileController.swift in Sources */,
 				2EBDDBCE225B91AD00583BC0 /* StorageService.swift in Sources */,
 				2EBDDBD0225B91D600583BC0 /* AuthService.swift in Sources */,
+				2E07D94A228097340078C65F /* PortfolioImages.swift in Sources */,
 				099B0C15226649CA00474066 /* DiscoverSecondViewController.swift in Sources */,
 				09DCD307225E50EA0090EE1F /* ProviderBio.swift in Sources */,
 				090374EB2270CA0D00B77B66 /* AppointmentCell.swift in Sources */,
