@@ -93,9 +93,10 @@ class ClientProfileController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         AppointmentNotification.shared.delegate = self
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(reloadAppointments), userInfo: nil, repeats: true)
+        reloadAppointments()
+//        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(reloadAppointments), userInfo: nil, repeats: true)
         fetchCurrentUser()
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(reloadAppointments), userInfo: nil, repeats: true)
+//        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(reloadAppointments), userInfo: nil, repeats: true)
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
@@ -154,14 +155,16 @@ class ClientProfileController: UIViewController {
     }
     
     private func getAllAppointments(id: String) {
-        DBService.getBookedAppointments(userId: id) { [weak self] (error, appointments) in
-            if let error = error {
-                self?.showAlert(title: "Error Fetching User Appointments", message: error.localizedDescription, actionTitle: "Ok")
-            } else if let appointments = appointments {
-                self?.appointments = appointments
-                //notification
-            }
-        }
+        listener = DBService.firestoreDB.collection("bookedAppointments")
+            .addSnapshotListener({ (snapshot, error) in
+                if let error = error {
+                    print(error)
+                } else if let snapshot = snapshot {
+                    self.appointments = snapshot.documents.map{Appointments(dict: $0.data())}
+                    self.reloadAppointments()
+                self.tableView.reloadData()
+                }
+            })
     }
     
     private func fetchProviders() {
@@ -320,6 +323,7 @@ extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard !filterAppointments.isEmpty && !filterProviders.isEmpty else { return UITableViewCell()}
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! UserProfileTableViewCell
         let appointment = filterAppointments[indexPath.row]
         let provider = filterProviders[indexPath.row]
@@ -366,36 +370,24 @@ extension ClientProfileController: AppointmentNotificationDelegate {
                       self.customNotification.serviceDescription.text = service
                 }
                 self.customNotification.providerImage.kf.setImage(with: URL(string: provider.imageURL ?? "no image"), placeholder:#imageLiteral(resourceName: "placeholder.png") )
-                switch status {
+                self.customNotification.alpha = 1.0
+                switch appointment.status {
                 case "pending":
+                     self.customNotification.notificationMessage.textColor = #colorLiteral(red: 1, green: 0.6825594306, blue: 0, alpha: 1)
                     self.customNotification.notificationMessage.text = "Appointment Booked!"
-                    self.customNotification.alpha = 1.0
-                    self.view.addSubview(self.customNotification)
-                    UIView.animate(withDuration: 8.0) {
-                        self.customNotification.alpha = 0.0
-                    }
                 case "inProgress":
+                     self.customNotification.notificationMessage.textColor = #colorLiteral(red: 1, green: 0.6825594306, blue: 0, alpha: 1)
                      self.customNotification.notificationMessage.text = "Appointment confirmed!"
-                    self.self.customNotification.alpha = 1.0
-                    self.view.addSubview(self.customNotification)
-                    UIView.animate(withDuration: 8.0) {
-                        self.customNotification.alpha = 0.0
-                    }
                 case "completed":
+                     self.customNotification.notificationMessage.textColor = #colorLiteral(red: 1, green: 0.6825594306, blue: 0, alpha: 1)
                      self.customNotification.notificationMessage.text = "Appointment completed!"
-                    self.customNotification.alpha = 1.0
-                    self.view.addSubview(self.customNotification)
-                    UIView.animate(withDuration: 8.0) {
-                        self.customNotification.alpha = 0.0
-                    }
                 default:
+                    self.customNotification.notificationMessage.textColor = .red
                      self.customNotification.notificationMessage.text = "Appointment canceled"
-                    self.customNotification.alpha = 1.0
-                    self.view.addSubview(self.customNotification)
-                    UIView.animate(withDuration: 8.0) {
-                        self.customNotification.alpha = 0.0
-                    }
                 }
+                
+                 self.view.addSubview(self.customNotification)
+                self.customNotification.fadeOut()
             }
         }
     }

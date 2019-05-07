@@ -54,10 +54,9 @@ class AppointmentNotification {
                             guard snapshot.documents.count > 0 else  {
                                 return
                             }
-                           let latestAppoinment = snapshot.documents.map{ Appointments(dict: $0.data())}.first!
+                           let latestAppoinment = snapshot.documents.map{ Appointments(dict: $0.data())}.last!
                             self.delegate?.appointmentUpdate(status: status.rawValue, appointment: latestAppoinment)
-                            print("update")
-//                            self.setupNotification(status: status)
+
                         }
                     })
             }

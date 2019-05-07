@@ -26,26 +26,28 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="F4U-Zt-s3Q" customClass="CircularImageView" customModule="Stylist" customModuleProvider="target">
-                    <rect key="frame" x="18.5" y="61" width="80" height="80"/>
+                    <rect key="frame" x="18.5" y="67.5" width="80" height="80"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="V9e-Jc-Wjp"/>
                         <constraint firstAttribute="width" secondItem="F4U-Zt-s3Q" secondAttribute="height" multiplier="1:1" id="fvc-re-VcF"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOUR APPOINTMENT IS BOOKED!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h76-ou-0fg">
-                    <rect key="frame" x="10" y="20" width="272" height="21"/>
-                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="APPOINTMENT IS BOOKED!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h76-ou-0fg">
+                    <rect key="frame" x="10" y="20" width="272" height="27.5"/>
+                    <fontDescription key="fontDescription" name="EuphemiaUCAS-Bold" family="Euphemia UCAS" pointSize="19"/>
+                    <color key="textColor" red="1" green="0.69912933659999998" blue="0.23962250160000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
+                    <color key="shadowColor" red="0.1999999881" green="0.1999999881" blue="0.1999999881" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <size key="shadowOffset" width="0.0" height="2"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Provider name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2kx-Dc-bx8">
-                    <rect key="frame" x="108.5" y="70.5" width="173.5" height="21"/>
+                    <rect key="frame" x="108.5" y="75.5" width="173.5" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R0e-ff-qms">
-                    <rect key="frame" x="108.5" y="111.5" width="173.5" height="21"/>
+                    <rect key="frame" x="108.5" y="116.5" width="173.5" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -53,11 +55,11 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointment Date - time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Pe-xw-cqX">
                     <rect key="frame" x="10" y="160" width="272" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="textColor" red="1" green="0.69912933659999998" blue="0.23962250160000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.2666925879" green="0.34093691390000003" blue="0.56366989209999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" red="0.1569241187" green="0.5672338053" blue="0.58288388319999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="R0e-ff-qms" firstAttribute="top" secondItem="2kx-Dc-bx8" secondAttribute="bottom" constant="20" id="1nk-yI-zVq"/>
                 <constraint firstItem="2kx-Dc-bx8" firstAttribute="centerY" secondItem="F4U-Zt-s3Q" secondAttribute="centerY" multiplier="0.8" id="5O3-N6-obB"/>
@@ -82,6 +84,12 @@
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                     <integer key="value" value="10"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                    <integer key="value" value="8"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderWidthColor">
+                    <color key="value" red="0.74216726040000003" green="0.2945642342" blue="0.29666684609999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="17.39130434782609" y="-351.22767857142856"/>
