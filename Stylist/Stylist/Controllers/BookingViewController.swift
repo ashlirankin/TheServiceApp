@@ -38,8 +38,8 @@ class BookingViewController: UITableViewController {
 
   var servicesArray = [ProviderServices](){
     didSet{
+        tableView.reloadData()
       orderSummaryCollectionView.reloadData()
-      tableView.reloadData()
     }
   }
 
@@ -209,6 +209,13 @@ class BookingViewController: UITableViewController {
       }
     }
   }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 2 && indexPath.row == 0 {
+            return CGFloat(100 * servicesArray.count)
+        }
+        return super.tableView(tableView, heightForRowAt: indexPath)
+    }
 }
 extension BookingViewController:UICollectionViewDelegateFlowLayout{
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

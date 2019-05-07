@@ -95,7 +95,7 @@ class ClientProfileController: UIViewController {
         AppointmentNotification.shared.delegate = self
         timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(reloadAppointments), userInfo: nil, repeats: true)
         fetchCurrentUser()
-        
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(reloadAppointments), userInfo: nil, repeats: true)
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
@@ -230,9 +230,9 @@ class ClientProfileController: UIViewController {
     }
     
     @IBAction func moreOptionsButtonPressed(_ sender: UIButton) {
-        let actionTitles = ["Edit Profile", "Support", "Sign Out", "Wallet", "Join Stylists Providers"]
+        let actionTitles = ["Edit Profile", "Support", "Sign Out", "Join Stylists Providers"]
         
-        showActionSheet(title: "Menu", message: nil, actionTitles: actionTitles, handlers: [ { [weak self] editProfileAction in
+      showActionSheet(title: "Menu:\(ApplicationInfo.getVersionBuildNumber())", message: nil, actionTitles: actionTitles, handlers: [ { [weak self] editProfileAction in
             let storyBoard = UIStoryboard(name: "User", bundle: nil)
             guard let destinationVC = storyBoard.instantiateViewController(withIdentifier: "EditProfileVC") as? ClientEditProfileController else {
                 fatalError("EditProfileVC is nil")
@@ -260,14 +260,6 @@ class ClientProfileController: UIViewController {
             }, { [weak self] signOutAction in
                 self?.authService.signOut()
                 self?.presentLoginViewController()
-            },{ [weak self] walletAction in
-                
-                guard let walletController = UIStoryboard(name: "Payments", bundle: nil).instantiateViewController(withIdentifier: "WalletViewController") as? WalletTableViewController else {fatalError("no wallet controller found")}
-                let walletNav = UINavigationController(rootViewController: walletController)
-                walletController.modalPresentationStyle = .overCurrentContext
-                walletController.modalTransitionStyle = .coverVertical
-                self?.present(walletNav, animated: true, completion: nil)
-                
             },{ [weak self] becomeProvider in
                 print("provider sign up sheet")
             }
@@ -330,17 +322,18 @@ extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! UserProfileTableViewCell
         let appointment = filterAppointments[indexPath.row]
-//        switch appointment.status {
-//        case "inProgress":
-////           customNotification.center = self.view.center
-////          self.view.addSubview(customNotification)
-////          UIView.animate(withDuration: 3.0) {
-////            self.customNotification.alpha = 0.0
-////            self.customNotification.removeFromSuperview()
-////          }
-//        default:
-//            break
-//        }
+        switch appointment.status {
+        case "inProgress":
+           customNotification.center = self.view.center
+           customNotification.alpha = 1.0
+          self.view.addSubview(customNotification)
+          UIView.animate(withDuration: 1.0) {
+            self.customNotification.alpha = 0.0
+            self.customNotification.removeFromSuperview()
+          }
+        default:
+            break
+        }
         let provider = filterProviders[indexPath.row]
         cell.configuredCell(provider: provider, appointment: appointment)
         return cell

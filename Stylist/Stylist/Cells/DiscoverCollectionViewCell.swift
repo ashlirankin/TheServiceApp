@@ -30,13 +30,9 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
         default:
             providerDistance.text = "3.25 Mi."
         }
-        for favorite in favorites {
-            if favorite.userId == provider.userId {
-                goldStar.isHidden = false
-                break
-            } else {
-                goldStar.isHidden = true
-            }
+        goldStar.isHidden = true
+        favorites.forEach { (favoriteProvider) in
+            if favoriteProvider.userId == provider.userId { goldStar.isHidden = false }
         }
     }
     private func setRating(provider: ServiceSideUser){
