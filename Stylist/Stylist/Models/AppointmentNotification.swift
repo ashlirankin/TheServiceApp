@@ -11,8 +11,12 @@ import Firebase
 import FirebaseFirestore
 import UserNotifications
 
+protocol AppointmentNotificationDelegate: AnyObject {
+    func appointmentUpdate(status: String)
+}
 
 class AppointmentNotification {
+    weak var delegate: AppointmentNotificationDelegate?
     let authservice = AuthService()
     var statusListener: ListenerRegistration!
     private init(){
@@ -35,7 +39,7 @@ class AppointmentNotification {
     static let shared = AppointmentNotification()
     var appointments = [Appointments]() {
         didSet {
-                        notifyClient()
+            notifyClient()
         }
     }
     
@@ -50,7 +54,9 @@ class AppointmentNotification {
                             guard snapshot.documents.count > 0 else  {
                                 return
                             }
-                            self.setupNotification(status: status)
+                    self.delegate?.appointmentUpdate(status: status.rawValue)
+                            print("update")
+//                            self.setupNotification(status: status)
                         }
                     })
             }

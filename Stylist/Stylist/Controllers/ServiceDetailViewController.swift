@@ -32,9 +32,19 @@ class ServiceDetailViewController: UIViewController {
         super.viewDidLoad()
         getStylistUser()
         todaysDate.isHidden = true
+     checkOnCurrentAppointment()
+    }
+    
+    private func checkOnCurrentAppointment() {
         if let status = self.status {
             if status == "completed" {
+                 self.appointmentStatus.textColor = .gray
                 self.cancelButton.isHidden = true
+            } else if status == "inProgress" {
+                self.appointmentStatus.textColor = .green
+                self.appointmentStatus.text = "In progress"
+            } else if status == "pending" {
+                self.appointmentStatus.textColor = .orange
             }
         }
     }
@@ -128,6 +138,7 @@ class ServiceDetailViewController: UIViewController {
             completeButton.isHidden = false
             completeButton.isEnabled = false
         default:
+            appointmentStatus.textColor = .orange
             completeButton.isHidden = true
         }
         

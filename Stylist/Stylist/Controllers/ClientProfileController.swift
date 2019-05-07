@@ -29,6 +29,7 @@ class ClientProfileController: UIViewController {
     var listener: ListenerRegistration!
     var statusListener: ListenerRegistration!
     let noBookingView = ProfileNoBooking(frame: CGRect(x: 0, y: 0, width: 394, height: 284))
+    let customNotification = LocalCustomNotification()
     var isSwitched = false
     let authService = AuthService()
     var timer: Timer?
@@ -84,14 +85,17 @@ class ClientProfileController: UIViewController {
         authService.authserviceSignOutDelegate = self
         setupTableView()
         getUpcomingAppointments()
+        
     }
     
   
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        AppointmentNotification.shared.delegate = self
         timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(reloadAppointments), userInfo: nil, repeats: true)
         fetchCurrentUser()
+        
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
@@ -155,6 +159,7 @@ class ClientProfileController: UIViewController {
                 self?.showAlert(title: "Error Fetching User Appointments", message: error.localizedDescription, actionTitle: "Ok")
             } else if let appointments = appointments {
                 self?.appointments = appointments
+                //notification
             }
         }
     }
@@ -197,7 +202,17 @@ class ClientProfileController: UIViewController {
     }
     private func getUpcomingAppointments() {
         filterAppointments = appointments.filter { $0.status == "pending" || $0.status == "inProgress" }
-        if filterAppointments.count == 0 {
+        let sortedAppointments = filterAppointments.sorted(by: { (date1, date2) -> Bool in
+            let convertToDateFormatter = DateFormatter()
+            convertToDateFormatter.dateFormat = "EEEE, MMM d, yyyy h:mm a"
+            if let dateA = convertToDateFormatter.date(from: date1.appointmentTime) {
+                if let dateB = convertToDateFormatter.date(from: date2.appointmentTime) {
+                    return dateA > dateB
+                }
+            }
+            return false
+        })
+        if sortedAppointments.count == 0 {
             noBookingView.noBookingLabel.text = "No current appointments yet."
             tableView.backgroundView?.isHidden = false
         } else {
@@ -315,6 +330,17 @@ extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! UserProfileTableViewCell
         let appointment = filterAppointments[indexPath.row]
+//        switch appointment.status {
+//        case "inProgress":
+////           customNotification.center = self.view.center
+////          self.view.addSubview(customNotification)
+////          UIView.animate(withDuration: 3.0) {
+////            self.customNotification.alpha = 0.0
+////            self.customNotification.removeFromSuperview()
+////          }
+//        default:
+//            break
+//        }
         let provider = filterProviders[indexPath.row]
         cell.configuredCell(provider: provider, appointment: appointment)
         return cell
@@ -342,4 +368,17 @@ extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
+}
+
+
+extension ClientProfileController: AppointmentNotificationDelegate {
+    func appointmentUpdate(status: String) {
+        print("stuff")
+        customNotification.center = self.view.center
+                  self.view.addSubview(customNotification)
+//                  UIView.animate(withDuration: 3.0) {
+//                    self.customNotification.alpha = 0.0
+//                    self.customNotification.removeFromSuperview()
+//    }
+}
 }

@@ -43,6 +43,8 @@
 		09DCD311225E91FA0090EE1F /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD310225E91FA0090EE1F /* DiscoverViewController.swift */; };
 		09DCD313225E97340090EE1F /* DiscoveryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD312225E97340090EE1F /* DiscoveryCollectionViewCell.swift */; };
 		09DCD315225EA5C20090EE1F /* DiscoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCD314225EA5C20090EE1F /* DiscoverTableViewCell.swift */; };
+		09E35CCD22809C5B003BBD2A /* LocalCustomNotification.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09E35CCC22809C5B003BBD2A /* LocalCustomNotification.xib */; };
+		09E35CCF2280AD49003BBD2A /* LocalCustomNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E35CCE2280AD49003BBD2A /* LocalCustomNotification.swift */; };
 		291F30A20B9AEA8931FF3E32 /* Pods_FirebaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F0689D22A995E41D8C2C56 /* Pods_FirebaseTests.framework */; };
 		2E23F197226E5DCA0037B9AA /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E23F196226E5DCA0037B9AA /* PaymentsViewController.swift */; };
 		2E23F19B226E88A70037B9AA /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E23F19A226E88A60037B9AA /* CardCollectionViewCell.swift */; };
@@ -152,6 +154,8 @@
 		09DCD310225E91FA0090EE1F /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		09DCD312225E97340090EE1F /* DiscoveryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryCollectionViewCell.swift; sourceTree = "<group>"; };
 		09DCD314225EA5C20090EE1F /* DiscoverTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewCell.swift; sourceTree = "<group>"; };
+		09E35CCC22809C5B003BBD2A /* LocalCustomNotification.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocalCustomNotification.xib; sourceTree = "<group>"; };
+		09E35CCE2280AD49003BBD2A /* LocalCustomNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCustomNotification.swift; sourceTree = "<group>"; };
 		26FA858D08C6AC46AEBAE072 /* Pods-StylistTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylistTests.release.xcconfig"; path = "Target Support Files/Pods-StylistTests/Pods-StylistTests.release.xcconfig"; sourceTree = "<group>"; };
 		2E23F196226E5DCA0037B9AA /* PaymentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
 		2E23F19A226E88A60037B9AA /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -282,6 +286,8 @@
 				09D8C3E5227367FC009A8BA9 /* NoBookingScreen.xib */,
 				09D8C3E722736F4F009A8BA9 /* NoBookingView.swift */,
 				09D82B54227744960097122A /* ProfileNoBooking.xib */,
+				09E35CCC22809C5B003BBD2A /* LocalCustomNotification.xib */,
+				09E35CCE2280AD49003BBD2A /* LocalCustomNotification.swift */,
 				09D82B56227745B00097122A /* ProfileNoBooking.swift */,
 			);
 			path = nibs;
@@ -545,6 +551,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09E35CCD22809C5B003BBD2A /* LocalCustomNotification.xib in Resources */,
 				2E7739BE22601267004C188A /* Entrance.storyboard in Resources */,
 				2E409BF02267DF0E00130CBA /* Payments.storyboard in Resources */,
 				2E90A61A2261124A0016462C /* BookService.storyboard in Resources */,
@@ -767,6 +774,7 @@
 				09397589227A085C0015E6FC /* PortfolioDetailViewController.swift in Sources */,
 				D6B4BF6D225E384300F1E48C /* IBDesignableViews.swift in Sources */,
 				D6FE74EC22611A1B00B4A49A /* FilterProvidersController.swift in Sources */,
+				09E35CCF2280AD49003BBD2A /* LocalCustomNotification.swift in Sources */,
 				2E23F197226E5DCA0037B9AA /* PaymentsViewController.swift in Sources */,
 				094DF88F225D2EB8001EA2FE /* UserDetailView.swift in Sources */,
 				09DCD315225EA5C20090EE1F /* DiscoverTableViewCell.swift in Sources */,
