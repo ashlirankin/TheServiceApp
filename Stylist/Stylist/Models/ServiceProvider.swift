@@ -25,6 +25,9 @@ struct ServiceSideUser{
   let lat:String?
   let long:String?
   let zip:String?
+    public var getAddress: String? {
+        return ((city ?? "") + " " + (state ?? ""))
+    }
    let favoriteId: String?
   let isAvailable: Bool
     public var fullName: String {
