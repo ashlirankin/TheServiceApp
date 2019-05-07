@@ -65,8 +65,8 @@ class ClientProfileController: UIViewController {
                     if let error = error {
                         print(error)
                     } else if let providers = providers {
-                       self.checkForProvider = providers.filter({ (provider) -> Bool in
-                        return provider.userId == currentuser.uid
+                        self.checkForProvider = providers.filter({ (provider) -> Bool in
+                            return provider.userId == currentuser.uid
                         })
                     }
                     if self.checkForProvider.isEmpty {
@@ -88,7 +88,7 @@ class ClientProfileController: UIViewController {
         
     }
     
-  
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -163,7 +163,7 @@ class ClientProfileController: UIViewController {
             }
         }
     }
-
+    
     private func fetchProviders() {
         var filterProviders = [ServiceSideUser]()
         if filterAppointments.count == 0 { self.filterProviders = filterProviders }
@@ -232,7 +232,7 @@ class ClientProfileController: UIViewController {
     @IBAction func moreOptionsButtonPressed(_ sender: UIButton) {
         let actionTitles = ["Edit Profile", "Support", "Sign Out", "Join Stylists Providers"]
         
-      showActionSheet(title: "Menu:\(ApplicationInfo.getVersionBuildNumber())", message: nil, actionTitles: actionTitles, handlers: [ { [weak self] editProfileAction in
+        showActionSheet(title: "Menu:\(ApplicationInfo.getVersionBuildNumber())", message: nil, actionTitles: actionTitles, handlers: [ { [weak self] editProfileAction in
             let storyBoard = UIStoryboard(name: "User", bundle: nil)
             guard let destinationVC = storyBoard.instantiateViewController(withIdentifier: "EditProfileVC") as? ClientEditProfileController else {
                 fatalError("EditProfileVC is nil")
@@ -286,7 +286,7 @@ extension ClientProfileController:AuthServiceSignOutDelegate{
     func didSignOutWithError(_ authservice: AuthService, error: Error) {
         showAlert(title: "Unable to SignOut", message: "There was an error signing you out:\(error.localizedDescription)", actionTitle: "Try Again")
     }
-
+    
     func didSignOut(_ authservice: AuthService) {
         dismiss(animated: true, completion: nil)
     }
@@ -322,18 +322,6 @@ extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! UserProfileTableViewCell
         let appointment = filterAppointments[indexPath.row]
-        switch appointment.status {
-        case "inProgress":
-           customNotification.center = self.view.center
-           customNotification.alpha = 1.0
-          self.view.addSubview(customNotification)
-          UIView.animate(withDuration: 1.0) {
-            self.customNotification.alpha = 0.0
-            self.customNotification.removeFromSuperview()
-          }
-        default:
-            break
-        }
         let provider = filterProviders[indexPath.row]
         cell.configuredCell(provider: provider, appointment: appointment)
         return cell
@@ -365,13 +353,50 @@ extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
 
 
 extension ClientProfileController: AppointmentNotificationDelegate {
-    func appointmentUpdate(status: String) {
-        print("stuff")
-        customNotification.center = self.view.center
-                  self.view.addSubview(customNotification)
-//                  UIView.animate(withDuration: 3.0) {
-//                    self.customNotification.alpha = 0.0
-//                    self.customNotification.removeFromSuperview()
-//    }
-}
+    func appointmentUpdate(status: String, appointment: Appointments) {
+        self.customNotification.center = self.view.center
+        let appointment = appointment
+        DBService.getProviderFromAppointment(appointment: appointment) { (error, provider) in
+            if let error = error {
+                print(error)
+            } else if let provider = provider {
+                self.customNotification.date.text = appointment.appointmentTime
+                self.customNotification.providerFullname.text = provider.fullName
+                for service in appointment.services {
+                      self.customNotification.serviceDescription.text = service
+                }
+                self.customNotification.providerImage.kf.setImage(with: URL(string: provider.imageURL ?? "no image"), placeholder:#imageLiteral(resourceName: "placeholder.png") )
+                switch status {
+                case "pending":
+                    self.customNotification.notificationMessage.text = "Appointment Booked!"
+                    self.customNotification.alpha = 1.0
+                    self.view.addSubview(self.customNotification)
+                    UIView.animate(withDuration: 8.0) {
+                        self.customNotification.alpha = 0.0
+                    }
+                case "inProgress":
+                     self.customNotification.notificationMessage.text = "Appointment confirmed!"
+                    self.self.customNotification.alpha = 1.0
+                    self.view.addSubview(self.customNotification)
+                    UIView.animate(withDuration: 8.0) {
+                        self.customNotification.alpha = 0.0
+                    }
+                case "completed":
+                     self.customNotification.notificationMessage.text = "Appointment completed!"
+                    self.customNotification.alpha = 1.0
+                    self.view.addSubview(self.customNotification)
+                    UIView.animate(withDuration: 8.0) {
+                        self.customNotification.alpha = 0.0
+                    }
+                default:
+                     self.customNotification.notificationMessage.text = "Appointment canceled"
+                    self.customNotification.alpha = 1.0
+                    self.view.addSubview(self.customNotification)
+                    UIView.animate(withDuration: 8.0) {
+                        self.customNotification.alpha = 0.0
+                    }
+                }
+            }
+        }
+    }
 }

@@ -45,6 +45,9 @@ class ServiceDetailViewController: UIViewController {
                 self.appointmentStatus.text = "In progress"
             } else if status == "pending" {
                 self.appointmentStatus.textColor = .orange
+            } else {
+                self.appointmentStatus.textColor = .red
+                self.cancelButton.isHidden = true
             }
         }
     }

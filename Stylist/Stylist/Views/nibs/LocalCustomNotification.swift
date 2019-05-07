@@ -10,6 +10,8 @@ import UIKit
 
 class LocalCustomNotification: UIView {
     @IBOutlet var contentView: UIView!
+    @IBOutlet weak var notificationMessage: UILabel!
+    
     @IBOutlet weak var providerImage: CircularImageView!
     @IBOutlet weak var providerFullname: UILabel!
     @IBOutlet weak var serviceDescription: UILabel!

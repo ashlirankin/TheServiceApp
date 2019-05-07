@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="juY-k9-Sa0"/>
                 <outlet property="date" destination="5Pe-xw-cqX" id="Q7P-40-nwR"/>
+                <outlet property="notificationMessage" destination="h76-ou-0fg" id="Dtk-Fs-VtY"/>
                 <outlet property="providerFullname" destination="2kx-Dc-bx8" id="qUt-GI-c25"/>
                 <outlet property="providerImage" destination="F4U-Zt-s3Q" id="B5g-tt-m8s"/>
                 <outlet property="serviceDescription" destination="R0e-ff-qms" id="EYf-a3-vTn"/>
