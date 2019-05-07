@@ -32,13 +32,12 @@ class ServiceDetailViewController: UIViewController {
         super.viewDidLoad()
         updateUIBasedOnUser()
         todaysDate.isHidden = true
-     checkOnCurrentAppointment()
+         checkOnCurrentAppointment()
     }
-    
     private func checkOnCurrentAppointment() {
         if let status = self.status {
             if status == "completed" {
-                 self.appointmentStatus.textColor = .gray
+                self.appointmentStatus.textColor = .gray
                 self.cancelButton.isHidden = true
             } else if status == "inProgress" {
                 self.appointmentStatus.textColor = .green
@@ -47,7 +46,7 @@ class ServiceDetailViewController: UIViewController {
                 self.appointmentStatus.textColor = .orange
             } else {
                 self.appointmentStatus.textColor = .red
-                self.cancelButton.isHidden = true
+                 self.cancelButton.isHidden = true
             }
         }
     }
