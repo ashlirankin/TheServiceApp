@@ -67,16 +67,17 @@ class ClientProfileController: UIViewController {
                         self.checkForProvider = providers.filter({ (provider) -> Bool in
                             return provider.userId == self.stylistUser?.userId
                         })
-                    }
-                    if self.checkForProvider.isEmpty {
-                        self.switchButton.isHidden = true
-                    } else  {
-                        self.switchButton.isHidden = false
+                        if self.checkForProvider.isEmpty {
+                            self.switchButton.isHidden = true
+                        } else  {
+                            self.switchButton.isHidden = false
+                        }
                     }
                 })
             }
         }
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,6 +86,7 @@ class ClientProfileController: UIViewController {
         setupTableView()
         fetchCurrentUser()
     }
+    
     
     
     
