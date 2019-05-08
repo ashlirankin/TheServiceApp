@@ -42,31 +42,30 @@ class ClientProfileController: UIViewController {
     }
     var filterAppointments = [Appointments]() {
         didSet {
-            fetchProviders()
-        }
-    }
-    var filterProviders = [ServiceSideUser]() {
-        didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
     }
+    var allProviders = [ServiceSideUser]() {
+        didSet {
+            self.getAllAppointments()
+        }
+    }
+    
     var checkForProvider = [ServiceSideUser]()
     private var stylistUser: StylistsUser? {
         didSet {
             DispatchQueue.main.async {
                 self.updateUI()
-                self.getAllAppointments(id: self.stylistUser!.userId)
                 DBService.getProviders(completionHandler: { (providers, error) in
-                    guard let currentuser = self.authService.getCurrentUser() else {
-                        return
-                    }
                     if let error = error {
                         print(error)
                     } else if let providers = providers {
+                        self.allProviders = providers
+                        AppointmentNotification.shared
                         self.checkForProvider = providers.filter({ (provider) -> Bool in
-                            return provider.userId == currentuser.uid
+                            return provider.userId == self.stylistUser?.userId
                         })
                     }
                     if self.checkForProvider.isEmpty {
@@ -84,8 +83,7 @@ class ClientProfileController: UIViewController {
         self.view.backgroundColor = #colorLiteral(red: 0.2461647391, green: 0.3439296186, blue: 0.5816915631, alpha: 1)
         authService.authserviceSignOutDelegate = self
         setupTableView()
-        getUpcomingAppointments()
-        
+        fetchCurrentUser()
     }
     
     
@@ -93,10 +91,7 @@ class ClientProfileController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         AppointmentNotification.shared.delegate = self
-        reloadAppointments()
-//        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(reloadAppointments), userInfo: nil, repeats: true)
         fetchCurrentUser()
-//        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(reloadAppointments), userInfo: nil, repeats: true)
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
@@ -154,34 +149,17 @@ class ClientProfileController: UIViewController {
         tableView.backgroundView = noBookingView
     }
     
-    private func getAllAppointments(id: String) {
+    private func getAllAppointments() {
         listener = DBService.firestoreDB.collection("bookedAppointments")
+            .whereField("userId", isEqualTo: stylistUser?.userId ?? "no ID")
             .addSnapshotListener({ (snapshot, error) in
                 if let error = error {
                     print(error)
                 } else if let snapshot = snapshot {
                     self.appointments = snapshot.documents.map{Appointments(dict: $0.data())}
-                    self.reloadAppointments()
-                self.tableView.reloadData()
+                    self.tableView.reloadData()
                 }
             })
-    }
-    
-    private func fetchProviders() {
-        var filterProviders = [ServiceSideUser]()
-        if filterAppointments.count == 0 { self.filterProviders = filterProviders }
-        for appointment in filterAppointments {
-            DBService.getProviderFromAppointment(appointment: appointment) { (error, provider) in
-                if let error = error {
-                    self.showAlert(title: "Fetch Providers Error", message: error.localizedDescription, actionTitle: "Ok")
-                } else if let provider = provider {
-                    filterProviders.append(provider)
-                    if filterProviders.count == self.filterAppointments.count {
-                        self.filterProviders = filterProviders
-                    }
-                }
-            }
-        }
     }
     
     // MARK: Actions
@@ -201,11 +179,18 @@ class ClientProfileController: UIViewController {
     
     @IBAction func toggleButtons(_ sender: CircularButton) {
         tableviewStatus = sender == bookingsButton ? .upcoming : .history
-        reloadAppointments()
+        switch tableviewStatus {
+        case .history:
+            getPastAppointments()
+        case .upcoming:
+            getUpcomingAppointments()
+        }
     }
     private func getUpcomingAppointments() {
-        filterAppointments = appointments.filter { $0.status == "pending" || $0.status == "inProgress" }
-        let sortedAppointments = filterAppointments.sorted(by: { (date1, date2) -> Bool in
+        let upcomingAppointments =  appointments.filter { $0.status == "pending" ||
+            $0.status == "inProgress"
+        }
+        filterAppointments = upcomingAppointments.sorted(by: { (date1, date2) -> Bool in
             let convertToDateFormatter = DateFormatter()
             convertToDateFormatter.dateFormat = "EEEE, MMM d, yyyy h:mm a"
             if let dateA = convertToDateFormatter.date(from: date1.appointmentTime) {
@@ -215,10 +200,11 @@ class ClientProfileController: UIViewController {
             }
             return false
         })
-        if sortedAppointments.count == 0 {
+        if filterAppointments.count == 0 {
             noBookingView.noBookingLabel.text = "No current appointments yet."
             tableView.backgroundView?.isHidden = false
         } else {
+            
             tableView.backgroundView?.isHidden = true
         }
     }
@@ -277,12 +263,6 @@ class ClientProfileController: UIViewController {
         window?.rootViewController = UINavigationController(rootViewController: loginViewController)
         window?.makeKeyAndVisible()
     }
-    
-    // MARK: Timer
-    @objc private func reloadAppointments() {
-        guard let user = stylistUser else { return }
-        getAllAppointments(id: user.userId)
-    }
 }
 
 extension ClientProfileController:AuthServiceSignOutDelegate{
@@ -323,11 +303,14 @@ extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard !filterAppointments.isEmpty && !filterProviders.isEmpty else { return UITableViewCell()}
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! UserProfileTableViewCell
         let appointment = filterAppointments[indexPath.row]
-        let provider = filterProviders[indexPath.row]
-        cell.configuredCell(provider: provider, appointment: appointment)
+        let provider = allProviders.first { (provider) -> Bool in
+            provider.userId == appointment.providerId
+        }
+        if let provider = provider {
+            cell.configuredCell(provider: provider, appointment: appointment)
+        }
         return cell
     }
     
@@ -344,51 +327,37 @@ extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
         let appointment = filterAppointments[indexPath.row]
         destinationVC.appointment = appointment
         destinationVC.status = appointment.status
-        DBService.getProviderFromAppointment(appointment: appointment) { (error, provider) in
-            if let error = error {
-                self.showAlert(title: "Error Fetching Provider", message: error.localizedDescription, actionTitle: "Ok")
-            } else if let provider = provider {
-                destinationVC.provider = provider
-                self.present(destinationVC, animated: true)
-            }
+        let provider = allProviders.first { (provider) -> Bool in
+            return provider.userId == appointment.providerId
         }
+        destinationVC.provider = provider
+        present(destinationVC, animated: true, completion: nil)
     }
 }
-
-
 extension ClientProfileController: AppointmentNotificationDelegate {
-    func appointmentUpdate(status: String, appointment: Appointments) {
+    func appointmentUpdate(status: String, appointment: Appointments, provider: ServiceSideUser) {
         self.customNotification.center = self.view.center
-        let appointment = appointment
-        DBService.getProviderFromAppointment(appointment: appointment) { (error, provider) in
-            if let error = error {
-                print(error)
-            } else if let provider = provider {
-                self.customNotification.date.text = appointment.appointmentTime
-                self.customNotification.providerFullname.text = provider.fullName
-                for service in appointment.services {
-                      self.customNotification.serviceDescription.text = service
-                }
-                self.customNotification.providerImage.kf.setImage(with: URL(string: provider.imageURL ?? "no image"), placeholder:#imageLiteral(resourceName: "placeholder.png") )
-                self.customNotification.alpha = 1.0
-                switch appointment.status {
-                case "pending":
-                     self.customNotification.notificationMessage.textColor = #colorLiteral(red: 1, green: 0.6825594306, blue: 0, alpha: 1)
-                    self.customNotification.notificationMessage.text = "Appointment Booked!"
-                case "inProgress":
-                     self.customNotification.notificationMessage.textColor = #colorLiteral(red: 1, green: 0.6825594306, blue: 0, alpha: 1)
-                     self.customNotification.notificationMessage.text = "Appointment confirmed!"
-                case "completed":
-                     self.customNotification.notificationMessage.textColor = #colorLiteral(red: 1, green: 0.6825594306, blue: 0, alpha: 1)
-                     self.customNotification.notificationMessage.text = "Appointment completed!"
-                default:
-                    self.customNotification.notificationMessage.textColor = .red
-                     self.customNotification.notificationMessage.text = "Appointment canceled"
-                }
-                
-                 self.view.addSubview(self.customNotification)
-                self.customNotification.fadeOut()
-            }
+        self.customNotification.date.text = appointment.appointmentTime
+        self.customNotification.date.text = appointment.appointmentTime
+        self.customNotification.providerFullname.text = provider.fullName
+        self.customNotification.providerImage.kf.setImage(with: URL(string: provider.imageURL ?? "no image"), placeholder:#imageLiteral(resourceName: "placeholder.png") )
+        switch appointment.status {
+        case "pending":
+            self.customNotification.notificationMessage.textColor = #colorLiteral(red: 1, green: 0.6825594306, blue: 0, alpha: 1)
+            self.customNotification.notificationMessage.text = "Appointment Booked!"
+        case "inProgress":
+            self.customNotification.notificationMessage.textColor = #colorLiteral(red: 1, green: 0.6825594306, blue: 0, alpha: 1)
+            self.customNotification.notificationMessage.text = "Appointment confirmed!"
+        case "completed":
+            self.customNotification.notificationMessage.textColor = #colorLiteral(red: 1, green: 0.6825594306, blue: 0, alpha: 1)
+            self.customNotification.notificationMessage.text = "Appointment completed!"
+        default:
+            self.customNotification.notificationMessage.textColor = .red
+            self.customNotification.notificationMessage.text = "Appointment canceled"
         }
+        self.view.addSubview(self.customNotification)
+        self.customNotification.fadeOut()
     }
 }
+
+

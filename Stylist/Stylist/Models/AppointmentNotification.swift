@@ -12,7 +12,7 @@ import FirebaseFirestore
 import UserNotifications
 
 protocol AppointmentNotificationDelegate: AnyObject {
-    func appointmentUpdate(status: String, appointment: Appointments)
+    func appointmentUpdate(status: String, appointment: Appointments, provider: ServiceSideUser)
 }
 
 class AppointmentNotification {
@@ -55,7 +55,14 @@ class AppointmentNotification {
                                 return
                             }
                            let latestAppoinment = snapshot.documents.map{ Appointments(dict: $0.data())}.last!
-                            self.delegate?.appointmentUpdate(status: status.rawValue, appointment: latestAppoinment)
+                            DBService.getProviderFromAppointment(appointment: latestAppoinment, completion: { (error, provider) in
+                                if let error = error {
+                                    print(error)
+                                } else if let provider = provider {
+                                      self.delegate?.appointmentUpdate(status: status.rawValue, appointment: latestAppoinment, provider: provider)
+                                }
+                            })
+                          
 
                         }
                     })
