@@ -64,6 +64,7 @@ class ClientProfileController: UIViewController {
                     if let error = error {
                         print(error)
                     } else if let providers = providers {
+                        
                        self.checkForProvider = providers.filter({ (provider) -> Bool in
                         return provider.userId == currentuser.uid
                         })
