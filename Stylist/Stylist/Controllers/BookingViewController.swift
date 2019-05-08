@@ -296,10 +296,6 @@ extension BookingViewController:UICollectionViewDataSource{
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     switch collectionView {
     case servicesCollectionView:
-      guard let cell = servicesCollectionView.cellForItem(at: indexPath) as? ServicesCollectionViewCell else {
-        print("no service cell found")
-        return
-      }
       let service = providerServices[indexPath.row]
       guard !servicesAddedStrings.contains(service.service) else {
         showAlert(title: "Service Already Added", message: nil, actionTitle: "Ok")
