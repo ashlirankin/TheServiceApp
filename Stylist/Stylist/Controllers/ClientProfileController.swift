@@ -340,7 +340,6 @@ extension ClientProfileController: AppointmentNotificationDelegate {
     func appointmentUpdate(status: String, appointment: Appointments, provider: ServiceSideUser) {
         self.customNotification.center = self.view.center
         self.customNotification.date.text = appointment.appointmentTime
-        self.customNotification.date.text = appointment.appointmentTime
         self.customNotification.providerFullname.text = provider.fullName
         self.customNotification.providerImage.kf.setImage(with: URL(string: provider.imageURL ?? "no image"), placeholder:#imageLiteral(resourceName: "placeholder.png") )
         switch appointment.status {

@@ -44,9 +44,13 @@ class AppointmentNotification {
     }
     
     func notifyClient() {
+        guard let currentUser = self.authservice.getCurrentUser() else {
+            return
+        }
             for status in AppointmentStatus.allCases {
                 statusListener = DBService.firestoreDB.collection("bookedAppointments")
                     .whereField("status", isEqualTo: status.rawValue)
+                    .whereField("userId", isEqualTo: currentUser.uid)
                     .addSnapshotListener({ (snapshot, error) in
                         if let error = error {
                             print(error)
