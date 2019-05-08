@@ -112,7 +112,6 @@ class DiscoverSecondViewController: UIViewController {
         var serviceProviders = self.serviceProviders
         var filterTasksComplete = 0 {
             didSet {
-                print(filterTasksComplete)
                 if filterTasksComplete == 5 {
                     self.serviceProviders = serviceProviders
                     getFavorites()

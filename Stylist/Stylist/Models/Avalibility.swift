@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Avalibility {
+struct Availability {
   let userId:String
   let avalibilityId:String
   let currentDate:String

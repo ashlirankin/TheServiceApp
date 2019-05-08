@@ -57,8 +57,6 @@ class ProviderDetailController: UITableViewController {
         
     }
     
-    
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.navigationItem.rightBarButtonItem?.isEnabled = true
@@ -136,7 +134,6 @@ class ProviderDetailController: UITableViewController {
                 self.showAlert(title: "", message: "favorited", actionTitle: "OK")
             }
         }
-        
     }
     
     private func setupProvider() {
@@ -152,7 +149,6 @@ class ProviderDetailController: UITableViewController {
         }
         setupProviderPortfolio()
     }
-    
     
     private func setupProviderPortfolio() {
         portfolioView.portfolioCollectionView.delegate = self

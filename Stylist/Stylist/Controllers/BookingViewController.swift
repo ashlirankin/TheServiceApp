@@ -25,12 +25,12 @@ class BookingViewController: UITableViewController {
       servicesCollectionView.reloadData()
     }
   }
-  private var providerAvalibility = [Avalibility](){
+  private var providerAvailability = [Availability](){
     didSet{
       avalibilityCollectionView.reloadData()
     }
   }
-  var provider: ServiceSideUser?{
+  var provider: ServiceSideUser? {
     didSet{
       getServices(serviceProviderId: provider?.userId ?? "no user id found")
       getProviderAvalibility(providerId: provider?.userId ?? "no provider id found")
@@ -97,7 +97,8 @@ class BookingViewController: UITableViewController {
     }
   }
   
-  func getProviderAvalibility(providerId:String){
+  func getProviderAvalibility(providerId:String) {
+    var availability = [Availability]()
     DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
         .document(providerId)
         .collection(AvalibilityCollectionKeys.avalibility)
@@ -105,10 +106,11 @@ class BookingViewController: UITableViewController {
       if let error = error {
         print("there was an error obtaining avalibility:\(error.localizedDescription)")
       }
-      else if let snapshot = snapshot{
-        snapshot.documents.forEach{
-          let avalibilityData = Avalibility(dict: $0.data())
-          self.providerAvalibility.append(avalibilityData)
+      else if let snapshot = snapshot {
+        let snapshotDocuments = snapshot.documents
+        snapshotDocuments.forEach {
+          availability.append( Availability(dict: $0.data()) )
+          if availability.count == snapshotDocuments.count { self.providerAvailability = availability }
         }
       }
     }
@@ -182,12 +184,12 @@ class BookingViewController: UITableViewController {
     }
     
     // MARK: Helper Functions
-    func returnAvalibility(avalibility:[Avalibility]) -> Avalibility? {
+    func returnAvalibility(availability:[Availability]) -> Availability? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"
         let currentDate = dateFormatter.string(from: Date())
         title = currentDate
-        let specificAvalibility = avalibility.first { (avalibility) -> Bool in
+        let specificAvalibility = availability.first { (avalibility) -> Bool in
             avalibility.currentDate == currentDate
         }
         return specificAvalibility
@@ -197,7 +199,6 @@ class BookingViewController: UITableViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
         let currentDate = dateFormatter.string(from: Date())
-        
         return "\(currentDate) \(chosenTime)"
     }
 }
@@ -248,7 +249,7 @@ extension BookingViewController:UICollectionViewDataSource{
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     switch collectionView {
     case avalibilityCollectionView:
-     if let avalibility =  returnAvalibility(avalibility: providerAvalibility) {
+     if let avalibility =  returnAvalibility(availability: providerAvailability) {
       return avalibility.avalibleHours.count
      }
       return 0
@@ -265,10 +266,9 @@ extension BookingViewController:UICollectionViewDataSource{
     switch collectionView {
     case avalibilityCollectionView:
       guard let cell = avalibilityCollectionView.dequeueReusableCell(withReuseIdentifier: "avalibilityCell", for: indexPath) as? AvalibilityCollectionViewCell else {fatalError("no avalibility cell found")}
-      let avalibility = returnAvalibility(avalibility: providerAvalibility)
+      let avalibility = returnAvalibility(availability: providerAvailability)
       cell.timeButton.text = avalibility?.avalibleHours[indexPath.row]
-      cell.timeButton.tag = indexPath.row
-      cell.disableOnExpiration(avalibleTimes: avalibility?.avalibleHours[indexPath.row] ?? "")
+      cell.disableOnExpiration(availableTimes: avalibility?.avalibleHours[indexPath.row] ?? "")
       return cell
         
     case servicesCollectionView:
@@ -307,8 +307,8 @@ extension BookingViewController:UICollectionViewDataSource{
       localPrices.append(String(service.price))
       
     case avalibilityCollectionView:
-      let avalibleTime = returnAvalibility(avalibility: providerAvalibility)
-      guard let timeChosen = avalibleTime?.avalibleHours[indexPath.row] else {return}
+      let avalibleTime = returnAvalibility(availability: providerAvailability)
+      guard let timeChosen = avalibleTime?.avalibleHours[indexPath.row] else { return }
       localAppointments[AppointmentCollectionKeys.appointmentTime] = returnAppointmentTime(chosenTime: timeChosen)
         
     default:
