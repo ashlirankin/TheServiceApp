@@ -173,13 +173,24 @@ class ProviderDetailController: UITableViewController {
             providerDetailHeader.ratingsstars.rating = 5.0
         }
         setupProviderPortfolio()
+        setupReviews()
     }
     
-    private func setupProviderPortfolio() {
+    private func   setupProviderPortfolio() {
         portfolioView.portfolioCollectionView.delegate = self
         portfolioView.portfolioCollectionView.dataSource = self
     }
     
+ 
+    private func setupReviews() {
+        DBService.getReviews(provider: provider) { (reviews, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let reviews = reviews{
+                self.reviews = reviews
+            }
+        }
+    }
     
     private func loadSVFeatures() {
         for (index,view) in featureViews.enumerated() {
