@@ -47,31 +47,31 @@ class AppointmentNotification {
         guard let currentUser = self.authservice.getCurrentUser() else {
             return
         }
-            for status in AppointmentStatus.allCases {
-                statusListener = DBService.firestoreDB.collection("bookedAppointments")
-                    .whereField("status", isEqualTo: status.rawValue)
-                    .whereField("userId", isEqualTo: currentUser.uid)
-                    .addSnapshotListener({ (snapshot, error) in
-                        if let error = error {
-                            print(error)
-                        } else if let snapshot = snapshot {
-                            guard snapshot.documents.count > 0 else  {
-                                return
-                            }
-                           let latestAppoinment = snapshot.documents.map{ Appointments(dict: $0.data())}.last!
-                            DBService.getProviderFromAppointment(appointment: latestAppoinment, completion: { (error, provider) in
-                                if let error = error {
-                                    print(error)
-                                } else if let provider = provider {
-                                      self.delegate?.appointmentUpdate(status: status.rawValue, appointment: latestAppoinment, provider: provider)
-                                }
-                            })
-                          
-
+        for status in AppointmentStatus.allCases {
+            statusListener = DBService.firestoreDB.collection("bookedAppointments")
+                .whereField("status", isEqualTo: status.rawValue)
+                .whereField("userId", isEqualTo: currentUser.uid)
+                .addSnapshotListener({ (snapshot, error) in
+                    if let error = error {
+                        print(error)
+                    } else if let snapshot = snapshot {
+                        guard snapshot.documents.count > 0 else  {
+                            return
                         }
-                    })
-            }
+                        let latestAppoinment = snapshot.documents.map{ Appointments(dict: $0.data())}.last!
+                        DBService.getProviderFromAppointment(appointment: latestAppoinment, completion: { (error, provider) in
+                            if let error = error {
+                                print(error)
+                            } else if let provider = provider {
+                                self.delegate?.appointmentUpdate(status: status.rawValue, appointment: latestAppoinment, provider: provider)
+                            }
+                        })
+                        
+                        
+                    }
+                })
         }
+    }
     
     private func setupNotification(status: AppointmentStatus) {
         switch status {
