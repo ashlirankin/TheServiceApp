@@ -27,13 +27,14 @@ class ClientProfileController: UIViewController {
     @IBOutlet weak var historyButton: CircularButton!
     @IBOutlet weak var switchButton: UIButton!
     var listener: ListenerRegistration!
-    var statusListener: ListenerRegistration!
     let noBookingView = ProfileNoBooking(frame: CGRect(x: 0, y: 0, width: 394, height: 284))
     let customNotification = LocalCustomNotification()
+    let leaveReviewNotification = LeaveReviewNotification()
     var isSwitched = false
     let authService = AuthService()
     var timer: Timer?
     private var tableviewStatus: tableviewStatus = .upcoming
+    var providerToReview: ServiceSideUser?
     var appointments = [Appointments]() {
         didSet {
             tableviewStatus == .upcoming ? getUpcomingAppointments() : getPastAppointments()
@@ -87,7 +88,18 @@ class ClientProfileController: UIViewController {
         fetchCurrentUser()
     }
     
+//
+//    @IBAction func tap(_ sender: UITapGestureRecognizer) {
+////        guard touch.view != self || self.subviews.contain(touch.view) else { return }
+////            sender.isEnabled = false
+////             leaveReviewNotification.removeFromSuperview()
+//    }
     
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        guard let touch = touches.first else  { return }
+//        guard !(touch.view?.isKind(of: LeaveReviewNotification.self))! else { return }
+//                     leaveReviewNotification.removeFromSuperview()
+//    }
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -159,6 +171,7 @@ class ClientProfileController: UIViewController {
                     print(error)
                 } else if let snapshot = snapshot {
                     self.appointments = snapshot.documents.map{Appointments(dict: $0.data())}
+                      AppointmentNotification.shared
                     self.tableView.reloadData()
                 }
             })
@@ -338,6 +351,8 @@ extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
 }
 extension ClientProfileController: AppointmentNotificationDelegate {
     func appointmentUpdate(status: String, appointment: Appointments, provider: ServiceSideUser) {
+        self.providerToReview = provider
+//          self.leaveReviewNotification.center = self.view.center
         self.customNotification.center = self.view.center
         self.customNotification.date.text = appointment.appointmentTime
         self.customNotification.providerFullname.text = provider.fullName
@@ -349,18 +364,61 @@ extension ClientProfileController: AppointmentNotificationDelegate {
         case "pending":
             self.customNotification.notificationMessage.textColor = #colorLiteral(red: 1, green: 0.6825594306, blue: 0, alpha: 1)
             self.customNotification.notificationMessage.text = "Appointment Booked!"
+          customNotificationPop()
         case "inProgress":
             self.customNotification.notificationMessage.textColor = #colorLiteral(red: 1, green: 0.6825594306, blue: 0, alpha: 1)
             self.customNotification.notificationMessage.text = "Appointment confirmed!"
+            customNotificationPop()
         case "completed":
-            self.customNotification.notificationMessage.textColor = #colorLiteral(red: 1, green: 0.6825594306, blue: 0, alpha: 1)
-            self.customNotification.notificationMessage.text = "Appointment completed!"
-        default:
+           leaveReview()
+        case "canceled":
             self.customNotification.notificationMessage.textColor = .red
             self.customNotification.notificationMessage.text = "Appointment canceled"
+            customNotificationPop()
+        default:
+            break
         }
-        self.view.addSubview(self.customNotification)
-        self.customNotification.fadeOut()
+    }
+    
+    private func customNotificationPop() {
+        view.addSubview(customNotification)
+        customNotification.alpha = 1.0
+        UIView.animate(withDuration: 6, animations: {
+            self.customNotification.alpha = 0.0
+        }) { (finished) in
+            self.customNotification.removeFromSuperview()
+        }
+    }
+    
+    private func leaveReview() {
+        view.addSubview(leaveReviewNotification)
+        leaveReviewNotification.center = customNotification.center
+        leaveReviewNotification.saveButton.addTarget(self, action: #selector(postReview), for: .touchUpInside)
+    }
+    
+    @objc func postReview() {
+        guard let review = leaveReviewNotification.reviewTextView.text, let provider = providerToReview, let rating = leaveReviewNotification.rating,let reviewer = stylistUser, !review.isEmpty else {
+            return
+        }
+       var value = 5.0
+        rating.didFinishTouchingCosmos = { captureRating in
+          value = captureRating
+        }
+        let reviewToSet = Reviews(reviewerId: reviewer.userId,
+                                  description: review,
+                                  createdDate: "",
+                                  ratingId: "",
+                                  value: value,
+                                  reviewId: "",
+                                  reviewStylist: provider.userId)
+        DBService.postProviderReview(reviewer: reviewer, stylistReviewed: provider, review: reviewToSet) { (error) in
+            if let error = error {
+                print(error)
+            } else  {
+                self.showAlert(title: "", message: "Review has been posted", actionTitle: "OK")
+            }
+        }
+       leaveReviewNotification.removeFromSuperview()
     }
 }
 

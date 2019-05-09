@@ -158,16 +158,17 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
                 }
         }
     }
-    static func postProviderReview(stylistReviewed: ServiceSideUser?, review: Reviews, completionHandler: @escaping (Error?) -> Void) {
+    static func postProviderReview(reviewer: StylistsUser ,stylistReviewed: ServiceSideUser?, review: Reviews, completionHandler: @escaping (Error?) -> Void) {
         let reviewId = firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
-            .document("4UathYHKvyXZV739xBD9FaJFH2D2") //.document(stylistReviewed.userId)
+            .document(stylistReviewed?.userId ?? "no document id found")
             .collection(ReviewsCollectionKeys.reviews).document().documentID
+        let date =
         firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
-            .document("4UathYHKvyXZV739xBD9FaJFH2D2") //.document(stylistReviewed.userId)
+            .document(stylistReviewed?.userId ?? "no provider ID Found")
             .collection(ReviewsCollectionKeys.reviews)
             .document().setData([
-                ReviewsCollectionKeys.reviewerId  : review.reviewerId,
-                ReviewsCollectionKeys.createdDate : review.createdDate,
+                ReviewsCollectionKeys.reviewerId  : reviewer.userId,
+                ReviewsCollectionKeys.createdDate : Date.getISOTimestamp(),
                 ReviewsCollectionKeys.description : review.description,
                 ReviewsCollectionKeys.ratingId : review.ratingId,
                 ReviewsCollectionKeys.value : review.value,
