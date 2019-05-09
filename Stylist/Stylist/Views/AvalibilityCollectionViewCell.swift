@@ -21,7 +21,7 @@ class AvalibilityCollectionViewCell: UICollectionViewCell {
     }
   }
   
-  func disableOnExpiration(availableTimes:String){
+  func disableOnExpiration(availableTimes:String) {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "h:mm a"
     guard let currentTime = dateFormatter.date(from: dateFormatter.string(from: Date())),

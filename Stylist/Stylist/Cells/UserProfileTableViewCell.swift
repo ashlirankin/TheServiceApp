@@ -17,6 +17,7 @@ class UserProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var providerName: UILabel!
     @IBOutlet weak var providerService: UILabel!
     @IBOutlet weak var appointmentStatusButton: UIButton!
+    var rating: Double?
     
     public func configuredCell(provider: ServiceSideUser, appointment: Appointments) {
         setAppointmentTime(appointment: appointment)
@@ -34,19 +35,18 @@ class UserProfileTableViewCell: UITableViewCell {
     private func setupProviderRating(provider: ServiceSideUser) {
         providerRating.settings.updateOnTouch = false
         providerRating.settings.fillMode = .half
-
+        providerRating.rating = 5.0
+        rating = 5.0
         DBService.getReviews(provider: provider) { (reviews, error) in
             if let error = error {
                 print("Get Ratings Error: \(error.localizedDescription)")
-                self.providerRating.rating = 0
             } else if let reviews = reviews {
-                let allRatings = reviews.map{ $0.value }
+                let allRatings = reviews.map { $0.value }
                 if allRatings.count > 0 {
                     let averageRating = allRatings.reduce(0, +) / Double(allRatings.count)
+                    self.rating = averageRating
                     self.providerRating.rating = averageRating
-                } else {
-                    self.providerRating.rating = 0
-                }
+                } 
             }
         }
     }
