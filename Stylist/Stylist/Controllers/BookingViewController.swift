@@ -19,6 +19,7 @@ class BookingViewController: UITableViewController {
     let authService = AuthService()
     let sectionsTitle = ["Services","Available times","Summary"]
     lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 250))
+    var rating: Double?
     
     private var providerServices = [ProviderServices](){
         didSet{
@@ -128,6 +129,7 @@ class BookingViewController: UITableViewController {
         tableView.tableHeaderView = providerDetailHeader
         providerDetailHeader.bookingButton.isHidden = true
         providerDetailHeader.ratingsValue.isHidden = true
+        providerDetailHeader.ratingsstars.rating = rating ?? 5
         providerDetailHeader.providerPhoto.kf.setImage(with: URL(string: provider?.imageURL ?? "no url found"),placeholder: #imageLiteral(resourceName: "placeholder.png"))
         providerDetailHeader.providerFullname.text = "\(provider?.firstName ?? "no name found") \(provider?.lastName ?? "no name found")"
     }

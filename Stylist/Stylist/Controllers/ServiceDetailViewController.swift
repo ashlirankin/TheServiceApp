@@ -14,6 +14,7 @@ class ServiceDetailViewController: UIViewController {
     var appointment: Appointments!
     var status: String?
     var provider: ServiceSideUser?
+    var ratingsStar: Double?
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userRating: CosmosView!
     @IBOutlet weak var appointmentServices: UILabel!
@@ -27,7 +28,6 @@ class ServiceDetailViewController: UIViewController {
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
 
-    var ratingsStar = 0.0
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUIBasedOnUser()
@@ -54,7 +54,6 @@ class ServiceDetailViewController: UIViewController {
     private func updateUIBasedOnUser() {
         setupGeneralUI()
         if let provider = provider {
-            setupProviderRating(provider: provider)
             userFullname.text = provider.fullName
             userAddress.text = "85B Allen St, New York, NY 10002"
             userImage.kf.setImage(with: URL(string: provider.imageURL ?? "No Image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
@@ -67,11 +66,8 @@ class ServiceDetailViewController: UIViewController {
                 if let error = error {
                     print(error)
                 } else if let stylistUser = stylistUser {
-                    self.userRating.rating = 5
                     self.userFullname.text = stylistUser.fullName
                     self.userDistance.text = "0.2 Miles Away"
-
-
                     self.AppointmentCreated.text = self.appointment.appointmentTime
                     self.userAddress.text = stylistUser.getAddress ?? "85B Allen St, New York, NY 10002"
                     self.userImage.kf.setImage(with: URL(string: stylistUser.imageURL ?? "No Image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
@@ -84,28 +80,12 @@ class ServiceDetailViewController: UIViewController {
         var servicesText = ""
         userRating.settings.updateOnTouch = false
         userRating.settings.fillMode = .half
+        userRating.rating = ratingsStar ?? 5.0
         userDistance.text = "0.2 Miles Away"
         AppointmentCreated.text = appointment.appointmentTime
         appointmentStatus.text = appointment.status == "inProgress" ? "In-Progress" : appointment.status.capitalized
         appointment.services.forEach { servicesText += " \($0)"}
         appointmentServices.text = servicesText
-    }
-    
-    private func setupProviderRating(provider: ServiceSideUser) {
-        DBService.getReviews(provider: provider) { (reviews, error) in
-            if let error = error {
-                print("Get Ratings Error: \(error.localizedDescription)")
-                self.userRating.rating = 0
-            } else if let reviews = reviews {
-                let allRatings = reviews.map{ $0.value }
-                if allRatings.count > 0 {
-                    let averageRating = allRatings.reduce(0, +) / Double(allRatings.count)
-                    self.userRating.rating = averageRating
-                } else {
-                    self.userRating.rating = 0
-                }
-            }
-        }
     }
     
     private func  updateDetailUI() {
