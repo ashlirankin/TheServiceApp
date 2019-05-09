@@ -68,7 +68,7 @@ class ServiceDetailViewController: UIViewController {
                          self.appointmentStatus.text = self.appointment.status
                     }
                     self.userDistance.text = "0.2 Miles Away"
-                    self.userAddress.text = stylistUser.address ?? "85B Allen St, New York, NY 10002"
+
                     self.AppointmentCreated.text = self.appointment.appointmentTime
                     self.userImage.kf.setImage(with: URL(string: stylistUser.imageURL ?? "No Image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
                     for service in self.appointment.services {

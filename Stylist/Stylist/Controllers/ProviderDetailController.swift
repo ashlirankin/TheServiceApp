@@ -29,7 +29,7 @@ class ProviderDetailController: UITableViewController {
     }
   }
     var allRatingValues = [Double]()
-    let sectionInset = UIEdgeInsets(top: -200.0,
+    let sectionInset = UIEdgeInsets(top: 10.0,
                                     left: 20.0,
                                     bottom: 400.0,
                                     right: 20.0)
@@ -41,6 +41,8 @@ class ProviderDetailController: UITableViewController {
     }
   var portfolioImages = [String]() {
     didSet{
+      print("the number of images are:\(portfolioImages.count)")
+      
      portfolioView.portfolioCollectionView.reloadData()
     }
   }
@@ -51,7 +53,7 @@ class ProviderDetailController: UITableViewController {
     var reviews = [Reviews]() {
         didSet {
             DispatchQueue.main.async {
-                self.reviewCollectionView.ReviewCV.reloadData()
+              self.reviewCollectionView.ReviewCV.reloadData()
             }
         }
     }
@@ -273,9 +275,10 @@ extension ProviderDetailController: UICollectionViewDataSource {
             return cell
         } else {
             let portfolioCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PortfolioCell", for: indexPath) as! PortfolioCollectionViewCell
-            portfolioCell.protoflioImage.isUserInteractionEnabled = true
+            portfolioCell.portfolioImage.isUserInteractionEnabled = true
            let image = portfolioImages[indexPath.row]
-            portfolioCell.protoflioImage.kf.setImage(with: URL(string: image),placeholder:#imageLiteral(resourceName: "placeholder.png") )
+            portfolioCell.portfolioImage.kf.setImage(with: URL(string: image),placeholder:#imageLiteral(resourceName: "placeholder") )
+          
             return portfolioCell
         }
     }
@@ -288,7 +291,7 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
         } else if collectionView == reviewCollectionView.ReviewCV {
             return CGSize(width: 414, height: 60)
         } else {
-            return CGSize(width: UIScreen.main.bounds.width / 2, height: 200)
+            return CGSize(width: view.frame.width/2, height: 200)
         }
     }
     
@@ -303,7 +306,7 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == portfolioView.portfolioCollectionView {
             let portfolioCell = collectionView.cellForItem(at: indexPath) as! PortfolioCollectionViewCell
-            guard let image = portfolioCell.protoflioImage.image else  {
+            guard let image = portfolioCell.portfolioImage.image else  {
                 return
             }
             let storyboard = UIStoryboard.init(name: "User", bundle: nil)
@@ -311,7 +314,6 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
             portfolioVC.detailImage = image
             self.present(portfolioVC, animated: true, completion: nil)
         } else {
-            print("im here")
             let view = featureViews[indexPath.row]
             scrollView.scrollRectToVisible(view.frame, animated: true)
             view.frame.size.width = self.view.bounds.width

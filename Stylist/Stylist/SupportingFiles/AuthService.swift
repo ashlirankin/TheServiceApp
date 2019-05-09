@@ -47,6 +47,7 @@ final class AuthService {
                                    city: nil,
                                    state: nil,
                                    zip: nil)
+      
         DBService.createConsumerDatabaseAccount(consumer: newUser, completionHandler: { (error) in
             if let error = error {
                 self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)

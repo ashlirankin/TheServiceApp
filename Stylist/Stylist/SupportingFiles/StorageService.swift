@@ -31,6 +31,9 @@ final class StorageService {
           
         }
     }
+//    return uploadTask
+//    uploadTask.pause()
+    // upload
     uploadTask.observe(.failure) { (snapshot) in
       //
     }

@@ -127,7 +127,6 @@ class FilterProvidersController: UITableViewController {
             availableNow = true
             sender.buttonSelectedUI()
         }
-        print(availableNow)
     }
     
     @IBAction func genderButtonPressed(_ sender: RoundedTextButton) {
@@ -139,7 +138,6 @@ class FilterProvidersController: UITableViewController {
             genderFilter[selectedGender.rawValue] = selectedGender.rawValue
             sender.buttonSelectedUI()
         }
-        print(genderFilter)
     }
     
 
@@ -264,6 +262,5 @@ extension FilterProvidersController: ServicesCellDelegate {
         } else {
             servicesFilter[serviceName] = serviceName
         }
-        print(servicesFilter)
     }
 }
