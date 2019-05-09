@@ -101,3 +101,8 @@ struct AppointmentCollectionKeys{
   static let bookedAppointments = "bookedAppointments"
   
 }
+struct PortfolioCollectionKeys {
+  static let documentId = "documentId"
+  static let images = "images"
+  static let portfolio = "portfolio"
+}

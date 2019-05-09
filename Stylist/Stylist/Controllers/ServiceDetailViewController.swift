@@ -70,6 +70,9 @@ class ServiceDetailViewController: UIViewController {
                     self.userRating.rating = 5
                     self.userFullname.text = stylistUser.fullName
                     self.userDistance.text = "0.2 Miles Away"
+
+
+                    self.AppointmentCreated.text = self.appointment.appointmentTime
                     self.userAddress.text = stylistUser.getAddress ?? "85B Allen St, New York, NY 10002"
                     self.userImage.kf.setImage(with: URL(string: stylistUser.imageURL ?? "No Image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
                     }
