@@ -46,7 +46,6 @@
 		09E35CCF2280AD49003BBD2A /* LocalCustomNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E35CCE2280AD49003BBD2A /* LocalCustomNotification.swift */; };
 		09E35CD22281D434003BBD2A /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E35CD12281D434003BBD2A /* UIView+Extensions.swift */; };
 		291F30A20B9AEA8931FF3E32 /* Pods_FirebaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F0689D22A995E41D8C2C56 /* Pods_FirebaseTests.framework */; };
-		2E056E5F2281DA600095B26D /* UpdatePortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E056E5E2281DA600095B26D /* UpdatePortfolioViewController.swift */; };
 		2E07D948228084720078C65F /* ApplicationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E07D947228084720078C65F /* ApplicationInfo.swift */; };
 		2E07D94A228097340078C65F /* PortfolioImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E07D949228097340078C65F /* PortfolioImages.swift */; };
 		2E23F197226E5DCA0037B9AA /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E23F196226E5DCA0037B9AA /* PaymentsViewController.swift */; };
@@ -356,7 +355,6 @@
 		2EF103C02255A4030030FBFF /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-
 				2E07D947228084720078C65F /* ApplicationInfo.swift */,
 				09E35CD12281D434003BBD2A /* UIView+Extensions.swift */,
 				2E9DD7CF2257C93E00D74DD1 /* DBService.swift */,
@@ -743,7 +741,6 @@
 				2EECBA88227A29F80039C7C9 /* ButtonExt.swift in Sources */,
 				2EBDDBD4225B997B00583BC0 /* Alert+Extensions.swift in Sources */,
 				D6FE75182265118A00B4A49A /* ProfessionCell.swift in Sources */,
-				2E056E5F2281DA600095B26D /* UpdatePortfolioViewController.swift in Sources */,
 				2E9DD7DA2257F6A800D74DD1 /* LoginViewController.swift in Sources */,
 				2E07D948228084720078C65F /* ApplicationInfo.swift in Sources */,
 				2E23F19B226E88A70037B9AA /* CardCollectionViewCell.swift in Sources */,

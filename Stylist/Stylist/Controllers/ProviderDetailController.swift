@@ -23,9 +23,13 @@ class ProviderDetailController: UITableViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 300))
   
-  var provider: ServiceSideUser!
+    var provider: ServiceSideUser! {
+        didSet{
+            getPortfolioImages(provider: provider)
+        }
+    }
     var rating: Double?
-    let sectionInset = UIEdgeInsets(top: -200.0,
+    let sectionInset = UIEdgeInsets(top: 10.0,
                                     left: 20.0,
                                     bottom: 400.0,
                                     right: 20.0)
