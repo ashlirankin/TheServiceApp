@@ -119,7 +119,6 @@ class OnboardingTableViewController: UITableViewController {
     }
     
     @IBAction func genderSegmentedControl(_ sender: UISegmentedControl) {
-        print(sender.selectedSegmentIndex)
         switch sender.selectedSegmentIndex {
         case 0:
             gender = "male"
