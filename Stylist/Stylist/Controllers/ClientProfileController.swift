@@ -341,6 +341,9 @@ extension ClientProfileController: AppointmentNotificationDelegate {
         self.customNotification.center = self.view.center
         self.customNotification.date.text = appointment.appointmentTime
         self.customNotification.providerFullname.text = provider.fullName
+        appointment.services.forEach { (service) in
+            self.customNotification.serviceDescription.text = service
+        }
         self.customNotification.providerImage.kf.setImage(with: URL(string: provider.imageURL ?? "no image"), placeholder:#imageLiteral(resourceName: "placeholder.png") )
         switch appointment.status {
         case "pending":
