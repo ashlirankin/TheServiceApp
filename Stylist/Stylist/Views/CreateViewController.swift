@@ -33,7 +33,7 @@ class CreateViewController: BaseViewController {
     @IBAction func createProfilePressed(_ sender: UIButton) {
         guard let email = emailTextfield.text,
             let password =  passwordTextfield.text else {
-                showAlert(title: "Field Required", message: "you must enter your email and password", actionTitle: "Ok")
+                showAlert(title: "Field Required", message: "Please enter your email and password", actionTitle: "Ok")
                 return
         }
         authService.createNewAccount(email: email, password: password)
@@ -65,7 +65,7 @@ extension CreateViewController:AuthServiceCreateNewAccountDelegate{
   }
   
   func didCreateConsumerAccount(_ authService: AuthService, consumer: StylistsUser) {
-    showAlert(title: "Account Successfully Created", message: "You sucessfully created your account", style: .alert) { (action) in
+    showAlert(title: "Account Created!", message: nil, style: .alert) { (action) in
       self.presentOnboardingScreen()
     }
   }

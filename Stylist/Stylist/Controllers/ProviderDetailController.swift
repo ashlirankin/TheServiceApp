@@ -15,7 +15,6 @@ enum FavoriteButtonState: String {
 }
 
 
-
 class ProviderDetailController: UITableViewController {
     var isFavorite: Bool!
     var favoriteId: String?
@@ -23,13 +22,10 @@ class ProviderDetailController: UITableViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 300))
-  var provider: ServiceSideUser! {
-    didSet{
-      getPortfolioImages(provider: provider)
-    }
-  }
-    var allRatingValues = [Double]()
-    let sectionInset = UIEdgeInsets(top: 10.0,
+  
+  var provider: ServiceSideUser!
+    var rating: Double?
+    let sectionInset = UIEdgeInsets(top: -200.0,
                                     left: 20.0,
                                     bottom: 400.0,
                                     right: 20.0)
@@ -69,8 +65,6 @@ class ProviderDetailController: UITableViewController {
       
         
     }
-    
-    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -161,52 +155,26 @@ class ProviderDetailController: UITableViewController {
                 self.showAlert(title: "", message: "favorited", actionTitle: "OK")
             }
         }
-        
     }
     
     private func setupProvider() {
         providerDetailHeader.providerFullname.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
         providerDetailHeader.providerPhoto.kf.setImage(with: URL(string: provider.imageURL ?? ""), placeholder: #imageLiteral(resourceName: "iconfinder_icon-person-add_211872.png"))
         profileBio.providerBioText.text = provider.bio
-        DBService.getReviews(provider: provider) { (reviews, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else if let reviews = reviews {
-                let ratingValues =   reviews.map{$0.value}
-                
-                self.allRatingValues = ratingValues
-                guard !self.allRatingValues.isEmpty else {
-                    self.providerDetailHeader.ratingsValue.text = "5.0"
-                    self.providerDetailHeader.ratingsstars.rating = 5.0
-                    return
-                }
-                let total = self.allRatingValues.reduce(0, +)
-                let avg = Int(total) / self.allRatingValues.count
-                self.providerDetailHeader.ratingsValue.text = "\(avg)"
-                self.providerDetailHeader.ratingsstars.rating = Double(avg)
-                
-            }
+        if let rating = rating {
+            providerDetailHeader.ratingsValue.text = rating.description
+            providerDetailHeader.ratingsstars.rating = rating
+        } else {
+            providerDetailHeader.ratingsValue.text = "5.0"
+            providerDetailHeader.ratingsstars.rating = 5.0
         }
         setupProviderPortfolio()
-        setupReviews()
     }
-    
     
     private func setupProviderPortfolio() {
         portfolioView.portfolioCollectionView.delegate = self
         portfolioView.portfolioCollectionView.dataSource = self
     }
-    
-    private func setupReviews() {
-        DBService.getReviews(provider: provider) { (reviews, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else if let reviews = reviews{
-                self.reviews = reviews
-            }
-        }
-    }
-    
     
     
     private func loadSVFeatures() {
