@@ -38,7 +38,6 @@ final class DBService {
             .document(consumer.userId)
             .setData([StylistsUserCollectionKeys.userId : consumer.userId, StylistsUserCollectionKeys.firstName: consumer.firstName ?? "",
                 StylistsUserCollectionKeys.lastName:consumer.lastName ?? "" ,
-                StylistsUserCollectionKeys.address: consumer.address ?? "",
                 StylistsUserCollectionKeys.email : consumer.email,
                 StylistsUserCollectionKeys.gender: consumer.gender ?? "",
                 StylistsUserCollectionKeys.imageURL: consumer.imageURL ?? "",
