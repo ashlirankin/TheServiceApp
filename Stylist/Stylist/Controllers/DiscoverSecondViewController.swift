@@ -21,7 +21,7 @@ class DiscoverSecondViewController: UIViewController {
            getReviewsForAllProviders()
         }
     }
-    var ratings = [Double]() {
+    var ratings = [String : Double]() {
         didSet {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -52,28 +52,28 @@ class DiscoverSecondViewController: UIViewController {
     
     // MARK: Initial Setups
     private func getReviewsForAllProviders() {
-        var ratings = [Double]() {
+        var ratings = [String : Double]() {
             didSet {
                 if ratings.count == sortedServiceProviders.count {
                     self.ratings = ratings
                 }
             }
         }
-        sortedServiceProviders.forEach { (provider) in
-            DBService.getReviews(provider: provider, completionHandler: { (reviews, error) in
+        for provider in sortedServiceProviders {
+            DBService.getReviews(provider: provider) { (reviews, error) in
                 if let error = error {
-                    ratings.append(5.0)
+                    ratings[provider.userId] = 5.0
                     print("Get Ratings Fail: " + error.localizedDescription)
                 } else if let reviews = reviews {
-                    let allRatingValues = reviews.map { $0.value }
-                    if allRatingValues.isEmpty {
-                        ratings.append(5.0)
+                    if reviews.isEmpty {
+                        ratings[provider.userId] = 5.0
                     } else {
-                        let average = allRatingValues.reduce(0, +) / Double(allRatingValues.count)
-                        ratings.append(average)
+                        let allRatingsValues = reviews.map { $0.value }
+                        let average = allRatingsValues.reduce(0, +) / Double(reviews.count)
+                        ratings[provider.userId] = average
                     }
                 }
-            })
+            }
         }
     }
     
@@ -216,7 +216,7 @@ class DiscoverSecondViewController: UIViewController {
                 return
         }
         let provider = sortedServiceProviders[indexPath.row]
-        let providerRating = ratings[indexPath.row]
+        let providerRating = ratings[provider.userId]
         let isFavorite = cell.goldStar.isHidden ? false : true
         destination.rating = providerRating
         destination.isFavorite = isFavorite
@@ -240,10 +240,8 @@ extension DiscoverSecondViewController: UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverCollectionViewCell", for: indexPath) as! DiscoverCollectionViewCell
         let provider = sortedServiceProviders[indexPath.row]
-        let providerRating = ratings[indexPath.row]
-        cell.configureCell(provider: provider, favorites: favorites, rating: providerRating)
+        let providerRating = ratings[provider.userId]
+        cell.configureCell(provider: provider, favorites: favorites, rating: providerRating ?? 5)
         return cell
     }
-    
-    
 }

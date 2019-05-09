@@ -326,6 +326,9 @@ extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
             "ServiceDetailVC") as? ServiceDetailViewController else { return }
         destinationVC.modalTransitionStyle = .crossDissolve
         destinationVC.modalPresentationStyle = .overFullScreen
+        if let cell = tableView.cellForRow(at: indexPath) as? UserProfileTableViewCell {
+            destinationVC.ratingsStar = cell.rating
+        }
         let appointment = filterAppointments[indexPath.row]
         destinationVC.appointment = appointment
         destinationVC.status = appointment.status

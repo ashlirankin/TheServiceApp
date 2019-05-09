@@ -224,6 +224,7 @@ class ProviderDetailController: UITableViewController {
         }
         guard let bookingController = UIStoryboard(name: "BookService", bundle: nil).instantiateViewController(withIdentifier: "BookingController") as? BookingViewController else {return}
         guard let provider = provider else {return}
+        bookingController.rating = rating
         bookingController.provider = provider
         let bookingNavController = UINavigationController(rootViewController: bookingController)
         self.present(bookingNavController, animated: true, completion: nil)
