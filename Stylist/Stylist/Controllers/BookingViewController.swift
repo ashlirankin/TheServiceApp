@@ -129,7 +129,7 @@ class BookingViewController: UITableViewController {
         tableView.tableHeaderView = providerDetailHeader
         providerDetailHeader.bookingButton.isHidden = true
         providerDetailHeader.ratingsValue.isHidden = true
-        providerDetailHeader.ratingsstars.rating = rating ?? 5
+        providerDetailHeader.ratingsstars.rating =  rating ?? 5.0
         providerDetailHeader.providerPhoto.kf.setImage(with: URL(string: provider?.imageURL ?? "no url found"),placeholder: #imageLiteral(resourceName: "placeholder.png"))
         providerDetailHeader.providerFullname.text = "\(provider?.firstName ?? "no name found") \(provider?.lastName ?? "no name found")"
     }

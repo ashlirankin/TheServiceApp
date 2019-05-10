@@ -166,8 +166,8 @@ class ProviderDetailController: UITableViewController {
         providerDetailHeader.providerPhoto.kf.setImage(with: URL(string: provider.imageURL ?? ""), placeholder: #imageLiteral(resourceName: "iconfinder_icon-person-add_211872.png"))
         profileBio.providerBioText.text = provider.bio
         if let rating = rating {
-            providerDetailHeader.ratingsValue.text = rating.description
-            providerDetailHeader.ratingsstars.rating = rating
+            providerDetailHeader.ratingsValue.text = String(format: "%.1f", rating)
+            providerDetailHeader.ratingsstars.rating = rating 
         } else {
             providerDetailHeader.ratingsValue.text = "5.0"
             providerDetailHeader.ratingsstars.rating = 5.0
@@ -224,7 +224,7 @@ class ProviderDetailController: UITableViewController {
         }
         guard let bookingController = UIStoryboard(name: "BookService", bundle: nil).instantiateViewController(withIdentifier: "BookingController") as? BookingViewController else {return}
         guard let provider = provider else {return}
-        bookingController.rating = rating
+        bookingController.rating = Double(String(format: "%.1f", rating ?? 5.0))
         bookingController.provider = provider
         let bookingNavController = UINavigationController(rootViewController: bookingController)
         self.present(bookingNavController, animated: true, completion: nil)
