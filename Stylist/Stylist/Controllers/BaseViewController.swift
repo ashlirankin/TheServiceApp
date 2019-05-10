@@ -26,10 +26,7 @@ class BaseViewController: UIViewController {
   func createGradientView(){
     
     
-    gradientSet.append([color1, color3])
-//    gradientSet.append([color2,color3])
-//    gradientSet.append([color3,color1])
-    
+    gradientSet.append([color1, color3])    
     gradient.startPoint = CGPoint(x: 0, y: 0)
     gradient.frame = self.view.bounds
     gradient.colors = gradientSet[currentGradient]

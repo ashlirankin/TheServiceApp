@@ -16,7 +16,12 @@ class DiscoverSecondViewController: UIViewController {
     var listener: ListenerRegistration!
     var serviceProviders = [ServiceSideUser]()
     var favorites = [ServiceSideUser]()
-    var allServices = [ServiceSideUser]() {
+    var sortedServiceProviders = [ServiceSideUser]() {
+        didSet {
+           getReviewsForAllProviders()
+        }
+    }
+    var ratings = [String : Double]() {
         didSet {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -33,33 +38,65 @@ class DiscoverSecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.dataSource = self
+        collectionView.delegate = self
         UserDefaultsKeys.wipeUserDefaults()
-        setupcollectionView()
+        setupListener()
     }
     
-    func  getServices() {
-   DBService.getProviders { (services, error) in
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        callUserDefaults()
+        getServiceProviders()
+    }
+    
+    // MARK: Initial Setups
+    private func getReviewsForAllProviders() {
+        var ratings = [String : Double]() {
+            didSet {
+                if ratings.count == sortedServiceProviders.count {
+                    self.ratings = ratings
+                }
+            }
+        }
+        for provider in sortedServiceProviders {
+            DBService.getReviews(provider: provider) { (reviews, error) in
+                if let error = error {
+                    ratings[provider.userId] = 5.0
+                    print("Get Ratings Fail: " + error.localizedDescription)
+                } else if let reviews = reviews {
+                    if reviews.isEmpty {
+                        ratings[provider.userId] = 5.0
+                    } else {
+                        let allRatingsValues = reviews.map { $0.value }
+                        let average = allRatingsValues.reduce(0, +) / Double(reviews.count)
+                        ratings[provider.userId] = average
+                    }
+                }
+            }
+        }
+    }
+    
+    private func  getServiceProviders() {
+        DBService.getProviders { (providers, error) in
             if let error = error {
                 print(error)
-            } else if let services = services {
-                self.serviceProviders = services
+            } else if let providers = providers {
+                self.serviceProviders = providers
                 self.checkFilters()
             }
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.listener = DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
+    private func setupListener() {
+        listener = DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
             .addSnapshotListener({ (snapshot, error) in
                 if let error = error {
                     print(error)
                 } else if snapshot != nil {
-                  self.getServices()
+                    self.getServiceProviders()
                 }
             })
-        callUserDefaults()
-        getServices()
     }
     
     private func callUserDefaults() {
@@ -70,12 +107,11 @@ class DiscoverSecondViewController: UIViewController {
         servicesFilter = defaults.object(forKey: UserDefaultsKeys.servicesFilter) as? [String: String] ?? [String : String]()
     }
     
-    
+    // MARK: Filters
     private func checkFilters() {
         var serviceProviders = self.serviceProviders
         var filterTasksComplete = 0 {
             didSet {
-                print(filterTasksComplete)
                 if filterTasksComplete == 5 {
                     self.serviceProviders = serviceProviders
                     getFavorites()
@@ -160,37 +196,30 @@ class DiscoverSecondViewController: UIViewController {
                         serviceProvider.userId == favorite.userId
                     })
                 }
-                self.allServices = self.favorites + self.serviceProviders
+                self.sortedServiceProviders = self.favorites + self.serviceProviders
             }
         }
     }
     
-    func setupcollectionView() {
-        collectionView.dataSource = self
-        collectionView.delegate = self
-    }
-    
-    
+    // MARK: Actions
     @IBAction func filterPressed(_ sender: UIBarButtonItem) {
         let storyboard = UIStoryboard(name: "FilterProviders", bundle: nil)
         let filterVC = storyboard.instantiateViewController(withIdentifier: "FilterProvidersVC") as! FilterProvidersController
         self.present(UINavigationController(rootViewController: filterVC), animated: true, completion: nil)
-        
     }
     
-    
+    // MARK: Prepare for Segue (Appointment Detail)
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destination = segue.destination as? ProviderDetailController,
             let cell = sender as? DiscoverCollectionViewCell,
             let indexPath = collectionView.indexPath(for: cell) else {
                 return
         }
-        let provider = allServices[indexPath.row]
-        
-        
-
-        let isFavoirte = cell.goldStar.isHidden ? false : true
-        destination.isFavorite = isFavoirte
+        let provider = sortedServiceProviders[indexPath.row]
+        let providerRating = ratings[provider.userId]
+        let isFavorite = cell.goldStar.isHidden ? false : true
+        destination.rating = providerRating
+        destination.isFavorite = isFavorite
         destination.provider = provider
         
         let index = favorites.firstIndex { provider.userId == $0.userId }
@@ -202,17 +231,17 @@ class DiscoverSecondViewController: UIViewController {
     }
 }
 
+
 extension DiscoverSecondViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return allServices.count
+        return sortedServiceProviders.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverCollectionViewCell", for: indexPath) as! DiscoverCollectionViewCell
-        let provider = allServices[indexPath.row]
-        cell.configureCell(provider: provider, favorites: favorites)
+        let provider = sortedServiceProviders[indexPath.row]
+        let providerRating = ratings[provider.userId]
+        cell.configureCell(provider: provider, favorites: favorites, rating: providerRating ?? 5)
         return cell
     }
-    
-    
 }

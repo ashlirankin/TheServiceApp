@@ -38,7 +38,6 @@ final class DBService {
             .document(consumer.userId)
             .setData([StylistsUserCollectionKeys.userId : consumer.userId, StylistsUserCollectionKeys.firstName: consumer.firstName ?? "",
                 StylistsUserCollectionKeys.lastName:consumer.lastName ?? "" ,
-                StylistsUserCollectionKeys.address: consumer.address ?? "",
                 StylistsUserCollectionKeys.email : consumer.email,
                 StylistsUserCollectionKeys.gender: consumer.gender ?? "",
                 StylistsUserCollectionKeys.imageURL: consumer.imageURL ?? "",
@@ -271,10 +270,10 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
                 if let error = error {
                     completionHandler(nil, error)
                 } else if let snapshot = snapshot {
-                     let reviewData = snapshot.documents.map{
-                  Reviews(dict: $0.data())
-                  }
-                   completionHandler(reviewData,nil)
+                    let reviewData = snapshot.documents.map{
+                        Reviews(dict: $0.data())
+                    }
+                    completionHandler(reviewData,nil)
                 }
         }
     }
@@ -340,6 +339,17 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
       }
     }
 
+  }
+  static func getPortfolioImages(providerId:String,completion: @escaping (Error?,PortfolioImages?) -> Void ){
+DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).document(providerId).collection(PortfolioCollectionKeys.portfolio).getDocuments { (snapshot, error) in
+      if let error = error {
+        completion(error,nil)
+      }else if let snapshot = snapshot {
+        guard let porfolioData = snapshot.documents.first?.data() else {return}
+        let portfolio = PortfolioImages(dict: porfolioData)
+        completion(nil,portfolio)
+      }
+    }
   }
 }
 

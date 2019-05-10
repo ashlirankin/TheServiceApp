@@ -14,6 +14,7 @@ class ServiceDetailViewController: UIViewController {
     var appointment: Appointments!
     var status: String?
     var provider: ServiceSideUser?
+    var ratingsStar: Double?
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userRating: CosmosView!
     @IBOutlet weak var appointmentServices: UILabel!
@@ -27,81 +28,67 @@ class ServiceDetailViewController: UIViewController {
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
 
-    var ratingsStar = 0.0
     override func viewDidLoad() {
         super.viewDidLoad()
-        getStylistUser()
+        updateUIBasedOnUser()
         todaysDate.isHidden = true
+         checkOnCurrentAppointment()
+    }
+    private func checkOnCurrentAppointment() {
         if let status = self.status {
             if status == "completed" {
+                self.appointmentStatus.textColor = .gray
                 self.cancelButton.isHidden = true
+            } else if status == "inProgress" {
+                self.appointmentStatus.textColor = .green
+                self.appointmentStatus.text = "In progress"
+            } else if status == "pending" {
+                self.appointmentStatus.textColor = .orange
+            } else {
+                self.appointmentStatus.textColor = .red
+                 self.cancelButton.isHidden = true
             }
         }
     }
     
-    private func getStylistUser() {
+    private func updateUIBasedOnUser() {
+        setupGeneralUI()
         if let provider = provider {
-            setupProviderRating(provider: provider)
             userFullname.text = provider.fullName
-            appointmentStatus.text = appointment.status
-            userDistance.text = "0.2 Miles Away"
-            userAddress.text =  "85B Allen St, New York, NY 10002"
-            AppointmentCreated.text = appointment.appointmentTime
+            userAddress.text = "85B Allen St, New York, NY 10002"
             userImage.kf.setImage(with: URL(string: provider.imageURL ?? "No Image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
             completeButton.isHidden = true
             confirmButton.isHidden = true
-            for service in appointment.services {
-                appointmentServices.text = service
-            }
+            if appointment.status == "completed" || appointment.status == "canceled" { cancelButton.isHidden = true }
         } else {
             updateDetailUI()
             DBService.getDatabaseUser(userID: appointment.userId) { (error, stylistUser) in
                 if let error = error {
                     print(error)
                 } else if let stylistUser = stylistUser {
-                    self.userRating.rating = 5
                     self.userFullname.text = stylistUser.fullName
-                    switch self.appointment.status {
-                    case "inProgress":
-                        self.appointmentStatus.text = "In progress"
-                    default:
-                         self.appointmentStatus.text = self.appointment.status
-                    }
                     self.userDistance.text = "0.2 Miles Away"
-                    self.userAddress.text = stylistUser.address ?? "85B Allen St, New York, NY 10002"
                     self.AppointmentCreated.text = self.appointment.appointmentTime
+                    self.userAddress.text = stylistUser.getAddress ?? "85B Allen St, New York, NY 10002"
                     self.userImage.kf.setImage(with: URL(string: stylistUser.imageURL ?? "No Image"), placeholder: #imageLiteral(resourceName: "placeholder.png"))
-                    for service in self.appointment.services {
-                        self.appointmentServices.text = service
-                    }
                     }
                 }
             }
         }
     
-    
-    private func setupProviderRating(provider: ServiceSideUser) {
+    private func setupGeneralUI() {
+        var servicesText = ""
         userRating.settings.updateOnTouch = false
         userRating.settings.fillMode = .half
-        DBService.getReviews(provider: provider) { (reviews, error) in
-            if let error = error {
-                print("Get Ratings Error: \(error.localizedDescription)")
-                self.userRating.rating = 0
-            } else if let reviews = reviews {
-                let allRatings = reviews.map{ $0.value }
-                if allRatings.count > 0 {
-                    let averageRating = allRatings.reduce(0, +) / Double(allRatings.count)
-                    self.userRating.rating = averageRating
-                } else {
-                    self.userRating.rating = 0
-                }
-            }
-        }
+        userRating.rating = ratingsStar ?? 5.0
+        userDistance.text = "0.2 Miles Away"
+        AppointmentCreated.text = appointment.appointmentTime
+        appointmentStatus.text = appointment.status == "inProgress" ? "In-Progress" : appointment.status.capitalized
+        appointment.services.forEach { servicesText += " \($0)"}
+        appointmentServices.text = servicesText
     }
     
-    
     private func  updateDetailUI() {
-        userRating.settings.updateOnTouch = false
         switch appointment.status {
         case "inProgress":
             appointmentStatus.textColor = .green
@@ -128,9 +115,9 @@ class ServiceDetailViewController: UIViewController {
             completeButton.isHidden = false
             completeButton.isEnabled = false
         default:
+            appointmentStatus.textColor = .orange
             completeButton.isHidden = true
         }
-        
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {

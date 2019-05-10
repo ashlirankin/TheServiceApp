@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
  let authService = AuthService()
 //static var container = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    Thread.sleep(forTimeInterval: 0.7)
     FirebaseApp.configure()
     window = UIWindow(frame: UIScreen.main.bounds)
     let center = UNUserNotificationCenter.current()
@@ -38,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     window?.makeKeyAndVisible()
     self.window?.tintColor = #colorLiteral(red: 0.1619916558, green: 0.224360168, blue: 0.3768204153, alpha: 1)
-    AppointmentNotification.shared
+//    AppointmentNotification.shared
     return true
   }
     

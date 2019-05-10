@@ -15,7 +15,6 @@ enum FavoriteButtonState: String {
 }
 
 
-
 class ProviderDetailController: UITableViewController {
     var isFavorite: Bool!
     var favoriteId: String?
@@ -23,18 +22,30 @@ class ProviderDetailController: UITableViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 300))
-    var provider: ServiceSideUser!
-    var allRatingValues = [Double]()
-    let sectionInset = UIEdgeInsets(top: -200.0,
+  
+    var provider: ServiceSideUser! {
+        didSet{
+            getPortfolioImages(provider: provider)
+        }
+    }
+    var rating: Double?
+    let sectionInset = UIEdgeInsets(top: 10.0,
                                     left: 20.0,
                                     bottom: 400.0,
                                     right: 20.0)
     @IBOutlet weak var collectionView: UICollectionView!
-    var buttons = ["Bio", "Portfolio", "Reviews"] {
+  var buttons = ["Bio","Portfolio","Reviews"] {
         didSet {
             self.collectionView.reloadData()
         }
     }
+  var portfolioImages = [String]() {
+    didSet{
+      print("the number of images are:\(portfolioImages.count)")
+      
+     portfolioView.portfolioCollectionView.reloadData()
+    }
+  }
     lazy var profileBio = ProviderBio(frame: CGRect(x: 0, y: 0, width: view.bounds.width , height: 642.5))
     lazy var portfolioView = PortfolioView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 642.5))
     lazy var reviewCollectionView = ReviewCollectionView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 642.5))
@@ -42,7 +53,7 @@ class ProviderDetailController: UITableViewController {
     var reviews = [Reviews]() {
         didSet {
             DispatchQueue.main.async {
-                self.reviewCollectionView.ReviewCV.reloadData()
+              self.reviewCollectionView.ReviewCV.reloadData()
             }
         }
     }
@@ -55,16 +66,27 @@ class ProviderDetailController: UITableViewController {
         loadSVFeatures()
         setupProvider()
         setFavoriteState()
+      
         
     }
-    
-    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.navigationItem.rightBarButtonItem?.isEnabled = true
     }
+  
+  func getPortfolioImages(provider:ServiceSideUser){
+    DBService.getPortfolioImages(providerId: provider.userId) { [weak self] (error, images) in
+      if let error = error {
+        self?.showAlert(title: "Error", message: "There was an error getting images:\(error.localizedDescription) ", actionTitle: "Try Again")
+      }else if let images = images {
+        self?.portfolioImages = images.images
+        
+      }
+    }
     
+  }
+  
     func setFavoriteState(){
         switch isFavorite {
         case true:
@@ -137,42 +159,29 @@ class ProviderDetailController: UITableViewController {
                 self.showAlert(title: "", message: "favorited", actionTitle: "OK")
             }
         }
-        
     }
     
     private func setupProvider() {
         providerDetailHeader.providerFullname.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
         providerDetailHeader.providerPhoto.kf.setImage(with: URL(string: provider.imageURL ?? ""), placeholder: #imageLiteral(resourceName: "iconfinder_icon-person-add_211872.png"))
         profileBio.providerBioText.text = provider.bio
-        DBService.getReviews(provider: provider) { (reviews, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else if let reviews = reviews {
-                let ratingValues =   reviews.map{$0.value}
-                
-                self.allRatingValues = ratingValues
-                guard !self.allRatingValues.isEmpty else {
-                    self.providerDetailHeader.ratingsValue.text = "5.0"
-                    self.providerDetailHeader.ratingsstars.rating = 5.0
-                    return
-                }
-                let total = self.allRatingValues.reduce(0, +)
-                let avg = Int(total) / self.allRatingValues.count
-                self.providerDetailHeader.ratingsValue.text = "\(avg)"
-                self.providerDetailHeader.ratingsstars.rating = Double(avg)
-                
-            }
+        if let rating = rating {
+            providerDetailHeader.ratingsValue.text = String(format: "%.1f", rating)
+            providerDetailHeader.ratingsstars.rating = rating 
+        } else {
+            providerDetailHeader.ratingsValue.text = "5.0"
+            providerDetailHeader.ratingsstars.rating = 5.0
         }
         setupProviderPortfolio()
         setupReviews()
     }
     
-    
-    private func setupProviderPortfolio() {
+    private func   setupProviderPortfolio() {
         portfolioView.portfolioCollectionView.delegate = self
         portfolioView.portfolioCollectionView.dataSource = self
     }
     
+ 
     private func setupReviews() {
         DBService.getReviews(provider: provider) { (reviews, error) in
             if let error = error {
@@ -182,8 +191,6 @@ class ProviderDetailController: UITableViewController {
             }
         }
     }
-    
-    
     
     private func loadSVFeatures() {
         for (index,view) in featureViews.enumerated() {
@@ -217,6 +224,7 @@ class ProviderDetailController: UITableViewController {
         }
         guard let bookingController = UIStoryboard(name: "BookService", bundle: nil).instantiateViewController(withIdentifier: "BookingController") as? BookingViewController else {return}
         guard let provider = provider else {return}
+        bookingController.rating = rating ?? 5.0
         bookingController.provider = provider
         let bookingNavController = UINavigationController(rootViewController: bookingController)
         self.present(bookingNavController, animated: true, completion: nil)
@@ -229,16 +237,12 @@ extension ProviderDetailController: UICollectionViewDataSource {
             return buttons.count
         } else if collectionView == reviewCollectionView.ReviewCV {
             return reviews.count
-        } else {
-            switch provider.jobTitle {
-            case "Barber":
-                return 4
-            case "Hair Stylist":
-                return 9
-            default:
-                return 10
-            }
+        } else if collectionView == portfolioView.portfolioCollectionView{
+            return portfolioImages.count
         }
+        else{
+          return 10
+      }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -251,20 +255,14 @@ extension ProviderDetailController: UICollectionViewDataSource {
         } else if collectionView == reviewCollectionView.ReviewCV {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionViewCell
             let review = reviews[indexPath.row]
-            
             cell.reviewCollectionCellLabel.text = review.description
             return cell
         } else {
             let portfolioCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PortfolioCell", for: indexPath) as! PortfolioCollectionViewCell
-            portfolioCell.protoflioImage.isUserInteractionEnabled = true
-            switch provider.jobTitle {
-            case "Barber":
-                portfolioCell.protoflioImage.image = UIImage(named: "barber\(indexPath.row)")
-            case "Hair Stylist":
-                portfolioCell.protoflioImage.image = UIImage(named: "hairstyle\(indexPath.row)")
-            default:
-                portfolioCell.protoflioImage.image = UIImage(named: "makeup\(indexPath.row)")
-            }
+            portfolioCell.portfolioImage.isUserInteractionEnabled = true
+           let image = portfolioImages[indexPath.row]
+            portfolioCell.portfolioImage.kf.setImage(with: URL(string: image),placeholder:#imageLiteral(resourceName: "placeholder") )
+          
             return portfolioCell
         }
     }
@@ -277,7 +275,7 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
         } else if collectionView == reviewCollectionView.ReviewCV {
             return CGSize(width: 414, height: 60)
         } else {
-            return CGSize(width: UIScreen.main.bounds.width / 2, height: 200)
+            return CGSize(width: view.frame.width/2, height: 200)
         }
     }
     
@@ -292,7 +290,7 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == portfolioView.portfolioCollectionView {
             let portfolioCell = collectionView.cellForItem(at: indexPath) as! PortfolioCollectionViewCell
-            guard let image = portfolioCell.protoflioImage.image else  {
+            guard let image = portfolioCell.portfolioImage.image else  {
                 return
             }
             let storyboard = UIStoryboard.init(name: "User", bundle: nil)
@@ -300,7 +298,6 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
             portfolioVC.detailImage = image
             self.present(portfolioVC, animated: true, completion: nil)
         } else {
-            print("im here")
             let view = featureViews[indexPath.row]
             scrollView.scrollRectToVisible(view.frame, animated: true)
             view.frame.size.width = self.view.bounds.width
