@@ -94,14 +94,16 @@ class RatingsAndReviewViewController: UIViewController {
 
         let review = Reviews(reviewerId: databaseUserId, description: reviewTextView.text, createdDate: Date.getISOTimestamp(), ratingId: "", value: userRating, reviewId: "", reviewStylist: "4UathYHKvyXZV739xBD9FaJFH2D2")
         
-        DBService.postProviderReview(stylistReviewed: stylist, review: review) { (error) in
-            if let error = error {
-                self.showAlert(title: "Network Error", message: "There was an error sending the review to firebase \(error.localizedDescription)", actionTitle: "Ok")
-                self.navigationItem.rightBarButtonItem?.isEnabled = true
-                return
-            }
-            networkCallCount += 1
-        }
+        
+        
+//        DBService.postProviderReview(reviewer: , stylistReviewed: stylist, review: review) { (error) in
+//            if let error = error {
+//                self.showAlert(title: "Network Error", message: "There was an error sending the review to firebase \(error.localizedDescription)", actionTitle: "Ok")
+//                self.navigationItem.rightBarButtonItem?.isEnabled = true
+//                return
+//            }
+//            networkCallCount += 1
+//        }
         
     }
 
