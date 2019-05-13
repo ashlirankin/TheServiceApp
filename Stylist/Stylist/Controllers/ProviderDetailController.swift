@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 import Firebase
+import Cosmos
 
 enum FavoriteButtonState: String {
     case favorite
@@ -266,13 +267,13 @@ extension ProviderDetailController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionViewCell
             let review = reviews[indexPath.row]
             cell.reviewCollectionCellLabel.text = review.description
+            cell.ratingCosmos.rating = review.value
             return cell
         } else {
             let portfolioCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PortfolioCell", for: indexPath) as! PortfolioCollectionViewCell
             portfolioCell.portfolioImage.isUserInteractionEnabled = true
            let image = portfolioImages[indexPath.row]
             portfolioCell.portfolioImage.kf.setImage(with: URL(string: image),placeholder:#imageLiteral(resourceName: "placeholder") )
-          
             return portfolioCell
         }
     }
@@ -283,7 +284,7 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
         if collectionView == self.collectionView {
             return CGSize(width: 120, height: 40)
         } else if collectionView == reviewCollectionView.ReviewCV {
-            return CGSize(width: 414, height: 60)
+            return CGSize(width: 414, height: 90)
         } else {
             return CGSize(width: view.frame.width/2, height: 200)
         }
