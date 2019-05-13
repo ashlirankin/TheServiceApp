@@ -307,6 +307,8 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
             let portfolioVC = storyboard.instantiateViewController(withIdentifier: "PortfolioDetailVC") as! PortfolioDetailViewController
             portfolioVC.detailImage = image
             self.present(portfolioVC, animated: true, completion: nil)
+        } else if collectionView == reviewCollectionView.ReviewCV {
+            collectionView.allowsSelection = false
         } else {
             let view = featureViews[indexPath.row]
             scrollView.scrollRectToVisible(view.frame, animated: true)
