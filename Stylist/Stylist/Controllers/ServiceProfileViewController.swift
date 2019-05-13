@@ -64,5 +64,7 @@ class ServiceProfileViewController: UIViewController {
         servicetab.modalTransitionStyle = .crossDissolve
         servicetab.modalPresentationStyle = .overFullScreen
         self.present(servicetab, animated: true)
+        let appdeletgate = (UIApplication.shared.delegate) as! AppDelegate
+        appdeletgate.window?.rootViewController = servicetab
     }
 }

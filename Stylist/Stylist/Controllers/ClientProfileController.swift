@@ -177,11 +177,13 @@ class ClientProfileController: UIViewController {
             })
     }
     
+    
     // MARK: Actions
     @IBAction func changeUserType(_ sender: UIButton) {
         isSwitched = !isSwitched
         if isSwitched {
             showProviderTab()
+            
         }
     }
     private func showProviderTab() {
@@ -189,7 +191,10 @@ class ClientProfileController: UIViewController {
         guard let providerTab = storyboard.instantiateViewController(withIdentifier: "ServiceTabBar") as? ServiceProviderTabBar else {return}
         providerTab.modalTransitionStyle = .crossDissolve
         providerTab.modalPresentationStyle = .overFullScreen
-        self.present(providerTab, animated: true)
+        self.present(providerTab, animated: true) {
+         let appdeletgate = (UIApplication.shared.delegate) as! AppDelegate
+          appdeletgate.window?.rootViewController = providerTab
+        }
     }
     
     @IBAction func toggleButtons(_ sender: CircularButton) {
