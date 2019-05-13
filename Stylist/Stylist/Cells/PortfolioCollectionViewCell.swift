@@ -11,7 +11,6 @@ import UIKit
 class PortfolioCollectionViewCell: UICollectionViewCell {
     @IBOutlet var container: UICollectionViewCell!
     @IBOutlet weak var portfolioImage: UIImageView!
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -24,12 +23,9 @@ class PortfolioCollectionViewCell: UICollectionViewCell {
     
     
     func commonInit() {
-     
         Bundle.main.loadNibNamed("PortfolioCell", owner: self, options: nil)
        portfolioImage.frame = CGRect(x: 0, y: 0, width: frame.width/2, height: 300)
       portfolioImage.backgroundColor = .white
         addSubview(container)
-      
     }
-
 }

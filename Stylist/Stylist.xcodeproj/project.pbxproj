@@ -10,6 +10,8 @@
 		090374E72270B94100B77B66 /* ServiceProviderTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090374E62270B94100B77B66 /* ServiceProviderTabBar.swift */; };
 		090374E92270B9D300B77B66 /* UserTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090374E82270B9D300B77B66 /* UserTabBarController.swift */; };
 		090374EB2270CA0D00B77B66 /* AppointmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090374EA2270CA0D00B77B66 /* AppointmentCell.swift */; };
+		090862BD22848BD800C9CE5D /* LeaveReviewNotification.xib in Resources */ = {isa = PBXBuildFile; fileRef = 090862BC22848BD800C9CE5D /* LeaveReviewNotification.xib */; };
+		090862BF22848FE800C9CE5D /* LeaveReviewNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090862BE22848FE800C9CE5D /* LeaveReviewNotification.swift */; };
 		090EF6D4226FAA1C00AD19AA /* UserChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090EF6D3226FAA1C00AD19AA /* UserChoiceViewController.swift */; };
 		09397589227A085C0015E6FC /* PortfolioDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09397588227A085B0015E6FC /* PortfolioDetailViewController.swift */; };
 		093A6E8F2272097D003A4E4F /* ReviewsCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 093A6E8E2272097D003A4E4F /* ReviewsCollectionView.xib */; };
@@ -122,6 +124,8 @@
 		090374E62270B94100B77B66 /* ServiceProviderTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderTabBar.swift; sourceTree = "<group>"; };
 		090374E82270B9D300B77B66 /* UserTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTabBarController.swift; sourceTree = "<group>"; };
 		090374EA2270CA0D00B77B66 /* AppointmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentCell.swift; sourceTree = "<group>"; };
+		090862BC22848BD800C9CE5D /* LeaveReviewNotification.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveReviewNotification.xib; sourceTree = "<group>"; };
+		090862BE22848FE800C9CE5D /* LeaveReviewNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveReviewNotification.swift; sourceTree = "<group>"; };
 		090EF6D3226FAA1C00AD19AA /* UserChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChoiceViewController.swift; sourceTree = "<group>"; };
 		09397588227A085B0015E6FC /* PortfolioDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioDetailViewController.swift; sourceTree = "<group>"; };
 		093A6E8E2272097D003A4E4F /* ReviewsCollectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewsCollectionView.xib; sourceTree = "<group>"; };
@@ -292,6 +296,8 @@
 				09D8C3E722736F4F009A8BA9 /* NoBookingView.swift */,
 				09D82B54227744960097122A /* ProfileNoBooking.xib */,
 				09E35CCC22809C5B003BBD2A /* LocalCustomNotification.xib */,
+				090862BC22848BD800C9CE5D /* LeaveReviewNotification.xib */,
+				090862BE22848FE800C9CE5D /* LeaveReviewNotification.swift */,
 				09E35CCE2280AD49003BBD2A /* LocalCustomNotification.swift */,
 				09D82B56227745B00097122A /* ProfileNoBooking.swift */,
 			);
@@ -567,6 +573,7 @@
 				2EF103A62255314C0030FBFF /* LaunchScreen.storyboard in Resources */,
 				2EF103AE22553D5E0030FBFF /* GoogleService-Info.plist in Resources */,
 				09D8C3E6227367FC009A8BA9 /* NoBookingScreen.xib in Resources */,
+				090862BD22848BD800C9CE5D /* LeaveReviewNotification.xib in Resources */,
 				098E826B2260CE5C0023E41B /* PortfolioCell.xib in Resources */,
 				09D82B55227744960097122A /* ProfileNoBooking.xib in Resources */,
 				09DCD305225E4F290090EE1F /* ProviderDetailBio.xib in Resources */,
@@ -739,6 +746,7 @@
 				2EBDDBD8225B99B000583BC0 /* Date+Extension.swift in Sources */,
 				093A6E9122720B66003A4E4F /* ReviewCollectionView.swift in Sources */,
 				2EECBA88227A29F80039C7C9 /* ButtonExt.swift in Sources */,
+				090862BF22848FE800C9CE5D /* LeaveReviewNotification.swift in Sources */,
 				2EBDDBD4225B997B00583BC0 /* Alert+Extensions.swift in Sources */,
 				D6FE75182265118A00B4A49A /* ProfessionCell.swift in Sources */,
 				2E9DD7DA2257F6A800D74DD1 /* LoginViewController.swift in Sources */,

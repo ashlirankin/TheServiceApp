@@ -186,8 +186,18 @@ class ProviderDetailController: UITableViewController {
         DBService.getReviews(provider: provider) { (reviews, error) in
             if let error = error {
                 print(error.localizedDescription)
-            } else if let reviews = reviews{
-                self.reviews = reviews
+            } else if let reviews = reviews {
+               let sortedReviews = reviews.sorted(by: { (date1, date2) -> Bool in
+                    let convertToDateFormatter = DateFormatter()
+                    convertToDateFormatter.dateFormat = "EEEE, MMM d, yyyy h:mm a"
+                    if let dateA = convertToDateFormatter.date(from: date1.createdDate) {
+                        if let dateB = convertToDateFormatter.date(from: date2.createdDate) {
+                            return dateA > dateB
+                        }
+                    }
+                    return false
+                })
+                self.reviews = sortedReviews
             }
         }
     }
@@ -297,6 +307,8 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
             let portfolioVC = storyboard.instantiateViewController(withIdentifier: "PortfolioDetailVC") as! PortfolioDetailViewController
             portfolioVC.detailImage = image
             self.present(portfolioVC, animated: true, completion: nil)
+        } else if collectionView == reviewCollectionView.ReviewCV {
+            collectionView.allowsSelection = false
         } else {
             let view = featureViews[indexPath.row]
             scrollView.scrollRectToVisible(view.frame, animated: true)
