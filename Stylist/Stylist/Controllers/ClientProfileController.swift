@@ -86,21 +86,23 @@ class ClientProfileController: UIViewController {
         authService.authserviceSignOutDelegate = self
         setupTableView()
         fetchCurrentUser()
+       keyboardHandle()
     }
     
-//
-//    @IBAction func tap(_ sender: UITapGestureRecognizer) {
-////        guard touch.view != self || self.subviews.contain(touch.view) else { return }
-////            sender.isEnabled = false
-////             leaveReviewNotification.removeFromSuperview()
-//    }
+
+    private func keyboardHandle() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+          NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+          NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        guard let touch = touches.first else  { return }
-//        guard !(touch.view?.isKind(of: LeaveReviewNotification.self))! else { return }
-//                     leaveReviewNotification.removeFromSuperview()
-//    }
     
+    deinit {
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -360,7 +362,6 @@ extension ClientProfileController: UITableViewDelegate, UITableViewDataSource {
 extension ClientProfileController: AppointmentNotificationDelegate {
     func appointmentUpdate(status: String, appointment: Appointments, provider: ServiceSideUser) {
         self.providerToReview = provider
-//          self.leaveReviewNotification.center = self.view.center
         self.customNotification.center = self.view.center
         self.customNotification.date.text = appointment.appointmentTime
         self.customNotification.providerFullname.text = provider.fullName
@@ -400,6 +401,8 @@ extension ClientProfileController: AppointmentNotificationDelegate {
     
     private func leaveReview() {
         view.addSubview(leaveReviewNotification)
+        leaveReviewNotification.reviewTextView.text = ""
+        leaveReviewNotification.reviewTextView.delegate = self
         leaveReviewNotification.center = customNotification.center
         leaveReviewNotification.saveButton.addTarget(self, action: #selector(postReview), for: .touchUpInside)
     }
@@ -430,4 +433,15 @@ extension ClientProfileController: AppointmentNotificationDelegate {
     }
 }
 
-
+extension ClientProfileController: UITextViewDelegate {
+    @objc func keyBoardWillChange(notification: Notification) {
+//        guard let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+//            return
+//        }
+        if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
+              view.frame.origin.y = -130
+        } else {
+            view.frame.origin.y = 0
+        }
+    }
+}
