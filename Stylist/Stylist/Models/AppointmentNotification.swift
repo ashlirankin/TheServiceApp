@@ -58,16 +58,14 @@ class AppointmentNotification {
                         guard snapshot.documents.count > 0 else  {
                             return
                         }
-                        let latestAppoinment = snapshot.documents.map{ Appointments(dict: $0.data())}.last!
+                        let latestAppoinment = snapshot.documents.map{ Appointments(dict: $0.data())}.first!
                         DBService.getProviderFromAppointment(appointment: latestAppoinment, completion: { (error, provider) in
                             if let error = error {
                                 print(error)
                             } else if let provider = provider {
-                                self.delegate?.appointmentUpdate(status: status.rawValue, appointment: latestAppoinment, provider: provider)
+                                self.delegate?.appointmentUpdate(status: status.rawValue , appointment: latestAppoinment, provider: provider)
                             }
                         })
-                        
-                        
                     }
                 })
         }

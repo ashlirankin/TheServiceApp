@@ -277,6 +277,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2iz-7O-EH4" customClass="CircularButton" customModule="Stylist" customModuleProvider="target">
                                 <rect key="frame" x="294" y="304" width="70" height="70"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="2iz-7O-EH4" secondAttribute="height" multiplier="1:1" id="AQW-GB-2QR"/>
                                     <constraint firstAttribute="width" constant="70" id="FHH-uO-FA5"/>
@@ -379,6 +380,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="mFG-KA-OS0" firstAttribute="top" secondItem="wyw-CF-nUA" secondAttribute="bottom" constant="8" id="20L-uv-mWk"/>
                             <constraint firstItem="Iwa-Qa-61X" firstAttribute="top" secondItem="vHy-aH-Kpw" secondAttribute="bottom" constant="8" id="2lD-b6-KHM"/>
