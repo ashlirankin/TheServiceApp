@@ -7,14 +7,13 @@
 //
 
 import UIKit
+import Cosmos
 
 class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var reviewCollectionCellLabel: UILabel!
-    
+    @IBOutlet weak var ratingCosmos: CosmosView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
-
 }

@@ -8,6 +8,8 @@
 import UIKit
 import Kingfisher
 import Firebase
+import FirebaseFirestore
+import Cosmos
 
 enum FavoriteButtonState: String {
     case favorite
@@ -19,9 +21,10 @@ class ProviderDetailController: UITableViewController {
     var isFavorite: Bool!
     var favoriteId: String?
     let authservice = AuthService()
+    var reviewsListener: ListenerRegistration!
     
     @IBOutlet weak var scrollView: UIScrollView!
-    lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 300))
+    lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 372))
   
     var provider: ServiceSideUser! {
         didSet{
@@ -66,8 +69,6 @@ class ProviderDetailController: UITableViewController {
         loadSVFeatures()
         setupProvider()
         setFavoriteState()
-      
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -93,7 +94,7 @@ class ProviderDetailController: UITableViewController {
             self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-filled-50 (1)")
             self.navigationItem.rightBarButtonItem?.isEnabled = true
         default:
-            self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-48")
+            self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-50")
             self.navigationItem.rightBarButtonItem?.isEnabled = true
         }
     }
@@ -181,25 +182,20 @@ class ProviderDetailController: UITableViewController {
         portfolioView.portfolioCollectionView.dataSource = self
     }
     
- 
     private func setupReviews() {
-        DBService.getReviews(provider: provider) { (reviews, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else if let reviews = reviews {
-               let sortedReviews = reviews.sorted(by: { (date1, date2) -> Bool in
-                    let convertToDateFormatter = DateFormatter()
-                    convertToDateFormatter.dateFormat = "EEEE, MMM d, yyyy h:mm a"
-                    if let dateA = convertToDateFormatter.date(from: date1.createdDate) {
-                        if let dateB = convertToDateFormatter.date(from: date2.createdDate) {
-                            return dateA > dateB
-                        }
-                    }
-                    return false
-                })
-                self.reviews = sortedReviews
-            }
-        }
+        reviewsListener = DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).document(provider.userId)
+            .collection(ReviewsCollectionKeys.reviews)
+            .addSnapshotListener({ (snapshot, error) in
+                if let error = error {
+                    print(error)
+                } else if let snapshot = snapshot {
+                    let reviews = snapshot.documents.map{ Reviews(dict: $0.data()) }
+                    let sortedReviews = reviews.sorted(by: { (date1, date2) -> Bool in
+                        return date1.createdDate.date() > date2.createdDate.date()
+                    })
+                    self.reviews = sortedReviews
+                }
+            })
     }
     
     private func loadSVFeatures() {
@@ -211,6 +207,9 @@ class ProviderDetailController: UITableViewController {
     }
     
     private func setupUI() {
+//        providerDetailHeader.bookingButton.titleLabel?.textColor = .white
+        providerDetailHeader.bookingButton.layer.cornerRadius = 10
+        providerDetailHeader.bookingButton.applyGradient(colours: [#colorLiteral(red: 0, green: 0.4522274137, blue: 0.4593847394, alpha: 1),#colorLiteral(red: 0, green: 0.7692238092, blue: 0.7459099889, alpha: 1),#colorLiteral(red: 0.1344156861, green: 0.5513137579, blue: 0.8950611353, alpha: 1)])
         tableView.tableHeaderView = providerDetailHeader
         providerDetailHeader.bookingButton.addTarget(self, action: #selector(bookButtonPressed), for: .touchUpInside)
     }
@@ -266,13 +265,13 @@ extension ProviderDetailController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionViewCell
             let review = reviews[indexPath.row]
             cell.reviewCollectionCellLabel.text = review.description
+            cell.ratingCosmos.rating = review.value
             return cell
         } else {
             let portfolioCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PortfolioCell", for: indexPath) as! PortfolioCollectionViewCell
             portfolioCell.portfolioImage.isUserInteractionEnabled = true
            let image = portfolioImages[indexPath.row]
             portfolioCell.portfolioImage.kf.setImage(with: URL(string: image),placeholder:#imageLiteral(resourceName: "placeholder") )
-          
             return portfolioCell
         }
     }
@@ -283,7 +282,7 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
         if collectionView == self.collectionView {
             return CGSize(width: 120, height: 40)
         } else if collectionView == reviewCollectionView.ReviewCV {
-            return CGSize(width: 414, height: 60)
+            return CGSize(width: 414, height: 90)
         } else {
             return CGSize(width: view.frame.width/2, height: 200)
         }
@@ -307,6 +306,8 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
             let portfolioVC = storyboard.instantiateViewController(withIdentifier: "PortfolioDetailVC") as! PortfolioDetailViewController
             portfolioVC.detailImage = image
             self.present(portfolioVC, animated: true, completion: nil)
+        } else if collectionView == reviewCollectionView.ReviewCV {
+            collectionView.allowsSelection = false
         } else {
             let view = featureViews[indexPath.row]
             scrollView.scrollRectToVisible(view.frame, animated: true)

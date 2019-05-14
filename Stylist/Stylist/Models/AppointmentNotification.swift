@@ -54,7 +54,7 @@ class AppointmentNotification {
                 .addSnapshotListener({ (snapshot, error) in
                     if let error = error {
                         print(error)
-                     } else if let snapshot = snapshot {
+                    } else if let snapshot = snapshot {
                         guard snapshot.documents.count > 0 else  {
                             return
                         }
