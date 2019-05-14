@@ -21,12 +21,31 @@ class LoginViewController: BaseViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
         authService.authserviceExistingAccountDelegate = self
         createGradientView()
+        setupTextfields()
+        keyboardHandle()
     }
+    
+    private func setupTextfields() {
+        emailTextField.delegate = self
+        passwordTextfield.delegate = self
+    }
+    
+    private func keyboardHandle() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    
+    @IBAction func keyboardHandleTap(_ sender: UITapGestureRecognizer) {
+        emailTextField.resignFirstResponder()
+        passwordTextfield.resignFirstResponder()
+    }
+    
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         guard let email = emailTextField.text,
             let password = passwordTextfield.text else {
-                showAlert(title: "All fields required", message: "you must enter your username and password", actionTitle: "OK")
+                showAlert(title: "All fields required", message: "Please enter your email and password", actionTitle: "OK")
                 return}
         authService.signInExistingAccount(email: email, password: password)
     }
@@ -44,5 +63,16 @@ extension LoginViewController:AuthServiceExistingAccountDelegate {
     
     func didSignInToExistingAccount(_ authservice: AuthService, user: User) {
         presentTabbarController()
+    }
+}
+
+
+extension LoginViewController: UITextFieldDelegate {
+    @objc func keyBoardWillChange(notification: Notification) {
+        if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
+            view.frame.origin.y = -130
+        } else {
+            view.frame.origin.y = 0
+        }
     }
 }

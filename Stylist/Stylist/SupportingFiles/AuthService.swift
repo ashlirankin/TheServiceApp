@@ -41,13 +41,13 @@ final class AuthService {
                                    lastName: nil,
                                    email: authDataResult.user.email!,
                                    gender: nil,
-                                   address: nil,
                                    imageURL: nil,
                                    joinedDate: Date.getISOTimestamp(),
                                    street: nil,
                                    city: nil,
                                    state: nil,
                                    zip: nil)
+      
         DBService.createConsumerDatabaseAccount(consumer: newUser, completionHandler: { (error) in
             if let error = error {
                 self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)

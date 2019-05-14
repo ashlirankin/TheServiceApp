@@ -95,7 +95,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Avalible times" id="KMW-wc-vR8">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="199" id="Tse-hT-4uK">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="199" id="Tse-hT-4uK">
                                         <rect key="frame" x="0.0" y="291.5" width="414" height="199"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tse-hT-4uK" id="2WY-cT-2mM">
@@ -158,14 +158,14 @@
                             </tableViewSection>
                             <tableViewSection id="vNb-9u-c0A">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="200" id="eje-8R-l6R">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="200" id="eje-8R-l6R">
                                         <rect key="frame" x="0.0" y="526.5" width="414" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eje-8R-l6R" id="rjS-4i-uvG">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="199.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gs1-in-gJy">
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gs1-in-gJy">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="199.5"/>
                                                     <color key="backgroundColor" red="0.174853128" green="0.2225734221" blue="0.3657343045" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="8hC-KD-thg">
@@ -232,7 +232,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="BnF-Ws-hXU" detailTextLabel="QZj-88-VIM" rowHeight="59" style="IBUITableViewCellStyleValue1" id="UhW-Ve-Rhb">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="BnF-Ws-hXU" detailTextLabel="QZj-88-VIM" rowHeight="59" style="IBUITableViewCellStyleValue1" id="UhW-Ve-Rhb">
                                         <rect key="frame" x="0.0" y="726.5" width="414" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UhW-Ve-Rhb" id="dJ1-zf-BUi">
@@ -257,7 +257,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.174853128" green="0.2225734221" blue="0.3657343045" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="157" id="Xu5-a2-YA3">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="157" id="Xu5-a2-YA3">
                                         <rect key="frame" x="0.0" y="785.5" width="414" height="157"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xu5-a2-YA3" id="r85-MX-PQL">
@@ -307,7 +307,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="avalibilityCollectionView" destination="vHE-2c-tFi" id="cZb-7V-Cy4"/>
+                        <outlet property="availabilityCollectionView" destination="vHE-2c-tFi" id="cZb-7V-Cy4"/>
                         <outlet property="bookAppointmentButton" destination="NDQ-Ek-4VX" id="Zvr-aw-cQA"/>
                         <outlet property="orderSummaryCollectionView" destination="gs1-in-gJy" id="rMj-Jq-a0E"/>
                         <outlet property="priceCell" destination="UhW-Ve-Rhb" id="nec-uR-p6V"/>

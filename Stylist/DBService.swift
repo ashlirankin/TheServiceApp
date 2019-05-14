@@ -38,7 +38,6 @@ final class DBService {
             .document(consumer.userId)
             .setData([StylistsUserCollectionKeys.userId : consumer.userId, StylistsUserCollectionKeys.firstName: consumer.firstName ?? "",
                 StylistsUserCollectionKeys.lastName:consumer.lastName ?? "" ,
-                StylistsUserCollectionKeys.address: consumer.address ?? "",
                 StylistsUserCollectionKeys.email : consumer.email,
                 StylistsUserCollectionKeys.gender: consumer.gender ?? "",
                 StylistsUserCollectionKeys.imageURL: consumer.imageURL ?? "",
@@ -159,16 +158,17 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
                 }
         }
     }
-    static func postProviderReview(stylistReviewed: ServiceSideUser?, review: Reviews, completionHandler: @escaping (Error?) -> Void) {
+    static func postProviderReview(reviewer: StylistsUser ,stylistReviewed: ServiceSideUser?, review: Reviews, completionHandler: @escaping (Error?) -> Void) {
         let reviewId = firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
-            .document("4UathYHKvyXZV739xBD9FaJFH2D2") //.document(stylistReviewed.userId)
+            .document(stylistReviewed?.userId ?? "no document id found")
             .collection(ReviewsCollectionKeys.reviews).document().documentID
+        let date =
         firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
-            .document("4UathYHKvyXZV739xBD9FaJFH2D2") //.document(stylistReviewed.userId)
+            .document(stylistReviewed?.userId ?? "no provider ID Found")
             .collection(ReviewsCollectionKeys.reviews)
             .document().setData([
-                ReviewsCollectionKeys.reviewerId  : review.reviewerId,
-                ReviewsCollectionKeys.createdDate : review.createdDate,
+                ReviewsCollectionKeys.reviewerId  : reviewer.userId,
+                ReviewsCollectionKeys.createdDate : Date.getISOTimestamp(),
                 ReviewsCollectionKeys.description : review.description,
                 ReviewsCollectionKeys.ratingId : review.ratingId,
                 ReviewsCollectionKeys.value : review.value,
@@ -252,7 +252,7 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
     }
     
     static func createUserWallet(userId:String,information:[String:Any],documentId:String,completionHandler: @escaping(Error?) -> Void) {
-        firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(userId).collection("wallet").document(documentId).setData(information) { (error) in
+    firestoreDB.collection(StylistsUserCollectionKeys.stylistUser).document(userId).collection("wallet").document(documentId).setData(information) { (error) in
             if let error = error {
                 completionHandler(error)
             }
@@ -271,10 +271,10 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
                 if let error = error {
                     completionHandler(nil, error)
                 } else if let snapshot = snapshot {
-                     let reviewData = snapshot.documents.map{
-                  Reviews(dict: $0.data())
-                  }
-                   completionHandler(reviewData,nil)
+                    let reviewData = snapshot.documents.map{
+                        Reviews(dict: $0.data())
+                    }
+                    completionHandler(reviewData,nil)
                 }
         }
     }
@@ -291,6 +291,7 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
                     completion(nil, snapshot.documents.map({Appointments(dict: $0.data())}))
                 }
         }
+  
     }
 
     static func getAppointments(completionHandler: @escaping ([Appointments]?, Error?) -> Void) {
@@ -339,6 +340,17 @@ DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).
       }
     }
 
+  }
+  static func getPortfolioImages(providerId:String,completion: @escaping (Error?,PortfolioImages?) -> Void ){
+DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider).document(providerId).collection(PortfolioCollectionKeys.portfolio).getDocuments { (snapshot, error) in
+      if let error = error {
+        completion(error,nil)
+      }else if let snapshot = snapshot {
+        guard let porfolioData = snapshot.documents.first?.data() else {return}
+        let portfolio = PortfolioImages(dict: porfolioData)
+        completion(nil,portfolio)
+      }
+    }
   }
 }
 
