@@ -23,7 +23,7 @@ class ProviderDetailController: UITableViewController {
     var reviewsListener: ListenerRegistration!
     
     @IBOutlet weak var scrollView: UIScrollView!
-    lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 285))
+    lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 372))
   
     var provider: ServiceSideUser! {
         didSet{
@@ -94,7 +94,7 @@ class ProviderDetailController: UITableViewController {
             self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-filled-50 (1)")
             self.navigationItem.rightBarButtonItem?.isEnabled = true
         default:
-            self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-48")
+            self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-50")
             self.navigationItem.rightBarButtonItem?.isEnabled = true
         }
     }
@@ -207,6 +207,9 @@ class ProviderDetailController: UITableViewController {
     }
     
     private func setupUI() {
+//        providerDetailHeader.bookingButton.titleLabel?.textColor = .white
+        providerDetailHeader.bookingButton.layer.cornerRadius = 10
+        providerDetailHeader.bookingButton.applyGradient(colours: [#colorLiteral(red: 0, green: 0.4522274137, blue: 0.4593847394, alpha: 1),#colorLiteral(red: 0, green: 0.7692238092, blue: 0.7459099889, alpha: 1),#colorLiteral(red: 0.1344156861, green: 0.5513137579, blue: 0.8950611353, alpha: 1)])
         tableView.tableHeaderView = providerDetailHeader
         providerDetailHeader.bookingButton.addTarget(self, action: #selector(bookButtonPressed), for: .touchUpInside)
     }
