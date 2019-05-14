@@ -16,7 +16,6 @@ enum FavoriteButtonState: String {
     case unfavorite
 }
 
-
 class ProviderDetailController: UITableViewController {
     var isFavorite: Bool!
     var favoriteId: String?
@@ -69,6 +68,7 @@ class ProviderDetailController: UITableViewController {
         loadSVFeatures()
         setupProvider()
         setFavoriteState()
+        reviewCollectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 700, right: 0)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
