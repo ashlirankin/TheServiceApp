@@ -98,7 +98,6 @@ class ClientProfileController: UIViewController {
     
     
     deinit {
-        
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
@@ -205,10 +204,13 @@ class ClientProfileController: UIViewController {
         case .history:
             getPastAppointments()
         case .upcoming:
+            
             getUpcomingAppointments()
         }
     }
     private func getUpcomingAppointments() {
+        historyButton.setImage(UIImage(named: "icons8timeMachineGrey"), for: .normal)
+        bookingsButton.setImage(UIImage(named: "icons8-new-50"), for: .normal)
         let upcomingAppointments =  appointments.filter { $0.status == "pending" ||
             $0.status == "inProgress"
         }
@@ -231,6 +233,8 @@ class ClientProfileController: UIViewController {
         }
     }
     private func getPastAppointments() {
+        historyButton.setImage(UIImage(named: "icons8-time-machine-50 (1)"), for: .normal)
+        bookingsButton.setImage(UIImage(named: "icons8newGrey"), for: .normal)
         filterAppointments = appointments.filter { $0.status == "canceled" || $0.status == "completed" }
         if filterAppointments.count == 0 {
             noBookingView.noBookingLabel.text = "No history appointments yet."
