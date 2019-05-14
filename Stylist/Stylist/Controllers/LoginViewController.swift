@@ -37,7 +37,7 @@ class LoginViewController: BaseViewController {
     }
     
     @IBAction func keyboardHandleTap(_ sender: UITapGestureRecognizer) {
-      emailTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
         passwordTextfield.resignFirstResponder()
     }
     
@@ -75,6 +75,4 @@ extension LoginViewController: UITextFieldDelegate {
             view.frame.origin.y = 0
         }
     }
-    
-    
 }

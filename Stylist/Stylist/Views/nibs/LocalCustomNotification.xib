@@ -85,9 +85,6 @@
                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                     <integer key="value" value="10"/>
                 </userDefinedRuntimeAttribute>
-                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                    <integer key="value" value="8"/>
-                </userDefinedRuntimeAttribute>
                 <userDefinedRuntimeAttribute type="color" keyPath="layer.borderWidthColor">
                     <color key="value" red="0.74216726040000003" green="0.2945642342" blue="0.29666684609999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </userDefinedRuntimeAttribute>

@@ -9,16 +9,29 @@
 import UIKit
 
 class CreateViewController: BaseViewController {
-  @IBOutlet weak var emailTextfield: UITextField!
-  @IBOutlet weak var passwordTextfield: UITextField!
-  let authService = AuthService()
-  
-  override func viewDidLoad() {
+    @IBOutlet weak var emailTextfield: UITextField!
+    @IBOutlet weak var passwordTextfield: UITextField!
+    let authService = AuthService()
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
-   authService.authserviceCreateNewAccountDelegate = self
-    emailTextfield.delegate = self
-    passwordTextfield.delegate = self
-  }
+        authService.authserviceCreateNewAccountDelegate = self
+        emailTextfield.delegate = self
+        passwordTextfield.delegate = self
+        setupTextfields()
+        keyboardHandle()
+    }
+    
+    private func setupTextfields() {
+        emailTextfield.delegate = self
+        passwordTextfield.delegate = self
+    }
+    
+    private func keyboardHandle() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
     
     @IBAction func backToLoginButtonPressed(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
@@ -38,36 +51,43 @@ class CreateViewController: BaseViewController {
         }
         authService.createNewAccount(email: email, password: password)
     }
-  
-  private func presentOnboardingScreen(){
-    let onbordingScreen = UIStoryboard(name: "Entrance", bundle: nil).instantiateViewController(withIdentifier: "OnboardingTableViewController") as! OnboardingTableViewController
-    let navigationController = UINavigationController(rootViewController: onbordingScreen)
     
-    navigationController.navigationBar.barTintColor = .clear
-    navigationController.navigationBar.setBackgroundImage(UIImage(), for:UIBarMetrics.default)
-    navigationController.navigationBar.isTranslucent = true
-    navigationController.navigationBar.shadowImage = UIImage()
-    self.present(navigationController, animated: true, completion: nil)
-  }
-  
-  }
+    private func presentOnboardingScreen(){
+        let onbordingScreen = UIStoryboard(name: "Entrance", bundle: nil).instantiateViewController(withIdentifier: "OnboardingTableViewController") as! OnboardingTableViewController
+        let navigationController = UINavigationController(rootViewController: onbordingScreen)
+        
+        navigationController.navigationBar.barTintColor = .clear
+        navigationController.navigationBar.setBackgroundImage(UIImage(), for:UIBarMetrics.default)
+        navigationController.navigationBar.isTranslucent = true
+        navigationController.navigationBar.shadowImage = UIImage()
+        self.present(navigationController, animated: true, completion: nil)
+    }
+}
 
-extension CreateViewController:UITextFieldDelegate{
-  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    return true
+extension CreateViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return true
+        
+    }
     
-  }
+    @objc func keyBoardWillChange(notification: Notification) {
+        if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
+            view.frame.origin.y = -130
+        } else {
+            view.frame.origin.y = 0
+        }
+    }
 }
 
 extension CreateViewController:AuthServiceCreateNewAccountDelegate{
-  func didRecieveErrorCreatingAccount(_ authservice: AuthService, error: Error) {
-       showAlert(title: "Error", message: error.localizedDescription, actionTitle: "Ok")
-  }
-  
-  func didCreateConsumerAccount(_ authService: AuthService, consumer: StylistsUser) {
-    showAlert(title: "Account Created!", message: nil, style: .alert) { (action) in
-      self.presentOnboardingScreen()
+    func didRecieveErrorCreatingAccount(_ authservice: AuthService, error: Error) {
+        showAlert(title: "Error", message: error.localizedDescription, actionTitle: "Ok")
     }
-  }
+    
+    func didCreateConsumerAccount(_ authService: AuthService, consumer: StylistsUser) {
+        showAlert(title: "Account Created!", message: nil, style: .alert) { (action) in
+            self.presentOnboardingScreen()
+        }
+    }
 }
 
