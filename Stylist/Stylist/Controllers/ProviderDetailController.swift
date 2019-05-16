@@ -23,7 +23,7 @@ class ProviderDetailController: UITableViewController {
     var reviewsListener: ListenerRegistration!
     
     @IBOutlet weak var scrollView: UIScrollView!
-    lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 356))
+    lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 350))
   
     var provider: ServiceSideUser! {
         didSet{
@@ -143,7 +143,7 @@ class ProviderDetailController: UITableViewController {
             if let error = error {
                 print(error.localizedDescription)
             } else if success {
-                self.showAlert(title: "", message: "unfavorited", actionTitle: "OK")
+                self.showAlert(title: "", message: "Unfavorited", actionTitle: "OK")
             }
         }
     }
@@ -157,7 +157,7 @@ class ProviderDetailController: UITableViewController {
             if let error = error {
                 print(error)
             } else  {
-                self.showAlert(title: "", message: "favorited", actionTitle: "OK")
+                self.showAlert(title: "", message: "Favorited", actionTitle: "OK")
             }
         }
     }
@@ -207,7 +207,6 @@ class ProviderDetailController: UITableViewController {
     }
     
     private func setupUI() {
-//        providerDetailHeader.bookingButton.titleLabel?.textColor = .white
         providerDetailHeader.bookingButton.layer.cornerRadius = 10
         providerDetailHeader.bookingButton.applyGradient(colours: [#colorLiteral(red: 0, green: 0.4522274137, blue: 0.4593847394, alpha: 1),#colorLiteral(red: 0, green: 0.7692238092, blue: 0.7459099889, alpha: 1),#colorLiteral(red: 0.1344156861, green: 0.5513137579, blue: 0.8950611353, alpha: 1)])
         tableView.tableHeaderView = providerDetailHeader
@@ -220,8 +219,6 @@ class ProviderDetailController: UITableViewController {
         reviewCollectionView.ReviewCV.delegate = self
         reviewCollectionView.ReviewCV.dataSource = self
     }
-    
-    
     
     @objc func bookButtonPressed(){
         guard let currentUser = authservice.getCurrentUser() else {
