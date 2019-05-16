@@ -23,7 +23,7 @@ class ProviderDetailController: UITableViewController {
     var reviewsListener: ListenerRegistration!
     
     @IBOutlet weak var scrollView: UIScrollView!
-    lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 372))
+    lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 356))
   
     var provider: ServiceSideUser! {
         didSet{
