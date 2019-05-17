@@ -209,7 +209,7 @@ class ProviderDetailController: UITableViewController {
     private func setupUI() {
 //        providerDetailHeader.bookingButton.titleLabel?.textColor = .white
         providerDetailHeader.bookingButton.layer.cornerRadius = 10
-        providerDetailHeader.bookingButton.applyGradient(colours: [#colorLiteral(red: 0, green: 0.4522274137, blue: 0.4593847394, alpha: 1),#colorLiteral(red: 0, green: 0.7692238092, blue: 0.7459099889, alpha: 1),#colorLiteral(red: 0.1344156861, green: 0.5513137579, blue: 0.8950611353, alpha: 1)])
+        providerDetailHeader.bookingButton.applyGradient(colours: [#colorLiteral(red: 0, green: 0.8280656934, blue: 0.4128242433, alpha: 1),#colorLiteral(red: 0, green: 0.7692238092, blue: 0.7459099889, alpha: 1),#colorLiteral(red: 0.1344156861, green: 0.5513137579, blue: 0.8950611353, alpha: 1)])
         tableView.tableHeaderView = providerDetailHeader
         providerDetailHeader.bookingButton.addTarget(self, action: #selector(bookButtonPressed), for: .touchUpInside)
     }
