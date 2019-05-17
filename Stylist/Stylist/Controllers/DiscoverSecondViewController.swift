@@ -161,7 +161,6 @@ class DiscoverSecondViewController: UIViewController {
                 allProvidersServicesLeftAfterFilteringPrice = tempAllProvidersServices
             }
         }
-        
         serviceProviders.forEach { (provider) in
             DBService.getProviderServices(providerId: provider.userId, completion: { (error, providerServices) in
                 if let error = error {
