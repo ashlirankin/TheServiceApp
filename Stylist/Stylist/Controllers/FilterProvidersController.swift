@@ -231,10 +231,11 @@ extension FilterProvidersController: UICollectionViewDataSource, UICollectionVie
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
-        let headerLabel = UILabel(frame: CGRect(x: 30, y: 10, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+        let headerLabel = UILabel(frame: CGRect(x: 30, y: 8, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
         headerLabel.font = UIFont(name: "Verdana", size: 15)
+        headerLabel.font = UIFont.boldSystemFont(ofSize: 17)
         headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
-        headerLabel.textColor = #colorLiteral(red: 0, green: 0.5772375464, blue: 0.5888287425, alpha: 1)
+        headerLabel.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         headerLabel.sizeToFit()
         view.addSubview(headerLabel)
         return view

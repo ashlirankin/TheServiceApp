@@ -269,6 +269,8 @@ extension ProviderDetailController: UICollectionViewDataSource {
             portfolioCell.portfolioImage.isUserInteractionEnabled = true
            let image = portfolioImages[indexPath.row]
             portfolioCell.portfolioImage.kf.setImage(with: URL(string: image),placeholder:#imageLiteral(resourceName: "placeholder") )
+            portfolioCell.portfolioImage.layer.cornerRadius = 10
+            portfolioCell.delegate = self
             return portfolioCell
         }
     }
@@ -312,5 +314,14 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
             view.frame.origin.x = CGFloat(indexPath.row) * self.view.bounds.size.width
         }
         
+    }
+}
+
+extension ProviderDetailController: PortfolioImageDelegate {
+    func presentImage(image: UIImage) {
+        let storyboard = UIStoryboard.init(name: "User", bundle: nil)
+        let portfolioVC = storyboard.instantiateViewController(withIdentifier: "PortfolioDetailVC") as! PortfolioDetailViewController
+        portfolioVC.detailImage = image
+        self.present(portfolioVC, animated: true, completion: nil)
     }
 }
