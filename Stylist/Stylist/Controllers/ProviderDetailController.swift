@@ -164,6 +164,7 @@ class ProviderDetailController: UITableViewController {
     
     private func setupProvider() {
         providerDetailHeader.providerFullname.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
+        providerDetailHeader.providerFullname.font = UIFont.boldSystemFont(ofSize: 20)
         providerDetailHeader.providerPhoto.kf.setImage(with: URL(string: provider.imageURL ?? ""), placeholder: #imageLiteral(resourceName: "iconfinder_icon-person-add_211872.png"))
         profileBio.providerBioText.text = provider.bio
         if let rating = rating {

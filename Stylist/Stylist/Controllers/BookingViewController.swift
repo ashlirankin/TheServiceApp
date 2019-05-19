@@ -18,7 +18,7 @@ class BookingViewController: UITableViewController {
     
     let authService = AuthService()
     let sectionsTitle = ["Services","Available times","Summary"]
-    lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 250))
+    lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 350))
     var rating: Double?
     
     private var providerServices = [ProviderServices](){
@@ -220,20 +220,33 @@ class BookingViewController: UITableViewController {
 extension BookingViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 2 && indexPath.row == 0 {
-            return servicesAddedArray.count == 0 ? 100 : CGFloat(100 * servicesAddedArray.count)
+            return servicesAddedArray.count == 0 ? 0 : CGFloat(100 * servicesAddedArray.count)
         }
         return super.tableView(tableView, heightForRowAt: indexPath)
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
-        let headerLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
-        headerLabel.font = UIFont(name: "Verdana", size: 20)
-        headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
-        headerLabel.textColor = #colorLiteral(red: 0, green: 0.5772375464, blue: 0.5888287425, alpha: 1)
-        headerLabel.sizeToFit()
-        view.addSubview(headerLabel)
-        return view
+        if section == 0 {
+            let headerLabel = UILabel(frame: CGRect(x: 0, y: 10, width: tableView.bounds.size.width, height: 20))
+            headerLabel.font = UIFont(name: "Verdana", size: 20)
+            headerLabel.font = UIFont.boldSystemFont(ofSize: 20)
+            headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
+            headerLabel.textColor = #colorLiteral(red: 0, green: 0.5772375464, blue: 0.5888287425, alpha: 1)
+                    headerLabel.sizeToFit()
+            view.addSubview(headerLabel)
+            return view
+        } else  {
+            let headerLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 20))
+            headerLabel.font = UIFont(name: "Verdana", size: 20)
+            headerLabel.font = UIFont.boldSystemFont(ofSize: 20)
+            headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
+            headerLabel.textColor = #colorLiteral(red: 0, green: 0.5772375464, blue: 0.5888287425, alpha: 1)
+                    headerLabel.sizeToFit()
+            view.addSubview(headerLabel)
+            return view
+        }
+
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
