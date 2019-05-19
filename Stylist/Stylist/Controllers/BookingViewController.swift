@@ -227,7 +227,7 @@ extension BookingViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
-        let headerLabel = UILabel(frame: CGRect(x: 30, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+        let headerLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
         headerLabel.font = UIFont(name: "Verdana", size: 20)
         headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
         headerLabel.textColor = #colorLiteral(red: 0, green: 0.5772375464, blue: 0.5888287425, alpha: 1)

@@ -32,7 +32,7 @@ class ProviderDetailController: UITableViewController {
     }
     var rating: Double?
     let sectionInset = UIEdgeInsets(top: 10.0,
-                                    left: 20.0,
+                                    left: 10.0,
                                     bottom: 400.0,
                                     right: 20.0)
     @IBOutlet weak var collectionView: UICollectionView!
@@ -281,7 +281,7 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
         } else if collectionView == reviewCollectionView.ReviewCV {
             return CGSize(width: 414, height: 90)
         } else {
-            return CGSize(width: view.frame.width/2, height: 200)
+            return CGSize(width: 350, height: 350)
         }
     }
     

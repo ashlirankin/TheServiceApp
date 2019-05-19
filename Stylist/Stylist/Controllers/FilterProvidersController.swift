@@ -228,6 +228,17 @@ extension FilterProvidersController: UICollectionViewDataSource, UICollectionVie
         }
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        let headerLabel = UILabel(frame: CGRect(x: 30, y: 10, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+        headerLabel.font = UIFont(name: "Verdana", size: 15)
+        headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
+        headerLabel.textColor = #colorLiteral(red: 0, green: 0.5772375464, blue: 0.5888287425, alpha: 1)
+        headerLabel.sizeToFit()
+        view.addSubview(headerLabel)
+        return view
+    }
 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -243,14 +254,14 @@ extension FilterProvidersController: UICollectionViewDataSource, UICollectionVie
     private func professionSelected(profession: Profession, cell: ProfessionCell) {
         professionFilter[profession.rawValue] = profession.rawValue
         cell.professionLabel.textColor = .white
-        cell.backgroundColor = .darkGray
-        cell.layer.borderColor = UIColor(hexString: "#FA8072").cgColor
+        cell.backgroundColor = #colorLiteral(red: 0, green: 0.5772375464, blue: 0.5888287425, alpha: 1)
+        cell.layer.borderColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1).cgColor
     }
     private func professionDeselected(profession: Profession, cell: ProfessionCell) {
         professionFilter[profession.rawValue] = nil
-        cell.professionLabel.textColor = .black
-        cell.backgroundColor = .white
-        cell.layer.borderColor = UIColor.darkGray.cgColor
+        cell.professionLabel.textColor = .white
+        cell.backgroundColor = #colorLiteral(red: 0.2461647391, green: 0.3439296186, blue: 0.5816915631, alpha: 1)
+        cell.layer.borderColor = #colorLiteral(red: 0.1619916558, green: 0.224360168, blue: 0.3768204153, alpha: 1).cgColor
     }
 }
 
