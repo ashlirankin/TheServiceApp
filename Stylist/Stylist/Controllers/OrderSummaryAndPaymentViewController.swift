@@ -159,7 +159,7 @@ class OrderSummaryAndPaymentViewController: UITableViewController {
     localInformation["total"] = priceCell.detailTextLabel?.text
     localInformation["documentId"] = documentId
     
-    localReviews =  [ "reviewerId":currentUser.uid,
+    localReviews =  ["reviewerId":currentUser.uid,
                                    "providerId":providerId,
                                    "description" : reviewTextview.text ?? " " ,
                                     "createdDate":Date.getISOTimestamp(),
@@ -307,7 +307,4 @@ extension OrderSummaryAndPaymentViewController:UICollectionViewDataSource{
     }
     return cell
   }
-  
-  
-  
 }

@@ -18,14 +18,14 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="vjT-pW-ft2">
-            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+            <rect key="frame" x="0.0" y="0.0" width="350" height="350"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                <rect key="frame" x="0.0" y="0.0" width="350" height="350"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9kt-mI-eRu">
-                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="350" height="350"/>
                     </imageView>
                 </subviews>
             </view>
@@ -36,8 +36,8 @@
                 <constraint firstAttribute="trailing" secondItem="9kt-mI-eRu" secondAttribute="trailing" id="x0U-wM-qsU"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="jJc-Us-rcY"/>
-            <size key="customSize" width="108" height="110"/>
-            <point key="canvasLocation" x="205.79710144927537" y="119.86607142857142"/>
+            <size key="customSize" width="258" height="260"/>
+            <point key="canvasLocation" x="314.49275362318843" y="170.08928571428569"/>
         </collectionViewCell>
     </objects>
 </document>

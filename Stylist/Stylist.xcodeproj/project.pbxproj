@@ -13,6 +13,7 @@
 		090862BD22848BD800C9CE5D /* LeaveReviewNotification.xib in Resources */ = {isa = PBXBuildFile; fileRef = 090862BC22848BD800C9CE5D /* LeaveReviewNotification.xib */; };
 		090862BF22848FE800C9CE5D /* LeaveReviewNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090862BE22848FE800C9CE5D /* LeaveReviewNotification.swift */; };
 		090EF6D4226FAA1C00AD19AA /* UserChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090EF6D3226FAA1C00AD19AA /* UserChoiceViewController.swift */; };
+		092EF39F2290E9F00091E3AB /* PortFolioNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 092EF39E2290E9F00091E3AB /* PortFolioNew.xib */; };
 		09397589227A085C0015E6FC /* PortfolioDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09397588227A085B0015E6FC /* PortfolioDetailViewController.swift */; };
 		093A6E8F2272097D003A4E4F /* ReviewsCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 093A6E8E2272097D003A4E4F /* ReviewsCollectionView.xib */; };
 		093A6E9122720B66003A4E4F /* ReviewCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093A6E9022720B66003A4E4F /* ReviewCollectionView.swift */; };
@@ -125,6 +126,7 @@
 		090862BC22848BD800C9CE5D /* LeaveReviewNotification.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveReviewNotification.xib; sourceTree = "<group>"; };
 		090862BE22848FE800C9CE5D /* LeaveReviewNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveReviewNotification.swift; sourceTree = "<group>"; };
 		090EF6D3226FAA1C00AD19AA /* UserChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChoiceViewController.swift; sourceTree = "<group>"; };
+		092EF39E2290E9F00091E3AB /* PortFolioNew.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PortFolioNew.xib; sourceTree = "<group>"; };
 		09397588227A085B0015E6FC /* PortfolioDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioDetailViewController.swift; sourceTree = "<group>"; };
 		093A6E8E2272097D003A4E4F /* ReviewsCollectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewsCollectionView.xib; sourceTree = "<group>"; };
 		093A6E9022720B66003A4E4F /* ReviewCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionView.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				09DCD304225E4F290090EE1F /* ProviderDetailBio.xib */,
 				09DCD306225E50EA0090EE1F /* ProviderBio.swift */,
 				09DCD30C225E7E5D0090EE1F /* ProviderDetailReviews.xib */,
+				092EF39E2290E9F00091E3AB /* PortFolioNew.xib */,
 				09DCD30E225E7F7D0090EE1F /* ProviderDetailReviews.swift */,
 				098E826A2260CE5C0023E41B /* PortfolioCell.xib */,
 				D6CD419922664C6000F79DAA /* ServicesCell.swift */,
@@ -566,6 +569,7 @@
 				094DF88B225D2835001EA2FE /* UserDetailHeader.xib in Resources */,
 				2EF103A62255314C0030FBFF /* LaunchScreen.storyboard in Resources */,
 				2EF103AE22553D5E0030FBFF /* GoogleService-Info.plist in Resources */,
+				092EF39F2290E9F00091E3AB /* PortFolioNew.xib in Resources */,
 				09D8C3E6227367FC009A8BA9 /* NoBookingScreen.xib in Resources */,
 				090862BD22848BD800C9CE5D /* LeaveReviewNotification.xib in Resources */,
 				098E826B2260CE5C0023E41B /* PortfolioCell.xib in Resources */,

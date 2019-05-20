@@ -21,16 +21,18 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dU4-qF-bN5">
                         <rect key="frame" x="20" y="53" width="365" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ubq-EX-DSB">
                         <rect key="frame" x="393" y="48" width="51" height="31"/>
+                        <color key="onTintColor" red="0.1569241187" green="0.5672338053" blue="0.58288388319999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <connections>
                             <action selector="serviceSwitchToggled:" destination="wfl-SP-NBF" eventType="valueChanged" id="qWY-Zx-W50"/>
                         </connections>
                     </switch>
                 </subviews>
+                <color key="backgroundColor" red="0.174853128" green="0.2225734221" blue="0.3657343045" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 <constraints>
                     <constraint firstItem="dU4-qF-bN5" firstAttribute="centerY" secondItem="6Cb-Ou-w7O" secondAttribute="centerY" id="2K9-gT-c6K"/>
                     <constraint firstItem="ubq-EX-DSB" firstAttribute="centerY" secondItem="6Cb-Ou-w7O" secondAttribute="centerY" id="FdO-Ch-yfu"/>
