@@ -32,7 +32,7 @@ class ProviderDetailController: UITableViewController {
     }
     var rating: Double?
     let sectionInset = UIEdgeInsets(top: 10.0,
-                                    left: 20.0,
+                                    left: 10.0,
                                     bottom: 400.0,
                                     right: 20.0)
     @IBOutlet weak var collectionView: UICollectionView!
@@ -164,6 +164,7 @@ class ProviderDetailController: UITableViewController {
     
     private func setupProvider() {
         providerDetailHeader.providerFullname.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
+        providerDetailHeader.providerFullname.font = UIFont.boldSystemFont(ofSize: 20)
         providerDetailHeader.providerPhoto.kf.setImage(with: URL(string: provider.imageURL ?? ""), placeholder: #imageLiteral(resourceName: "iconfinder_icon-person-add_211872.png"))
         profileBio.providerBioText.text = provider.bio
         if let rating = rating {
@@ -208,7 +209,7 @@ class ProviderDetailController: UITableViewController {
     
     private func setupUI() {
         providerDetailHeader.bookingButton.layer.cornerRadius = 10
-        providerDetailHeader.bookingButton.applyGradient(colours: [#colorLiteral(red: 0, green: 0.4522274137, blue: 0.4593847394, alpha: 1),#colorLiteral(red: 0, green: 0.7692238092, blue: 0.7459099889, alpha: 1),#colorLiteral(red: 0.1344156861, green: 0.5513137579, blue: 0.8950611353, alpha: 1)])
+        providerDetailHeader.bookingButton.applyGradient(colours: [#colorLiteral(red: 0, green: 0.8280656934, blue: 0.4128242433, alpha: 1),#colorLiteral(red: 0, green: 0.7692238092, blue: 0.7459099889, alpha: 1),#colorLiteral(red: 0.1344156861, green: 0.5513137579, blue: 0.8950611353, alpha: 1)])
         tableView.tableHeaderView = providerDetailHeader
         providerDetailHeader.bookingButton.addTarget(self, action: #selector(bookButtonPressed), for: .touchUpInside)
     }
@@ -269,6 +270,8 @@ extension ProviderDetailController: UICollectionViewDataSource {
             portfolioCell.portfolioImage.isUserInteractionEnabled = true
            let image = portfolioImages[indexPath.row]
             portfolioCell.portfolioImage.kf.setImage(with: URL(string: image),placeholder:#imageLiteral(resourceName: "placeholder") )
+            portfolioCell.portfolioImage.layer.cornerRadius = 10
+            portfolioCell.delegate = self
             return portfolioCell
         }
     }
@@ -281,7 +284,7 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
         } else if collectionView == reviewCollectionView.ReviewCV {
             return CGSize(width: 414, height: 90)
         } else {
-            return CGSize(width: view.frame.width/2, height: 200)
+            return CGSize(width: 350, height: 350)
         }
     }
     
@@ -312,5 +315,14 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
             view.frame.origin.x = CGFloat(indexPath.row) * self.view.bounds.size.width
         }
         
+    }
+}
+
+extension ProviderDetailController: PortfolioImageDelegate {
+    func presentImage(image: UIImage) {
+        let storyboard = UIStoryboard.init(name: "User", bundle: nil)
+        let portfolioVC = storyboard.instantiateViewController(withIdentifier: "PortfolioDetailVC") as! PortfolioDetailViewController
+        portfolioVC.detailImage = image
+        self.present(portfolioVC, animated: true, completion: nil)
     }
 }

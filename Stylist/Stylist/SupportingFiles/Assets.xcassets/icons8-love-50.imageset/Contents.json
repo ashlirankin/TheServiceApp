@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "makeup6.jpg",
+      "filename" : "icons8-love-50.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "icons8-love-100.png",
       "scale" : "2x"
     },
     {

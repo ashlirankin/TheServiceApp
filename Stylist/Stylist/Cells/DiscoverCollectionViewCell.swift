@@ -7,18 +7,19 @@
 //
 
 import UIKit
+import Cosmos
 
 class DiscoverCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var collectionViewImage: UIImageView!
     @IBOutlet weak var providerFullname: UILabel!
     @IBOutlet weak var providerJobTitle: UILabel!
-    @IBOutlet weak var providerRating: UILabel!
+    @IBOutlet weak var providerRating: CosmosView!
     @IBOutlet weak var providerDistance: UILabel!
     @IBOutlet weak var goldStar: UIImageView!
  
     public func configureCell(provider: ServiceSideUser, favorites: [ServiceSideUser], rating: Double) {
         collectionViewImage.layer.cornerRadius = 10
-        providerRating.text = String(format: "%.1f", rating)
+        providerRating.rating = rating
         providerFullname.text = "\(provider.firstName ?? "") \(provider.lastName ?? "")"
         providerJobTitle.text = provider.jobTitle
         collectionViewImage.kf.setImage(with: URL(string: provider.imageURL ?? ""), placeholder:#imageLiteral(resourceName: "placeholder.png") )

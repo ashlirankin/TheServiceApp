@@ -14,7 +14,7 @@ class CircularButton: UIButton {
         super.layoutSubviews()
         imageView?.contentMode = .scaleAspectFill
         layer.cornerRadius = bounds.width / 2.0
-        layer.borderColor = UIColor.lightGray.cgColor
+//        layer.borderColor = UIColor.lightGray.cgColor
         layer.borderWidth = 0.5
         clipsToBounds = true
     }
@@ -26,7 +26,7 @@ class RoundedImageButton: UIButton {
         super.layoutSubviews()
         imageView?.contentMode = .scaleAspectFill
         layer.cornerRadius = 12.0
-        layer.borderColor = UIColor.lightGray.cgColor
+//        layer.borderColor = UIColor.lightGray.cgColor
         layer.borderWidth = 0.5
         clipsToBounds = true
     }
@@ -43,27 +43,27 @@ class RoundedTextButton: UIButton {
         setupButtonUI()
     }
     private func setupButtonUI() {
-        backgroundColor = .white
+        backgroundColor = #colorLiteral(red: 0.2461647391, green: 0.3439296186, blue: 0.5816915631, alpha: 1)
         layer.cornerRadius = self.frame.height / 2
-        setTitleColor(.black, for: .normal)
+        setTitleColor(.white, for: .normal)
         
-        layer.shadowColor = UIColor.darkGray.cgColor
+        layer.shadowColor = #colorLiteral(red: 0.2461647391, green: 0.3439296186, blue: 0.5816915631, alpha: 1).cgColor
         layer.shadowRadius = 6
         layer.shadowOpacity = 0.5
         layer.shadowOffset = CGSize(width: 0, height: 0)
     }
     
     func buttonSelectedUI() {
-        backgroundColor = .darkGray
-        layer.shadowColor = UIColor.red.cgColor
+        backgroundColor = #colorLiteral(red: 0, green: 0.5772375464, blue: 0.5888287425, alpha: 1)
+        layer.shadowColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1).cgColor
         tintColor = .clear
         setTitleColor(.white, for: .normal)
     }
     
     func buttonDeselectedUI() {
-        backgroundColor = .white
+        backgroundColor = #colorLiteral(red: 0.2461647391, green: 0.3439296186, blue: 0.5816915631, alpha: 1)
         layer.shadowColor = UIColor.black.cgColor
-        setTitleColor(.black, for: .normal)
+        setTitleColor(.white, for: .normal)
     }
 }
 
