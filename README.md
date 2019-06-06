@@ -14,6 +14,18 @@ StyleList is a iOS mobile app that connects you directly to hair-stylists and ba
 * https://github.com/patchthecode/JTAppleCalendar
 * https://stripe.com/
 
+## Looking for a Provider
+gifs
+
+## Booking an Appointment
+gifs
+
+## Provider Checks and Confirm Appointment
+gifs
+
+## Provider Completes Appointment and User Writes an Review
+gifs
+
 ## Built With
 
 * Firebase - This dependency allows us to get acess to the core methods and properties of Google's frameworks.
