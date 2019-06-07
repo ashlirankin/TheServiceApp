@@ -15,16 +15,17 @@ StyleList is a iOS mobile app that connects you directly to hair-stylists and ba
 * https://stripe.com/
 
 ## Looking for a Provider
-gifs
+![LookingProvider](https://github.com/Ashlirankin18/TheServiceApp/blob/master/Stylist/Images/FindingProvider.gif)
+![LookingProvider2](https://github.com/Ashlirankin18/TheServiceApp/blob/master/Stylist/Images/FindingProvider2.gif)
 
 ## Booking an Appointment
-gifs
+![BookingAppointment](https://github.com/Ashlirankin18/TheServiceApp/blob/master/Stylist/Images/BookingAProvider.gif)
 
 ## Provider Checks and Confirm Appointment
-gifs
+![ConfirmAppointment](https://github.com/Ashlirankin18/TheServiceApp/blob/master/Stylist/Images/ConfirmAppointment.gif)
 
 ## Provider Completes Appointment and User Writes an Review
-gifs
+![CompleteAppointment](https://github.com/Ashlirankin18/TheServiceApp/blob/master/Stylist/Images/CompleteAppointment.gif)
 
 ## Built With
 
