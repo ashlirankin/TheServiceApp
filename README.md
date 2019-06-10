@@ -10,6 +10,7 @@ StyleList is a iOS mobile app that connects you directly to hair-stylists, barbe
 
 ## APIs + Resources 
 
+* [Stylist Demo at Museum of Moving Image (MOMA)](https://youtu.be/pEo6-znyzVI) 
 * https://cocoapods.org/pods/Cosmos
 * https://github.com/patchthecode/JTAppleCalendar
 * https://stripe.com/
