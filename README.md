@@ -1,11 +1,11 @@
-# Stylelists
+# Stylists
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/43770152/55572518-bf5bd480-56d5-11e9-8d84-ac654ef9d95b.png" />
 </p>
 
 
-StyleList is a iOS mobile app that connects you directly to hair-stylists, barbers, and makeup-artist to scehdule in home service. 
+Stylists is a iOS mobile app that connects you directly to hair-stylists, barbers, and makeup-artist to schedule in home services. 
 
 
 ## APIs + Resources 
