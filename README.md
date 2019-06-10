@@ -5,7 +5,7 @@
 </p>
 
 
-StyleList is a iOS mobile app that connects you directly to hair-stylists and barbers to scehdule in home service. 
+StyleList is a iOS mobile app that connects you directly to hair-stylists, barbers, and makeup-artist to scehdule in home service. 
 
 
 ## APIs + Resources 
@@ -15,16 +15,25 @@ StyleList is a iOS mobile app that connects you directly to hair-stylists and ba
 * https://stripe.com/
 
 ## Looking for a Provider
+* The user browses through a list of providers (Barbers, Hairdressers, Makeup-Artist) on the Discovery tab.
+* The user can use filter option at the top right to filter providers by availability, gender, profession, price, and services.
+* After selecting a provider, the user can look at the provider's bio, porfolio, and rating.
+* The user can favorite a provider if needed.
 ![LookingProvider](https://github.com/Ashlirankin18/TheServiceApp/blob/master/Stylist/Images/FindingProvider.gif)
 ![LookingProvider2](https://github.com/Ashlirankin18/TheServiceApp/blob/master/Stylist/Images/FindingProvider2.gif)
 
 ## Booking an Appointment
+* To book an appointment, the user must select at least one service and a time.
+* When the appointment request is sent, the user will receive a notification about the appointment.
 ![BookingAppointment](https://github.com/Ashlirankin18/TheServiceApp/blob/master/Stylist/Images/BookingAProvider.gif)
 
 ## Provider Checks and Confirm Appointment
+* When the provider confirms the appointment, the user receives a notification that the appointment is confirmed.
 ![ConfirmAppointment](https://github.com/Ashlirankin18/TheServiceApp/blob/master/Stylist/Images/ConfirmAppointment.gif)
 
 ## Provider Completes Appointment and User Writes an Review
+* After the service is finished, the provider would mark the appointment complete. When the appointment is marked complete, the user would receive a popup to write a review about the appointment.
+* After the user submitted the review, it will reflect at the review section of the provider's profile.
 ![CompleteAppointment](https://github.com/Ashlirankin18/TheServiceApp/blob/master/Stylist/Images/CompleteAppointment.gif)
 
 ## Built With
