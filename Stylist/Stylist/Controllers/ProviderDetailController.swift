@@ -91,10 +91,10 @@ class ProviderDetailController: UITableViewController {
     func setFavoriteState(){
         switch isFavorite {
         case true:
-            self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-filled-50 (1)")
+            self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-heart-outline-filled-50")
             self.navigationItem.rightBarButtonItem?.isEnabled = true
         default:
-            self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-50")
+            self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-love-50")
             self.navigationItem.rightBarButtonItem?.isEnabled = true
         }
     }
@@ -124,15 +124,14 @@ class ProviderDetailController: UITableViewController {
         switch isFavorite {
         case true:
             deleteFavorite()
-            isFavorite = false
-            navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-48")
+            navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-love-50")
             self.navigationItem.rightBarButtonItem?.isEnabled = false
         default:
             setToFavorites()
-            isFavorite = true
-            navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-star-filled-50 (1)")
+            navigationItem.rightBarButtonItem?.image = UIImage(named: "icons8-heart-outline-filled-50")
             self.navigationItem.rightBarButtonItem?.isEnabled = false
         }
+           isFavorite = !isFavorite
     }
     
     @objc private func deleteFavorite() {
@@ -201,6 +200,10 @@ class ProviderDetailController: UITableViewController {
     
     private func loadSVFeatures() {
         for (index,view) in featureViews.enumerated() {
+            var contentRect = CGRect.zero
+            contentRect = contentRect.union(view.frame)
+            scrollView.contentSize = contentRect.size
+            scrollView.contentSize.height = view.bounds.height
             scrollView.addSubview(view)
             view.frame.size.width = self.view.bounds.width
             view.frame.origin.x = CGFloat(index) * self.view.bounds.size.width
@@ -259,6 +262,7 @@ extension ProviderDetailController: UICollectionViewDataSource {
             cell.buttonLabel.text = buttonLabel
             return cell
             
+            
         } else if collectionView == reviewCollectionView.ReviewCV {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionViewCell
             let review = reviews[indexPath.row]
@@ -309,7 +313,13 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
         } else if collectionView == reviewCollectionView.ReviewCV {
             collectionView.allowsSelection = false
         } else {
+             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ButtonCell", for: indexPath) as! ProviderDetailCustomCell
+            cell.isSelected = true
+            var contentRect = CGRect.zero
             let view = featureViews[indexPath.row]
+            contentRect = contentRect.union(view.frame)
+             scrollView.contentSize = contentRect.size
+            scrollView.contentSize.height = view.bounds.height
             scrollView.scrollRectToVisible(view.frame, animated: true)
             view.frame.size.width = self.view.bounds.width
             view.frame.origin.x = CGFloat(indexPath.row) * self.view.bounds.size.width
