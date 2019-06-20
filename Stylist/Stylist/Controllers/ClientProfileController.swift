@@ -276,7 +276,9 @@ class ClientProfileController: UIViewController {
                 self?.authService.signOut()
                 self?.presentLoginViewController()
             },{ [weak self] becomeProvider in
-                print("provider sign up sheet")
+               let storyboard = UIStoryboard.init(name: "JoinProvidersForm", bundle: nil)
+                let formController = storyboard.instantiateViewController(withIdentifier: "FormVC") as! FormViewController
+                self?.present(formController, animated: true)
             }
             ])
     }

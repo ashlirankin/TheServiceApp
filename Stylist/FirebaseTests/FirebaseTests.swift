@@ -110,7 +110,6 @@ class FirebaseTests: XCTestCase {
       wait(for: [exp], timeout: 3.0)
     }
     if accountState == .serviceProvider{
-      
       DBService.firestoreDB.collection("serviceProvider").document(currentUser.uid)
         .setData(["firstName": "Ashli",
                   "lastName":"Rankin",
