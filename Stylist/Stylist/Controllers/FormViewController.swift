@@ -46,5 +46,8 @@ class FormViewController: UIViewController {
 }
 
 extension FormViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+    }
     
 }

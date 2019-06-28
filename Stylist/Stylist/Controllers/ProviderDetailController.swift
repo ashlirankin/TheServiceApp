@@ -65,6 +65,7 @@ class ProviderDetailController: UITableViewController {
         setupUI()
         setupCollectionView()
         setupScrollviewController(scrollView: scrollView, views: featureViews)
+     
         loadSVFeatures()
         setupProvider()
         setFavoriteState()
@@ -205,6 +206,7 @@ class ProviderDetailController: UITableViewController {
             scrollView.contentSize = contentRect.size
             scrollView.contentSize.height = view.bounds.height
             scrollView.addSubview(view)
+            scrollView.contentInsetAdjustmentBehavior = .never
             view.frame.size.width = self.view.bounds.width
             view.frame.origin.x = CGFloat(index) * self.view.bounds.size.width
         }
