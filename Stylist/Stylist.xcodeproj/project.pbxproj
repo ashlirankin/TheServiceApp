@@ -31,6 +31,7 @@
 		0969A88722BC2686008A8B4F /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0969A88622BC2686008A8B4F /* FormViewController.swift */; };
 		0969A88922BC2BAF008A8B4F /* FLAnimatedImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0969A88822BC2BAF008A8B4F /* FLAnimatedImage.framework */; };
 		0969A88B22BC2C08008A8B4F /* DKPhotoGallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0969A88A22BC2C08008A8B4F /* DKPhotoGallery.framework */; };
+		096A172622C67FEA00FF9730 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096A172522C67FE900FF9730 /* Form.swift */; };
 		098E826B2260CE5C0023E41B /* PortfolioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 098E826A2260CE5C0023E41B /* PortfolioCell.xib */; };
 		098E826D2260CE8E0023E41B /* PortfolioCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098E826C2260CE8E0023E41B /* PortfolioCollectionViewCell.swift */; };
 		099B0C13226648F300474066 /* DiscoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099B0C12226648F300474066 /* DiscoverCollectionViewCell.swift */; };
@@ -150,6 +151,7 @@
 		0969A88622BC2686008A8B4F /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
 		0969A88822BC2BAF008A8B4F /* FLAnimatedImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FLAnimatedImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0969A88A22BC2C08008A8B4F /* DKPhotoGallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DKPhotoGallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		096A172522C67FE900FF9730 /* Form.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Form.swift; sourceTree = "<group>"; };
 		098E826A2260CE5C0023E41B /* PortfolioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PortfolioCell.xib; sourceTree = "<group>"; };
 		098E826C2260CE8E0023E41B /* PortfolioCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioCollectionViewCell.swift; sourceTree = "<group>"; };
 		099B0C12226648F300474066 /* DiscoverCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 				2EF103D42255AE060030FBFF /* Days.swift */,
 				093FA84C227A51EA00E06EEF /* AppointmentNotification.swift */,
 				0969A88422BC208E008A8B4F /* LicenceInfo.swift */,
+				096A172522C67FE900FF9730 /* Form.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -736,6 +739,7 @@
 				2E07D94A228097340078C65F /* PortfolioImages.swift in Sources */,
 				099B0C15226649CA00474066 /* DiscoverSecondViewController.swift in Sources */,
 				09DCD307225E50EA0090EE1F /* ProviderBio.swift in Sources */,
+				096A172622C67FEA00FF9730 /* Form.swift in Sources */,
 				090374EB2270CA0D00B77B66 /* AppointmentCell.swift in Sources */,
 				2EF1039C2255314A0030FBFF /* AppDelegate.swift in Sources */,
 				2E90A61C226112620016462C /* BookingViewController.swift in Sources */,
