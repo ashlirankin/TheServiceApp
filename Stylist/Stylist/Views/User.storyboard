@@ -94,6 +94,7 @@
                                                     <rect key="frame" x="145" y="75.5" width="122" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="122" id="881-1A-fRA"/>
+                                                        <constraint firstAttribute="height" constant="20" id="rkj-Ej-R3z"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="emptyBorderColor">
@@ -689,7 +690,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Provider" id="DlD-2k-Jez">
-                        <barButtonItem key="rightBarButtonItem" image="icons8-star-50" id="e5F-NG-sse">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="icons8-love-50" style="plain" id="e5F-NG-sse">
                             <connections>
                                 <action selector="FavoriteButtonPressed:" destination="JyM-sN-TXm" id="g1t-D3-gIE"/>
                             </connections>
@@ -782,7 +783,6 @@
         <image name="icons8-new-50" width="50" height="50"/>
         <image name="icons8-resume-website-filled-24" width="24" height="24"/>
         <image name="icons8-slider-48" width="48" height="48"/>
-        <image name="icons8-star-50" width="50" height="50"/>
         <image name="icons8-time-machine-50 (1)" width="50" height="50"/>
         <image name="placeholder" width="512" height="512"/>
     </resources>

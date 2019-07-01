@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,6 +26,12 @@
 		094DF88F225D2EB8001EA2FE /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094DF88E225D2EB8001EA2FE /* UserDetailView.swift */; };
 		094DF892225D492D001EA2FE /* ProviderDetailCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094DF891225D492D001EA2FE /* ProviderDetailCustomCell.swift */; };
 		095BF72D2264E68D00F416ED /* UserProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095BF72C2264E68D00F416ED /* UserProfileTableViewCell.swift */; };
+		0960D3D822BAF3F700B731E0 /* JoinProvidersForm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0960D3D722BAF3F700B731E0 /* JoinProvidersForm.storyboard */; };
+		0969A88522BC208E008A8B4F /* LicenceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0969A88422BC208E008A8B4F /* LicenceInfo.swift */; };
+		0969A88722BC2686008A8B4F /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0969A88622BC2686008A8B4F /* FormViewController.swift */; };
+		0969A88922BC2BAF008A8B4F /* FLAnimatedImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0969A88822BC2BAF008A8B4F /* FLAnimatedImage.framework */; };
+		0969A88B22BC2C08008A8B4F /* DKPhotoGallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0969A88A22BC2C08008A8B4F /* DKPhotoGallery.framework */; };
+		096A172622C67FEA00FF9730 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096A172522C67FE900FF9730 /* Form.swift */; };
 		098E826B2260CE5C0023E41B /* PortfolioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 098E826A2260CE5C0023E41B /* PortfolioCell.xib */; };
 		098E826D2260CE8E0023E41B /* PortfolioCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098E826C2260CE8E0023E41B /* PortfolioCollectionViewCell.swift */; };
 		099B0C13226648F300474066 /* DiscoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099B0C12226648F300474066 /* DiscoverCollectionViewCell.swift */; };
@@ -140,6 +146,12 @@
 		094DF88E225D2EB8001EA2FE /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		094DF891225D492D001EA2FE /* ProviderDetailCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderDetailCustomCell.swift; sourceTree = "<group>"; };
 		095BF72C2264E68D00F416ED /* UserProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewCell.swift; sourceTree = "<group>"; };
+		0960D3D722BAF3F700B731E0 /* JoinProvidersForm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = JoinProvidersForm.storyboard; sourceTree = "<group>"; };
+		0969A88422BC208E008A8B4F /* LicenceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenceInfo.swift; sourceTree = "<group>"; };
+		0969A88622BC2686008A8B4F /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
+		0969A88822BC2BAF008A8B4F /* FLAnimatedImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FLAnimatedImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0969A88A22BC2C08008A8B4F /* DKPhotoGallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DKPhotoGallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		096A172522C67FE900FF9730 /* Form.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Form.swift; sourceTree = "<group>"; };
 		098E826A2260CE5C0023E41B /* PortfolioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PortfolioCell.xib; sourceTree = "<group>"; };
 		098E826C2260CE8E0023E41B /* PortfolioCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioCollectionViewCell.swift; sourceTree = "<group>"; };
 		099B0C12226648F300474066 /* DiscoverCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -248,6 +260,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0969A88B22BC2C08008A8B4F /* DKPhotoGallery.framework in Frameworks */,
+				0969A88922BC2BAF008A8B4F /* FLAnimatedImage.framework in Frameworks */,
 				8F8138881EF44484D5275681 /* Pods_Stylist.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,6 +318,8 @@
 		22221D3EC18620EA7B2A0CEF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0969A88A22BC2C08008A8B4F /* DKPhotoGallery.framework */,
+				0969A88822BC2BAF008A8B4F /* FLAnimatedImage.framework */,
 				D89AABB01908945DBC5625A6 /* Pods_Stylist.framework */,
 				DDD7F5DBCC2AE867436738D1 /* Pods_StylistTests.framework */,
 				C9F0689D22A995E41D8C2C56 /* Pods_FirebaseTests.framework */,
@@ -394,6 +410,7 @@
 				2E23F19A226E88A60037B9AA /* CardCollectionViewCell.swift */,
 				2E7739BD22601267004C188A /* Entrance.storyboard */,
 				D6FE74E92261138600B4A49A /* FilterProviders.storyboard */,
+				0960D3D722BAF3F700B731E0 /* JoinProvidersForm.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -424,6 +441,7 @@
 				090374E82270B9D300B77B66 /* UserTabBarController.swift */,
 				09397588227A085B0015E6FC /* PortfolioDetailViewController.swift */,
 				2E49A4A5226F89C6002B230E /* SummaryServicesCollectionViewCell.swift */,
+				0969A88622BC2686008A8B4F /* FormViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -445,6 +463,8 @@
 				2E49A555226FEC7D002B230E /* CardInfo.swift */,
 				2EF103D42255AE060030FBFF /* Days.swift */,
 				093FA84C227A51EA00E06EEF /* AppointmentNotification.swift */,
+				0969A88422BC208E008A8B4F /* LicenceInfo.swift */,
+				096A172522C67FE900FF9730 /* Form.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -578,6 +598,7 @@
 				093A6E9522720BFB003A4E4F /* CollectionViewCell.xib in Resources */,
 				2EF103A32255314C0030FBFF /* Assets.xcassets in Resources */,
 				093A6E8F2272097D003A4E4F /* ReviewsCollectionView.xib in Resources */,
+				0960D3D822BAF3F700B731E0 /* JoinProvidersForm.storyboard in Resources */,
 				09DCD30D225E7E5D0090EE1F /* ProviderDetailReviews.xib in Resources */,
 				D6CD419C22664C7300F79DAA /* ServicesCell.xib in Resources */,
 				2E9DD7D62257E80900D74DD1 /* User.storyboard in Resources */,
@@ -596,38 +617,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/Braintree/Braintree.framework",
-				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/Toucan/Toucan.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Braintree.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toucan.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -662,38 +656,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Stylist/Pods-Stylist-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/Braintree/Braintree.framework",
-				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/Toucan/Toucan.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Stylist/Pods-Stylist-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Braintree.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toucan.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Stylist/Pods-Stylist-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -760,6 +727,7 @@
 				099B0C13226648F300474066 /* DiscoverCollectionViewCell.swift in Sources */,
 				2E49A4A9226FB46C002B230E /* OrderSummaryCollectionViewCell.swift in Sources */,
 				09DCD303225E4AB90090EE1F /* UIViewController+Extensions.swift in Sources */,
+				0969A88722BC2686008A8B4F /* FormViewController.swift in Sources */,
 				093FA84D227A51EA00E06EEF /* AppointmentNotification.swift in Sources */,
 				09DCD313225E97340090EE1F /* DiscoveryCollectionViewCell.swift in Sources */,
 				2E9DD7D02257C93E00D74DD1 /* DBService.swift in Sources */,
@@ -771,6 +739,7 @@
 				2E07D94A228097340078C65F /* PortfolioImages.swift in Sources */,
 				099B0C15226649CA00474066 /* DiscoverSecondViewController.swift in Sources */,
 				09DCD307225E50EA0090EE1F /* ProviderBio.swift in Sources */,
+				096A172622C67FEA00FF9730 /* Form.swift in Sources */,
 				090374EB2270CA0D00B77B66 /* AppointmentCell.swift in Sources */,
 				2EF1039C2255314A0030FBFF /* AppDelegate.swift in Sources */,
 				2E90A61C226112620016462C /* BookingViewController.swift in Sources */,
@@ -808,6 +777,7 @@
 				09A9D547225BE7A200DFB5E2 /* PortfolioView.swift in Sources */,
 				D6CD419A22664C6000F79DAA /* ServicesCell.swift in Sources */,
 				2E49A558226FEF99002B230E /* WalletModel.swift in Sources */,
+				0969A88522BC208E008A8B4F /* LicenceInfo.swift in Sources */,
 				09A9D543225BCFB200DFB5E2 /* ServiceProfileViewController.swift in Sources */,
 				094DF889225D2809001EA2FE /* ProviderDetailController.swift in Sources */,
 				2E9DD7DE2257F83900D74DD1 /* ServiceDetailViewController.swift in Sources */,
