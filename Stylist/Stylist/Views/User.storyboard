@@ -90,10 +90,11 @@
                                                         <constraint firstAttribute="height" constant="36" id="wXU-jz-SGb"/>
                                                     </constraints>
                                                 </imageView>
-                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZXA-HN-cNs" customClass="CosmosView" customModule="Cosmos">
+                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZXA-HN-cNs" customClass="CosmosView" customModule="Cosmos">
                                                     <rect key="frame" x="145" y="75.5" width="122" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="122" id="881-1A-fRA"/>
+                                                        <constraint firstAttribute="height" constant="20" id="rkj-Ej-R3z"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="emptyBorderColor">
