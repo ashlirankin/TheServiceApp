@@ -20,6 +20,19 @@ struct Form {
     let businessName: String
     let licenceAddress: String
     
+    
+    init(userID: String, date: String, documentID: String, licenceNumber: String, licenceState: String, licenseHolderName: String, licenseExpiration: String, businessName: String, licenceAddress: String) {
+        self.userID = userID
+        self.date = date
+        self.documentID = documentID
+        self.licenceNumber = licenceNumber
+        self.licenceState = licenceState
+        self.licenceHolderName = licenseHolderName
+        self.licenceExpiration = licenseExpiration
+        self.businessName = businessName
+        self.licenceAddress = licenceAddress
+    }
+    
     init(dict: [String: Any]) {
         self.userID = dict["userId"] as? String ?? "no userID"
         self.date = dict["date"] as? String ?? "no date dadded"

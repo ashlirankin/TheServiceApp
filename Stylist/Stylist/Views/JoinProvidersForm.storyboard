@@ -26,13 +26,13 @@ Stylists form</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2BP-MX-CKA">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="full name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2BP-MX-CKA">
                                 <rect key="frame" x="20" y="261.5" width="374" height="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="lastname" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SUx-EY-S9r">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="expiration date" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SUx-EY-S9r">
                                 <rect key="frame" x="20" y="331.5" width="374" height="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -90,6 +90,9 @@ Stylists form</string>
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="submitPressed:" destination="eAR-EK-Bvx" eventType="touchUpInside" id="jmk-ZG-cva"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gv0-8M-bj8">
                                 <rect key="frame" x="18.5" y="54" width="46" height="46"/>
@@ -152,7 +155,7 @@ Stylists form</string>
                     <connections>
                         <outlet property="LICENSEnUMBER" destination="b2f-N6-DO4" id="C05-lp-Wuf"/>
                         <outlet property="businessName" destination="FSt-vu-bnT" id="kQR-mq-8yY"/>
-                        <outlet property="lastnameTFA" destination="SUx-EY-S9r" id="QGe-yL-rJT"/>
+                        <outlet property="expirationTF" destination="SUx-EY-S9r" id="dAn-rX-Pqk"/>
                         <outlet property="licenseAddress" destination="tWQ-Ye-D7h" id="hXS-ju-B8H"/>
                         <outlet property="licenseCity" destination="aWb-3O-Z1V" id="4BQ-Ni-siJ"/>
                         <outlet property="licenseState" destination="a7D-OW-LjK" id="e2c-08-MYa"/>

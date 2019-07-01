@@ -91,18 +91,31 @@ struct ServicesCollectionKeys {
     static let serviceId = "serviceId"
 }
 struct AppointmentCollectionKeys{
-  static let providerId = "providerId"
-  static let userId = "userId"
-  static let services = "services"
-  static let appointmentTime = "appointmentTime"
-  static let prices = "prices"
-  static let status = "status"
-  static let documentId = "documentId"
-  static let bookedAppointments = "bookedAppointments"
-  
+    static let providerId = "providerId"
+    static let userId = "userId"
+    static let services = "services"
+    static let appointmentTime = "appointmentTime"
+    static let prices = "prices"
+    static let status = "status"
+    static let documentId = "documentId"
+    static let bookedAppointments = "bookedAppointments"
+    
 }
 struct PortfolioCollectionKeys {
-  static let documentId = "documentId"
-  static let images = "images"
-  static let portfolio = "portfolio"
+    static let documentId = "documentId"
+    static let images = "images"
+    static let portfolio = "portfolio"
+}
+
+struct FormCollectionKeys {
+    static let stylistsForms = "StylistsForms"
+    static let userID = "userId"
+    static let date = "date"
+    static let documentID = "documentID"
+    static let licenceNumber = "licenceNumber"
+    static let licenceState = "licenceState"
+    static let licenceHolderName = "licenceHolderName"
+    static let licenceExpiration = "licenceExpiration"
+    static let businessName = "businessName"
+    static let licenceAddress = "licenseAddress"
 }
