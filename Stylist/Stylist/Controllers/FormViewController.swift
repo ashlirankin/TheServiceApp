@@ -18,12 +18,27 @@ class FormViewController: UIViewController {
     @IBOutlet weak var licenseState: UITextField!
     @IBOutlet weak var licenseZipcode: UITextField!
     @IBOutlet weak var submit: UIButton!
-     let authService = AuthService()
+   var authService: AuthService?
+    lazy var formSent = SentForm()
+    
+    init(authService: AuthService) {
+           super.init(nibName: nil, bundle: nil)
+          self.authService = authService
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+         super.init(coder: aDecoder)
+    }
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTFUI()
+        if let _ = authService?.getCurrentUser() {
+         view.addSubview(formSent)
+        } else {
+             setupTFUI()
+        }
     }
     
     private func setupTFUI() {
@@ -50,7 +65,7 @@ class FormViewController: UIViewController {
     let date = Date()
         let id = DBService.generateDocumentId
       guard let licenceName = nameTF.text, !licenceName.isEmpty,
-        let currentUser = authService.getCurrentUser(),
+        let currentUser = authService?.getCurrentUser(),
         let expirationDate = expirationTF.text, !expirationDate.isEmpty,
         let licenceNumber = LICENSEnUMBER.text, !licenceNumber.isEmpty,
         let businessName = businessName.text, !businessName.isEmpty,
