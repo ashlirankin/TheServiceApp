@@ -34,6 +34,8 @@
 		096A172622C67FEA00FF9730 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096A172522C67FE900FF9730 /* Form.swift */; };
 		098E826B2260CE5C0023E41B /* PortfolioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 098E826A2260CE5C0023E41B /* PortfolioCell.xib */; };
 		098E826D2260CE8E0023E41B /* PortfolioCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098E826C2260CE8E0023E41B /* PortfolioCollectionViewCell.swift */; };
+		09994A9122CAC17A00024384 /* FormSent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09994A9022CAC17A00024384 /* FormSent.xib */; };
+		09994A9322CBBF0200024384 /* SentForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09994A9222CBBF0200024384 /* SentForm.swift */; };
 		099B0C13226648F300474066 /* DiscoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099B0C12226648F300474066 /* DiscoverCollectionViewCell.swift */; };
 		099B0C15226649CA00474066 /* DiscoverSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099B0C14226649CA00474066 /* DiscoverSecondViewController.swift */; };
 		09A9D543225BCFB200DFB5E2 /* ServiceProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */; };
@@ -154,6 +156,8 @@
 		096A172522C67FE900FF9730 /* Form.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Form.swift; sourceTree = "<group>"; };
 		098E826A2260CE5C0023E41B /* PortfolioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PortfolioCell.xib; sourceTree = "<group>"; };
 		098E826C2260CE8E0023E41B /* PortfolioCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioCollectionViewCell.swift; sourceTree = "<group>"; };
+		09994A9022CAC17A00024384 /* FormSent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormSent.xib; sourceTree = "<group>"; };
+		09994A9222CBBF0200024384 /* SentForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentForm.swift; sourceTree = "<group>"; };
 		099B0C12226648F300474066 /* DiscoverCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCollectionViewCell.swift; sourceTree = "<group>"; };
 		099B0C14226649CA00474066 /* DiscoverSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverSecondViewController.swift; sourceTree = "<group>"; };
 		09A9D542225BCFB200DFB5E2 /* ServiceProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProfileViewController.swift; sourceTree = "<group>"; };
@@ -311,6 +315,8 @@
 				090862BE22848FE800C9CE5D /* LeaveReviewNotification.swift */,
 				09E35CCE2280AD49003BBD2A /* LocalCustomNotification.swift */,
 				09D82B56227745B00097122A /* ProfileNoBooking.swift */,
+				09994A9022CAC17A00024384 /* FormSent.xib */,
+				09994A9222CBBF0200024384 /* SentForm.swift */,
 			);
 			path = nibs;
 			sourceTree = "<group>";
@@ -593,6 +599,7 @@
 				09D8C3E6227367FC009A8BA9 /* NoBookingScreen.xib in Resources */,
 				090862BD22848BD800C9CE5D /* LeaveReviewNotification.xib in Resources */,
 				098E826B2260CE5C0023E41B /* PortfolioCell.xib in Resources */,
+				09994A9122CAC17A00024384 /* FormSent.xib in Resources */,
 				09D82B55227744960097122A /* ProfileNoBooking.xib in Resources */,
 				09DCD305225E4F290090EE1F /* ProviderDetailBio.xib in Resources */,
 				093A6E9522720BFB003A4E4F /* CollectionViewCell.xib in Resources */,
@@ -751,6 +758,7 @@
 				090EF6D4226FAA1C00AD19AA /* UserChoiceViewController.swift in Sources */,
 				09D82B57227745B00097122A /* ProfileNoBooking.swift in Sources */,
 				098E826D2260CE8E0023E41B /* PortfolioCollectionViewCell.swift in Sources */,
+				09994A9322CBBF0200024384 /* SentForm.swift in Sources */,
 				D6006938226FB86200DBB38F /* Array+Extensions.swift in Sources */,
 				2E9DD7DC2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift in Sources */,
 				094DF892225D492D001EA2FE /* ProviderDetailCustomCell.swift in Sources */,
