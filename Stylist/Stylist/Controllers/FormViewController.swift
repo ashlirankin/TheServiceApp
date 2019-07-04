@@ -19,7 +19,7 @@ class FormViewController: UIViewController {
     @IBOutlet weak var licenseZipcode: UITextField!
     @IBOutlet weak var submit: UIButton!
    var authService: AuthService?
-    lazy var formSent = SentForm()
+    lazy var formSent = SentForm() 
     
     init(authService: AuthService) {
            super.init(nibName: nil, bundle: nil)
@@ -35,10 +35,15 @@ class FormViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let _ = authService?.getCurrentUser() {
+            formSent.backButton.addTarget(self, action: #selector(backPressed), for: .touchUpInside)
          view.addSubview(formSent)
         } else {
              setupTFUI()
         }
+    }
+    
+    @objc func backPressed() {
+        dismiss(animated: true)
     }
     
     private func setupTFUI() {

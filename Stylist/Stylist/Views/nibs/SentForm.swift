@@ -10,7 +10,8 @@ import UIKit
 
 class SentForm: UIView {
     @IBOutlet var content: UIView!
-
+    @IBOutlet weak var backButton: UIButton!
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
