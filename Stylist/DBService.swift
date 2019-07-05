@@ -356,17 +356,31 @@ final class DBService {
     static func UploadFormToDB(form: Form, id: String, completionHandler: @escaping(Error?) -> Void) {
         DBService.firestoreDB.collection(FormCollectionKeys.stylistsForms).document(id)
             .setData([FormCollectionKeys.documentID : id,
-                FormCollectionKeys.licenceHolderName : form.licenceHolderName,
-                FormCollectionKeys.date : form.date,
-                FormCollectionKeys.licenceNumber : form.licenceNumber,
-                FormCollectionKeys.businessName : form.businessName,
-                FormCollectionKeys.licenceAddress : form.licenceAddress,
-                FormCollectionKeys.licenceExpiration : form.licenceExpiration,
-                FormCollectionKeys.licenceState: form.licenceState]) { (error) in
+                      FormCollectionKeys.licenceHolderName : form.licenceHolderName,
+                      FormCollectionKeys.date : form.date,
+                      FormCollectionKeys.licenceNumber : form.licenceNumber,
+                      FormCollectionKeys.businessName : form.businessName,
+                      FormCollectionKeys.licenceAddress : form.licenceAddress,
+                      FormCollectionKeys.licenceExpiration : form.licenceExpiration,
+                      FormCollectionKeys.licenceState: form.licenceState]) { (error) in
+                        if let error = error {
+                            completionHandler(error)
+                        } else {
+                            completionHandler(nil)
+                        }
+        }
+    }
+    
+    static func checkForm(id: String, completionHandler: @escaping(Bool) -> Void) {
+        DBService.firestoreDB.collection(FormCollectionKeys.stylistsForms)
+            .whereField(FormCollectionKeys.documentID, isEqualTo: id)
+            .addSnapshotListener { (snapshot, error) in
                 if let error = error {
-                    completionHandler(error)
+                    print(error)
+                } else if let _ = snapshot {
+                    completionHandler(true)
                 } else {
-                    completionHandler(nil)
+                    completionHandler(false)
                 }
         }
     }
