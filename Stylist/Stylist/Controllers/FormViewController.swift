@@ -8,6 +8,16 @@
 
 import UIKit
 
+enum FormFields: String, CaseIterable {
+    case name = "full name"
+    case business = "Business name or LLC"
+    case expiration = "expiration date"
+    case licenseNumber = "Licence number"
+    case state = "Licence State"
+    case address = "Licence Address,Licence City,Licence Zipcode"
+}
+
+
 class FormViewController: UIViewController {
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var expirationTF: UITextField!
@@ -82,15 +92,20 @@ class FormViewController: UIViewController {
         let city = licenseCity.text, !city.isEmpty,
         let state = licenseState.text, !state.isEmpty,
         let zipCode = licenseZipcode.text, !zipCode.isEmpty else { return }
-     let form = Form(userID: currentUser.uid , date: date.description, documentID: id, licenceNumber: licenceNumber, licenceState: state, licenseHolderName: licenceName, licenseExpiration: expirationDate, businessName: businessName, licenceAddress: address + "," + city + "," + zipCode )
-        DBService.UploadFormToDB(form: form, id: id) { (error) in
-            if let error = error {
-                print(error)
-            } else {
-                self.showAlert(title: "Sucess", message: "Form has been Sent, we will email you", actionTitle: "OK")
+         let allFields = [licenceNumber,businessName,licenceName,address,city, zipCode]
+        if checkForFields(fields: allFields) {
+            showAlert(title: nil, message: "All fields must be filled", actionTitle: "Try Again")
+            return
+        } else {
+            let form = Form(userID: currentUser.uid , date: date.description, documentID: id, licenceNumber: licenceNumber, licenceState: state, licenseHolderName: licenceName, licenseExpiration: expirationDate, businessName: businessName, licenceAddress: address + "," + city + "," + zipCode )
+            DBService.UploadFormToDB(form: form, id: id) { (error) in
+                if let error = error {
+                    print(error)
+                } else {
+                    self.showAlert(title: "Sucess", message: "Form has been Sent, we will email you", actionTitle: "OK")
+                }
             }
         }
-        
     }
     
 }
@@ -98,6 +113,18 @@ class FormViewController: UIViewController {
 extension FormViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.text = ""
+    }
+    
+    private func checkForFields(fields: [String]) -> Bool {
+        var isFound = false
+        for field in FormFields.allCases {
+            for fieldTF in fields {
+                if fieldTF == field.rawValue {
+                   isFound = true
+                } 
+            }
+        }
+        return isFound
     }
     
 }

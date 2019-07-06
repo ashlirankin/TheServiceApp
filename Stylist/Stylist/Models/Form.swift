@@ -44,4 +44,5 @@ struct Form {
         self.businessName = dict["businessName"] as? String ?? "no business name were added"
         self.licenceAddress = dict["licenseAddress"] as? String ?? "no address found"
     }
+
 }
