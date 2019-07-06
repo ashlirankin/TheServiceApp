@@ -355,22 +355,43 @@ final class DBService {
     
     static func UploadFormToDB(form: Form, id: String, completionHandler: @escaping(Error?) -> Void) {
         DBService.firestoreDB.collection(FormCollectionKeys.stylistsForms).document(id)
-            .setData([FormCollectionKeys.documentID : id,
-                FormCollectionKeys.licenceHolderName : form.licenceHolderName,
-                FormCollectionKeys.date : form.date,
-                FormCollectionKeys.licenceNumber : form.licenceNumber,
-                FormCollectionKeys.businessName : form.businessName,
-                FormCollectionKeys.licenceAddress : form.licenceAddress,
-                FormCollectionKeys.licenceExpiration : form.licenceExpiration,
-                FormCollectionKeys.licenceState: form.licenceState]) { (error) in
+            .setData([FormCollectionKeys.userID : form.userID,
+                      FormCollectionKeys.documentID : id,
+                      FormCollectionKeys.licenceHolderName : form.licenceHolderName,
+                      FormCollectionKeys.date : form.date,
+                      FormCollectionKeys.licenceNumber : form.licenceNumber,
+                      FormCollectionKeys.businessName : form.businessName,
+                      FormCollectionKeys.licenceAddress : form.licenceAddress,
+                      FormCollectionKeys.licenceExpiration : form.licenceExpiration,
+                      FormCollectionKeys.licenceState: form.licenceState]) { (error) in
+                        if let error = error {
+                            completionHandler(error)
+                        } else {
+                            completionHandler(nil)
+                        }
+        }
+    }
+    
+    static func checkForm(id: String, completionHandler: @escaping(Bool) -> Void) {
+        DBService.firestoreDB.collection(FormCollectionKeys.stylistsForms)
+            .whereField(FormCollectionKeys.userID, isEqualTo: id)
+            .addSnapshotListener { (snapshot, error) in
                 if let error = error {
-                    completionHandler(error)
-                } else {
-                    completionHandler(nil)
-                }
+                    print(error)
+                } else if let foundform = snapshot {
+                    if let match = foundform.documents.first {
+                       let newForm = Form(dict: match.data())
+                        if newForm.userID == id {
+                            completionHandler(true)
+                        } else {
+                            completionHandler(false)
+                        }
+                    } else {
+                        completionHandler(false)
+                    }
         }
     }
 }
-
+}
 
 
