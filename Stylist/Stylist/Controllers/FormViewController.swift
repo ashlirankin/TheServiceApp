@@ -34,11 +34,15 @@ class FormViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let _ = authService?.getCurrentUser() {
-            formSent.backButton.addTarget(self, action: #selector(backPressed), for: .touchUpInside)
-         view.addSubview(formSent)
-        } else {
-             setupTFUI()
+        if let currentUser = authService?.getCurrentUser() {
+            DBService.checkForm(id: currentUser.uid) { (exist) in
+                if exist {
+                    self.formSent.backButton.addTarget(self, action: #selector(self.backPressed), for: .touchUpInside)
+                    self.view.addSubview(self.formSent)
+                } else {
+                    self.setupTFUI()
+                }
+            }
         }
     }
     
