@@ -86,14 +86,14 @@ class ClientProfileController: UIViewController {
         authService.authserviceSignOutDelegate = self
         setupTableView()
         fetchCurrentUser()
-       keyboardHandle()
+        keyboardHandle()
     }
     
-
+    
     private func keyboardHandle() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-          NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-          NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     
@@ -111,6 +111,19 @@ class ClientProfileController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         timer?.invalidate()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+            super.viewDidDisappear(animated)
+            guard let viewControllers = navigationController?.viewControllers,
+                let index = viewControllers.firstIndex(of: self) else { return }
+            navigationController?.viewControllers.remove(at: index)
+        let storyboard = UIStoryboard(name: "ServiceProvider", bundle: nil)
+        guard let providerTab = storyboard.instantiateViewController(withIdentifier: "ServiceTabBar") as? ServiceProviderTabBar else {return}
+            let appdeletgate = (UIApplication.shared.delegate) as! AppDelegate
+            appdeletgate.window?.rootViewController = providerTab
+        
+        
     }
     
     // MARK: Initial Setup
@@ -172,7 +185,7 @@ class ClientProfileController: UIViewController {
                     print(error)
                 } else if let snapshot = snapshot {
                     self.appointments = snapshot.documents.map{Appointments(dict: $0.data())}
-                      AppointmentNotification.shared
+                    AppointmentNotification.shared
                     self.tableView.reloadData()
                 }
             })
@@ -184,7 +197,6 @@ class ClientProfileController: UIViewController {
         isSwitched = !isSwitched
         if isSwitched {
             showProviderTab()
-            
         }
     }
     private func showProviderTab() {
@@ -193,8 +205,9 @@ class ClientProfileController: UIViewController {
         providerTab.modalTransitionStyle = .crossDissolve
         providerTab.modalPresentationStyle = .overFullScreen
         self.present(providerTab, animated: true) {
-         let appdeletgate = (UIApplication.shared.delegate) as! AppDelegate
-          appdeletgate.window?.rootViewController = providerTab
+            let appdeletgate = (UIApplication.shared.delegate) as! AppDelegate
+            appdeletgate.window?.rootViewController = providerTab
+           self.navigationController?.removeFromParent()
         }
     }
     
@@ -204,7 +217,6 @@ class ClientProfileController: UIViewController {
         case .history:
             getPastAppointments()
         case .upcoming:
-            
             getUpcomingAppointments()
         }
     }
@@ -228,7 +240,6 @@ class ClientProfileController: UIViewController {
             noBookingView.noBookingLabel.text = "No current appointments yet."
             tableView.backgroundView?.isHidden = false
         } else {
-            
             tableView.backgroundView?.isHidden = true
         }
     }
@@ -276,7 +287,7 @@ class ClientProfileController: UIViewController {
                 self?.authService.signOut()
                 self?.presentLoginViewController()
             },{ [weak self] becomeProvider in
-               let storyboard = UIStoryboard.init(name: "JoinProvidersForm", bundle: nil)
+                let storyboard = UIStoryboard.init(name: "JoinProvidersForm", bundle: nil)
                 let formController = storyboard.instantiateViewController(withIdentifier: "FormVC") as! FormViewController
                 formController.authService = self?.authService ?? AuthService()
                 self?.present(formController, animated: true)
@@ -380,13 +391,13 @@ extension ClientProfileController: AppointmentNotificationDelegate {
         case "pending":
             self.customNotification.notificationMessage.textColor = #colorLiteral(red: 1, green: 0.6825594306, blue: 0, alpha: 1)
             self.customNotification.notificationMessage.text = "Appointment Booked!"
-          customNotificationPop()
+            customNotificationPop()
         case "inProgress":
             self.customNotification.notificationMessage.textColor = #colorLiteral(red: 1, green: 0.6825594306, blue: 0, alpha: 1)
             self.customNotification.notificationMessage.text = "Appointment confirmed!"
             customNotificationPop()
         case "completed":
-           leaveReview()
+            leaveReview()
         case "canceled":
             self.customNotification.notificationMessage.textColor = .red
             self.customNotification.notificationMessage.text = "Appointment canceled"
@@ -418,9 +429,9 @@ extension ClientProfileController: AppointmentNotificationDelegate {
         guard let review = leaveReviewNotification.reviewTextView.text, let provider = providerToReview, let rating = leaveReviewNotification.rating,let reviewer = stylistUser, !review.isEmpty else {
             return
         }
-       var value = 5.0
+        var value = 5.0
         rating.didFinishTouchingCosmos = { captureRating in
-          value = captureRating
+            value = captureRating
         }
         let reviewToSet = Reviews(reviewerId: reviewer.userId,
                                   description: review,
@@ -436,17 +447,14 @@ extension ClientProfileController: AppointmentNotificationDelegate {
                 self.showAlert(title: "", message: "Review has been posted", actionTitle: "OK")
             }
         }
-       leaveReviewNotification.removeFromSuperview()
+        leaveReviewNotification.removeFromSuperview()
     }
 }
 
 extension ClientProfileController: UITextViewDelegate {
     @objc func keyBoardWillChange(notification: Notification) {
-//        guard let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
-//            return
-//        }
         if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
-              view.frame.origin.y = -130
+            view.frame.origin.y = -130
         } else {
             view.frame.origin.y = 0
         }

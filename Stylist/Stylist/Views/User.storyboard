@@ -671,6 +671,7 @@
                                             <subviews>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IeW-tF-F7W">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="642.5"/>
+                                                    <color key="backgroundColor" red="0.174853128" green="0.2225734221" blue="0.3657343045" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </scrollView>
                                             </subviews>
                                             <constraints>
@@ -698,7 +699,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Fy4-UH-eFA" id="Ju4-RW-BAS"/>
-                        <outlet property="scrollView" destination="IeW-tF-F7W" id="VRK-Qa-7dN"/>
+                        <outlet property="scrollViews" destination="IeW-tF-F7W" id="VRK-Qa-7dN"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LTI-tf-tAW" userLabel="First Responder" sceneMemberID="firstResponder"/>

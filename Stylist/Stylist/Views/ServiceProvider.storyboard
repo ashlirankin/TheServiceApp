@@ -59,7 +59,7 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n4A-Ug-baz" customClass="CosmosView" customModule="Cosmos">
+                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n4A-Ug-baz" customClass="CosmosView" customModule="Cosmos">
                                             <rect key="frame" x="264" y="108.5" width="120" height="20"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <userDefinedRuntimeAttributes>
@@ -401,7 +401,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xxV-Zn-aCs">
-                                <rect key="frame" x="20" y="74" width="50" height="50"/>
+                                <rect key="frame" x="20" y="52" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="cUT-L4-At0"/>
                                     <constraint firstAttribute="width" constant="50" id="fJ6-9u-bGC"/>
@@ -493,7 +493,7 @@
                             <constraint firstItem="LT7-ni-CI2" firstAttribute="centerX" secondItem="Qca-be-40z" secondAttribute="centerX" id="JVa-kt-L27"/>
                             <constraint firstItem="VZe-ZS-fXG" firstAttribute="centerY" secondItem="zUU-BA-f0Y" secondAttribute="centerY" id="K7n-wq-9rh"/>
                             <constraint firstItem="zUU-BA-f0Y" firstAttribute="leading" secondItem="l0n-rs-UQf" secondAttribute="leading" constant="50" id="M0n-uW-DYt"/>
-                            <constraint firstItem="xxV-Zn-aCs" firstAttribute="top" secondItem="l0n-rs-UQf" secondAttribute="top" constant="30" id="MWp-9C-KKS"/>
+                            <constraint firstItem="xxV-Zn-aCs" firstAttribute="top" secondItem="l0n-rs-UQf" secondAttribute="top" constant="8" id="MWp-9C-KKS"/>
                             <constraint firstItem="wyW-Ek-PVN" firstAttribute="centerX" secondItem="VZe-ZS-fXG" secondAttribute="centerX" id="NfS-hk-hj8"/>
                             <constraint firstItem="xxV-Zn-aCs" firstAttribute="leading" secondItem="l0n-rs-UQf" secondAttribute="leading" constant="20" id="OZn-Ma-rbS"/>
                             <constraint firstItem="Mgl-Eh-kSr" firstAttribute="top" secondItem="l0n-rs-UQf" secondAttribute="top" constant="50" id="QlH-on-Rzq"/>

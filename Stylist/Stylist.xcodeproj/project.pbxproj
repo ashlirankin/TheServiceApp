@@ -34,6 +34,8 @@
 		096A172622C67FEA00FF9730 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096A172522C67FE900FF9730 /* Form.swift */; };
 		098E826B2260CE5C0023E41B /* PortfolioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 098E826A2260CE5C0023E41B /* PortfolioCell.xib */; };
 		098E826D2260CE8E0023E41B /* PortfolioCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098E826C2260CE8E0023E41B /* PortfolioCollectionViewCell.swift */; };
+		0993E04322D40415004B26B5 /* DKImagePickerController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0993E04222D40415004B26B5 /* DKImagePickerController.framework */; };
+		0993E04522D404D1004B26B5 /* SDWebImageFLPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0993E04422D404D1004B26B5 /* SDWebImageFLPlugin.framework */; };
 		09994A9122CAC17A00024384 /* FormSent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09994A9022CAC17A00024384 /* FormSent.xib */; };
 		09994A9322CBBF0200024384 /* SentForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09994A9222CBBF0200024384 /* SentForm.swift */; };
 		099B0C13226648F300474066 /* DiscoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099B0C12226648F300474066 /* DiscoverCollectionViewCell.swift */; };
@@ -156,6 +158,8 @@
 		096A172522C67FE900FF9730 /* Form.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Form.swift; sourceTree = "<group>"; };
 		098E826A2260CE5C0023E41B /* PortfolioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PortfolioCell.xib; sourceTree = "<group>"; };
 		098E826C2260CE8E0023E41B /* PortfolioCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioCollectionViewCell.swift; sourceTree = "<group>"; };
+		0993E04222D40415004B26B5 /* DKImagePickerController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DKImagePickerController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0993E04422D404D1004B26B5 /* SDWebImageFLPlugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SDWebImageFLPlugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		09994A9022CAC17A00024384 /* FormSent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormSent.xib; sourceTree = "<group>"; };
 		09994A9222CBBF0200024384 /* SentForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentForm.swift; sourceTree = "<group>"; };
 		099B0C12226648F300474066 /* DiscoverCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -264,6 +268,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0993E04522D404D1004B26B5 /* SDWebImageFLPlugin.framework in Frameworks */,
+				0993E04322D40415004B26B5 /* DKImagePickerController.framework in Frameworks */,
 				0969A88B22BC2C08008A8B4F /* DKPhotoGallery.framework in Frameworks */,
 				0969A88922BC2BAF008A8B4F /* FLAnimatedImage.framework in Frameworks */,
 				8F8138881EF44484D5275681 /* Pods_Stylist.framework in Frameworks */,
@@ -324,6 +330,8 @@
 		22221D3EC18620EA7B2A0CEF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0993E04422D404D1004B26B5 /* SDWebImageFLPlugin.framework */,
+				0993E04222D40415004B26B5 /* DKImagePickerController.framework */,
 				0969A88A22BC2C08008A8B4F /* DKPhotoGallery.framework */,
 				0969A88822BC2BAF008A8B4F /* FLAnimatedImage.framework */,
 				D89AABB01908945DBC5625A6 /* Pods_Stylist.framework */,
