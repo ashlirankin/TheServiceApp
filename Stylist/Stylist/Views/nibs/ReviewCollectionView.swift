@@ -26,6 +26,9 @@ class ReviewCollectionView: UICollectionView {
     func commonInit() {
         Bundle.main.loadNibNamed("ReviewsCollectionView", owner: self, options: nil)
         addSubview(ReviewCV)
+        backgroundColor = #colorLiteral(red: 0.1619916558, green: 0.224360168, blue: 0.3768204153, alpha: 1)
         ReviewCV.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CollectionCell")
     }
 }
+
+

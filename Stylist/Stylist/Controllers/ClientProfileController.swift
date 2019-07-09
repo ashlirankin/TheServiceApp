@@ -118,6 +118,12 @@ class ClientProfileController: UIViewController {
             guard let viewControllers = navigationController?.viewControllers,
                 let index = viewControllers.firstIndex(of: self) else { return }
             navigationController?.viewControllers.remove(at: index)
+        let storyboard = UIStoryboard(name: "ServiceProvider", bundle: nil)
+        guard let providerTab = storyboard.instantiateViewController(withIdentifier: "ServiceTabBar") as? ServiceProviderTabBar else {return}
+            let appdeletgate = (UIApplication.shared.delegate) as! AppDelegate
+            appdeletgate.window?.rootViewController = providerTab
+        
+        
     }
     
     // MARK: Initial Setup
@@ -201,9 +207,8 @@ class ClientProfileController: UIViewController {
         self.present(providerTab, animated: true) {
             let appdeletgate = (UIApplication.shared.delegate) as! AppDelegate
             appdeletgate.window?.rootViewController = providerTab
+           self.navigationController?.removeFromParent()
         }
-        let appdeletgate = (UIApplication.shared.delegate) as! AppDelegate
-        appdeletgate.window?.rootViewController = providerTab
     }
     
     @IBAction func toggleButtons(_ sender: CircularButton) {

@@ -22,7 +22,7 @@ class ProviderDetailController: UITableViewController {
     let authservice = AuthService()
     var reviewsListener: ListenerRegistration!
     
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollViews: UIScrollView!
     lazy var providerDetailHeader = UserDetailView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 350))
   
     var provider: ServiceSideUser! {
@@ -64,8 +64,8 @@ class ProviderDetailController: UITableViewController {
         super.viewDidLoad()
         setupUI()
         setupCollectionView()
-        setupScrollviewController(scrollView: scrollView, views: featureViews)
-     
+        scrollViews.delegate = self
+        setupScrollviewController(scrollView: scrollViews, views: featureViews)
         loadSVFeatures()
         setupProvider()
         setFavoriteState()
@@ -203,12 +203,15 @@ class ProviderDetailController: UITableViewController {
         for (index,view) in featureViews.enumerated() {
             var contentRect = CGRect.zero
             contentRect = contentRect.union(view.frame)
-            scrollView.contentSize = contentRect.size
-            scrollView.contentSize.height = view.bounds.height
-            scrollView.addSubview(view)
-            scrollView.contentInsetAdjustmentBehavior = .never
+//            scrollView.delegate = self
+            scrollViews.contentSize = contentRect.size
+            scrollViews.contentSize.height = view.bounds.height
+            scrollViews.backgroundColor = #colorLiteral(red: 0.1619916558, green: 0.224360168, blue: 0.3768204153, alpha: 1)
+            scrollViews.addSubview(view)
+            scrollViews.contentInsetAdjustmentBehavior = .never
             view.frame.size.width = self.view.bounds.width
             view.frame.origin.x = CGFloat(index) * self.view.bounds.size.width
+            
         }
     }
     
@@ -281,6 +284,8 @@ extension ProviderDetailController: UICollectionViewDataSource {
             return portfolioCell
         }
     }
+    
+    
 }
 
 extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
@@ -320,9 +325,9 @@ extension ProviderDetailController: UICollectionViewDelegateFlowLayout {
             var contentRect = CGRect.zero
             let view = featureViews[indexPath.row]
             contentRect = contentRect.union(view.frame)
-             scrollView.contentSize = contentRect.size
-            scrollView.contentSize.height = view.bounds.height
-            scrollView.scrollRectToVisible(view.frame, animated: true)
+             scrollViews.contentSize = contentRect.size
+            scrollViews.contentSize.height = view.bounds.height
+            scrollViews.scrollRectToVisible(view.frame, animated: true)
             view.frame.size.width = self.view.bounds.width
             view.frame.origin.x = CGFloat(indexPath.row) * self.view.bounds.size.width
         }
@@ -337,4 +342,34 @@ extension ProviderDetailController: PortfolioImageDelegate {
         portfolioVC.detailImage = image
         self.present(portfolioVC, animated: true, completion: nil)
     }
+}
+
+
+extension ProviderDetailController {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(scrollView)
+        if scrollView == reviewCollectionView.ReviewCV {
+            if tableView.contentOffset.y >= 327 {
+            print("hello")
+            scrollView.isScrollEnabled = false
+            scrollViews.isScrollEnabled = false
+            scrollView.bounces = false
+            scrollView.gestureRecognizers = tableView.gestureRecognizers
+            tableView.isScrollEnabled = true
+        } else {
+            scrollView.isScrollEnabled = true
+            scrollView.bounces = true
+//            tableView.isScrollEnabled = false
+        }
+    }
+        
+        
+    }
+    
+    override func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+        if scrollView == reviewCollectionView.ReviewCV {
+            tableView.scrollsToTop = true
+        }
+    }
+    
 }
