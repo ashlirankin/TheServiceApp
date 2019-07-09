@@ -347,23 +347,11 @@ extension ProviderDetailController: PortfolioImageDelegate {
 
 extension ProviderDetailController {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView)
-        if scrollView == reviewCollectionView.ReviewCV {
-            if tableView.contentOffset.y >= 327 {
-            print("hello")
-            scrollView.isScrollEnabled = false
-            scrollViews.isScrollEnabled = false
-            scrollView.bounces = false
-            scrollView.gestureRecognizers = tableView.gestureRecognizers
-            tableView.isScrollEnabled = true
-        } else {
-            scrollView.isScrollEnabled = true
-            scrollView.bounces = true
-//            tableView.isScrollEnabled = false
+        if scrollView == reviewCollectionView.ReviewCV || scrollView == portfolioView.portfolioCollectionView {
+            if scrollView.contentOffset.y == 0 {
+                tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height), animated: true)
         }
     }
-        
-        
     }
     
     override func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
