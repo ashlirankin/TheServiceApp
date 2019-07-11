@@ -13,6 +13,9 @@
 		090862BD22848BD800C9CE5D /* LeaveReviewNotification.xib in Resources */ = {isa = PBXBuildFile; fileRef = 090862BC22848BD800C9CE5D /* LeaveReviewNotification.xib */; };
 		090862BF22848FE800C9CE5D /* LeaveReviewNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090862BE22848FE800C9CE5D /* LeaveReviewNotification.swift */; };
 		090EF6D4226FAA1C00AD19AA /* UserChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090EF6D3226FAA1C00AD19AA /* UserChoiceViewController.swift */; };
+		0910910322D5302D007B79CE /* CreatePortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0910910222D5302D007B79CE /* CreatePortfolioViewController.swift */; };
+		0910910522D533C2007B79CE /* CreatePortfolioCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0910910422D533C2007B79CE /* CreatePortfolioCollectionViewCell.swift */; };
+		0910910722D6E80C007B79CE /* CreateSecondCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0910910622D6E80C007B79CE /* CreateSecondCollectionViewCell.swift */; };
 		092EF39F2290E9F00091E3AB /* PortFolioNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 092EF39E2290E9F00091E3AB /* PortFolioNew.xib */; };
 		09397589227A085C0015E6FC /* PortfolioDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09397588227A085B0015E6FC /* PortfolioDetailViewController.swift */; };
 		093A6E8F2272097D003A4E4F /* ReviewsCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 093A6E8E2272097D003A4E4F /* ReviewsCollectionView.xib */; };
@@ -136,6 +139,9 @@
 		090862BC22848BD800C9CE5D /* LeaveReviewNotification.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveReviewNotification.xib; sourceTree = "<group>"; };
 		090862BE22848FE800C9CE5D /* LeaveReviewNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveReviewNotification.swift; sourceTree = "<group>"; };
 		090EF6D3226FAA1C00AD19AA /* UserChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChoiceViewController.swift; sourceTree = "<group>"; };
+		0910910222D5302D007B79CE /* CreatePortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePortfolioViewController.swift; sourceTree = "<group>"; };
+		0910910422D533C2007B79CE /* CreatePortfolioCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePortfolioCollectionViewCell.swift; sourceTree = "<group>"; };
+		0910910622D6E80C007B79CE /* CreateSecondCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSecondCollectionViewCell.swift; sourceTree = "<group>"; };
 		092EF39E2290E9F00091E3AB /* PortFolioNew.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PortFolioNew.xib; sourceTree = "<group>"; };
 		09397588227A085B0015E6FC /* PortfolioDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioDetailViewController.swift; sourceTree = "<group>"; };
 		093A6E8E2272097D003A4E4F /* ReviewsCollectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewsCollectionView.xib; sourceTree = "<group>"; };
@@ -181,11 +187,10 @@
 		09E35CCE2280AD49003BBD2A /* LocalCustomNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCustomNotification.swift; sourceTree = "<group>"; };
 		09E35CD12281D434003BBD2A /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+Extensions.swift"; path = "../Views/UIView+Extensions.swift"; sourceTree = "<group>"; };
 		26FA858D08C6AC46AEBAE072 /* Pods-StylistTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylistTests.release.xcconfig"; path = "Target Support Files/Pods-StylistTests/Pods-StylistTests.release.xcconfig"; sourceTree = "<group>"; };
-		2E056E5E2281DA600095B26D /* UpdatePortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePortfolioViewController.swift; sourceTree = "<group>"; };
 		2E07D947228084720078C65F /* ApplicationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationInfo.swift; sourceTree = "<group>"; };
 		2E07D949228097340078C65F /* PortfolioImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioImages.swift; sourceTree = "<group>"; };
 		2E23F196226E5DCA0037B9AA /* PaymentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
-		2E23F19A226E88A60037B9AA /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
+		2E23F19A226E88A60037B9AA /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardCollectionViewCell.swift; path = ../Views/CardCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E409BED2267C2AD00130CBA /* Appointments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointments.swift; sourceTree = "<group>"; };
 		2E409BEF2267DF0E00130CBA /* Payments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payments.storyboard; sourceTree = "<group>"; };
 		2E49A49D226F6677002B230E /* WalletTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WalletTableViewController.swift; path = "Client Files/WalletTableViewController.swift"; sourceTree = "<group>"; };
@@ -288,9 +293,12 @@
 				09481796225F9ACC0026C066 /* BookingTableViewCell.swift */,
 				098E826C2260CE8E0023E41B /* PortfolioCollectionViewCell.swift */,
 				D6FE75172265118A00B4A49A /* ProfessionCell.swift */,
+				2E23F19A226E88A60037B9AA /* CardCollectionViewCell.swift */,
 				095BF72C2264E68D00F416ED /* UserProfileTableViewCell.swift */,
 				099B0C12226648F300474066 /* DiscoverCollectionViewCell.swift */,
 				090374EA2270CA0D00B77B66 /* AppointmentCell.swift */,
+				0910910422D533C2007B79CE /* CreatePortfolioCollectionViewCell.swift */,
+				0910910622D6E80C007B79CE /* CreateSecondCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -421,7 +429,6 @@
 				2E90A6192261124A0016462C /* BookService.storyboard */,
 				45864F50225D0449005FDBD5 /* ReviewAndRatings.storyboard */,
 				2E409BEF2267DF0E00130CBA /* Payments.storyboard */,
-				2E23F19A226E88A60037B9AA /* CardCollectionViewCell.swift */,
 				2E7739BD22601267004C188A /* Entrance.storyboard */,
 				D6FE74E92261138600B4A49A /* FilterProviders.storyboard */,
 				0960D3D722BAF3F700B731E0 /* JoinProvidersForm.storyboard */,
@@ -446,7 +453,6 @@
 				2E9DD7DD2257F83900D74DD1 /* ServiceDetailViewController.swift */,
 				45864F52225D124A005FDBD5 /* RatingsAndReviewViewController.swift */,
 				094DF888225D2809001EA2FE /* ProviderDetailController.swift */,
-				2E056E5E2281DA600095B26D /* UpdatePortfolioViewController.swift */,
 				45864F59225FDD1D005FDBD5 /* ClientEditProfileController.swift */,
 				2E9DD7E72257FB2200D74DD1 /* ClientProfileController.swift */,
 				D6FE74EB22611A1B00B4A49A /* FilterProvidersController.swift */,
@@ -456,6 +462,7 @@
 				09397588227A085B0015E6FC /* PortfolioDetailViewController.swift */,
 				2E49A4A5226F89C6002B230E /* SummaryServicesCollectionViewCell.swift */,
 				0969A88622BC2686008A8B4F /* FormViewController.swift */,
+				0910910222D5302D007B79CE /* CreatePortfolioViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -740,6 +747,7 @@
 				2EBDDBD6225B999400583BC0 /* String+Date.swift in Sources */,
 				2EF103C82255A4A30030FBFF /* ServiceProvider.swift in Sources */,
 				099B0C13226648F300474066 /* DiscoverCollectionViewCell.swift in Sources */,
+				0910910522D533C2007B79CE /* CreatePortfolioCollectionViewCell.swift in Sources */,
 				2E49A4A9226FB46C002B230E /* OrderSummaryCollectionViewCell.swift in Sources */,
 				09DCD303225E4AB90090EE1F /* UIViewController+Extensions.swift in Sources */,
 				0969A88722BC2686008A8B4F /* FormViewController.swift in Sources */,
@@ -758,6 +766,7 @@
 				090374EB2270CA0D00B77B66 /* AppointmentCell.swift in Sources */,
 				2EF1039C2255314A0030FBFF /* AppDelegate.swift in Sources */,
 				2E90A61C226112620016462C /* BookingViewController.swift in Sources */,
+				0910910322D5302D007B79CE /* CreatePortfolioViewController.swift in Sources */,
 				09D8C3E822736F4F009A8BA9 /* NoBookingView.swift in Sources */,
 				D6CD41A02267B25B00F79DAA /* UserDefaultsKeys.swift in Sources */,
 				2EF103CF2255A4DB0030FBFF /* Reviews.swift in Sources */,
@@ -769,6 +778,7 @@
 				09994A9322CBBF0200024384 /* SentForm.swift in Sources */,
 				D6006938226FB86200DBB38F /* Array+Extensions.swift in Sources */,
 				2E9DD7DC2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift in Sources */,
+				0910910722D6E80C007B79CE /* CreateSecondCollectionViewCell.swift in Sources */,
 				094DF892225D492D001EA2FE /* ProviderDetailCustomCell.swift in Sources */,
 				09397589227A085C0015E6FC /* PortfolioDetailViewController.swift in Sources */,
 				D6B4BF6D225E384300F1E48C /* IBDesignableViews.swift in Sources */,

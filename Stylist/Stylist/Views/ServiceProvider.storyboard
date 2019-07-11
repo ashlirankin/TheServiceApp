@@ -59,7 +59,7 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n4A-Ug-baz" customClass="CosmosView" customModule="Cosmos">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n4A-Ug-baz" customClass="CosmosView" customModule="Cosmos">
                                             <rect key="frame" x="264" y="108.5" width="120" height="20"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <userDefinedRuntimeAttributes>
@@ -392,6 +392,135 @@
             </objects>
             <point key="canvasLocation" x="108.69565217391305" y="-389.0625"/>
         </scene>
+        <!--Create Portfolio View Controller-->
+        <scene sceneID="zB7-zv-VBY">
+            <objects>
+                <viewController storyboardIdentifier="CreatePortfolioVC" id="v6t-Oy-duy" customClass="CreatePortfolioViewController" customModule="Stylist" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WX0-cF-Kv3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="u5c-xc-byf">
+                                <rect key="frame" x="0.0" y="166.5" width="414" height="729.5"/>
+                                <color key="backgroundColor" red="0.174853128" green="0.2225734221" blue="0.3657343045" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="Ekg-0v-3FY">
+                                    <size key="itemSize" width="150" height="150"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="PhotoCell" id="pQI-62-PT3" customClass="CreatePortfolioCollectionViewCell" customModule="Stylist" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="0.0" width="150" height="150"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zUV-ou-9nS">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                    <state key="normal" image="SymbolPlus"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" red="0.38158982990000001" green="0.52590543030000003" blue="0.7294368148" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstItem="zUV-ou-9nS" firstAttribute="leading" secondItem="pQI-62-PT3" secondAttribute="leading" id="FX9-4d-Veb"/>
+                                            <constraint firstItem="zUV-ou-9nS" firstAttribute="top" secondItem="pQI-62-PT3" secondAttribute="top" id="JWt-Dg-uil"/>
+                                            <constraint firstAttribute="trailing" secondItem="zUV-ou-9nS" secondAttribute="trailing" id="nGn-aU-zBJ"/>
+                                            <constraint firstAttribute="bottom" secondItem="zUV-ou-9nS" secondAttribute="bottom" id="spK-Us-VaD"/>
+                                        </constraints>
+                                        <size key="customSize" width="150" height="150"/>
+                                        <connections>
+                                            <outlet property="photoButton" destination="zUV-ou-9nS" id="WHz-DL-1yk"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="PhotoCell2" id="Keg-2j-rJR" customClass="CreateSecondCollectionViewCell" customModule="Stylist" customModuleProvider="target">
+                                        <rect key="frame" x="244" y="0.0" width="150" height="150"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8lL-Np-cBN">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" red="0.38158982990000001" green="0.52590543030000003" blue="0.7294368148" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstItem="8lL-Np-cBN" firstAttribute="top" secondItem="Keg-2j-rJR" secondAttribute="top" id="956-MS-ui0"/>
+                                            <constraint firstItem="8lL-Np-cBN" firstAttribute="leading" secondItem="Keg-2j-rJR" secondAttribute="leading" id="MpW-kf-wEb"/>
+                                            <constraint firstAttribute="trailing" secondItem="8lL-Np-cBN" secondAttribute="trailing" id="dCs-6s-aY2"/>
+                                            <constraint firstAttribute="bottom" secondItem="8lL-Np-cBN" secondAttribute="bottom" id="hXR-ib-dm4"/>
+                                        </constraints>
+                                        <size key="customSize" width="150" height="150"/>
+                                        <connections>
+                                            <outlet property="cellImage" destination="8lL-Np-cBN" id="TTL-Md-g05"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKY-RH-fH0">
+                                <rect key="frame" x="156" y="124" width="102" height="34.5"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="30"/>
+                                <color key="textColor" red="0.1569241187" green="0.5672338053" blue="0.58288388319999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JjI-2w-7ZA" customClass="CircularButton" customModule="Stylist" customModuleProvider="target">
+                                <rect key="frame" x="294" y="776" width="100" height="100"/>
+                                <color key="backgroundColor" red="0.1569241187" green="0.5672338053" blue="0.58288388319999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="uuN-hs-oQH"/>
+                                    <constraint firstAttribute="height" constant="100" id="ypS-6T-He1"/>
+                                </constraints>
+                                <state key="normal" title="Upload">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="UploadButton:" destination="v6t-Oy-duy" eventType="touchUpInside" id="fLO-gi-9Dq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2do-wl-Bh8" customClass="CircularButton" customModule="Stylist" customModuleProvider="target">
+                                <rect key="frame" x="20" y="64" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="5X2-po-6nB"/>
+                                    <constraint firstAttribute="width" constant="50" id="lqJ-cr-tv1"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="icons8-go-back-50"/>
+                                <connections>
+                                    <action selector="BackButton:" destination="v6t-Oy-duy" eventType="touchUpInside" id="CHc-cx-78g"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.174853128" green="0.2225734221" blue="0.3657343045" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="2do-wl-Bh8" firstAttribute="leading" secondItem="RuT-VG-zAX" secondAttribute="leading" constant="20" id="6aB-hy-qCm"/>
+                            <constraint firstItem="u5c-xc-byf" firstAttribute="trailing" secondItem="RuT-VG-zAX" secondAttribute="trailing" id="DmZ-nV-WZp"/>
+                            <constraint firstAttribute="bottom" secondItem="JjI-2w-7ZA" secondAttribute="bottom" constant="20" id="FB9-rV-AiJ"/>
+                            <constraint firstItem="bKY-RH-fH0" firstAttribute="top" secondItem="RuT-VG-zAX" secondAttribute="top" constant="80" id="S1A-t9-Wnw"/>
+                            <constraint firstItem="u5c-xc-byf" firstAttribute="leading" secondItem="RuT-VG-zAX" secondAttribute="leading" id="Vex-3Y-qo8"/>
+                            <constraint firstItem="u5c-xc-byf" firstAttribute="top" secondItem="bKY-RH-fH0" secondAttribute="bottom" constant="8" id="XmM-9U-T8Q"/>
+                            <constraint firstItem="RuT-VG-zAX" firstAttribute="trailing" secondItem="JjI-2w-7ZA" secondAttribute="trailing" constant="20" id="YNQ-z2-z6Q"/>
+                            <constraint firstItem="bKY-RH-fH0" firstAttribute="centerX" secondItem="RuT-VG-zAX" secondAttribute="centerX" id="n34-5r-k9B"/>
+                            <constraint firstAttribute="bottom" secondItem="u5c-xc-byf" secondAttribute="bottom" id="qzK-sF-exb"/>
+                            <constraint firstItem="2do-wl-Bh8" firstAttribute="top" secondItem="RuT-VG-zAX" secondAttribute="top" constant="20" id="ww0-qb-TGG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="RuT-VG-zAX"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="u5c-xc-byf" id="q2d-nH-8H3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rm7-dC-qfS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-728.98550724637687" y="562.5"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="HRE-cd-cLM">
             <objects>
@@ -437,6 +566,9 @@
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="v6t-Oy-duy" kind="presentation" identifier="photoPage" id="YNd-GI-tIe"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZe-ZS-fXG">
                                 <rect key="frame" x="251" y="410.5" width="113" height="113"/>
@@ -582,6 +714,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="SymbolPlus" width="300" height="300"/>
         <image name="icons8-barbershop-32" width="32" height="32"/>
         <image name="icons8-change-user-30" width="30" height="30"/>
         <image name="icons8-compose-50" width="50" height="50"/>
