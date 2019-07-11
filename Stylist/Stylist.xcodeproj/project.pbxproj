@@ -15,6 +15,7 @@
 		090EF6D4226FAA1C00AD19AA /* UserChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090EF6D3226FAA1C00AD19AA /* UserChoiceViewController.swift */; };
 		0910910322D5302D007B79CE /* CreatePortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0910910222D5302D007B79CE /* CreatePortfolioViewController.swift */; };
 		0910910522D533C2007B79CE /* CreatePortfolioCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0910910422D533C2007B79CE /* CreatePortfolioCollectionViewCell.swift */; };
+		0910910722D6E80C007B79CE /* CreateSecondCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0910910622D6E80C007B79CE /* CreateSecondCollectionViewCell.swift */; };
 		092EF39F2290E9F00091E3AB /* PortFolioNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 092EF39E2290E9F00091E3AB /* PortFolioNew.xib */; };
 		09397589227A085C0015E6FC /* PortfolioDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09397588227A085B0015E6FC /* PortfolioDetailViewController.swift */; };
 		093A6E8F2272097D003A4E4F /* ReviewsCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 093A6E8E2272097D003A4E4F /* ReviewsCollectionView.xib */; };
@@ -140,6 +141,7 @@
 		090EF6D3226FAA1C00AD19AA /* UserChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChoiceViewController.swift; sourceTree = "<group>"; };
 		0910910222D5302D007B79CE /* CreatePortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePortfolioViewController.swift; sourceTree = "<group>"; };
 		0910910422D533C2007B79CE /* CreatePortfolioCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePortfolioCollectionViewCell.swift; sourceTree = "<group>"; };
+		0910910622D6E80C007B79CE /* CreateSecondCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSecondCollectionViewCell.swift; sourceTree = "<group>"; };
 		092EF39E2290E9F00091E3AB /* PortFolioNew.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PortFolioNew.xib; sourceTree = "<group>"; };
 		09397588227A085B0015E6FC /* PortfolioDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioDetailViewController.swift; sourceTree = "<group>"; };
 		093A6E8E2272097D003A4E4F /* ReviewsCollectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewsCollectionView.xib; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				099B0C12226648F300474066 /* DiscoverCollectionViewCell.swift */,
 				090374EA2270CA0D00B77B66 /* AppointmentCell.swift */,
 				0910910422D533C2007B79CE /* CreatePortfolioCollectionViewCell.swift */,
+				0910910622D6E80C007B79CE /* CreateSecondCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -775,6 +778,7 @@
 				09994A9322CBBF0200024384 /* SentForm.swift in Sources */,
 				D6006938226FB86200DBB38F /* Array+Extensions.swift in Sources */,
 				2E9DD7DC2257F80B00D74DD1 /* ServiceUpcomingTableViewController.swift in Sources */,
+				0910910722D6E80C007B79CE /* CreateSecondCollectionViewCell.swift in Sources */,
 				094DF892225D492D001EA2FE /* ProviderDetailCustomCell.swift in Sources */,
 				09397589227A085C0015E6FC /* PortfolioDetailViewController.swift in Sources */,
 				D6B4BF6D225E384300F1E48C /* IBDesignableViews.swift in Sources */,

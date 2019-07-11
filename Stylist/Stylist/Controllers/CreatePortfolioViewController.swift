@@ -9,15 +9,19 @@
 import UIKit
 import DKImagePickerController
 import DKCamera
+import DKPhotoGallery
 
 
 class CreatePortfolioViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
-    
+    lazy var pickerController: DKImagePickerController = {
+        var newPicker = DKImagePickerController()
+        return newPicker
+    }()
     lazy var imagePicker: UIImagePickerController = {
         let imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true
-            imagePicker.sourceType = .camera
+        //        imagePicker.sourceType = .both
         imagePicker.delegate = self
         return imagePicker
     }()
@@ -33,8 +37,8 @@ class CreatePortfolioViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
-//        collectionView.delegate = self
-
+        //        collectionView.delegate = self
+        
     }
     
     init(images: [UIImage]) {
@@ -43,12 +47,12 @@ class CreatePortfolioViewController: UIViewController {
     }
     
     required init?(coder aDecoder: NSCoder) {
-       super.init(coder: aDecoder)
+        super.init(coder: aDecoder)
     }
     
     
     @IBAction func BackButton(_ sender: CircularButton) {
-       dismiss(animated: true)
+        dismiss(animated: true)
     }
     
     
@@ -59,48 +63,45 @@ class CreatePortfolioViewController: UIViewController {
 
 extension CreatePortfolioViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if images.isEmpty {
-            return 1
-        } else {
-            return 1 + images.count
-        }
+        return 1 + images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.row >= 1 {
+        switch indexPath.row {
+        case 0:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as? CreatePortfolioCollectionViewCell else { return UICollectionViewCell() }
-            let image = images[indexPath.row]
-            cell.photoButton.setImage(image, for: .normal)
-            cell.photoButton.isEnabled = false
-            return cell
-        } else  {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as? CreatePortfolioCollectionViewCell else { return UICollectionViewCell() }
+            cell.photoButton.addTarget(self, action: #selector(showImagepicker), for: .touchDragInside)
             cell.photoButton.isEnabled = true
+            cell.layer.cornerRadius = 10
+            return cell
+        default:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell2", for: indexPath) as? CreateSecondCollectionViewCell else { return UICollectionViewCell() }
+             let image = images[indexPath.row - 1]
+            cell.cellImage.image = image
+            cell.layer.cornerRadius = 10
             return cell
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-           let cell = collectionView.cellForItem(at: indexPath) as? CreatePortfolioCollectionViewCell
-            cell?.photoButton.addTarget(self, action: #selector(showImagepicker), for: .touchDragInside)
-        }
+        
     }
     
     @objc private func showImagepicker() {
-        if imagePicker.
-      present(imagePicker, animated: true)
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true)
     }
-    
-    
 }
 
 extension CreatePortfolioViewController: UICollectionViewDelegateFlowLayout {
     
 }
 
-extension CreatePortfolioViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension CreatePortfolioViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            images.append(image)
+        }
         
+        dismiss(animated: true)
     }
+    
 }
+
