@@ -32,13 +32,9 @@
 		0960D3D822BAF3F700B731E0 /* JoinProvidersForm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0960D3D722BAF3F700B731E0 /* JoinProvidersForm.storyboard */; };
 		0969A88522BC208E008A8B4F /* LicenceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0969A88422BC208E008A8B4F /* LicenceInfo.swift */; };
 		0969A88722BC2686008A8B4F /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0969A88622BC2686008A8B4F /* FormViewController.swift */; };
-		0969A88922BC2BAF008A8B4F /* FLAnimatedImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0969A88822BC2BAF008A8B4F /* FLAnimatedImage.framework */; };
-		0969A88B22BC2C08008A8B4F /* DKPhotoGallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0969A88A22BC2C08008A8B4F /* DKPhotoGallery.framework */; };
 		096A172622C67FEA00FF9730 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096A172522C67FE900FF9730 /* Form.swift */; };
 		098E826B2260CE5C0023E41B /* PortfolioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 098E826A2260CE5C0023E41B /* PortfolioCell.xib */; };
 		098E826D2260CE8E0023E41B /* PortfolioCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098E826C2260CE8E0023E41B /* PortfolioCollectionViewCell.swift */; };
-		0993E04322D40415004B26B5 /* DKImagePickerController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0993E04222D40415004B26B5 /* DKImagePickerController.framework */; };
-		0993E04522D404D1004B26B5 /* SDWebImageFLPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0993E04422D404D1004B26B5 /* SDWebImageFLPlugin.framework */; };
 		09994A9122CAC17A00024384 /* FormSent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09994A9022CAC17A00024384 /* FormSent.xib */; };
 		09994A9322CBBF0200024384 /* SentForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09994A9222CBBF0200024384 /* SentForm.swift */; };
 		099B0C13226648F300474066 /* DiscoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099B0C12226648F300474066 /* DiscoverCollectionViewCell.swift */; };
@@ -149,6 +145,11 @@
 		093A6E9222720BFB003A4E4F /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		093A6E9322720BFB003A4E4F /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		093FA84C227A51EA00E06EEF /* AppointmentNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentNotification.swift; sourceTree = "<group>"; };
+		0942921322D7E9F500FF3144 /* CropViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CropViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0942921522D7EA5E00FF3144 /* Braintree.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Braintree.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0942921722D7EA9600FF3144 /* Braintree.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Braintree.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0942921922D7EB0F00FF3144 /* DKCamera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DKCamera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0942921B22D7EB7F00FF3144 /* InterfaceBuilderKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InterfaceBuilderKit.framework; path = Library/Frameworks/InterfaceBuilderKit.framework; sourceTree = DEVELOPER_DIR; };
 		09481796225F9ACC0026C066 /* BookingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTableViewCell.swift; sourceTree = "<group>"; };
 		09481798225FC6BE0026C066 /* Entrance.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Entrance.storyboard; sourceTree = "<group>"; };
 		094DF888225D2809001EA2FE /* ProviderDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderDetailController.swift; sourceTree = "<group>"; };
@@ -273,10 +274,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0993E04522D404D1004B26B5 /* SDWebImageFLPlugin.framework in Frameworks */,
-				0993E04322D40415004B26B5 /* DKImagePickerController.framework in Frameworks */,
-				0969A88B22BC2C08008A8B4F /* DKPhotoGallery.framework in Frameworks */,
-				0969A88922BC2BAF008A8B4F /* FLAnimatedImage.framework in Frameworks */,
 				8F8138881EF44484D5275681 /* Pods_Stylist.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,6 +335,11 @@
 		22221D3EC18620EA7B2A0CEF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0942921B22D7EB7F00FF3144 /* InterfaceBuilderKit.framework */,
+				0942921922D7EB0F00FF3144 /* DKCamera.framework */,
+				0942921722D7EA9600FF3144 /* Braintree.framework */,
+				0942921522D7EA5E00FF3144 /* Braintree.framework */,
+				0942921322D7E9F500FF3144 /* CropViewController.framework */,
 				0993E04422D404D1004B26B5 /* SDWebImageFLPlugin.framework */,
 				0993E04222D40415004B26B5 /* DKImagePickerController.framework */,
 				0969A88A22BC2C08008A8B4F /* DKPhotoGallery.framework */,
@@ -995,7 +997,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = AVC7FB3M8N;
 				INFOPLIST_FILE = Stylist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1014,7 +1016,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = AVC7FB3M8N;
 				INFOPLIST_FILE = Stylist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
