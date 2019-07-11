@@ -11,8 +11,6 @@ def stylist_pods
   pod 'Toucan'
   pod 'Kingfisher'
   pod 'Cosmos'
- pod 'Braintree'
- pod 'DKImagePickerController'
 
 end
 

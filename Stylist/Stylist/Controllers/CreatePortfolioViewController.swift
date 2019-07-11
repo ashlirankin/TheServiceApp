@@ -7,21 +7,14 @@
 //
 
 import UIKit
-import DKImagePickerController
-import DKCamera
-import DKPhotoGallery
+
 
 
 class CreatePortfolioViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
-    lazy var pickerController: DKImagePickerController = {
-        var newPicker = DKImagePickerController()
-        return newPicker
-    }()
     lazy var imagePicker: UIImagePickerController = {
         let imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true
-        //        imagePicker.sourceType = .both
         imagePicker.delegate = self
         return imagePicker
     }()
@@ -37,7 +30,6 @@ class CreatePortfolioViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
-        //        collectionView.delegate = self
         
     }
     
@@ -82,6 +74,11 @@ extension CreatePortfolioViewController: UICollectionViewDataSource {
             return cell
         }
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard indexPath.row == 0 else { return }
+        showImagepicker()
     }
     
     @objc private func showImagepicker() {
