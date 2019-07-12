@@ -23,6 +23,7 @@
 		093A6E9422720BFB003A4E4F /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093A6E9222720BFB003A4E4F /* CollectionViewCell.swift */; };
 		093A6E9522720BFB003A4E4F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 093A6E9322720BFB003A4E4F /* CollectionViewCell.xib */; };
 		093FA84D227A51EA00E06EEF /* AppointmentNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093FA84C227A51EA00E06EEF /* AppointmentNotification.swift */; };
+		0942921E22D83A8300FF3144 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0942921D22D83A8300FF3144 /* FirebaseCore.framework */; };
 		09481797225F9ACC0026C066 /* BookingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09481796225F9ACC0026C066 /* BookingTableViewCell.swift */; };
 		094DF889225D2809001EA2FE /* ProviderDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094DF888225D2809001EA2FE /* ProviderDetailController.swift */; };
 		094DF88B225D2835001EA2FE /* UserDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 094DF88A225D2835001EA2FE /* UserDetailHeader.xib */; };
@@ -106,7 +107,6 @@
 		45864F51225D0449005FDBD5 /* ReviewAndRatings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45864F50225D0449005FDBD5 /* ReviewAndRatings.storyboard */; };
 		45864F53225D124A005FDBD5 /* RatingsAndReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45864F52225D124A005FDBD5 /* RatingsAndReviewViewController.swift */; };
 		45864F5A225FDD1D005FDBD5 /* ClientEditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45864F59225FDD1D005FDBD5 /* ClientEditProfileController.swift */; };
-		8F8138881EF44484D5275681 /* Pods_Stylist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D89AABB01908945DBC5625A6 /* Pods_Stylist.framework */; };
 		D6006938226FB86200DBB38F /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6006937226FB86200DBB38F /* Array+Extensions.swift */; };
 		D6B4BF6D225E384300F1E48C /* IBDesignableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4BF6C225E384300F1E48C /* IBDesignableViews.swift */; };
 		D6CD419A22664C6000F79DAA /* ServicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD419922664C6000F79DAA /* ServicesCell.swift */; };
@@ -150,6 +150,7 @@
 		0942921722D7EA9600FF3144 /* Braintree.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Braintree.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0942921922D7EB0F00FF3144 /* DKCamera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DKCamera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0942921B22D7EB7F00FF3144 /* InterfaceBuilderKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InterfaceBuilderKit.framework; path = Library/Frameworks/InterfaceBuilderKit.framework; sourceTree = DEVELOPER_DIR; };
+		0942921D22D83A8300FF3144 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		09481796225F9ACC0026C066 /* BookingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTableViewCell.swift; sourceTree = "<group>"; };
 		09481798225FC6BE0026C066 /* Entrance.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Entrance.storyboard; sourceTree = "<group>"; };
 		094DF888225D2809001EA2FE /* ProviderDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderDetailController.swift; sourceTree = "<group>"; };
@@ -274,7 +275,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F8138881EF44484D5275681 /* Pods_Stylist.framework in Frameworks */,
+				0942921E22D83A8300FF3144 /* FirebaseCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +336,7 @@
 		22221D3EC18620EA7B2A0CEF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0942921D22D83A8300FF3144 /* FirebaseCore.framework */,
 				0942921B22D7EB7F00FF3144 /* InterfaceBuilderKit.framework */,
 				0942921922D7EB0F00FF3144 /* DKCamera.framework */,
 				0942921722D7EA9600FF3144 /* Braintree.framework */,
@@ -997,7 +999,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AVC7FB3M8N;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Stylist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1016,7 +1018,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AVC7FB3M8N;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Stylist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
