@@ -380,7 +380,7 @@ final class DBService {
                     print(error)
                 } else if let foundform = snapshot {
                     if let match = foundform.documents.first {
-                       let newForm = Form(dict: match.data())
+                        let newForm = Form(dict: match.data())
                         if newForm.userID == id {
                             completionHandler(true)
                         } else {
@@ -389,9 +389,25 @@ final class DBService {
                     } else {
                         completionHandler(false)
                     }
+                }
         }
     }
-}
+    
+    
+    static func upLoadPortfolio(iD: String, images: PortfolioImages, completionHandler: @escaping(Error?) -> Void) {
+        DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
+            .document(iD)
+            .collection(PortfolioCollectionKeys.portfolio)
+            .addDocument(data: ["images" : images,
+                                "documentID" : images.documentId
+                ], completion: { (error) in
+                    if let error = error {
+                        completionHandler(error)
+                    } else {
+                        completionHandler(nil)
+                    }
+            })
+    }
 }
 
 

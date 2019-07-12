@@ -12,6 +12,7 @@ import XCTest
 
 import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 
 class FirebaseTests: XCTestCase {
   
@@ -224,8 +225,24 @@ We arrived at Laguna Hotel yesterday, hotel is the wrong word more like Laguna N
     wait(for: [exp], timeout: 3.0)
     }
     
-    
-  
+    func testUploadPortfolio() {
+        let images = ["https://firebasestorage.googleapis.com/v0/b/stylis-3d305.appspot.com/o/images%2Fportfolio%2FIMG_9619.jpg?alt=media&token=8d5c4d58-cb06-40fc-9b16-050a2a0bcaf3", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRap1okC76yklPqKillVjtEnK4cbwFvTtRvGGlk1I8XJVIj2A4t_Q"]
+        let collection = "serviceProvider"
+        let userID = "73UOTCwvfmOGzVWsBHku9WI3U7T2"
+    let exp = expectation(description: "can upload photos")
+    DBService.firestoreDB.collection(collection)
+        .document(userID)
+        .collection("portfolio")
+        .document("xGJeL7kbtKdGI9BPStaY")
+        .updateData(["images" : images]) { (error) in
+            if let error = error {
+                XCTFail("test failed. reason : \(error)")
+            } else {
+                exp.fulfill()
+            }
+        }
+         wait(for: [exp], timeout: 3.0)
+    }
   }
 
   
