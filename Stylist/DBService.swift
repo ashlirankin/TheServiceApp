@@ -398,7 +398,7 @@ final class DBService {
         DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
             .document(iD)
             .collection(PortfolioCollectionKeys.portfolio)
-            .addDocument(data: ["images" : images,
+            .addDocument(data: ["images" : images.images,
                                 "documentID" : images.documentId
                 ], completion: { (error) in
                     if let error = error {

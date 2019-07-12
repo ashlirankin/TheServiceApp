@@ -7,8 +7,8 @@
 //
 
 import UIKit
-
-
+import Kingfisher
+import Toucan
 
 class CreatePortfolioViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
@@ -18,6 +18,15 @@ class CreatePortfolioViewController: UIViewController {
         imagePicker.delegate = self
         return imagePicker
     }()
+    var authService =  AuthService()
+    
+    var portfolioImages = [String]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
     
     var images = [UIImage]() {
         didSet {
@@ -30,7 +39,25 @@ class CreatePortfolioViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
-        
+        setPhotoData()
+    }
+    
+    func setPhotoData() {
+        if let currentUser = authService.getCurrentUser() {
+            DBService.getPortfolioImages(providerId: currentUser.uid) { (error, cloudImages) in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else if let cloudImages = cloudImages {
+                    let _ = cloudImages.images.map {
+                        let Downloadedimage = UIImageView()
+                        Downloadedimage.kf.setImage(with: URL(string: $0))
+                        if let image = Downloadedimage.image {
+                            self.images.append(image)
+                        }
+                    }
+                }
+            }
+        }
     }
     
     init(images: [UIImage]) {
@@ -49,7 +76,30 @@ class CreatePortfolioViewController: UIViewController {
     
     
     @IBAction func UploadButton(_ sender: CircularButton) {
-        print("OMG IS HAPPENING")
+        guard images.count <= 5, let currentUser = authService.getCurrentUser() else {
+            return
+        }
+        for image in images {
+            guard let resizedImage = Toucan.Resize.resizeImage(image, size: CGSize(width: 300, height: 300)) else { return }
+            if let imageData = resizedImage.jpegData(compressionQuality: 1.0) {
+                StorageService.postImage(imageData: imageData, imageName: "portfolio/\(currentUser.uid)") { (error, Photolinks) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else if let photoLinks = Photolinks {
+                        self.portfolioImages.append(photoLinks.absoluteString)
+                        let id =  DBService.generateDocumentId
+                        let newPortforlio = PortfolioImages(documentId: id, images: self.portfolioImages)
+                        DBService.upLoadPortfolio(iD: currentUser.uid, images: newPortforlio) { (error) in
+                            if let error = error {
+                                print(error)
+                            } else {
+                                self.showAlert(title: nil, message: "Photos have been uploaded", actionTitle: "OK")
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -68,7 +118,7 @@ extension CreatePortfolioViewController: UICollectionViewDataSource {
             return cell
         default:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell2", for: indexPath) as? CreateSecondCollectionViewCell else { return UICollectionViewCell() }
-             let image = images[indexPath.row - 1]
+            let image = images[indexPath.row - 1]
             cell.cellImage.image = image
             cell.layer.cornerRadius = 10
             return cell
@@ -82,6 +132,10 @@ extension CreatePortfolioViewController: UICollectionViewDataSource {
     }
     
     @objc private func showImagepicker() {
+        guard images.count <= 5 else {
+            showAlert(title: "TOO MANY PHOTOS", message: "can only upload 6 photos max", actionTitle: "try again")
+            return
+        }
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true)
     }
