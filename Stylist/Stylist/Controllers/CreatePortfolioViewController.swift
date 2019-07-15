@@ -43,6 +43,7 @@ class CreatePortfolioViewController: UIViewController {
     }
     
     func setPhotoData() {
+        images.removeAll()
         if let currentUser = authService.getCurrentUser() {
             DBService.getPortfolioImages(providerId: currentUser.uid) { (error, cloudImages) in
                 if let error = error {
@@ -100,6 +101,7 @@ class CreatePortfolioViewController: UIViewController {
                 }
             }
         }
+        setPhotoData()
     }
 }
 
