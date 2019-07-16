@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
-class DiscoverSecondViewController: UIViewController {
+class DiscoverViewController: UIViewController {
     let authservice = AuthService()
     @IBOutlet weak var collectionView: UICollectionView!
     var listener: ListenerRegistration!
@@ -231,7 +231,7 @@ class DiscoverSecondViewController: UIViewController {
 }
 
 
-extension DiscoverSecondViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension DiscoverViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return sortedServiceProviders.count
     }
