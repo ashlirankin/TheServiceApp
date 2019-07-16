@@ -10,7 +10,7 @@ import Foundation
 
 struct PortfolioImages {
   let documentId:String
-  let images: [String]
+   public let images: [String]
   
   init(documentId:String,images:[String]) {
     self.documentId = documentId

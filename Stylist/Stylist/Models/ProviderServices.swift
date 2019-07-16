@@ -9,7 +9,6 @@
 import Foundation
 
 struct ProviderServices: Equatable {
-  
   let serviceId: String
   let price:Int
   let service:String

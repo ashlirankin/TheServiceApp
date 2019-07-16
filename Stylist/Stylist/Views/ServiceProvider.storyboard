@@ -13,7 +13,7 @@
         <!--Bookings-->
         <scene sceneID="yBU-ck-2T7">
             <objects>
-                <tableViewController id="uZ7-XR-MQr" customClass="ServiceUpcomingTableViewController" customModule="Stylist" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="uZ7-XR-MQr" customClass="upcomingAppointmentsViewController" customModule="Stylist" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cbK-0D-9y6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -59,7 +59,7 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n4A-Ug-baz" customClass="CosmosView" customModule="Cosmos">
+                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n4A-Ug-baz" customClass="CosmosView" customModule="Cosmos">
                                             <rect key="frame" x="264" y="108.5" width="120" height="20"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <userDefinedRuntimeAttributes>
