@@ -18,7 +18,7 @@ class DiscoverViewController: UIViewController {
     var favorites = [ServiceSideUser]()
     var sortedServiceProviders = [ServiceSideUser]() {
         didSet {
-           getReviewsForAllProviders()
+            getReviewsForAllProviders()
         }
     }
     var ratings = [String : Double]() {
@@ -185,7 +185,7 @@ class DiscoverViewController: UIViewController {
         guard let currentUser = authservice.getCurrentUser() else {
             return
         }
-       DBService.getFavorites(id: currentUser.uid) { (favorites, error) in
+        DBService.getFavorites(id: currentUser.uid) { (favorites, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else if let favorites = favorites {

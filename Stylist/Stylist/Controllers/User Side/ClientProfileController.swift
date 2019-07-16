@@ -203,11 +203,9 @@ class ClientProfileController: UIViewController {
         let storyboard = UIStoryboard(name: "ServiceProvider", bundle: nil)
         guard let providerTab = storyboard.instantiateViewController(withIdentifier: "ServiceTabBar") as? ServiceProviderTabBar else {return}
         providerTab.modalTransitionStyle = .crossDissolve
-//        providerTab.modalPresentationStyle = .overFullScreen
         self.present(providerTab, animated: true) {
             let appdeletgate = (UIApplication.shared.delegate) as! AppDelegate
             appdeletgate.window?.rootViewController = providerTab
-//           self.navigationController?.removeFromParent()
         }
     }
     

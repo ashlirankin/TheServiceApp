@@ -68,11 +68,9 @@ class ServiceProfileViewController: UIViewController {
         let storyboard = UIStoryboard(name: "User", bundle: nil)
         let servicetab = storyboard.instantiateViewController(withIdentifier: "UserTabBarController")
         servicetab.modalTransitionStyle = .crossDissolve
-//        servicetab.modalPresentationStyle = .overFullScreen
         self.present(servicetab, animated: true) {
             let appdeletgate = (UIApplication.shared.delegate) as! AppDelegate
             appdeletgate.window?.rootViewController = servicetab
-//            self.navigationController?.removeFromParent()
         }
     }
 }
