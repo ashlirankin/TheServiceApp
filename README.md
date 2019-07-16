@@ -35,6 +35,10 @@ Stylists is a iOS mobile app that connects you directly to hair-stylists, barber
 
 ![ConfirmAppointment](https://github.com/Ashlirankin18/TheServiceApp/blob/master/Stylist/Images/ConfirmAppointment.gif)
 
+## Editing Portfolio
+* Providers can update their collection of work directly to the App cloud. 
+![image1](https://user-images.githubusercontent.com/43827399/61266458-3252fd80-a751-11e9-8758-17e1f44d9782.gif)
+
 ## Provider Completes Appointment and User Writes an Review
 * After the service is finished, the provider would mark the appointment complete. When the appointment is marked complete, the user would receive a popup to write a review about the appointment.
 * After the user submitted the review, it will reflect at the review section of the provider's profile.
