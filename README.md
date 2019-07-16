@@ -37,6 +37,7 @@ Stylists is a iOS mobile app that connects you directly to hair-stylists, barber
 
 ## Editing Portfolio
 * Providers can update their collection of work directly to the App cloud. 
+
 ![image1](https://user-images.githubusercontent.com/43827399/61266458-3252fd80-a751-11e9-8758-17e1f44d9782.gif)
 
 ## Provider Completes Appointment and User Writes an Review
