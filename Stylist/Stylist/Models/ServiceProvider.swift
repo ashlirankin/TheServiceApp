@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct ServiceSideUser{
+class ServiceSideUser{
   let userId:String
   let firstName:String?
   let lastName:String?
