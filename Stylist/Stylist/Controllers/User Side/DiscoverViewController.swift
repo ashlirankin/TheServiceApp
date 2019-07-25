@@ -220,7 +220,6 @@ class DiscoverViewController: UIViewController {
         destination.rating = providerRating
         destination.isFavorite = isFavorite
         destination.provider = provider
-        
         let index = favorites.firstIndex { provider.userId == $0.userId }
         if let foundIndex = index {
             let favorite = favorites[foundIndex]
@@ -240,7 +239,12 @@ extension DiscoverViewController: UICollectionViewDataSource, UICollectionViewDe
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverCollectionViewCell", for: indexPath) as! DiscoverCollectionViewCell
         let provider = sortedServiceProviders[indexPath.row]
         let providerRating = ratings[provider.userId]
-        cell.configureCell(provider: provider, favorites: favorites, rating: providerRating ?? 5)
+        let cache = NSCache<NSString, ServiceSideUser>()
+        if let providerCached = cache.object(forKey: "cachedProvider") {
+             cell.configureCell(provider: providerCached, favorites: favorites, rating: providerRating ?? 5)
+        } else {
+             cell.configureCell(provider: provider, favorites: favorites, rating: providerRating ?? 5)
+        }
         return cell
     }
 }

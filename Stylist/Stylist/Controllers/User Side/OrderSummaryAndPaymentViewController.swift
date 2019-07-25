@@ -54,7 +54,6 @@ class OrderSummaryAndPaymentViewController: UITableViewController {
       setUpCosmosView()
       getCardInformation()
       setUpNavBar()
-   
     }
 
   @IBAction func tipButtonPressed(_ sender: RoundedTextButton) {

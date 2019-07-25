@@ -11,5 +11,5 @@ import UIKit
 class CreatePortfolioCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var photoButton: UIButton!
     
-  
+    
 }
