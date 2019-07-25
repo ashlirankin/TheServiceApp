@@ -139,6 +139,8 @@ extension CreatePortfolioViewController: UICollectionViewDataSource {
             let image = images[indexPath.row - 1]
             cell.cellImage.image = image
             if editToggle {
+                cell.deletePhotoButton.tag = indexPath.row
+                cell.deletePhotoButton.addTarget(self, action: #selector(deletePhotoCellForIndexpath), for: .touchUpInside)
                 cell.deletePhotoButton.isHidden = false
             } else {
                 cell.deletePhotoButton.isHidden = true
@@ -161,6 +163,10 @@ extension CreatePortfolioViewController: UICollectionViewDataSource {
         }
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true)
+    }
+    
+    @objc private func deletePhotoCellForIndexpath(button: UIButton ) {
+        images.remove(at: button.tag - 1)
     }
 }
 
