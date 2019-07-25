@@ -220,7 +220,6 @@ class DiscoverViewController: UIViewController {
         destination.rating = providerRating
         destination.isFavorite = isFavorite
         destination.provider = provider
-        
         let index = favorites.firstIndex { provider.userId == $0.userId }
         if let foundIndex = index {
             let favorite = favorites[foundIndex]

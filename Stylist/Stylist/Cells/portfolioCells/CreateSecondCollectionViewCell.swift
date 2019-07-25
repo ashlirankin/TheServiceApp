@@ -10,5 +10,5 @@ import UIKit
 
 class CreateSecondCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cellImage: UIImageView!
-    
+    @IBOutlet weak var deletePhotoButton: CircularButton!
 }

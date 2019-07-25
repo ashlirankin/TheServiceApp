@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 import Toucan
+import FirebaseFirestore
 
 class CreatePortfolioViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
@@ -18,8 +19,14 @@ class CreatePortfolioViewController: UIViewController {
         imagePicker.delegate = self
         return imagePicker
     }()
+    var editToggle = false {
+        didSet {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
     var authService =  AuthService()
-    
     var portfolioImages = [String]() {
         didSet {
             DispatchQueue.main.async {
@@ -39,6 +46,11 @@ class CreatePortfolioViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
+        setPhotoData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setPhotoData()
     }
     
@@ -69,6 +81,11 @@ class CreatePortfolioViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    @IBAction func editPortfolioButton(_ sender: CircularButton) {
+        editToggle = !editToggle
+    }
+    
     
     
     @IBAction func BackButton(_ sender: CircularButton) {
@@ -101,7 +118,6 @@ class CreatePortfolioViewController: UIViewController {
                 }
             }
         }
-        setPhotoData()
     }
 }
 
@@ -117,12 +133,16 @@ extension CreatePortfolioViewController: UICollectionViewDataSource {
             cell.photoButton.addTarget(self, action: #selector(showImagepicker), for: .touchDragInside)
             cell.photoButton.isEnabled = true
             cell.layer.cornerRadius = cell.layer.frame.height / 2
-//            cell.photoButton.imageView?.image
             return cell
         default:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell2", for: indexPath) as? CreateSecondCollectionViewCell else { return UICollectionViewCell() }
             let image = images[indexPath.row - 1]
             cell.cellImage.image = image
+            if editToggle {
+                cell.deletePhotoButton.isHidden = false
+            } else {
+                cell.deletePhotoButton.isHidden = true
+            }
             cell.layer.cornerRadius = 10
             return cell
         }
@@ -153,9 +173,7 @@ extension CreatePortfolioViewController: UINavigationControllerDelegate, UIImage
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             images.append(image)
         }
-        
         dismiss(animated: true)
     }
-    
 }
 

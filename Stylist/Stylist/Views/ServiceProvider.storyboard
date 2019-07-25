@@ -407,11 +407,11 @@
                                     <size key="itemSize" width="150" height="150"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="30" minY="0.0" maxX="30" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="PhotoCell" id="pQI-62-PT3" customClass="CreatePortfolioCollectionViewCell" customModule="Stylist" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="0.0" width="150" height="150"/>
+                                        <rect key="frame" x="30" y="0.0" width="150" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
@@ -441,7 +441,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="PhotoCell2" id="Keg-2j-rJR" customClass="CreateSecondCollectionViewCell" customModule="Stylist" customModuleProvider="target">
-                                        <rect key="frame" x="244" y="0.0" width="150" height="150"/>
+                                        <rect key="frame" x="234" y="0.0" width="150" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
@@ -450,18 +450,30 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8lL-Np-cBN">
                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                 </imageView>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gK3-ST-kUo" customClass="CircularButton" customModule="Stylist" customModuleProvider="target">
+                                                    <rect key="frame" x="110" y="0.0" width="40" height="40"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="82T-Zo-TZl"/>
+                                                        <constraint firstAttribute="height" constant="40" id="UD2-p0-jmJ"/>
+                                                    </constraints>
+                                                    <state key="normal" image="cancel_circle"/>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" red="0.38158982990000001" green="0.52590543030000003" blue="0.7294368148" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="gK3-ST-kUo" secondAttribute="trailing" id="8Uf-Ux-Qhr"/>
                                             <constraint firstItem="8lL-Np-cBN" firstAttribute="top" secondItem="Keg-2j-rJR" secondAttribute="top" id="956-MS-ui0"/>
                                             <constraint firstItem="8lL-Np-cBN" firstAttribute="leading" secondItem="Keg-2j-rJR" secondAttribute="leading" id="MpW-kf-wEb"/>
                                             <constraint firstAttribute="trailing" secondItem="8lL-Np-cBN" secondAttribute="trailing" id="dCs-6s-aY2"/>
+                                            <constraint firstItem="gK3-ST-kUo" firstAttribute="top" secondItem="Keg-2j-rJR" secondAttribute="top" id="fQf-S0-rAd"/>
                                             <constraint firstAttribute="bottom" secondItem="8lL-Np-cBN" secondAttribute="bottom" id="hXR-ib-dm4"/>
                                         </constraints>
                                         <size key="customSize" width="150" height="150"/>
                                         <connections>
                                             <outlet property="cellImage" destination="8lL-Np-cBN" id="TTL-Md-g05"/>
+                                            <outlet property="deletePhotoButton" destination="gK3-ST-kUo" id="E4N-px-hlE"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -497,9 +509,23 @@
                                     <action selector="BackButton:" destination="v6t-Oy-duy" eventType="touchUpInside" id="CHc-cx-78g"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRF-SJ-Mbf" customClass="CircularButton" customModule="Stylist" customModuleProvider="target">
+                                <rect key="frame" x="344" y="64" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.2614240961" green="0.4279294481" blue="0.52180916460000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="rw5-yH-xK4"/>
+                                    <constraint firstAttribute="width" constant="50" id="wgT-5O-UsP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <state key="normal" title="Edit"/>
+                                <connections>
+                                    <action selector="editPortfolioButton:" destination="v6t-Oy-duy" eventType="touchUpInside" id="aNC-Y2-Whz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.174853128" green="0.2225734221" blue="0.3657343045" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="RuT-VG-zAX" firstAttribute="trailing" secondItem="mRF-SJ-Mbf" secondAttribute="trailing" constant="20" id="42t-vp-c1m"/>
                             <constraint firstItem="2do-wl-Bh8" firstAttribute="leading" secondItem="RuT-VG-zAX" secondAttribute="leading" constant="20" id="6aB-hy-qCm"/>
                             <constraint firstItem="u5c-xc-byf" firstAttribute="trailing" secondItem="RuT-VG-zAX" secondAttribute="trailing" id="DmZ-nV-WZp"/>
                             <constraint firstAttribute="bottom" secondItem="JjI-2w-7ZA" secondAttribute="bottom" constant="20" id="FB9-rV-AiJ"/>
@@ -507,9 +533,12 @@
                             <constraint firstItem="u5c-xc-byf" firstAttribute="leading" secondItem="RuT-VG-zAX" secondAttribute="leading" id="Vex-3Y-qo8"/>
                             <constraint firstItem="u5c-xc-byf" firstAttribute="top" secondItem="bKY-RH-fH0" secondAttribute="bottom" constant="8" id="XmM-9U-T8Q"/>
                             <constraint firstItem="RuT-VG-zAX" firstAttribute="trailing" secondItem="JjI-2w-7ZA" secondAttribute="trailing" constant="20" id="YNQ-z2-z6Q"/>
+                            <constraint firstItem="mRF-SJ-Mbf" firstAttribute="centerY" secondItem="2do-wl-Bh8" secondAttribute="centerY" id="gcU-se-bBp"/>
+                            <constraint firstItem="mRF-SJ-Mbf" firstAttribute="height" secondItem="2do-wl-Bh8" secondAttribute="height" id="jSK-CT-U9y"/>
                             <constraint firstItem="bKY-RH-fH0" firstAttribute="centerX" secondItem="RuT-VG-zAX" secondAttribute="centerX" id="n34-5r-k9B"/>
                             <constraint firstAttribute="bottom" secondItem="u5c-xc-byf" secondAttribute="bottom" id="qzK-sF-exb"/>
                             <constraint firstItem="2do-wl-Bh8" firstAttribute="top" secondItem="RuT-VG-zAX" secondAttribute="top" constant="20" id="ww0-qb-TGG"/>
+                            <constraint firstItem="mRF-SJ-Mbf" firstAttribute="width" secondItem="2do-wl-Bh8" secondAttribute="width" id="z0h-Vz-e0G"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RuT-VG-zAX"/>
                     </view>
@@ -715,6 +744,7 @@
     </scenes>
     <resources>
         <image name="SymbolPlus" width="300" height="300"/>
+        <image name="cancel_circle" width="96" height="96"/>
         <image name="icons8-barbershop-32" width="32" height="32"/>
         <image name="icons8-change-user-30" width="30" height="30"/>
         <image name="icons8-compose-50" width="50" height="50"/>
