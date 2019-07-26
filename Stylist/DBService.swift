@@ -394,12 +394,29 @@ final class DBService {
     }
     
     
-    static func upLoadPortfolio(iD: String, images: PortfolioImages, completionHandler: @escaping(Error?) -> Void) {
+    static func upLoadPortfolio(iD: String, images: [String], completionHandler: @escaping(Error?) -> Void) {
         DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
             .document(iD)
             .collection(PortfolioCollectionKeys.portfolio)
-            .addDocument(data: ["images" : images.images,
-                                "documentID" : images.documentId
+            .document(iD)
+            .setData(["images" : images,
+                      "documentID" : iD
+                ], completion: { (error) in
+                    if let error = error {
+                        completionHandler(error)
+                    } else {
+                        completionHandler(nil)
+                    }
+            })
+    }
+    
+    
+    static func updatePortfolio(id: String, imagesID: String, imagesLinks: [String], completionHandler: @escaping(Error?) -> Void){
+        DBService.firestoreDB.collection(ServiceSideUserCollectionKeys.serviceProvider)
+            .document(id)
+            .collection(PortfolioCollectionKeys.portfolio)
+            .document(imagesID)
+            .updateData(["images" : imagesLinks
                 ], completion: { (error) in
                     if let error = error {
                         completionHandler(error)

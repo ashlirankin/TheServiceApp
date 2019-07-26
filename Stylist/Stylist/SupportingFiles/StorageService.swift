@@ -18,7 +18,7 @@ final class StorageService {
     let ref = Storage.storage().reference()
     return ref
   }()
-  
+   static var currentUploadTask: StorageUploadTask?
   static public func postImage(imageData: Data, imageName: String, completion: @escaping (Error?, URL?) -> Void) {
     let metadata = StorageMetadata()
     let imageRef = storageRef.child(StorageKeys.ImagesKey + "/\(imageName)")
@@ -31,6 +31,7 @@ final class StorageService {
           
         }
     }
+    
 //    return uploadTask
 //    uploadTask.pause()
     // upload
@@ -57,4 +58,40 @@ final class StorageService {
       })
     }
   }
+    
+    
+    static func uploadPortfolio(data: Data, fileName: String, block: @escaping (_ url: String?) -> Void) {
+        // Upload the file to the path
+        let metadata = StorageMetadata()
+        let imageRef = StorageService.storageRef.child(StorageKeys.ImagesKey + "/\(fileName)")
+        metadata.contentType = "image/jpg"
+        
+        startUploading(data: data, withName: fileName, atPath: imageRef) { (url) in
+            block(url)
+        }
+    }
+    
+   static func startUploading(data: Data, withName fileName: String, atPath path: StorageReference, block: @escaping(_ url: String?) -> Void) {
+    let metadata = StorageMetadata()
+    metadata.contentType = "image/jpg"
+        currentUploadTask = path.putData(data, metadata: metadata) { (metaData, error) in
+            guard metaData != nil else {
+                block(nil)
+                return
+            }
+            
+            path.downloadURL { (url, error) in
+                guard let downloadUrl = url else {
+                    block(nil)
+                    return
+                }
+                block(downloadUrl.absoluteString)
+            }
+        }
+        
+    }
+    
+    func cancel() {
+        StorageService.currentUploadTask?.cancel() 
+    }
 }
