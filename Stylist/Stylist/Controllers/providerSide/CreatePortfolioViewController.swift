@@ -19,6 +19,8 @@ class CreatePortfolioViewController: UIViewController {
         imagePicker.delegate = self
         return imagePicker
     }()
+    var cloudImagesIsEmpy = false
+    var portfolioDocumentID = ""
     var editToggle = false {
         didSet {
             DispatchQueue.main.async {
@@ -27,13 +29,7 @@ class CreatePortfolioViewController: UIViewController {
         }
     }
     var authService =  AuthService()
-    var portfolioImages = [String]() {
-        didSet {
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
-    }
+    var portfolioImages = [String]()
     
     var images = [UIImage]() {
         didSet {
@@ -42,11 +38,13 @@ class CreatePortfolioViewController: UIViewController {
             }
         }
     }
+    typealias FileCompletionBlock = () -> Void
+    var block: FileCompletionBlock?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
-        setPhotoData()
+//        setPhotoData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,20 +53,25 @@ class CreatePortfolioViewController: UIViewController {
     }
     
     func setPhotoData() {
-        images.removeAll()
         if let currentUser = authService.getCurrentUser() {
             DBService.getPortfolioImages(providerId: currentUser.uid) { (error, cloudImages) in
                 if let error = error {
                     print(error.localizedDescription)
                 } else if let cloudImages = cloudImages {
-                    let _ = cloudImages.images.map {
-                        let Downloadedimage = UIImageView()
-                        Downloadedimage.kf.setImage(with: URL(string: $0))
-                        if let image = Downloadedimage.image {
-                            self.images.append(image)
-                        }
-                    }
+                    self.portfolioImages = cloudImages.images
+                    self.portfolioDocumentID = cloudImages.documentId
+                    self.loadPhotos()
                 }
+            }
+        }
+    }
+    
+    private func loadPhotos() {
+        for url in portfolioImages {
+            let Downloadedimage = UIImageView()
+            Downloadedimage.kf.setImage(with: URL(string: url))
+            if let image = Downloadedimage.image {
+                self.images.append(image)
             }
         }
     }
@@ -97,29 +100,63 @@ class CreatePortfolioViewController: UIViewController {
         guard images.count <= 5, let currentUser = authService.getCurrentUser() else {
             return
         }
-        for image in images {
+        if portfolioImages.isEmpty {
+            startUploading(id: currentUser.uid) {
+                        self.setPhotoData()
+                        self.showAlert(title: nil, message: "Photos have been uploaded", actionTitle: "OK")
+            }
+        } else {
+            update(id: currentUser.uid)
+        }
+        
+    }
+    
+    func startUploading(id: String, completion: @escaping FileCompletionBlock) {
+        if images.count == 0 {
+            completion()
+            return
+        }
+        block = completion
+        uploadImage(forIndex: 0, id: id)
+    }
+    
+    func uploadImage(forIndex index:Int, id: String) {
+       if index < images.count {
+           /// Perform uploading
+            let image = images[index]
             guard let resizedImage = Toucan.Resize.resizeImage(image, size: CGSize(width: 300, height: 300)) else { return }
             if let imageData = resizedImage.jpegData(compressionQuality: 1.0) {
-                StorageService.postImage(imageData: imageData, imageName: "portfolio/\(currentUser.uid)") { (error, Photolinks) in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    } else if let photoLinks = Photolinks {
-                        self.portfolioImages.append(photoLinks.absoluteString)
-                        let id =  DBService.generateDocumentId
-                        let newPortforlio = PortfolioImages(documentId: id, images: self.portfolioImages)
-                        DBService.upLoadPortfolio(iD: currentUser.uid, images: newPortforlio) { (error) in
+                StorageService.uploadPortfolio(data: imageData, fileName: "portfolio/\(id)\(index)") { (url) in
+                    if let url = url {
+                      self.portfolioImages.append(url)
+                        DBService.upLoadPortfolio(iD: id, images: self.portfolioImages, completionHandler: { (error) in
                             if let error = error {
                                 print(error)
-                            } else {
-                                self.showAlert(title: nil, message: "Photos have been uploaded", actionTitle: "OK")
                             }
+                            self.uploadImage(forIndex: index + 1, id: id)
+                        })
                         }
                     }
                 }
+        return
+        }
+        if block != nil {
+            block!()
+        }
+    }
+    
+    private func update(id: String) {
+        DBService.updatePortfolio(id: id, imagesID: self.portfolioDocumentID, imagesLinks: self.portfolioImages) { (error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                self.setPhotoData()
+                self.showAlert(title: nil, message: "Photos have been updated", actionTitle: "OK")
             }
         }
     }
 }
+
 
 extension CreatePortfolioViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -139,7 +176,7 @@ extension CreatePortfolioViewController: UICollectionViewDataSource {
             let image = images[indexPath.row - 1]
             cell.cellImage.image = image
             if editToggle {
-                cell.deletePhotoButton.tag = indexPath.row
+                cell.deletePhotoButton.tag = indexPath.row - 1
                 cell.deletePhotoButton.addTarget(self, action: #selector(deletePhotoCellForIndexpath), for: .touchUpInside)
                 cell.deletePhotoButton.isHidden = false
             } else {
@@ -166,7 +203,7 @@ extension CreatePortfolioViewController: UICollectionViewDataSource {
     }
     
     @objc private func deletePhotoCellForIndexpath(button: UIButton ) {
-        images.remove(at: button.tag - 1)
+        images.remove(at: button.tag)
     }
 }
 
