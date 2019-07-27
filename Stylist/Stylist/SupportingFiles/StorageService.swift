@@ -63,9 +63,8 @@ final class StorageService {
     static func uploadPortfolio(data: Data, fileName: String, block: @escaping (_ url: String?) -> Void) {
         // Upload the file to the path
         let metadata = StorageMetadata()
-        let imageRef = StorageService.storageRef.child(StorageKeys.ImagesKey + "/\(fileName)")
+        let imageRef = StorageService.storageRef.child(StorageKeys.ImagesKey + "/portfolio/\(fileName)")
         metadata.contentType = "image/jpg"
-        
         startUploading(data: data, withName: fileName, atPath: imageRef) { (url) in
             block(url)
         }
