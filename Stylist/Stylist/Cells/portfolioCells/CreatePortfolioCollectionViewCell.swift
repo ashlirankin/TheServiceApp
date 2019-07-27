@@ -11,5 +11,10 @@ import UIKit
 class CreatePortfolioCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var photoButton: UIButton!
     
+    func setupCell(target: CreatePortfolioViewController, action: Selector) {
+       photoButton.addTarget(target, action: action, for: .touchUpInside)
+      photoButton.isEnabled = true
+     layer.cornerRadius = layer.frame.height / 2
+    }
     
 }

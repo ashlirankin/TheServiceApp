@@ -31,9 +31,9 @@ class ProviderDetailController: UITableViewController {
         }
     }
     var rating: Double?
-    let sectionInset = UIEdgeInsets(top: 10.0,
+    let sectionInset = UIEdgeInsets(top: 20.0,
                                     left: 10.0,
-                                    bottom: 400.0,
+                                    bottom: 100.0,
                                     right: 20.0)
     @IBOutlet weak var collectionView: UICollectionView!
   var buttons = ["Bio","Portfolio","Reviews"] {
